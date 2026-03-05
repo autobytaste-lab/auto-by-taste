@@ -16,29 +16,29 @@
 
 ---
 
+### Phase 1: Foundation & Particles
 
+**Goal:** Implement particle background system and enhance glassmorphism UI
 
 **Plans:** 2 plans (2 complete)
 
 Plans:
 - [x] 01-01-PLAN.md — Install tsParticles, create particle system components with neural network configuration
 - [x] 01-02-PLAN.md — Enhance glassmorphism UI, define z-index hierarchy, verify particle + glass layering
-## Phase 2: Mac Hardware Data
+
+---
+
+### Phase 2: Mac Hardware Data
 
 **Goal:** Create structured data for Mac models and AI compatibility
 
-**Requirements Covered:**
-- R3: Mac Model Selector (data layer)
-- R4: M-Series Chip Comparison
+**Requirements:** [R3, R4]
 
-**Tasks:**
-1. Define TypeScript interfaces for MacModel, Chip, AIModel
-2. Create macModels data array (all current Macs)
-3. Create chips data array (M1 → M4 variants)
-4. Create aiModels data array with RAM requirements
-5. Create compatibility function (Mac RAM → compatible models)
-6. Build M-series chip comparison component
-7. Integrate with existing Recharts infrastructure
+**Plans:** 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Create TypeScript data layer (chips, macModels, aiModels, compatibility function)
+- [ ] 02-02-PLAN.md — Build ChipComparison component with Recharts visualization
 
 **Success Criteria:**
 - All Mac models from 2020+ covered
@@ -47,8 +47,8 @@ Plans:
 - Chip comparison renders correctly
 
 **Risks:**
-- Spec inaccuracies → verify against Apple official specs
-- Too many models → group by category
+- Spec inaccuracies -> verify against Apple official specs
+- Too many models -> group by category
 
 ---
 
@@ -77,8 +77,8 @@ Plans:
 - All text in Vietnamese
 
 **Risks:**
-- Too many options → group and filter intelligently
-- Touch targets too small → ensure 48px minimum
+- Too many options -> group and filter intelligently
+- Touch targets too small -> ensure 48px minimum
 
 ---
 
@@ -105,8 +105,8 @@ Plans:
 - Copy in Vietnamese
 
 **Risks:**
-- Overly technical → simplify language
-- Animation too heavy → keep subtle or static
+- Overly technical -> simplify language
+- Animation too heavy -> keep subtle or static
 
 ---
 
@@ -133,8 +133,8 @@ Plans:
 - Real-world context helps users understand
 
 **Risks:**
-- Benchmark data inaccurate → use estimates with disclaimers
-- Charts too complex → simplify to key metrics
+- Benchmark data inaccurate -> use estimates with disclaimers
+- Charts too complex -> simplify to key metrics
 
 ---
 
@@ -162,8 +162,8 @@ Plans:
 - Lighthouse Performance > 85
 
 **Risks:**
-- Performance issues late → may need to reduce particle counts further
-- Device-specific bugs → test on multiple devices
+- Performance issues late -> may need to reduce particle counts further
+- Device-specific bugs -> test on multiple devices
 
 ---
 
