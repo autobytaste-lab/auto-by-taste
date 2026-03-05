@@ -4,12 +4,12 @@ milestone: v1.0
 milestone_name: milestone
 current_plan: Not started
 status: planning
-last_updated: "2026-03-05T10:04:56.564Z"
+last_updated: "2026-03-05T10:26:14.813Z"
 progress:
-  total_phases: 5
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  total_phases: 6
+  completed_phases: 1
+  total_plans: 4
+  completed_plans: 3
 ---
 
 # Project State
@@ -20,16 +20,16 @@ progress:
 ## Current Status
 
 **Milestone:** v1.0
-**Phase:** 01-foundation-particles
-**Current Plan:** Not started
-**Status:** Ready to plan
+**Phase:** 02-mac-hardware-data
+**Current Plan:** 02-01-PLAN.md (Complete)
+**Status:** In progress
 
 ## Progress
 
 | Phase | Status | Plans | Notes |
 |-------|--------|-------|-------|
 | 1: Foundation & Particles | Complete | 2/2 | Particle background + glassmorphism complete |
-| 2: Mac Hardware Data | Pending | 0/2 | |
+| 2: Mac Hardware Data | In Progress | 1/2 | Data layer complete, chip comparison pending |
 | 3: Interactive Mac Selector | Pending | 0/2 | |
 | 4: Apple Silicon Education | Pending | 0/1 | |
 | 5: Performance Visualization | Pending | 0/1 | |
@@ -47,7 +47,9 @@ progress:
 - **Executed:** Phase 01 Plan 01 - Particle background system (5 tasks, 6 commits, 288s)
 - **Executed:** Phase 01 Plan 02 - Glassmorphism UI enhancement (5 tasks, 4 commits, 180m)
 - **Status:** Phase 01 Complete
-- **Next:** Phase 02 - Mac Hardware Data
+- **Executed:** Phase 02 Plan 01 - Mac hardware data layer (3 tasks, 6 commits, 4m 17s)
+- **Status:** Phase 02 in progress (1/2 plans complete)
+- **Next:** Phase 02 Plan 02 - Chip comparison component
 
 ## Key Decisions
 
@@ -65,6 +67,11 @@ progress:
 | Create glass-card-strong variant | Sections needing more prominence while maintaining particle visibility | 2026-03-05 |
 | Safari compatibility priority | Added -webkit-backdrop-filter prefix and @supports fallback for cross-browser support | 2026-03-05 |
 | Navbar z-index adjustment | Changed from z-50 to z-20 to match CSS variable hierarchy | 2026-03-05 |
+| TypeScript interfaces over classes | Static data has no behavior; interfaces are simpler and enable better tree-shaking | 2026-03-05 |
+| TDD with RED-GREEN commits | Provides clear audit trail of test-driven development; tests prove correctness | 2026-03-05 |
+| Q4_K_M quantization baseline | 75% size reduction with minimal quality loss; standard for local AI deployment | 2026-03-05 |
+| Document M3 Pro bandwidth regression | M3 Pro has 150 GB/s vs M2 Pro 200 GB/s - known Apple design change | 2026-03-05 |
+| 16GB base for M4 Macs | Mac Mini M4 and newer start at 16GB as of Oct 2024 Apple update | 2026-03-05 |
 
 ## Blockers
 
@@ -76,6 +83,7 @@ None currently.
 |-------|------|----------|-------|-------|---------|------|
 | 01 | 01 | 4m 48s | 5 | 8 | 6 | 2026-03-05 |
 | 01 | 02 | 3h 0m | 5 | 4 | 4 | 2026-03-05 |
+| 02 | 01 | 4m 17s | 3 | 9 | 6 | 2026-03-05 |
 
 ## Dependencies to Install
 
