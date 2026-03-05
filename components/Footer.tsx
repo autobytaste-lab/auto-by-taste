@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#0a0a0a] border-t border-white/5 py-12">
+    <footer className="relative glass-card border-t border-white/10 py-12">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-2">
@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
               <span className="text-lg font-bold text-white">Auto By Taste</span>
             </div>
             <p className="text-slate-400 max-w-sm leading-relaxed mb-6">
-              Tiên phong mang trí tuệ nhân tạo cục bộ đến với mọi doanh nghiệp Việt Nam, đảm bảo an toàn dữ liệu và tối ưu hóa hiệu suất làm việc.
+              Cung cấp dịch vụ Nhân sự AI Agent 24/7 cho doanh nghiệp Việt Nam. Chi phí thấp, hiệu suất cao, bảo mật tuyệt đối.
             </p>
             <div className="flex space-x-4">
               <a href="https://zalo.me/0337776435" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/20 rounded-xl text-xs font-bold text-blue-400 transition-all">
@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-4 text-sm text-slate-500">
               <li><a href="#overview" className="hover:text-blue-400">Về chúng tôi</a></li>
               <li><a href="#products" className="hover:text-blue-400">Gói giải pháp</a></li>
-              <li><a href="#funding" className="hover:text-blue-400">Quan hệ nhà đầu tư</a></li>
+              <li><a href="#pricing" className="hover:text-blue-400">Bảng giá dịch vụ</a></li>
               <li><a href="#" className="hover:text-blue-400">Tuyển dụng</a></li>
             </ul>
           </div>
