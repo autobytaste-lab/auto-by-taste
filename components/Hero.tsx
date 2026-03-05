@@ -28,27 +28,27 @@ export const Hero: React.FC = () => {
 
       <div className="container mx-auto px-6 relative z-10 text-center">
         <div className="inline-flex items-center space-x-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5 mb-8">
-          <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-          <span className="text-xs font-bold text-blue-400 tracking-wider uppercase">Apple Silicon AI Agent Platform</span>
+          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+          <span className="text-xs font-bold text-blue-400 tracking-wider uppercase">Dịch vụ Nhân sự AI Agent 24/7</span>
         </div>
-        
+
         <h1 className="text-5xl lg:text-8xl font-extrabold text-white mb-6 leading-tight tracking-tight">
-          Kỷ Nguyên<br />
-          <span className="text-gradient">AI Local Agent.</span>
+          Thuê Nhân Viên AI<br />
+          <span className="text-gradient">Làm Việc 24/7.</span>
         </h1>
-        
+
         <p className="max-w-3xl mx-auto text-lg lg:text-xl text-slate-400 mb-10 leading-relaxed font-light">
-          Biến Mac Mini & Mac Studio thành trung tâm não bộ cho doanh nghiệp. 
-          Bảo mật dữ liệu tuyệt đối với trợ lý ảo <span className="text-blue-400 font-semibold">"On-Device"</span> thế hệ mới.
+          Đội ngũ AI Agent chuyên nghiệp - không nghỉ phép, không tăng ca, không lương thưởng.
+          Chi phí chỉ từ <span className="text-green-400 font-semibold">3 triệu/tháng</span> - bằng 1/5 nhân viên thực.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-20">
-          <button className="w-full sm:w-auto px-10 py-5 bg-white text-black font-bold rounded-2xl hover:bg-slate-200 transition-all shadow-2xl shadow-white/10 flex items-center justify-center">
-            Tham gia đầu tư
-          </button>
-          <button className="w-full sm:w-auto px-10 py-5 glass-card text-white font-bold rounded-2xl hover:bg-white/10 transition-all border border-white/10 flex items-center justify-center">
-            Trải nghiệm AI Agent
-          </button>
+          <a href="#pricing" className="w-full sm:w-auto px-10 py-5 bg-white text-black font-bold rounded-2xl hover:bg-slate-200 transition-all shadow-2xl shadow-white/10 flex items-center justify-center">
+            Thuê AI Agent ngay
+          </a>
+          <a href="https://zalo.me/0337776435" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-10 py-5 glass-card text-white font-bold rounded-2xl hover:bg-white/10 transition-all border border-white/10 flex items-center justify-center">
+            Tư vấn miễn phí
+          </a>
         </div>
 
         {/* Updated Hero Image Container with Holographic Pedestal Look */}
