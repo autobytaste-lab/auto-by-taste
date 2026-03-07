@@ -17,13 +17,17 @@ Add English/Vietnamese internationalization to the existing landing page using R
 **Depends on**: Nothing (first phase)
 **Requirements**: I18N-01, I18N-02, I18N-03, I18N-04, I18N-05, I18N-06, CONT-01, CONT-03
 **Success Criteria** (what must be TRUE):
-  1. English translation file (src/i18n/translations/en.ts) exists with all content from 9 components
-  2. Vietnamese translation file (src/i18n/translations/vi.ts) exists with all existing content preserved
+  1. English translation file (i18n/translations/en.ts) exists with all content from 9 components
+  2. Vietnamese translation file (i18n/translations/vi.ts) exists with all existing content preserved
   3. I18nContext provides useI18n() hook with language state and t() translation function
   4. Language preference persists in localStorage across browser refresh
   5. HTML lang attribute updates automatically when language changes (verified in DevTools)
   6. Context value is memoized to prevent unnecessary re-renders (verified with React DevTools Profiler)
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Test infrastructure + translation files (EN/VI)
+- [ ] 01-02-PLAN.md — I18nContext provider with persistence and lang sync
 
 ### Phase 2: Component Integration
 **Goal**: All page content displays in user's selected language
@@ -55,6 +59,6 @@ Add English/Vietnamese internationalization to the existing landing page using R
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. i18n Foundation | 0/0 | Not started | - |
+| 1. i18n Foundation | 0/2 | Planning complete | - |
 | 2. Component Integration | 0/0 | Not started | - |
 | 3. Polish & Validation | 0/0 | Not started | - |
