@@ -4,16 +4,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Local Hub - Giải pháp AI Nội bộ Bảo mật</title>
+    <title>Auto By Taste - Giải pháp AI Nội bộ Bảo mật cho Doanh nghiệp Việt Nam</title>
+    <meta name="description" content="Auto By Taste cung cấp giải pháp AI nội bộ bảo mật, triển khai on-premise trên Apple Silicon. AI Agent cho tài chính, pháp lý, y tế, sản xuất và marketing tại Việt Nam.">
+    <meta name="keywords" content="AI nội bộ, AI agent, bảo mật dữ liệu, Apple Silicon, on-premise AI, AI doanh nghiệp, Auto By Taste, AI Việt Nam, giải pháp AI, tự động hóa doanh nghiệp">
+    <meta name="author" content="Auto By Taste">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://autobytaste.tech/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://autobytaste.tech/">
+    <meta property="og:title" content="Auto By Taste - Giải pháp AI Nội bộ Bảo mật cho Doanh nghiệp">
+    <meta property="og:description" content="Triển khai AI Agent nội bộ trên Apple Silicon - bảo mật tuyệt đối, không phụ thuộc cloud. Phục vụ tài chính, pháp lý, y tế, sản xuất.">
+    <meta property="og:image" content="https://autobytaste.tech/logo.jpg">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:site_name" content="Auto By Taste">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://autobytaste.tech/">
+    <meta name="twitter:title" content="Auto By Taste - Giải pháp AI Nội bộ Bảo mật cho Doanh nghiệp">
+    <meta name="twitter:description" content="Triển khai AI Agent nội bộ trên Apple Silicon - bảo mật tuyệt đối, không phụ thuộc cloud.">
+    <meta name="twitter:image" content="https://autobytaste.tech/logo.jpg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Auto By Taste",
+      "url": "https://autobytaste.tech",
+      "logo": "https://autobytaste.tech/logo.jpg",
+      "description": "Giải pháp AI nội bộ bảo mật cho doanh nghiệp Việt Nam, triển khai on-premise trên Apple Silicon.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+84-337-776-435",
+        "contactType": "sales",
+        "availableLanguage": ["Vietnamese", "English"]
+      },
+      "sameAs": [
+        "https://zalo.me/0337776435"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Auto By Taste",
+      "url": "https://autobytaste.tech",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://autobytaste.tech/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --z-particles: 0;
+            --z-background: -10;
+            --z-content: 10;
+            --z-glass-cards: 15;
+            --z-navbar: 20;
+            --z-modal: 50;
+            --z-fab: 100;
+        }
+
         body { font-family: 'Inter', sans-serif; }
+
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* Safari fallback */
             border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: var(--z-glass-cards);
         }
+
+        /* Fallback for browsers without backdrop-filter support */
+        @supports not (backdrop-filter: blur(10px)) {
+            .glass-card {
+                background: rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        .glass-card-strong {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            z-index: var(--z-glass-cards);
+        }
+
         .text-gradient {
             background: linear-gradient(135deg, #60A5FA 0%, #A78BFA 100%);
             -webkit-background-clip: text;

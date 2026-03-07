@@ -4,6 +4,7 @@ export interface ProductTier {
   hardware: string;
   target: string;
   capability: string;
+  expansion: string;
   priceEstimate?: string;
 }
 

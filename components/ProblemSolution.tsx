@@ -35,7 +35,7 @@ export const ProblemSolution: React.FC = () => {
           />
         </div>
 
-        <div className="p-8 lg:p-12 rounded-[2rem] bg-gradient-to-br from-blue-600/20 via-slate-900 to-purple-600/20 border border-white/5 relative overflow-hidden">
+        <div className="p-8 lg:p-12 rounded-[2rem] glass-card-strong bg-gradient-to-br from-blue-600/20 via-transparent to-purple-600/20 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2"></div>
           <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
             <div>
