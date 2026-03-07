@@ -1,17 +1,16 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: executing
-stopped_at: Completed 02-03-PLAN.md (ChipComparison Integration)
-last_updated: "2026-03-07T15:57:53.480Z"
-last_activity: 2026-03-07 — Completed plan 01-02 (I18nContext Provider)
+milestone: v2.0
+milestone_name: Hero Apple Silicon Showcase
+status: defining_requirements
+last_updated: "2026-03-07T16:30:00.000Z"
+last_activity: 2026-03-07 — Milestone v2.0 started
 progress:
-  total_phases: 3
-  completed_phases: 3
-  total_plans: 7
-  completed_plans: 7
-  percent: 100
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # Project State
@@ -20,17 +19,17 @@ progress:
 
 See: .planning/PROJECT.md (updated 2026-03-07)
 
-**Core value:** Visitors can understand the AI-Local Hub offering and contact the founder — in their preferred language (English or Vietnamese)
-**Current focus:** Phase 1 - i18n Foundation
+**Core value:** Visitors immediately grasp Apple Silicon's raw power as AI infrastructure
+**Current focus:** Defining requirements for Hero Apple Silicon Showcase
 
 ## Current Position
 
-Phase: 1 of 3 (i18n Foundation)
-Plan: 2 of 2 in current phase
-Status: Executing
-Last activity: 2026-03-07 — Completed plan 01-02 (I18nContext Provider)
+Phase: Not started (defining requirements)
+Plan: -
+Status: Defining requirements
+Last activity: 2026-03-07 — Milestone v2.0 started
 
-Progress: [██████████] 100%
+Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
@@ -45,10 +44,6 @@ Progress: [██████████] 100%
 |-------|-------|-------|----------|
 | - | - | - | - |
 
-| Phase 01-i18n-foundation P01 | 5 | 3 tasks | 11 files |
-| Phase 01 P02 | 2 | 3 tasks | 4 files |
-| Phase 02 P03 | 1 | 2 tasks | 1 files |
-
 ## Accumulated Context
 
 ### Decisions
@@ -56,15 +51,11 @@ Progress: [██████████] 100%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
-- EN | VI toggle buttons in navbar (user preference for inline buttons over dropdown)
-- localStorage for persistence (simpler than cookies, no backend needed)
-- Translate content myself (user doesn't have translations ready)
-- [Phase 01-i18n-foundation]: Nested translation structure organized by component with 2-3 level nesting max
-- [Phase 01-i18n-foundation]: Type enforcement via Translation type export ensures EN/VI structure match
-- [Phase 01-i18n-foundation]: Vitest with jsdom for test environment (React Testing Library compatible)
-- [Phase 01]: Memoized context value with useMemo to prevent unnecessary re-renders
-- [Phase 01]: Separated concerns: 3 test files (context, persistence, lang-attribute) for clarity
-- [Phase 02]: Placed ChipComparison between #org-chart and #models for logical hardware flow
+- Abandon v1.0 i18n — pivot to Hero redesign
+- SVG chip diagram (not 3D) for bundle size
+- M4 family (M4/Pro/Max) maps to product tiers
+- Animated diagram with glowing cores, flowing data, counting numbers
+- Full Hero section redesign (layout, headline, CTAs)
 
 ### Pending Todos
 
@@ -76,6 +67,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-07T15:57:53.478Z
-Stopped at: Completed 02-03-PLAN.md (ChipComparison Integration)
+Last session: 2026-03-07T16:30:00.000Z
+Stopped at: Milestone v2.0 started — defining requirements
 Resume file: None
