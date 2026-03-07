@@ -1,194 +1,186 @@
-# Feature Landscape: React i18n for Landing Pages
+# Feature Research: Animated Apple Silicon Chip Diagram (Hero Section)
 
-**Domain:** React Internationalization (i18n) for Static Landing Pages
+**Domain:** Hardware spec visualization for marketing landing pages
 **Researched:** 2026-03-07
-**Confidence:** HIGH (verified with official docs, multiple sources, current year practices)
+**Confidence:** MEDIUM-HIGH (Apple specs verified from official sources; visual pattern analysis based on Apple marketing pages, industry examples, and training data)
 
-## Table Stakes
+## Feature Landscape
 
-Features users expect. Missing = product feels incomplete or broken.
+### Table Stakes (Users Expect These)
+
+Features that any credible chip/hardware showcase must include. Without these, the Hero section feels like a placeholder rather than a product centerpiece.
 
 | Feature | Why Expected | Complexity | Notes |
 |---------|--------------|------------|-------|
-| **Basic string translation** | Core purpose of i18n—display content in user's language | Low | Hardcoded strings make localization impossible. Use translation keys instead. [Source](https://www.translatedright.com/blog/20-i18n-mistakes-developers-make-in-react-apps-and-how-to-fix-them/) |
-| **Language switcher UI** | Users must be able to change language | Low | Should be "very easy to locate" or you lose customers. Typically in header/navbar as dropdown or inline buttons. [Source](https://attentioninsight.com/multilingual-landing-page-for-your-product/) |
-| **Language persistence** | Preference survives page refresh | Low | localStorage is standard for static sites—simpler than cookies, no backend needed. [Source](https://felixgerschau.com/react-localstorage/) |
-| **Context preservation on language switch** | Switching languages keeps user on same page/section | Low | Users expect to see "this same page in Spanish," not redirect to homepage. [Source](https://lingo.dev/en/react-router-i18n/switch-languages) |
-| **`lang` attribute on `<html>`** | SEO and accessibility requirement | Low | Screen readers need this for correct pronunciation. Google penalizes missing lang by up to 15% in non-English markets. [Source](https://copyprogramming.com/howto/html-data-lang-not-working-in-html) |
-| **Fallback language** | Prevents blank strings when translation missing | Low | Always define fallback (usually English) to prevent missing translations. [Source](https://www.i18next.com/translation-function/interpolation) |
-| **Variable interpolation** | Dynamic values (names, numbers) in translations | Low-Medium | Essential for runtime values like "Welcome, {{name}}" or "{{count}} items". Use sparingly—only for truly runtime values. [Source](https://www.i18next.com/translation-function/interpolation) |
+| **Chip selector (M4 / M4 Pro / M4 Max)** | Apple's own pages segment by variant; visitors expect to compare tiers | LOW | 3-tab/button toggle. Maps directly to product tiers (Starter/Pro/Enterprise). Existing `chips` data already has all three M4 variants. |
+| **Core count display (CPU + GPU)** | The most recognizable chip spec; every hardware page shows this | LOW | Show performance + efficiency core split for CPU. Existing data: M4 (4P+6E=10), M4 Pro (10P+4E=14), M4 Max (12P+4E=16). GPU: 10/20/40. |
+| **Neural Engine TOPS callout** | Apple markets M4 heavily on "38 TOPS" for AI workloads; this is the AI selling point | LOW | All M4 variants share 16-core Neural Engine at 38 TOPS. Current `chips.ts` has `neuralEngineCores: 16` but does NOT have TOPS -- needs adding. |
+| **Unified memory display** | Apple's key architectural advantage; distinguishes from discrete GPU systems | LOW | Max memory: 32GB / 64GB / 128GB. Bandwidth: 120 / 273 / 546 GB/s. Already in `chips.ts`. |
+| **Visual chip die/block diagram** | Apple, Qualcomm, Intel all show a die-shot or block diagram as the visual anchor | MEDIUM | SVG with labeled blocks for CPU, GPU, Neural Engine, Memory Controller. Not a photograph -- a stylized schematic. |
+| **Responsive layout** | Must work on mobile (60%+ of marketing traffic) | MEDIUM | Chip diagram must scale down gracefully. On mobile: stack vertically, simplify labels, maintain readability. |
+| **Spec number animations (count-up)** | Industry standard for landing pages showing impressive numbers; creates engagement | LOW | Numbers animate from 0 to target value on scroll-into-view. Use `requestAnimationFrame` or CSS counter -- no library needed. |
+| **Clear headline + subtext** | Hero must communicate "why Apple Silicon for AI" in 2-3 seconds | LOW | New copy replacing current generic hero. Emphasize raw power for AI workloads. |
 
-## Differentiators
+### Differentiators (Competitive Advantage)
 
-Features that set implementation apart. Not expected, but valuable for specific use cases.
+Features that elevate beyond a static spec sheet. These create the "wow" factor that Apple's own pages achieve.
 
 | Feature | Value Proposition | Complexity | Notes |
 |---------|-------------------|------------|-------|
-| **Type-safe translation keys** | Autocomplete + compile-time error detection | Medium | TypeScript users benefit from catching typos/missing keys at dev time vs runtime. Requires .ts files or type generation from JSON. [Source](https://zwyx.dev/blog/typesafe-translations) |
-| **Lazy loading translations** | Faster initial page load | Medium | Load only needed language on demand. Valuable for large apps, overkill for small landing pages (2 languages × small file = negligible). [Source](https://www.glorywebs.com/blog/internationalization-in-react) |
-| **Namespace splitting** | Organize translations by feature/section | Low-Medium | Separate common.json, hero.json, pricing.json. Helps teams work independently. For 9-component landing page: probably overkill, single file is simpler. [Source](https://react.i18next.com/guides/multiple-translation-files) |
-| **Pluralization rules** | Correct grammar for counts (1 item vs 2 items) | Low | Handled by Intl.PluralRules API. Covers 6 forms (zero/one/two/few/many/other). Only needed if displaying counts. [Source](https://generaltranslation.com/en-US/blog/plurals) |
-| **Date/time formatting** | Locale-aware dates (MM/DD vs DD/MM) | Low | Intl.DateTimeFormat handles this. Only valuable if landing page displays dates (blog posts, event dates). [Source](https://react.i18next.com/misc/using-with-icu-format) |
-| **Number/currency formatting** | Locale-aware numbers (1,000.00 vs 1.000,00) | Low | Intl.NumberFormat handles this. Valuable for pricing pages showing costs in local format. [Source](https://lokalise.com/blog/react-i18n-intl/) |
-| **RTL (Right-to-Left) support** | Proper layout for Arabic, Hebrew, etc. | High | Requires `dir` attribute + CSS adjustments. Only needed if targeting RTL languages. [Source](https://www.translatedright.com/blog/20-i18n-mistakes-developers-make-in-react-apps-and-how-to-fix-them/) |
-| **Browser language detection** | Auto-select user's preferred language on first visit | Low | Mix with manual switcher—don't force, offer choice. Some users prefer different language than browser default. [Source](https://lingo.dev/en/react-router-i18n/switch-languages) |
-| **Trans component for mixed content** | Translate strings with embedded React components (links, bold) | Low | Useful for "Read our <a>privacy policy</a>" type strings. More powerful than simple interpolation. [Source](https://react.i18next.com/latest/trans-component) |
+| **Animated glowing cores** | Visual metaphor for active processing; makes the diagram feel alive | MEDIUM | CSS animation on SVG elements: pulse/glow effect on CPU/GPU core blocks. Performance and efficiency cores should have different colors (e.g., blue for performance, green for efficiency). |
+| **Flowing data path animations** | Shows unified memory architecture advantage -- data flowing between CPU/GPU/Neural Engine without bottlenecks | MEDIUM | SVG `stroke-dasharray` + `stroke-dashoffset` animation along paths connecting chip blocks. Classic technique for circuit/data flow visualization. |
+| **Tier-to-product mapping** | Connect M4 variant selection to product tier (M4 = Starter Mac Mini, M4 Pro = Pro, M4 Max = Enterprise) | LOW | When user selects chip variant, show which AI-Local Hub product tier uses it. Bridges hardware specs to business offering. |
+| **Process node badge (3nm)** | Communicates manufacturing sophistication; Apple emphasizes "second-generation 3nm" | LOW | Small badge/label on chip diagram: "2nd Gen 3nm -- 28B transistors". Adds credibility. |
+| **Scroll-triggered entrance** | Diagram builds itself as user scrolls into view, creating reveal moment | MEDIUM | Use IntersectionObserver to trigger entrance animation. Elements fade/slide in sequentially: outline first, then cores, then specs. No scroll-hijacking. |
+| **Performance comparison callout** | "Up to 6x faster than M1" style relative performance claims | LOW | Apple uses multiplier comparisons extensively. Add one or two key claims per variant to contextualize raw numbers. |
 
-## Anti-Features
+### Anti-Features (Commonly Requested, Often Problematic)
 
-Features to explicitly NOT build for simple landing pages.
-
-| Anti-Feature | Why Avoid | What to Do Instead |
-|--------------|-----------|-------------------|
-| **URL-based routing (/en/, /vi/)** | Adds significant complexity for minimal benefit on static sites. Hard to find clear implementation guidance. Requires updating all links if you have a big app. | Use language stored in Context/localStorage. No URL changes. Simpler maintenance, no routing complexity. [Source](https://github.com/remix-run/react-router/discussions/10510) |
-| **Heavy i18n library (react-i18next)** | 22.2 kB (15.1 kB i18next + 7.1 kB react-i18next) added to bundle for features you don't need. | For 2-language landing page, React Context + JSON files is sufficient. If you need pluralization/date formatting, consider lightweight i18n-js instead. [Source](https://www.i18next.com/overview/comparison-to-others) |
-| **Translation Management System (TMS) integration** | Overkill for hardcoded translations managed by single developer. Adds complexity (API keys, sync scripts, dependencies). | Manage JSON files directly in repo. Use version control for translation updates. Consider TMS only when multiple translators or frequent updates. [Source](https://www.glorywebs.com/blog/internationalization-in-react) |
-| **Server-side language detection** | Requires backend. IP-based redirection can frustrate users (VPN, travel, preference). | Use browser detection as suggestion, always offer manual switcher. localStorage for persistence. [Source](https://www.maviklabs.com/blog/internationalization-astro-2026/) |
-| **CMS for content management** | Adds infrastructure (database, API, admin UI) for what's essentially static config. | Hardcode translations in JSON. Simple, version-controlled, no deployment complexity. [Source](https://attentioninsight.com/multilingual-landing-page-for-your-product/) |
-| **Automatic text extraction tools** | Useful for large codebases, but for 9 components you can manually extract strings faster than configuring extraction tooling. | Manually identify translatable strings, create JSON structure. One-time effort, full control. [Source](https://blog.logrocket.com/implementing-safe-dynamic-localization-typescript-apps/) |
-| **Monolithic translation files** | One massive en.json becomes unmanageable in large apps. But for small landing page, single file is simpler than namespace overhead. | For this project: single file per language (en.json, vi.json). Don't prematurely optimize with namespaces. [Source](https://www.translatedright.com/blog/20-i18n-mistakes-developers-make-in-react-apps-and-how-to-fix-them/) |
-| **Over-interpolation** | Splitting English sentences into fragments makes translation difficult or impossible. Translators need context. | Use interpolation only for truly runtime values (user names, counts, timestamps). Otherwise, use complete self-contained strings. [Source](https://www.i18next.com/translation-function/interpolation) |
+| Feature | Why Requested | Why Problematic | Alternative |
+|---------|---------------|-----------------|-------------|
+| **3D chip rendering (WebGL/Three.js)** | Looks impressive in demos | 100-300KB+ bundle size; GPU-intensive kills mobile performance; complex to maintain; diminishing returns vs well-designed 2D SVG | Styled SVG with CSS animations. Apple's own pages use 2D graphics with careful lighting/shadow, not WebGL. PROJECT.md explicitly rules this out. |
+| **Real-time benchmark data** | Seems more credible | Requires backend, varies by workload/configuration, creates liability for accuracy claims | Use Apple's official published specs. Marketing specs are sufficient and verifiable. PROJECT.md rules this out. |
+| **Chip comparison slider (A vs B side-by-side)** | Interactive comparison is engaging | Already have ChipComparison component with Recharts for this purpose; duplicating in Hero creates confusion about where to compare | Hero shows ONE chip at a time with selector. Comparison lives in dedicated ChipComparison section below. |
+| **Particle effects around chip** | Existing ParticleBackground suggests adding particles to chip | Competes visually with the chip diagram itself; performance cost compounds; visual noise | Keep ParticleBackground as ambient background. Chip diagram should be clean with its own self-contained glow effects. |
+| **Auto-cycling through chip variants** | Showcases all chips without interaction | Disorienting -- user loses control; animation may change while reading specs; accessibility concern (motion) | Default to M4 Pro (featured/middle tier), let user manually switch. Static default is more usable. |
+| **Hover tooltips on every chip block** | Shows extra detail | Mobile has no hover; creates information overload; fragments the reading experience | Show all key specs directly on the diagram. If detail is needed, it belongs in the spec panel, not tooltips. |
+| **Animated transistor count** | "28 billion transistors" is impressive | Number is same across all M4 variants; animating it adds visual noise without differentiation value | Show as static badge text: "28B transistors / 2nd Gen 3nm". |
+| **Sound effects** | Some marketing sites add subtle audio | Universally disliked; auto-playing audio is hostile UX; increases bounce rate | No audio. Visual-only animations. |
 
 ## Feature Dependencies
 
 ```
-Basic translation
-  ↓ requires
-Language switcher UI
-  ↓ updates
-Language persistence (localStorage)
-  ↓ triggers
-Context preservation on switch
-  ↓ updates
-html lang attribute
-
-Variable interpolation
-  ↓ enables
-Pluralization (count-based interpolation)
-
-Date/time formatting
-  ↓ depends on
-Current language context
-
-Type-safe keys
-  ↓ requires
-TypeScript + translation file structure
+Chip data layer (chips.ts + types.ts)          [EXISTS]
+    |
+    +-- needs TOPS field added to Chip type     [NEW - trivial]
+    |
+    v
+SVG Chip Diagram Component                     [NEW - core]
+    |
+    +-- requires chip data for rendering
+    |
+    +-- Chip Variant Selector (M4/Pro/Max)      [NEW - controls diagram]
+    |       |
+    |       +-- updates diagram when variant changes
+    |       +-- maps to product tiers (existing ProductTiers section)
+    |
+    +-- Core Glow Animations (CSS)              [NEW - enhances diagram]
+    |
+    +-- Data Flow Path Animations (SVG+CSS)     [NEW - enhances diagram]
+    |
+    v
+Count-Up Number Animations                     [NEW - independent]
+    |
+    +-- requires IntersectionObserver trigger
+    |
+    v
+Hero Layout Redesign                           [NEW - wraps everything]
+    |
+    +-- requires SVG Chip Diagram
+    +-- requires Chip Variant Selector
+    +-- requires Count-Up Numbers
+    +-- requires new headline/subtext/CTAs
+    +-- depends on existing i18n system (useI18n hook) for text
 ```
 
-## MVP Recommendation for This Project
+### Dependency Notes
 
-**Context:** Brownfield React landing page (9 components), English + Vietnamese, no backend, bundle size sensitive.
+- **SVG Chip Diagram requires chip data layer:** Existing `chips.ts` provides all M4 specs except TOPS. Adding a `tops` field to the `Chip` interface is a prerequisite.
+- **Chip Variant Selector drives diagram:** The selector is the primary interaction -- changing variant re-renders the diagram with new specs. This is the user's only control.
+- **Glow and flow animations enhance diagram:** These are CSS-only additions layered on top of the base SVG. They can be built incrementally after the static diagram works.
+- **Count-up animations are independent:** They only need IntersectionObserver and the numeric values. Can be built and tested separately from the diagram.
+- **Hero layout wraps all sub-components:** This is the integration step -- it depends on all visual pieces being ready.
 
-### Prioritize (Must Have)
+## Verified M4 Family Specs (Source: Apple Newsroom)
 
-1. **Basic string translation** — Core functionality
-2. **Language switcher (EN | VI inline buttons in navbar)** — User's explicit requirement
-3. **Language persistence (localStorage)** — User's explicit requirement
-4. **Context preservation** — Expected behavior (don't redirect to top on switch)
-5. **`lang` attribute on `<html>`** — SEO/accessibility (free SEO win)
-6. **Fallback language (English)** — User's requirement (default to EN)
-7. **Variable interpolation** — Likely needed for dynamic content (company name, contact info)
+These are the official numbers the diagram must display.
 
-### Consider Adding (Nice to Have)
+| Spec | M4 | M4 Pro | M4 Max |
+|------|----|--------|--------|
+| CPU Cores (P+E) | 4P + 6E = 10 | 10P + 4E = 14 | 12P + 4E = 16 |
+| GPU Cores | 10 | 20 | 40 |
+| Neural Engine | 16-core, 38 TOPS | 16-core, 38 TOPS | 16-core, 38 TOPS |
+| Max Unified Memory | 32 GB | 64 GB | 128 GB |
+| Memory Bandwidth | 120 GB/s | 273 GB/s | 546 GB/s |
+| Process Node | 2nd Gen 3nm | 2nd Gen 3nm | 2nd Gen 3nm |
+| Transistors | 28B | ~28B | ~28B |
 
-8. **Browser language detection** — Enhanced UX (auto-select VI for Vietnamese users)
-9. **Number/currency formatting** — Valuable for pricing section (3 tiers with costs)
-10. **Trans component** — If translations need embedded links (privacy policy, contact links)
+**Data gap in current codebase:** `chips.ts` lacks a `tops` field. All M4 variants have 38 TOPS. Needs to be added to the `Chip` type and chip data.
 
-### Explicitly Defer
+**Existing data accuracy check:** The current `chips.ts` M4 specs match Apple's official numbers for CPU cores, GPU cores, neural engine cores, memory bandwidth, and max memory. Data is correct.
 
-- **Type-safe keys** — Valuable but can add later if needed
-- **Lazy loading** — 2 languages × small file = unnecessary
-- **Namespace splitting** — 9 components don't need organization overhead
-- **Pluralization** — Add only if displaying counts
-- **Date formatting** — Not needed for marketing landing page
-- **RTL support** — Not targeting RTL languages (EN/VI only)
-- **URL routing** — Explicitly out of scope per PROJECT.md
-- **Heavy libraries** — Use React Context, not react-i18next
+## MVP Definition
 
-## Implementation Strategy
+### Launch With (Phase 1 -- Core Diagram)
 
-**Recommended approach for this project:**
+- [ ] **TOPS field added to Chip type and data** -- Prerequisite for Neural Engine display
+- [ ] **Static SVG chip block diagram** -- CPU, GPU, Neural Engine, Memory Controller blocks with labels and spec numbers
+- [ ] **Chip variant selector (M4 / M4 Pro / M4 Max)** -- Tab/button group that updates diagram
+- [ ] **Count-up number animations** -- Specs animate on scroll-into-view
+- [ ] **Hero layout redesign** -- New headline, subtext, CTAs wrapping the diagram
+- [ ] **Responsive design** -- Diagram readable on mobile
 
-1. **No library** — React Context + JSON translation files
-2. **File structure:**
-   ```
-   src/
-     i18n/
-       translations/
-         en.json
-         vi.json
-       LanguageContext.tsx
-       LanguageProvider.tsx
-     components/
-       LanguageToggle.tsx
-   ```
-3. **Translation format:**
-   ```json
-   {
-     "hero": {
-       "title": "AI-Local Hub",
-       "subtitle": "Local AI solutions on Mac Mini M4"
-     },
-     "pricing": {
-       "tier1": {
-         "name": "Starter",
-         "price": "{{amount}} VND"
-       }
-     }
-   }
-   ```
-4. **Usage in components:**
-   ```tsx
-   const { t } = useLanguage();
-   return <h1>{t('hero.title')}</h1>;
-   ```
+### Add After Core Works (Phase 2 -- Polish)
 
-**Why no library:**
-- Project constraints favor minimal dependencies
-- Bundle size sensitive (landing page should load fast)
-- Simple use case (2 languages, static content, no complex features)
-- React Context is sufficient for state management
-- Can add library later if needs grow (pluralization, date formatting, etc.)
+- [ ] **Glowing core animations** -- CSS pulse/glow on CPU and GPU blocks
+- [ ] **Data flow path animations** -- SVG stroke animations showing data movement
+- [ ] **Scroll-triggered entrance** -- Diagram builds as user scrolls in
+- [ ] **Tier-to-product mapping** -- Connect variant selection to product tier label
+- [ ] **Performance comparison callout** -- "Nx faster" claims per variant
 
-## Complexity Assessment
+### Explicitly Defer (Out of Scope)
 
-| Feature Category | Estimated Effort | Risk |
-|------------------|------------------|------|
-| Core translation system | 2-3 hours | Low (well-understood pattern) |
-| Language switcher UI | 1 hour | Low (inline buttons in navbar) |
-| localStorage persistence | 30 minutes | Low (standard React pattern) |
-| html lang attribute | 15 minutes | Low (single useEffect) |
-| Variable interpolation | 1 hour | Low (simple string replacement) |
-| Browser detection | 30 minutes | Low (navigator.language) |
-| Number formatting | 30 minutes | Low (Intl.NumberFormat) |
-| **Total MVP** | **5-6 hours** | **Low** |
+- [ ] **i18n for hero text** -- PROJECT.md defers this
+- [ ] **3D rendering** -- PROJECT.md explicitly rules out
+- [ ] **Real benchmark data** -- Marketing specs sufficient per PROJECT.md
+- [ ] **Comparison slider** -- Already handled by ChipComparison component
+
+## Feature Prioritization Matrix
+
+| Feature | User Value | Implementation Cost | Priority |
+|---------|------------|---------------------|----------|
+| SVG chip block diagram | HIGH | MEDIUM | P1 |
+| Chip variant selector | HIGH | LOW | P1 |
+| Count-up number animations | HIGH | LOW | P1 |
+| Hero layout redesign | HIGH | MEDIUM | P1 |
+| Responsive design | HIGH | MEDIUM | P1 |
+| TOPS field in data layer | MEDIUM | LOW | P1 |
+| Glowing core animations | MEDIUM | LOW | P2 |
+| Data flow path animations | MEDIUM | MEDIUM | P2 |
+| Scroll-triggered entrance | MEDIUM | LOW | P2 |
+| Tier-to-product mapping | MEDIUM | LOW | P2 |
+| Performance callouts | LOW | LOW | P3 |
+| Process node badge | LOW | LOW | P3 |
+
+**Priority key:**
+- P1: Must have for launch -- the diagram is non-functional or unimpressive without these
+- P2: Should have -- these create the "wow" factor that differentiates from a static spec table
+- P3: Nice to have -- small polish items that add credibility
+
+## Competitor Feature Analysis
+
+| Feature | Apple (apple.com/mac-mini) | Qualcomm (Snapdragon pages) | Our Approach |
+|---------|---------------------------|----------------------------|--------------|
+| Chip visualization | Stylized die photo with labeled sections; 2D, not 3D | Abstract block diagrams with color coding | SVG block diagram with labeled CPU/GPU/NE/Memory sections. Stylized, not photorealistic. |
+| Spec presentation | Tabbed content (Productivity/Creativity/Gaming); multiplier comparisons (6x faster) | Raw numbers in grid layout | Spec numbers on the diagram itself + count-up animation for engagement |
+| Variant comparison | Separate pages per chip variant | Side-by-side comparison tables | Single diagram that updates on variant selection (more interactive) |
+| Animation style | Scroll-triggered reveals; embedded video demos; performance bar multipliers | Minimal animation, mostly static | CSS glow + SVG data flow paths. Lightweight, no video needed. |
+| Mobile approach | Simplified layout, stacked sections, same content | Often broken or cropped on mobile | Responsive SVG that scales; simplified labels on small screens |
 
 ## Sources
 
-### High Confidence (Official/Primary)
-- [i18next Documentation](https://www.i18next.com/)
-- [react-i18next Documentation](https://react.i18next.com)
-- [FormatJS Components](https://formatjs.github.io/docs/react-intl/components/)
-- [React i18next Official Guides](https://react.i18next.com/guides/multiple-translation-files)
-- [i18next Best Practices](https://www.i18next.com/principles/best-practices)
-- [i18next Interpolation](https://www.i18next.com/translation-function/interpolation)
+### High Confidence (Official Apple Specs)
+- [Apple introduces M4 chip (May 2024)](https://www.apple.com/newsroom/2024/05/apple-introduces-m4-chip/) -- M4 base specs: 10-core CPU, 10-core GPU, 38 TOPS, 28B transistors, 2nd gen 3nm
+- [Apple introduces M4 Pro and M4 Max (Oct 2024)](https://www.apple.com/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/) -- M4 Pro: 14-core CPU, 20-core GPU, 273 GB/s. M4 Max: 16-core CPU, 40-core GPU, 546 GB/s
+- [Apple M4 Wikipedia](https://en.wikipedia.org/wiki/Apple_M4) -- All M4 variants share 16-core Neural Engine at 38 TOPS
 
-### Medium Confidence (Technical Blogs, Current Year)
-- [Internationalization in React 2026 - GloryWebs](https://www.glorywebs.com/blog/internationalization-in-react)
-- [Best i18n Libraries for React 2026 - SyntaxHut](https://syntaxhut.tech/blog/best-i18n-libraries-react-2026)
-- [React i18n Guide - Lokalise](https://lokalise.com/blog/react-i18n-intl/)
-- [i18n Mistakes in React Apps - Translated Right](https://www.translatedright.com/blog/20-i18n-mistakes-developers-make-in-react-apps-and-how-to-fix-them/)
-- [Language Switcher Best Practices - Lingo.dev](https://lingo.dev/en/react-router-i18n/switch-languages)
-- [Type-Safe Translations - Zwyx](https://zwyx.dev/blog/typesafe-translations)
-- [React localStorage Guide - Felix Gerschau](https://felixgerschau.com/react-localstorage/)
-- [HTML Lang Attribute SEO - Versionfeatures](https://copyprogramming.com/howto/html-data-lang-not-working-in-html)
-- [React Pluralization - General Translation](https://generaltranslation.com/en-US/blog/plurals)
-- [Landing Page i18n 2026 - Attention Insight](https://attentioninsight.com/multilingual-landing-page-for-your-product/)
+### Medium Confidence (Visual Pattern Analysis)
+- [Apple Mac mini product page](https://www.apple.com/mac-mini/) -- Visual design patterns: tabbed content, performance multipliers, abstract chip graphics, scroll-triggered reveals
+- [SVG Animation in React -- Motion](https://motion.dev/docs/react-svg-animation) -- React SVG animation patterns: path drawing, morphing, attribute animation
+- [SVG Animation Encyclopedia 2025](https://www.svgai.org/blog/research/svg-animation-encyclopedia-complete-guide) -- Comprehensive SVG animation techniques and performance benchmarks
+- [Interactive SVG Diagrams -- Flourish](https://flourish.studio/blog/interactive-svg-template/) -- Making SVG regions interactive for data visualization
+- [Circuit Animation SVG+CSS -- Dribbble](https://dribbble.com/shots/3433250-Circuit-Animation-SVG-CSS) -- Reference for data flow / circuit path animations using stroke-dasharray
 
-### Verification Notes
-- All table stakes features verified across multiple sources
-- Best practices aligned with 2026 current year recommendations
-- Anti-features based on project constraints (static site, 2 languages, no backend)
-- Complexity estimates based on React Context implementation (not library-based)
-- Sources span official documentation, technical blogs, and community discussions
+---
+*Feature research for: Animated Apple Silicon Chip Diagram (Hero Section)*
+*Researched: 2026-03-07*

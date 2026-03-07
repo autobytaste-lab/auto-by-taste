@@ -1,707 +1,403 @@
-# Domain Pitfalls: React Internationalization
+# Pitfalls Research: Animated SVG Chip Diagram in React Landing Page
 
-**Domain:** Adding i18n to existing React landing page
+**Domain:** Adding animated SVG diagrams to existing React 19 landing page (brownfield)
 **Researched:** 2026-03-07
 **Confidence:** HIGH
 
 ## Critical Pitfalls
 
-Mistakes that cause rewrites, major UX issues, or production failures.
+### Pitfall 1: Animating Non-Compositor SVG Properties Causes Jank
 
-### Pitfall 1: Missing or Incorrect HTML lang Attribute
-**What goes wrong:** The `<html lang="...">` attribute is not updated when language changes, or is set incorrectly. This breaks screen readers, degrades SEO, and prevents browser translation features.
-
-**Why it happens:** Developers focus on component-level translation but forget the document-level language declaration. React doesn't automatically manage this attribute.
-
-**Consequences:**
-- Screen readers attempt to pronounce Vietnamese content using English phonetics (or vice versa)
-- Google penalizes missing lang for international SEO (up to 15% ranking drop in non-English markets per 2025 studies)
-- Browser translation features don't work
-- Accessibility compliance failures (WCAG violations)
-
-**Prevention:**
-```typescript
-// Update document lang attribute when language changes
-useEffect(() => {
-  document.documentElement.lang = currentLanguage;
-}, [currentLanguage]);
-```
-
-**Detection:**
-- Check browser DevTools: `document.documentElement.lang` should match current language
-- Run Lighthouse accessibility audit (flags lang mismatches)
-- Test with screen readers (NVDA/JAWS/VoiceOver)
-
-**Phase mapping:** Must be addressed in Phase 1 (language switching implementation)
-
----
-
-### Pitfall 2: localStorage Causing Hydration Mismatches (If SSR Added Later)
-**What goes wrong:** Using localStorage for language persistence works for client-only apps but creates hydration mismatches if SSR is added later (Vite → Next.js migration, etc.).
-
-**Why it happens:** localStorage doesn't exist on the server. Server renders with default language, client hydrates with localStorage value → mismatch.
-
-**Consequences:**
-- React hydration errors when SSR is added
-- Flash of wrong language (FOWL) on page load
-- Forced rewrite of language persistence mechanism
-- Console warnings flood production logs
-
-**Prevention:**
-```typescript
-// Option 1: Accept client-only limitation
-// Read localStorage only in useEffect (after mount)
-
-// Option 2: Future-proof with cookies instead
-// Cookies work server-side and client-side
-// Consider this if SSR is on roadmap
-
-// Current approach for client-only app:
-const [language, setLanguage] = useState('en'); // SSR-safe default
-
-useEffect(() => {
-  // Only read localStorage after hydration
-  const stored = localStorage.getItem('language');
-  if (stored && stored !== language) {
-    setLanguage(stored);
-  }
-}, []); // Run once on mount
-```
-
-**Detection:**
-- Test SSR builds (if migrating to Next.js/Remix later)
-- Look for "Text content does not match server-rendered HTML" errors
-- Check if initial render differs from second render
-
-**Phase mapping:** Current implementation (localStorage) is fine for Phase 1. Flag for review if SSR is ever added.
-
----
-
-### Pitfall 3: Context Re-render Thrashing
-**What goes wrong:** Entire component tree re-renders on every language change because language context value changes without memoization.
-
-**Why it happens:** Naive Context implementation where provider value is recreated on every render:
-```typescript
-// BAD: Creates new object every render
-<LanguageContext.Provider value={{ language, setLanguage }}>
-```
-
-**Consequences:**
-- Poor performance during language switches (entire page flashes/jitters)
-- Unnecessary component re-renders (even components not using translated text)
-- Bad UX on lower-end devices
-- CSS animations restart during language change
-
-**Prevention:**
-```typescript
-// Good: Memoize context value
-const contextValue = useMemo(
-  () => ({ language, setLanguage }),
-  [language]
-);
-
-<LanguageContext.Provider value={contextValue}>
-```
-
-**Alternative:** Split contexts by concern
-```typescript
-// LanguageProvider (rarely changes)
-// TranslationsProvider (never changes, keyed by language)
-// Only components using language switcher re-render
-```
-
-**Detection:**
-- React DevTools Profiler: record language switch, check flamegraph
-- Add console.log in component render functions
-- Look for components rendering that don't display translated content
-
-**Phase mapping:** Must be addressed in Phase 1 (language context setup)
-
----
-
-### Pitfall 4: Missing Translation Keys Breaking Production UI
-**What goes wrong:** Translation key exists in English but not in Vietnamese (or vice versa). Production displays raw key string or blank UI elements.
+**What goes wrong:**
+Animating SVG properties like `fill`, `stroke`, `stroke-dashoffset`, `d` (path data), `cx`, `cy`, or `r` triggers CPU-bound layout/paint cycles on every frame. On mobile devices this causes visible jank, dropped frames, and battery drain. The chip diagram with "glowing cores" and "flowing data paths" is especially susceptible because it targets fill opacity and stroke properties across many elements simultaneously.
 
 **Why it happens:**
-- Manual translation files get out of sync
-- Copy-paste errors in JSON files
-- No validation that translation files have matching keys
-- Testing only one language during development
+Developers assume all CSS animations are hardware-accelerated. In reality, only `transform` and `opacity` run on the GPU compositor thread. SVG-specific properties like `fill`, `stroke-dasharray`, and path `d` always trigger main-thread repaints. A chip diagram with 10-40 animated core elements each triggering repaints at 60fps will overwhelm mobile GPUs.
 
-**Consequences:**
-- Users see `"hero.cta.button"` instead of translated text
-- Buttons/links appear broken or empty
-- Customer complaints about "broken website"
-- Emergency hotfixes during business hours
+**How to avoid:**
+- Use `opacity` and `transform` (translate, scale, rotate) for all animations wherever possible
+- For "glowing cores": animate `opacity` on a separate glow overlay element rather than changing `fill` color
+- For "flowing data paths": use `stroke-dashoffset` with CSS animation (not JS) and limit to 3-5 paths, not dozens
+- For "counting numbers": these are DOM text updates -- use `requestAnimationFrame` with throttling, not `setInterval`
+- Test with Chrome DevTools Performance panel -- enable "Paint flashing" to see which elements repaint
 
-**Prevention:**
-1. **Development-time fallback:**
-```typescript
-const t = (key: string) => {
-  const translation = translations[language][key];
-  if (!translation) {
-    console.warn(`Missing translation: ${key} for ${language}`);
-    return translations['en'][key] || key; // Fallback to English
-  }
-  return translation;
-};
-```
-
-2. **Build-time validation:**
-```bash
-# Add to package.json scripts
-"validate:i18n": "node scripts/validate-translations.js"
-```
-
-```javascript
-// scripts/validate-translations.js
-const en = require('./src/i18n/en.json');
-const vi = require('./src/i18n/vi.json');
-
-const enKeys = Object.keys(flatten(en));
-const viKeys = Object.keys(flatten(vi));
-
-const missing = enKeys.filter(k => !viKeys.includes(k));
-if (missing.length > 0) {
-  console.error('Missing VI translations:', missing);
-  process.exit(1);
-}
-```
-
-3. **Use automated tools:**
-- i18n-check: CLI linter for translation files
-- Run on every PR to catch missing keys before merge
-
-**Detection:**
-- Test both languages thoroughly
-- Enable debug logging during development
-- Check browser console for translation warnings
-- Run i18n-check in CI/CD pipeline
-
-**Phase mapping:** Validation script in Phase 1, CI integration in Phase 2
-
----
-
-### Pitfall 5: Text Expansion Breaking Responsive Layout
-**What goes wrong:** English text fits in buttons/cards, but Vietnamese translation overflows containers, breaks mobile layout, or causes text wrapping that ruins design.
-
-**Why it happens:**
-- Fixed width containers designed for English
-- Different languages have 30-40% text length variation
-- Not testing layouts with actual translations during development
-- Hardcoded pixel widths instead of flexible layouts
-
-**Consequences:**
-- Buttons too small for Vietnamese text (text truncated with "...")
-- Navigation menu items wrap to two lines
-- Cards in pricing tiers have misaligned heights
-- Mobile layout completely broken in one language
-- Professional appearance destroyed
-
-**Prevention:**
-1. **Use flexible CSS from the start:**
 ```css
-/* BAD */
-.button { width: 200px; }
-
-/* GOOD */
-.button {
-  min-width: 150px;
-  padding: 0.5rem 1.5rem;
-  white-space: nowrap;
+/* BAD: triggers repaint every frame */
+@keyframes glow {
+  0% { fill: #1e40af; }
+  100% { fill: #60a5fa; }
 }
 
-/* BETTER */
-.button {
-  padding: 0.5rem 1.5rem;
-  width: fit-content;
+/* GOOD: compositor-only, GPU-accelerated */
+@keyframes glow {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+/* GOOD: transform is compositor-friendly */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 ```
 
-2. **Allocate 30-40% extra space for text expansion**
-3. **Test with longest translations during development**
-4. **Use Flexbox/Grid instead of fixed layouts**
+**Warning signs:**
+- FPS drops below 30 on mobile (Chrome DevTools > Performance > FPS meter)
+- "Paint flashing" shows large green rectangles covering the entire SVG
+- `requestAnimationFrame` callback duration exceeds 16ms
+- Battery drain complaints from users
 
-**Detection:**
-- Visual regression testing with both languages
-- Manually test every page section in both languages
-- Check mobile breakpoints (320px, 375px, 768px)
-- Look for text-overflow, word wrapping, container overflow
-
-**Phase mapping:** Must be tested in Phase 1 before considering complete
+**Phase to address:** SVG component architecture phase -- bake this into the component design from day one. Retrofitting animation strategy after building the diagram requires rework.
 
 ---
 
-## Moderate Pitfalls
+### Pitfall 2: Missing prefers-reduced-motion Causes Accessibility Violations
 
-Issues that degrade UX or create maintenance burden but don't break core functionality.
-
-### Pitfall 6: Inconsistent Translation File Structure
-**What goes wrong:** Translation keys organized differently between languages, inconsistent nesting depth, or mixing flat and nested structures.
+**What goes wrong:**
+Users with vestibular disorders, motion sensitivity, or seizure conditions experience nausea, dizziness, or seizures from the animated chip diagram. This is both a UX failure and a legal liability (WCAG 2.1 SC 2.3.3). The chip diagram has multiple simultaneous animations (glowing, flowing, counting) which compounds the effect.
 
 **Why it happens:**
-- English file created with one structure
-- Vietnamese translations added piecemeal without matching structure
-- Different developers working on each language
-- No established conventions
+Developers build animations with creative intent and test only on their own devices. They don't enable "Reduce motion" in OS settings during development. CSS animations and JS animations are handled differently -- CSS `@keyframes` can be caught with a media query, but JS animations (requestAnimationFrame, setInterval for counting numbers) must be checked separately.
 
-**Prevention:**
-- Keep nesting shallow (max 2-3 levels)
-- Use consistent key naming: `section.component.element`
-- Example structure:
-```json
-{
-  "hero": {
-    "title": "...",
-    "subtitle": "...",
-    "cta": {
-      "primary": "...",
-      "secondary": "..."
-    }
-  },
-  "features": {
-    "title": "...",
-    "item1": { "title": "...", "description": "..." }
+**How to avoid:**
+1. Wrap ALL CSS animations with the reduced-motion media query
+2. Create a `useReducedMotion()` hook for JS-driven animations
+3. Provide a meaningful static fallback -- not just "no animation" but a well-designed static chip diagram
+
+```css
+/* CSS animations: disable globally */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 ```
-- Validate structure matches across languages in build script
 
-### Pitfall 7: Hardcoding Date/Number Formats
-**What goes wrong:** Dates displayed as "10/12/2025" without locale formatting. Americans read "October 12", Vietnamese read "December 10".
-
-**Why it happens:** Using JavaScript `Date.toLocaleDateString()` without locale parameter, or hardcoding formats.
-
-**Prevention:**
 ```typescript
-// BAD
-const date = new Date().toLocaleDateString(); // Uses browser locale
+// JS animations: hook approach
+function useReducedMotion(): boolean {
+  const [reduced, setReduced] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  });
 
-// GOOD
-const formatDate = (date: Date, language: string) => {
-  return new Intl.DateTimeFormat(language === 'vi' ? 'vi-VN' : 'en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  }).format(date);
-};
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
 
-// For numbers/currency
-const formatCurrency = (amount: number, language: string) => {
-  return new Intl.NumberFormat(language === 'vi' ? 'vi-VN' : 'en-US', {
-    style: 'currency',
-    currency: language === 'vi' ? 'VND' : 'USD'
-  }).format(amount);
-};
+  return reduced;
+}
+
+// Usage in chip diagram
+const reducedMotion = useReducedMotion();
+// Show final state of counting numbers immediately
+// Show static glow instead of animated glow
+// Show static data paths instead of flowing animation
 ```
 
-**Phase mapping:** Include in Phase 1 if any dates/numbers on page, otherwise defer
+**Warning signs:**
+- No `prefers-reduced-motion` media query anywhere in CSS/JS
+- Animations have no conditional logic for reduced motion
+- Lighthouse accessibility audit flags motion issues
+- No static fallback state designed
 
-### Pitfall 8: No Loading State During Translation Switch
-**What goes wrong:** Language switch appears instant but React is re-rendering entire tree. On slow devices, page freezes for 100-300ms.
+**Phase to address:** Must be built into the SVG component from the start. Adding reduced-motion support after building complex animations requires touching every animation definition.
 
-**Why it happens:** No transition UI between old and new language.
+---
 
-**Prevention:**
+### Pitfall 3: SVG DOM Complexity Causing Mobile Rendering Bottleneck
+
+**What goes wrong:**
+A detailed chip diagram SVG with individual core rectangles, data path lines, labels, gradients, filters, and clip paths creates a DOM with hundreds of SVG elements. Mobile browsers struggle to render and animate this many SVG nodes. The page scrolls poorly and animations stutter.
+
+**Why it happens:**
+Designers create detailed chip illustrations in Figma/Illustrator with many layers. These export as SVGs with deeply nested groups, redundant transforms, unused definitions, and inline styles. A "realistic" chip diagram might have 200-500 SVG elements. Mobile Safari and older Android browsers have particularly poor SVG rendering performance above ~100 animated nodes.
+
+**How to avoid:**
+- Keep total SVG element count under 100 for the animated diagram
+- Use SVGO to strip unnecessary metadata, empty groups, and redundant attributes
+- Represent cores as simple `<rect>` elements with CSS classes, not complex grouped shapes
+- Use a single `<defs>` block for shared gradients and filters -- do not duplicate
+- Consider a simplified mobile version with fewer visual details
+- For the M4 family (10-40 GPU cores), represent core groups abstractly (e.g., one rectangle labeled "40 GPU Cores") rather than drawing 40 individual core elements
+
 ```typescript
-const [isChangingLanguage, setIsChangingLanguage] = useState(false);
+// Responsive SVG complexity
+const isMobile = useMediaQuery('(max-width: 768px)');
 
-const changeLanguage = (newLang: string) => {
-  setIsChangingLanguage(true);
-
-  // Use setTimeout to let loading state render
-  setTimeout(() => {
-    setLanguage(newLang);
-    localStorage.setItem('language', newLang);
-    setIsChangingLanguage(false);
-  }, 0);
-};
-
-// Show subtle overlay or disable buttons during transition
+// Mobile: simplified diagram with fewer elements
+// Desktop: full detailed diagram
+return isMobile ? <ChipDiagramSimple chip={chip} /> : <ChipDiagramFull chip={chip} />;
 ```
 
-**Detection:** Test on slower devices (throttle CPU in DevTools)
+**Warning signs:**
+- SVG source file exceeds 50KB
+- More than 100 SVG elements visible in DevTools
+- Scroll performance degrades when diagram is in viewport
+- Mobile Lighthouse performance score drops below 80
 
-### Pitfall 9: Translation Keys in TypeScript Not Type-Safe
-**What goes wrong:** Typos in translation keys cause runtime errors: `t('hero.titel')` (typo) shows raw key instead of text.
+**Phase to address:** SVG design phase. The SVG must be designed for performance from the start. Simplifying an overly complex SVG after it is built and animated requires significant rework.
 
-**Why it happens:** String-based key access without type checking.
+---
 
-**Prevention:**
+### Pitfall 4: SVG viewBox and Responsive Sizing Breaking Mobile Layout
+
+**What goes wrong:**
+The chip diagram either overflows its container on mobile, appears too small to read, or distorts aspect ratio. Touch targets for chip selector buttons are too small. Text labels inside the SVG become illegible at mobile sizes.
+
+**Why it happens:**
+SVG viewBox coordinates are designed for desktop dimensions. Without proper viewBox and preserveAspectRatio settings, the SVG scales uniformly -- what is legible at 800px wide becomes unreadable at 320px. Developers test only in desktop browser and miss mobile breakpoints. The current Hero section (lines 53-222 of Hero.tsx) uses percentage-based widths but the chip cards rely on a 3-column grid that already collapses to single column on mobile.
+
+**How to avoid:**
+- Always set explicit `viewBox` on the SVG element
+- Use `preserveAspectRatio="xMidYMid meet"` (default, usually correct)
+- Set minimum font size of 12px equivalent inside SVG (use rem-based calculation)
+- Test at 320px, 375px, and 768px widths specifically
+- For the chip selector (M4/M4 Pro/M4 Max tabs), ensure touch targets are at least 44x44px per WCAG
+- Consider reorganizing the diagram layout at mobile breakpoints rather than just scaling down
+
 ```typescript
-// Generate types from translation files
-type TranslationKeys = {
-  hero: {
-    title: string;
-    subtitle: string;
-    cta: {
-      primary: string;
-      secondary: string;
+// SVG with responsive viewBox
+<svg
+  viewBox="0 0 800 500"
+  preserveAspectRatio="xMidYMid meet"
+  className="w-full h-auto max-h-[60vh]"
+  role="img"
+  aria-label={`${selectedChip.name} chip architecture diagram`}
+>
+  {/* Content */}
+</svg>
+```
+
+**Warning signs:**
+- Text in SVG unreadable below 14px rendered size
+- Diagram overflows `.container` on small screens
+- Touch targets for interactive elements smaller than 44px
+- `overflow-hidden` on parent hides part of the diagram
+
+**Phase to address:** SVG component build phase. Design the viewBox and responsive behavior before adding animations.
+
+---
+
+### Pitfall 5: Animation Library Bundle Bloat for a Landing Page
+
+**What goes wrong:**
+Developers reach for Framer Motion (34KB min, up to 100KB+ with all features), GSAP (30KB+ core), or other animation libraries for the chip diagram animations. This adds significant weight to what should be a fast-loading landing page. Combined with the existing tsParticles slim bundle (~80KB per the codebase comment), total animation JS can exceed 150KB.
+
+**Why it happens:**
+Animation libraries provide excellent DX and complex features (spring physics, gesture handling, layout animations). Developers default to libraries they know from app development. The chip diagram animations (glow, flow, count-up) feel complex enough to justify a library. But these specific animations are achievable with CSS + a small amount of vanilla JS.
+
+**How to avoid:**
+- Use CSS `@keyframes` for glowing cores (opacity pulse) and flowing data paths (stroke-dashoffset)
+- Use a small custom hook with `requestAnimationFrame` for counting-up numbers (~20 lines of code)
+- Do NOT add Framer Motion, GSAP, React Spring, or anime.js for this use case
+- The project already has tsParticles (~80KB) -- adding another animation library doubles the animation JS payload
+- If a library is truly needed later, Motion's `useAnimate` mini (2.3KB) is the lightest option
+
+```typescript
+// Custom count-up hook -- no library needed (~20 lines)
+function useCountUp(target: number, duration: number = 1500): number {
+  const [count, setCount] = useState(0);
+  const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (reducedMotion) {
+      setCount(target);
+      return;
+    }
+
+    let start: number | null = null;
+    let raf: number;
+
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      setCount(Math.floor(progress * target));
+      if (progress < 1) raf = requestAnimationFrame(step);
     };
-  };
-  // ... etc
-};
 
-// Type-safe translation function
-const t = (key: string): string => {
-  // Runtime implementation
-};
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [target, duration, reducedMotion]);
 
-// Better: Use template literal types for autocomplete
-type DotNotation<T> = T extends object
-  ? { [K in keyof T]: `${K & string}` | `${K & string}.${DotNotation<T[K]>}` }[keyof T]
-  : never;
-
-type AllKeys = DotNotation<TranslationKeys>; // "hero.title" | "hero.cta.primary" | ...
-```
-
-**Alternative:** Use existing tools like i18next which has TypeScript support built-in
-
-**Phase mapping:** Nice-to-have for Phase 1, critical if codebase scales
-
-### Pitfall 10: Language Switcher State Not Synchronized
-**What goes wrong:** User selects Vietnamese, localStorage updates, but UI still shows "EN" as active in toggle.
-
-**Why it happens:** Multiple sources of truth (localStorage, React state, context) get out of sync.
-
-**Prevention:**
-- Single source of truth: context/state
-- localStorage is persistence layer only, not source of truth
-- Read localStorage once on mount, write on changes
-```typescript
-// Initialize from storage
-const [language, setLanguage] = useState(() => {
-  return localStorage.getItem('language') || 'en';
-});
-
-// Sync changes to storage
-useEffect(() => {
-  localStorage.setItem('language', language);
-}, [language]);
-```
-
----
-
-## Minor Pitfalls
-
-Small issues that are easily fixed but worth knowing.
-
-### Pitfall 11: Forgetting to Update Document Title
-**What goes wrong:** Page title in browser tab stays in English when switching to Vietnamese.
-
-**Prevention:**
-```typescript
-useEffect(() => {
-  document.title = translations[language].meta.title;
-}, [language]);
-```
-
-### Pitfall 12: Alt Text for Images Not Translated
-**What goes wrong:** All text switches to Vietnamese except image alt attributes.
-
-**Prevention:** Include alt text in translation files:
-```json
-{
-  "hero": {
-    "image": {
-      "alt": "AI-Local Hub hardware setup"
-    }
-  }
+  return count;
 }
 ```
 
-### Pitfall 13: Contact Links Not Localized
-**What goes wrong:** WhatsApp/Zalo pre-filled message stays in English when user switches to Vietnamese.
+**Warning signs:**
+- `package.json` gains a new animation dependency
+- Bundle analyzer shows animation code exceeding 10KB gzipped
+- Lighthouse performance score drops after adding animations
+- Time to Interactive increases by more than 200ms
 
-**Prevention:**
+**Phase to address:** Architecture/planning phase. Decide "CSS + vanilla JS only" before implementation begins. Once a library is integrated throughout the component, removing it is a rewrite.
+
+---
+
+### Pitfall 6: Animations Running When Off-Screen Waste Resources
+
+**What goes wrong:**
+The chip diagram is positioned below the hero headline and CTAs (the current Hero section is long). On initial page load, the diagram may be below the fold. Animations start immediately on mount, consuming CPU/GPU resources for content the user cannot see. On mobile, this drains battery and slows initial interactivity.
+
+**Why it happens:**
+CSS animations start as soon as the element is in the DOM, regardless of visibility. JS animations using `requestAnimationFrame` or `setInterval` run from mount. Developers forget that "rendered" does not mean "visible to the user."
+
+**How to avoid:**
+- Use `IntersectionObserver` to start animations only when the diagram scrolls into view
+- For CSS animations, add the animation class only when visible
+- For counting numbers, only start the count-up when the element enters viewport
+- Pause animations when the element scrolls out of view (optional, saves resources)
+
 ```typescript
-const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(
-  translations[language].contact.whatsappMessage
-)}`;
-```
+function useInView(ref: React.RefObject<Element>, threshold = 0.2): boolean {
+  const [inView, setInView] = useState(false);
 
-### Pitfall 14: Transition Animations Restarting
-**What goes wrong:** CSS animations restart when language changes and components re-render.
+  useEffect(() => {
+    if (!ref.current) return;
 
-**Prevention:** Use React.memo on components with animations that don't use translated text.
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold }
+    );
 
-### Pitfall 15: JSON Translation Files Not Validated
-**What goes wrong:** Invalid JSON syntax (trailing comma, unescaped quotes) breaks build or runtime.
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [ref, threshold]);
 
-**Prevention:**
-- Use proper JSON validators in IDE
-- Add JSON schema validation
-- ESLint plugin for JSON files
-
----
-
-## Phase-Specific Warnings
-
-| Phase Topic | Likely Pitfall | Mitigation |
-|-------------|---------------|------------|
-| String extraction | Missing strings in edge cases (error messages, tooltips) | Create checklist of all UI text types, grep codebase |
-| Translation files | EN/VI key mismatches | Build-time validation script, i18n-check |
-| Context implementation | Re-render performance issues | Memoize context value, React DevTools profiling |
-| Language switcher | State sync between toggle UI and context | Single source of truth pattern |
-| Testing | Only testing one language | Test matrix: both languages × all breakpoints |
-| Production deployment | Missing translations discovered by users | Pre-deploy validation, staging environment testing |
-
----
-
-## Brownfield-Specific Pitfalls
-
-### Pitfall 16: Incomplete String Extraction
-**What goes wrong:** Extracting obvious strings (headings, paragraphs) but missing:
-- Button aria-labels
-- Form placeholders
-- Error messages
-- Tooltip text
-- Meta descriptions
-- Loading states ("Loading...")
-
-**Why it happens:** Searching for JSX text content but missing attribute values.
-
-**Prevention:**
-```bash
-# Audit checklist
-grep -r "placeholder=" src/  # Form inputs
-grep -r "aria-label=" src/   # Accessibility labels
-grep -r "title=" src/        # Tooltips
-grep -r "alt=" src/          # Images
-grep -r '".*"' src/          # String literals (manual review)
-```
-
-Use AST-based extraction tools:
-- ast-i18n: Automated extraction using Babel plugin
-- i18next-scanner: Scans codebase for extractable strings
-
-**Phase mapping:** Create comprehensive extraction checklist before starting Phase 1
-
-### Pitfall 17: Refactoring Without Tests
-**What goes wrong:** Changing all components to use translation function without tests to verify behavior unchanged.
-
-**Consequences:** Silent regressions, conditional rendering breaks, event handlers broken.
-
-**Prevention:**
-1. Write snapshot tests before refactoring
-2. Add visual regression tests (Percy, Chromatic)
-3. Test component exports remain unchanged
-4. Verify all user interactions still work
-
-**Phase mapping:** Add tests before major refactoring in Phase 1
-
----
-
-## Translation Quality Pitfalls
-
-### Pitfall 18: Machine Translation Without Review
-**What goes wrong:** Using Google Translate for all Vietnamese content results in unnatural, awkward, or incorrect translations.
-
-**Why it happens:** Time pressure, cost constraints, lack of native speakers.
-
-**Consequences:**
-- Unprofessional appearance
-- Lost credibility with Vietnamese audience
-- Misunderstandings (especially business/technical terms)
-- Cultural insensitivity
-
-**Prevention:**
-- Manual translation by bilingual speaker
-- Professional translation service for critical pages
-- Native speaker review before launch
-- Industry-specific terminology research
-
-**Phase mapping:** Budget time for proper translation in Phase 1, not just technical implementation
-
-### Pitfall 19: Context-Free Translation Keys
-**What goes wrong:** Translator sees `"submit"` key and translates as "nộp" (submit form), but context was "submit proposal" requiring different Vietnamese term.
-
-**Prevention:**
-- Add translator comments in JSON:
-```json
-{
-  "_comment": "CTA button for investment proposal form",
-  "submit": "Gửi đề xuất"
+  return inView;
 }
+
+// Usage
+const diagramRef = useRef<HTMLDivElement>(null);
+const isVisible = useInView(diagramRef);
+
+return (
+  <div ref={diagramRef}>
+    <ChipDiagram animate={isVisible} chip={selectedChip} />
+  </div>
+);
 ```
-- Or use descriptive keys: `"investmentProposal.submitButton"` instead of `"common.submit"`
+
+**Warning signs:**
+- Animations running on page load before user scrolls to diagram
+- CPU usage elevated even when diagram is not visible
+- Performance timeline shows animation frames for off-screen content
+- Mobile users report sluggish scrolling
+
+**Phase to address:** Animation implementation phase. Wire up IntersectionObserver before adding individual animations.
 
 ---
 
-## Performance Pitfalls
+## Technical Debt Patterns
 
-### Pitfall 20: Bundle Size Bloat
-**What goes wrong:** Adding i18n library increases bundle size significantly:
-- react-i18next: 22.2 kB (i18next 15.1 kB + react-i18next 7.1 kB)
-- react-intl: 17.8 kB
+| Shortcut | Immediate Benefit | Long-term Cost | When Acceptable |
+|----------|-------------------|----------------|-----------------|
+| Inline SVG with hardcoded values | Fast to build, no abstraction overhead | Cannot reuse diagram for different chips, changing layout requires editing SVG markup directly | Never -- the M4/Pro/Max selector requires parameterized SVG from day one |
+| Using `setInterval` for counting numbers | Simple to implement | Unreliable timing, doesn't pause when tab hidden, doesn't respect reduced motion | Never -- use `requestAnimationFrame` |
+| Adding Framer Motion "just for the diagram" | Easier animation orchestration | 34KB+ added to bundle, dependency on third-party for core landing page feature | Only if animation requirements grow significantly beyond glow/flow/count |
+| Skipping SVGO optimization | No build step needed for SVG | SVG contains 30-50% unnecessary metadata from design tools | Acceptable in prototype, must optimize before production |
+| Single SVG for all breakpoints | Less code to maintain | Mobile rendering suffers with desktop-complexity SVG | Acceptable if SVG element count stays under 80 |
 
-**Why it matters:** Landing page should load fast, every KB counts for mobile users.
+## Integration Gotchas
 
-**Prevention for minimal implementation (2 languages, static content):**
-- Consider vanilla React Context instead of library (0 kB added)
-- Only use library if you need:
-  - Pluralization rules
-  - Date/time formatting
-  - Lazy loading translations
-  - Namespace splitting
+| Integration | Common Mistake | Correct Approach |
+|-------------|----------------|------------------|
+| tsParticles (existing) | Particle background z-index conflicts with new SVG diagram -- particles render on top of or interact with chip diagram | Use existing z-index system (--z-particles: 0, --z-content: 10). SVG diagram inside `.container` already has `z-10`. Verify particles do not overlap chip diagram area |
+| Tailwind CSS CDN | Dynamic Tailwind classes in SVG elements (e.g., `fill-blue-500`) not generated because CDN scans HTML at load time | Use inline styles or CSS custom properties for SVG fills/strokes. Tailwind CDN does not support dynamic class generation for SVG attributes |
+| Existing chip data (`components/data/chips.ts`) | Duplicating chip specs in the SVG component instead of importing from existing data layer | Import from `components/data/chips.ts` which already has cpuCores, gpuCores, neuralEngineCores, memoryBandwidth, maxMemory for all M4 variants |
+| i18n Context (existing) | Hardcoding English labels in SVG diagram | Use `useI18n()` hook for any text labels, or defer i18n (per PROJECT.md "out of scope" note) but design text elements to be easily swappable |
+| React 19 | Using deprecated lifecycle methods or class components for animation state | Use functional components with hooks -- `useEffect`, `useRef`, `useState`. React 19 has no breaking changes for this use case |
 
-For simple EN/VI static landing page, custom implementation is lighter:
-```typescript
-// ~50 lines of code, 0 kB dependencies
-const translations = { en: {...}, vi: {...} };
-const LanguageContext = createContext();
-// etc.
-```
+## Performance Traps
 
-**Phase mapping:** Decide library vs. custom in planning phase based on requirements
+| Trap | Symptoms | Prevention | When It Breaks |
+|------|----------|------------|----------------|
+| Too many simultaneous CSS animations | Stuttering on scroll, high GPU memory | Limit concurrent animations to 5-8 elements. Stagger start times. Use `will-change` sparingly (only on actively animating elements) | >15 concurrent animated SVG elements on mobile |
+| SVG filter effects (blur, glow via feGaussianBlur) | Frame drops, especially on Safari/iOS | Use CSS `box-shadow` or `drop-shadow()` filter on container div instead of SVG filters. Or use pre-rendered glow as a separate PNG/SVG layer | Any use of `<feGaussianBlur>` with radius >3 on mobile Safari |
+| Unthrottled state updates from animation hooks | React re-renders 60 times/second during count-up animation | Use `useRef` for animation values, only `setState` on significant changes (e.g., when displayed integer changes) | Count-up animation with `setState` every frame |
+| Large SVG inline in JSX | Increased component size, slower React reconciliation | Extract SVG into separate component file. Use `React.memo` to prevent re-renders from parent state changes | SVG component exceeds 200 lines of JSX |
 
----
+## UX Pitfalls
 
-## Testing and CI/CD Pitfalls
+| Pitfall | User Impact | Better Approach |
+|---------|-------------|-----------------|
+| Chip selector (M4/Pro/Max) with no visual feedback on selection | User unsure which chip is currently displayed | Active state with distinct background color, border, or underline. Current `ChipCard` has `featured` prop pattern -- extend this to selection state |
+| Animations that loop infinitely with no way to stop | Distracting, drains battery, annoys users on slow connections | Loop 2-3 times then settle to static state. Or play once on scroll-into-view, then stay static |
+| Count-up numbers that take too long | User scrolls past before numbers finish counting | Keep count-up duration under 1.5 seconds. Start counting only when visible |
+| Chip transition animation that blocks interaction | User clicks M4 Max while M4 Pro transition is still playing | Make transitions interruptible -- cancel current animation and start new one immediately |
+| Diagram dominates hero section, pushing CTAs below fold on mobile | Users never see the call-to-action buttons | On mobile, show headline + CTAs first, diagram below. Current Hero layout already has CTAs above the chip infographic -- preserve this order |
 
-### Pitfall 21: No Automated Translation Validation
-**What goes wrong:** Manual testing both languages before each deploy is time-consuming and error-prone.
+## "Looks Done But Isn't" Checklist
 
-**Prevention:**
-- Add i18n-check to CI pipeline:
-```bash
-npm install --save-dev i18n-check
-# In CI: npm run validate:i18n
-```
-- Fail builds on missing translations
-- Automated visual regression tests for both languages
+- [ ] **Reduced motion:** Enable "Reduce motion" in OS settings and verify diagram shows meaningful static state, not just frozen mid-animation -- verify all animations stop and final state is shown
+- [ ] **Mobile Safari:** Test on actual iOS device (Safari has different SVG rendering behavior than Chrome DevTools mobile emulation) -- verify no rendering artifacts or performance issues
+- [ ] **Chip switching:** Click rapidly between M4/Pro/Max and verify no animation artifacts, stuck states, or memory leaks from abandoned `requestAnimationFrame` callbacks
+- [ ] **Tab visibility:** Switch to another tab and back -- verify animations resume correctly and don't stack up frames
+- [ ] **Screen reader:** Navigate the chip diagram with VoiceOver/NVDA -- verify `role="img"`, `aria-label`, and that animated numbers have `aria-live="polite"` so final values are announced
+- [ ] **Slow network:** Throttle to 3G in DevTools and verify diagram appears with reasonable loading time, not blocked by animation JS
+- [ ] **Print:** Print the page and verify the chip diagram renders in a readable static state (many CSS animations produce blank output when printed)
+- [ ] **RTL (future):** Text inside SVG must not be positioned with absolute pixel values that break if text direction changes -- use text-anchor and relative positioning
 
-### Pitfall 22: Test Mocking Issues
-**What goes wrong:** Unit tests break after adding i18n because components expect translation context.
+## Recovery Strategies
 
-**Prevention:**
-```typescript
-// Test wrapper
-const renderWithLanguage = (component: ReactNode, language = 'en') => {
-  return render(
-    <LanguageProvider defaultLanguage={language}>
-      {component}
-    </LanguageProvider>
-  );
-};
+| Pitfall | Recovery Cost | Recovery Steps |
+|---------|---------------|----------------|
+| Animation jank from wrong properties | LOW | Change `fill`/`stroke` animations to `opacity`/`transform` -- CSS-only change, no structural rework |
+| Missing reduced-motion support | MEDIUM | Add media query blanket disable for CSS, add `useReducedMotion` hook and conditionals in JS. Must touch every animation point |
+| SVG too complex for mobile | HIGH | Requires redesigning the SVG with fewer elements or creating a separate mobile version. Cannot be fixed by optimization alone if design is inherently too detailed |
+| Bundle bloat from animation library | MEDIUM | Remove library, rewrite animations in CSS + vanilla JS. Feasible but time-consuming if library API is used throughout component |
+| Animations running off-screen | LOW | Add IntersectionObserver wrapper. Single change point, minimal code |
+| Broken chip selector transitions | LOW | Add animation cancellation logic with `cancelAnimationFrame` and cleanup in `useEffect` return |
 
-// In tests
-renderWithLanguage(<Hero />, 'en');
-renderWithLanguage(<Hero />, 'vi');
-```
+## Pitfall-to-Phase Mapping
 
-**Phase mapping:** Update test utilities in Phase 1 when adding language context
-
----
-
-## Deployment and SEO Pitfalls
-
-### Pitfall 23: Search Engines Indexing Wrong Language
-**What goes wrong:** Google indexes page in English but Vietnamese users get English snippets in search results.
-
-**Why it happens:** No lang attribute, or not using hreflang for language variants.
-
-**Note for static site:** hreflang requires separate URLs per language (en.html, vi.html) which doesn't match client-side switching approach.
-
-**Prevention for client-side switching:**
-- Set proper lang attribute dynamically
-- Consider default language based on target market
-- Accept limitation: SEO works best with separate URLs per language
-
-**Phase mapping:** Document SEO limitations in Phase 1, consider URL-based approach if SEO critical
-
-### Pitfall 24: Language Preference Not Persisting Across Sessions
-**What goes wrong:** User selects Vietnamese, closes browser, returns next day → back to English default.
-
-**Why it happens:** Using React state without localStorage persistence.
-
-**Prevention:** Already addressed in architecture (localStorage persistence), but validate it works:
-```typescript
-// Verify persistence
-localStorage.setItem('language', 'vi');
-// Refresh page
-// Should load in Vietnamese
-```
-
----
-
-## Confidence Assessment
-
-**Overall confidence:** HIGH
-
-| Pitfall Category | Confidence | Source Quality |
-|------------------|-----------|----------------|
-| Context re-renders | HIGH | Official React docs, performance articles |
-| HTML lang attribute | HIGH | WCAG standards, SEO studies |
-| Translation validation | HIGH | i18n-check documentation, industry best practices |
-| SSR hydration | MEDIUM | Framework-specific (Next.js/Remix), not applicable to current Vite setup but future risk |
-| Text expansion | HIGH | Industry standards (30-40% buffer), real-world case studies |
-| Bundle size | HIGH | Bundlephobia measurements, official library stats |
-| Machine translation quality | HIGH | Professional translation guidelines |
-| Date/number formatting | HIGH | Intl API documentation, locale research |
-
----
+| Pitfall | Prevention Phase | Verification |
+|---------|------------------|--------------|
+| Non-compositor property animation | SVG design + animation architecture | Chrome DevTools paint flashing shows no full-SVG repaints |
+| Missing prefers-reduced-motion | SVG component build (built-in from start) | Enable OS reduced motion setting, verify static fallback renders correctly |
+| SVG DOM complexity | SVG design phase | Element count under 100, SVGO applied, mobile Lighthouse >80 |
+| viewBox responsive sizing | SVG component build | Test at 320px, 375px, 768px -- diagram readable, touch targets 44px+ |
+| Bundle bloat | Architecture decision (pre-implementation) | No new animation dependencies in package.json. Bundle size increase <5KB gzipped |
+| Off-screen animation waste | Animation implementation | IntersectionObserver wired up, CPU idle when diagram not visible |
+| Tailwind CDN + SVG class conflict | SVG component build | SVG uses inline styles or CSS custom properties, not dynamic Tailwind classes |
+| Existing data layer integration | SVG component build | Chip specs imported from `components/data/chips.ts`, not hardcoded |
+| Infinite animation loops | Animation polish phase | Animations play once or 2-3 times then settle to static state |
+| Accessibility (screen reader, aria) | SVG component build | VoiceOver reads chip name and specs, `aria-live` announces final count-up values |
 
 ## Sources
 
-### Critical Pitfalls Research
-- [20 i18n Mistakes Developers Make in React Apps](https://www.translatedright.com/blog/20-i18n-mistakes-developers-make-in-react-apps-and-how-to-fix-them/)
-- [Common Mistakes When Implementing i18n in React Apps](https://infinitejs.com/posts/common-mistakes-i18n-react)
-- [Shopify: i18n Best Practices for Front-End Developers](https://shopify.engineering/internationalization-i18n-best-practices-front-end-developers)
-- [React i18next Trans Component — Docs, Examples & Pitfalls (2026)](https://www.shipglobal.dev/en/blog/react-i18next-trans-component)
+### SVG Animation Performance
+- [The Complete SVG Animation Encyclopedia (2025)](https://www.svgai.org/blog/research/svg-animation-encyclopedia-complete-guide) -- comprehensive benchmark data on CSS vs JS animation performance
+- [CSS and JavaScript Animation Performance -- MDN](https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/CSS_JavaScript_animation_performance) -- authoritative guide on compositor vs main thread animations
+- [SVG vs Canvas Animation: Modern Frontends (2026)](https://www.augustinfotech.com/blogs/svg-vs-canvas-animation-what-modern-frontends-should-use-in-2026/) -- when to use SVG vs Canvas
+- [Planning for Performance -- Using SVG with CSS3 and HTML5 (O'Reilly)](https://oreillymedia.github.io/Using_SVG/extras/ch19-performance.html) -- SVG-specific performance patterns
 
-### HTML Lang Attribute & SEO
-- [Understanding the HTML Meta Lang Attribute For SEO](https://www.dhiwise.com/blog/design-converter/html-meta-lang-why-its-important-for-web-development)
-- [How to make lang and dir attributes reflect current language (GitHub issue)](https://github.com/i18next/react-i18next/issues/925)
-- [Fixing HTML data lang Not Working (2026)](https://copyprogramming.com/howto/html-data-lang-not-working-in-html)
+### Accessibility and Reduced Motion
+- [Accessible Animations in React with prefers-reduced-motion -- Josh Comeau](https://www.joshwcomeau.com/react/prefers-reduced-motion/) -- React hook pattern for reduced motion
+- [Create Accessible Animations in React -- Motion docs](https://motion.dev/docs/react-accessibility) -- library-agnostic accessibility patterns
+- [Design Accessible Animation and Movement (2025) -- Pope Tech](https://blog.pope.tech/2025/12/08/design-accessible-animation-and-movement/) -- WCAG compliance for animated content
 
-### Performance & Context
-- [Optimizing React Context Performance](https://www.tenxdeveloper.com/blog/optimizing-react-context-performance)
-- [How to destroy your app performance using React contexts](https://thoughtspile.github.io/2021/10/04/react-context-dangers/)
-- [React Context Performance Trap: useSyncExternalStore](https://azguards.com/performance-optimization/the-propagation-penalty-bypassing-react-context-re-renders-via-usesyncexternalstore/)
+### Bundle Size and Library Comparison
+- [Comparing React Animation Libraries (2026) -- LogRocket](https://blog.logrocket.com/best-react-animation-libraries/) -- bundle size comparison across libraries
+- [Reduce Bundle Size of Motion -- Official Docs](https://motion.dev/docs/react-reduce-bundle-size) -- Motion/Framer Motion tree-shaking and lazy loading
+- [How to Choose Between CSS, Framer Motion, and React Spring -- jsdev.space](https://jsdev.space/howto/react-animation-solutions/) -- decision framework with size tradeoffs
 
-### SSR Hydration & localStorage
-- [Hydration Mismatch Using localStorage (Nuxt discussion)](https://github.com/nuxt/nuxt/discussions/25500)
-- [Can cause hydration mismatch with SSR (use-local-storage-state)](https://github.com/astoilkov/use-local-storage-state/issues/23)
-- [useLocalStorage hook for Next.js, SSR friendly](https://medium.com/@lean1190/uselocalstorage-hook-for-next-js-typed-and-ssr-friendly-4ddd178676df)
+### Mobile SVG Rendering
+- [Make Any SVG Responsive with React -- LogRocket](https://blog.logrocket.com/make-any-svg-responsive-with-this-react-component/) -- viewBox and responsive patterns
+- [How to Optimize SVG for Size and Rendering Speed -- Callstack](https://www.callstack.com/blog/image-optimization-on-ci-and-local) -- SVGO and optimization pipeline
 
-### Missing Translations & Validation
-- [Quality Assurance for i18n in React (i18n-check)](https://lingual.dev/blog/quality-assurance-for-i18n-in-react/)
-- [Fallback | i18next documentation](https://www.i18next.com/principles/fallback)
-- [Fixing Missing Translations in i18next](https://www.locize.com/blog/missing-translations/)
-
-### Date/Number Formatting
-- [React: automatic date formatting (i18next + date-fns)](https://dev.to/ekeijl/react-automatic-date-formatting-in-translations-i18next-date-fns-8df)
-- [Localising date, time in React with Intl API](https://medium.com/@herambmathkar/localising-date-time-in-react-app-with-internationalisation-api-c157b405c0eb)
-- [Locale-aware date format in React i18next](https://www.cea2k.com/blog/2023-07-locale-aware-date-format-react-i18next)
-
-### Translation File Structure
-- [JSON Format | i18next documentation](https://www.i18next.com/misc/json-format)
-- [What's the best structure for i18n JSON files?](https://localazy.com/faq/file-formats/what-s-the-best-structure-for-i18n-json-files)
-- [How to Manage Resource Files for i18n & Localization](https://lingoport.com/blog/resource-files-best-practices-for-i18n-localization/)
-
-### Bundle Size & Performance
-- [React Internationalization for Large Scale Apps](https://buttercms.com/blog/react-internationalization-for-large-scale-apps/)
-- [Best i18n Libraries for React 2026](https://syntaxhut.tech/blog/best-i18n-libraries-react-2026)
-- [react-i18next Bundlephobia](https://bundlephobia.com/package/react-i18next)
-
-### Testing
-- [Testing | react-i18next documentation](https://react.i18next.com/misc/testing)
-- [Quality Assurance for i18n in React](https://lingual.dev/blog/quality-assurance-for-i18n-in-react/)
-
-### Refactoring & Migration
-- [ast-i18n: Easily migrate existing React codebase](https://github.com/sibelius/ast-i18n)
-- [i18next-scanner: Extract translation keys/values](https://github.com/i18next/i18next-scanner)
-- [Scaffolding i18n in React with automation](https://lingual.dev/blog/automating-your-react-internationalization/)
-- [Extracting translations | i18next documentation](https://www.i18next.com/how-to/extracting-translations)
-
-### Security
-- [Interpolation | i18next documentation](https://www.i18next.com/translation-function/interpolation)
-- [React XSS Guide: Examples and Prevention](https://www.stackhawk.com/blog/react-xss-guide-examples-and-prevention/)
-- [React Security Best Practices 2025](https://hub.corgea.com/articles/react-security-best-practices)
+### Hydration and SSR
+- [Debugging and Fixing Hydration Issues -- Somewhat Abstract](https://blog.somewhatabstract.com/2022/01/03/debugging-and-fixing-hydration-issues/) -- patterns for client-only animated components
+- [Say No to Flickering UI: useLayoutEffect -- developerway](https://www.developerway.com/posts/no-more-flickering-ui) -- preventing flash of unanimated content
 
 ---
 
-*Last updated: 2026-03-07*
-*Research confidence: HIGH*
-*Applicable to: React 19 + TypeScript + Vite brownfield i18n implementation*
+*Pitfalls research for: Animated SVG chip diagram in React landing page*
+*Researched: 2026-03-07*
+*Confidence: HIGH -- based on MDN documentation, established SVG performance patterns, accessibility standards (WCAG 2.1), and verified community best practices*

@@ -1,704 +1,368 @@
-# Architecture Patterns for React i18n
+# Architecture Patterns
 
-**Domain:** React internationalization (i18n)
-**Context:** Brownfield React 19 + TypeScript + Vite landing page
+**Domain:** Animated Apple Silicon chip diagram for Hero section of React landing page
 **Researched:** 2026-03-07
 
 ## Recommended Architecture
 
-For this specific project (simple landing page, 2 languages, no backend, preference for minimal dependencies), the **React Context API pattern** is recommended over library-based solutions.
+### Overview
 
-### Pattern: Custom Context-Based i18n
+The chip diagram replaces the existing static `ChipCard` grid inside `Hero.tsx` with an animated SVG-based visualization. The architecture follows a **composed inline SVG** pattern: one parent SVG component coordinates child SVG group components, each owning its own geometry and CSS animation. No animation library is needed -- CSS keyframes handle all visual effects (glow, pulse, data flow), and counting numbers use a lightweight `useCountUp` hook with `requestAnimationFrame`.
 
-```
-┌─────────────────────────────────────────────────────┐
-│ index.html (root)                                   │
-│ - Sets initial lang attribute                       │
-└────────────────┬────────────────────────────────────┘
-                 │
-┌────────────────▼────────────────────────────────────┐
-│ index.tsx (React entry)                             │
-│ - Wraps App with I18nProvider                       │
-└────────────────┬────────────────────────────────────┘
-                 │
-┌────────────────▼────────────────────────────────────┐
-│ I18nProvider (context provider)                     │
-│ - Manages language state                            │
-│ - Loads from localStorage                           │
-│ - Provides: { language, setLanguage, t() }          │
-└────────────────┬────────────────────────────────────┘
-                 │
-        ┌────────┴────────┐
-        │                 │
-┌───────▼──────┐   ┌──────▼──────┐
-│ Navbar       │   │ Content     │
-│ - Toggle UI  │   │ Components  │
-│ - Switches   │   │ - Hero      │
-│   language   │   │ - Product   │
-└──────────────┘   │   Tiers     │
-                   │ - etc.      │
-                   └─────────────┘
-```
-
-## Component Boundaries
-
-### 1. Translation Data Layer
-
-**Location:** `src/i18n/translations/`
-**Purpose:** Store all translatable strings
-**Boundaries:** Pure data—no React dependencies
-
-| File | Responsibility |
-|------|---------------|
-| `en.ts` | English translation object |
-| `vi.ts` | Vietnamese translation object |
-| `index.ts` | Export unified translations type-safe object |
-
-**Structure:**
-```typescript
-// Nested structure (2-3 levels max)
-{
-  navbar: {
-    hero: "Home",
-    problem: "Problem"
-  },
-  hero: {
-    title: "AI Local Agent",
-    subtitle: "Your Business Intelligence..."
-  }
-}
-```
-
-**Why nested?** Flat keys collapse into chaos at scale. Nested keys provide context and enable better organization.
-
-### 2. i18n Context Layer
-
-**Location:** `src/contexts/I18nContext.tsx`
-**Purpose:** Manage language state and provide translation function
-**Boundaries:** Consumes translation data, provides to components
-
-**Responsibilities:**
-- Define `Language` type (`'en' | 'vi'`)
-- Define `I18nContextType` interface
-- Create React Context
-- Implement `I18nProvider` component
-- Manage language state with `useState`
-- Sync language to `localStorage`
-- Provide `t()` translation function
-- Update `document.documentElement.lang` attribute
-
-**Exports:**
-- `I18nContext` - Context object for `useContext`
-- `I18nProvider` - Provider wrapper component
-- `useI18n` - Custom hook (optional convenience wrapper)
-
-**Data managed:**
-- `language: Language` - Current active language
-- `setLanguage: (lang: Language) => void` - Language setter
-- `t: (key: string) => string` - Translation lookup function
-
-### 3. Application Entry Layer
-
-**Location:** `index.tsx`
-**Purpose:** Wrap application with i18n provider
-**Boundaries:** Composition point—connects provider to app tree
-
-**Responsibilities:**
-- Import `I18nProvider`
-- Wrap `<App />` with `<I18nProvider>`
-- Maintain existing React 19 StrictMode wrapper
-
-**Structure:**
-```tsx
-<StrictMode>
-  <I18nProvider>
-    <App />
-  </I18nProvider>
-</StrictMode>
-```
-
-### 4. Consumer Components Layer
-
-**Location:** Existing `src/components/*.tsx`
-**Purpose:** Display translated content
-**Boundaries:** Consume context, render UI
-
-**Pattern for each component:**
-1. Import `useContext` and `I18nContext`
-2. Extract `t` function: `const { t } = useContext(I18nContext)`
-3. Replace hardcoded strings with `t('key.path')`
-
-**Example transformation:**
-```tsx
-// Before
-<h1>Giải pháp AI địa phương</h1>
-
-// After
-const { t } = useContext(I18nContext);
-<h1>{t('hero.title')}</h1>
-```
-
-### 5. Language Toggle UI
-
-**Location:** `src/components/Navbar.tsx`
-**Purpose:** Allow user to switch languages
-**Boundaries:** UI control that calls `setLanguage`
-
-**Responsibilities:**
-- Display EN | VI toggle buttons
-- Call `setLanguage()` on click
-- Style active language (visual feedback)
-- Persist choice to localStorage (handled by context)
-
-## Data Flow
-
-### Initialization Flow
+### Component Hierarchy
 
 ```
-1. Browser loads index.html
-   ↓
-2. index.tsx executes
-   ↓
-3. I18nProvider mounts
-   ↓
-4. Provider reads localStorage['language'] || 'en'
-   ↓
-5. Provider sets document.documentElement.lang
-   ↓
-6. Provider passes { language, setLanguage, t } to Context
-   ↓
-7. App and child components mount
-   ↓
-8. Components call useContext(I18nContext)
-   ↓
-9. Components access t() function
-   ↓
-10. Components render translated strings
+Hero.tsx (layout, headline, CTAs -- modified)
+  |
+  +-- ChipDiagram.tsx (NEW -- parent container, chip selector state)
+        |
+        +-- ChipSelector.tsx (NEW -- M4 / M4 Pro / M4 Max tab buttons, HTML not SVG)
+        |
+        +-- ChipSVG.tsx (NEW -- root <svg> element, viewBox, responsive sizing)
+              |
+              +-- CoreGrid.tsx (NEW -- CPU P-cores + E-cores as rounded rects)
+              |
+              +-- GPUBlock.tsx (NEW -- GPU core array as grid of small rects)
+              |
+              +-- NeuralEngineBlock.tsx (NEW -- 16-core Neural Engine cluster)
+              |
+              +-- MemoryBus.tsx (NEW -- unified memory band with flowing data animation)
+              |
+              +-- SpecLabel.tsx (NEW -- single spec readout with count-up animation)
+              |
+              +-- DataFlowPaths.tsx (NEW -- animated SVG paths between blocks)
 ```
 
-### Language Switch Flow
+### Component Boundaries
+
+| Component | Responsibility | Communicates With |
+|-----------|---------------|-------------------|
+| `Hero.tsx` | Page layout, headline text, CTA buttons. Imports `ChipDiagram`. | `ChipDiagram` (renders it) |
+| `ChipDiagram.tsx` | Holds selected chip state (`useState`). Filters `chips` array from data layer. Passes chip data down. | `ChipSelector`, `ChipSVG`, data layer (`chips.ts`) |
+| `ChipSelector.tsx` | Three tab buttons (M4 / M4 Pro / M4 Max). Calls `onSelect` callback. | `ChipDiagram` (via props) |
+| `ChipSVG.tsx` | Root `<svg>` with responsive `viewBox="0 0 600 400"`. Positions child groups via `<g transform>`. | All SVG child components (via props) |
+| `CoreGrid.tsx` | Renders P-core and E-core rectangles. Animates glow on selected cores. | Receives `cpuCores` from props |
+| `GPUBlock.tsx` | Renders GPU core grid. Scales grid size by `gpuCores` count. | Receives `gpuCores` from props |
+| `NeuralEngineBlock.tsx` | Renders 16-core Neural Engine cluster with pulse animation. | Receives `neuralEngineCores` from props |
+| `MemoryBus.tsx` | Wide band at bottom with flowing gradient animation showing bandwidth. | Receives `memoryBandwidth`, `maxMemory` from props |
+| `SpecLabel.tsx` | Reusable: displays a spec number with count-up animation on chip change. | Receives `value`, `suffix`, `label` from props |
+| `DataFlowPaths.tsx` | SVG `<path>` elements with animated `stroke-dashoffset` showing data flowing between blocks. | Receives positions from parent layout |
+
+### Data Flow
 
 ```
-1. User clicks EN/VI toggle in Navbar
-   ↓
-2. Navbar calls setLanguage('en' or 'vi')
-   ↓
-3. Provider updates state via useState
-   ↓
-4. Provider useEffect detects language change
-   ↓
-5. Provider writes to localStorage.setItem('language', lang)
-   ↓
-6. Provider sets document.documentElement.lang = lang
-   ↓
-7. Context value updates (new language, same t function)
-   ↓
-8. All consuming components re-render
-   ↓
-9. t() function now returns strings from new language
-   ↓
-10. UI displays translated content
+chips.ts (static data, already exists)
+    |
+    v
+ChipDiagram.tsx
+    |-- filters chips array to M4 generation (m4-base, m4-pro, m4-max)
+    |-- useState<string>('m4-pro')  // selected chip ID, default to Pro
+    |-- getChipById(selectedId) -> Chip object
+    |
+    v
+ChipSVG.tsx receives full Chip object as prop
+    |
+    |-- Destructures: cpuCores.performance, cpuCores.efficiency,
+    |                 gpuCores, neuralEngineCores,
+    |                 memoryBandwidth, maxMemory
+    |
+    +-> CoreGrid     receives { performance: number, efficiency: number }
+    +-> GPUBlock      receives { cores: number }
+    +-> NeuralEngineBlock receives { cores: number }
+    +-> MemoryBus     receives { bandwidth: number, maxMemory: number }
+    +-> SpecLabel x4  receives { value: number, suffix: string, label: string }
+    +-> DataFlowPaths receives no data props (pure visual)
 ```
 
-### Translation Lookup Flow
-
-```
-Component calls t('hero.title')
-   ↓
-t() function runs inside I18nProvider
-   ↓
-Reads current language state ('en' or 'vi')
-   ↓
-Accesses translations[language]['hero']['title']
-   ↓
-Returns string value
-   ↓
-Component renders string in JSX
-```
+**Key insight:** The `Chip` type from `components/data/types.ts` already has every field needed (`cpuCores.performance`, `cpuCores.efficiency`, `gpuCores`, `neuralEngineCores`, `memoryBandwidth`, `maxMemory`). No new types are required. The data layer is untouched.
 
 ## Patterns to Follow
 
-### Pattern 1: Nested Translation Keys
+### Pattern 1: Inline SVG Components (not external .svg files)
 
-**What:** Organize translations 2-3 levels deep by feature/component
-**When:** Always—prevents key naming collisions and provides context
+**What:** Each SVG sub-component is a React functional component returning SVG elements (`<g>`, `<rect>`, `<circle>`, `<path>`, `<text>`). The root component returns `<svg>`.
+
+**Why:** Inline SVG gives full React control over attributes (fill, opacity, className) and enables data-driven rendering (loop over core count to render rects). External .svg files cannot be parameterized by props.
+
+**Confidence:** HIGH -- this is the standard React pattern for data-driven SVG. Verified across multiple sources including [Strapi](https://strapi.io/blog/mastering-react-svg-integration-animation-optimization) and [LogRocket](https://blog.logrocket.com/guide-svgs-react/).
+
 **Example:**
 ```typescript
-{
-  hero: {
-    title: "...",
-    subtitle: "...",
-    cta: "..."
-  },
-  navbar: {
-    home: "...",
-    about: "..."
-  }
+// CoreGrid.tsx
+interface CoreGridProps {
+  performance: number;
+  efficiency: number;
 }
-```
 
-**Why:** Flat keys (`login_button`, `submit_button`) collapse into chaos as the app grows. Nested keys (`auth.login.button`, `forms.submit.button`) maintain context and scale better.
-
-### Pattern 2: Type-Safe Translation Keys
-
-**What:** Use TypeScript to enforce valid translation keys
-**When:** Always—prevents runtime errors from typos
-**Example:**
-```typescript
-type TranslationKeys = {
-  hero: {
-    title: string;
-    subtitle: string;
-  };
-};
-
-// t() function enforces valid paths
-const t = (key: string): string => {
-  // Type-safe access
-};
-```
-
-**Why:** Catches missing translations at compile time instead of runtime.
-
-### Pattern 3: localStorage Persistence
-
-**What:** Save language preference to browser storage
-**When:** On every language change
-**Example:**
-```typescript
-useEffect(() => {
-  localStorage.setItem('language', language);
-  document.documentElement.lang = language;
-}, [language]);
-```
-
-**Why:** User preference persists across sessions without backend.
-
-### Pattern 4: HTML Lang Attribute Synchronization
-
-**What:** Update `<html lang>` attribute when language changes
-**When:** On mount and language switch
-**Example:**
-```typescript
-useEffect(() => {
-  document.documentElement.lang = language;
-}, [language]);
-```
-
-**Why:**
-- **SEO:** Search engines index page for correct language audience
-- **Accessibility:** Screen readers apply correct pronunciation rules
-- **UX:** Browsers offer appropriate translation options
-
-### Pattern 5: Custom useI18n Hook (Optional)
-
-**What:** Convenience wrapper around useContext
-**When:** To simplify component imports
-**Example:**
-```typescript
-export const useI18n = () => {
-  const context = useContext(I18nContext);
-  if (!context) {
-    throw new Error('useI18n must be used within I18nProvider');
-  }
-  return context;
-};
-```
-
-**Why:** Cleaner component code, built-in error checking.
-
-### Pattern 6: Default Language Fallback
-
-**What:** Use English as default if localStorage is empty
-**When:** First visit or cleared storage
-**Example:**
-```typescript
-const [language, setLanguage] = useState<Language>(
-  (localStorage.getItem('language') as Language) || 'en'
+export const CoreGrid: React.FC<CoreGridProps> = ({ performance, efficiency }) => (
+  <g className="core-grid">
+    {/* Performance cores - larger, brighter */}
+    {Array.from({ length: performance }).map((_, i) => (
+      <rect
+        key={`p-${i}`}
+        x={20 + (i % 4) * 36}
+        y={20 + Math.floor(i / 4) * 36}
+        width={30}
+        height={30}
+        rx={4}
+        className="fill-blue-500 animate-core-glow"
+        style={{ animationDelay: `${i * 0.1}s` }}
+      />
+    ))}
+    {/* Efficiency cores - smaller, dimmer */}
+    {Array.from({ length: efficiency }).map((_, i) => (
+      <rect
+        key={`e-${i}`}
+        x={180 + (i % 2) * 28}
+        y={20 + Math.floor(i / 2) * 28}
+        width={22}
+        height={22}
+        rx={3}
+        className="fill-blue-400/60 animate-core-glow"
+        style={{ animationDelay: `${(performance + i) * 0.1}s` }}
+      />
+    ))}
+  </g>
 );
 ```
 
-**Why:** Ensures predictable behavior and aligns with project requirement.
+### Pattern 2: CSS Keyframes for All Visual Animations
 
-### Pattern 7: Single Translation File Per Language
+**What:** Glow, pulse, and flow animations use CSS `@keyframes` defined in the `index.html` `<style>` block (where existing `animate-float` already lives). SVG elements reference these via class names.
 
-**What:** One file per language (en.ts, vi.ts) with all strings
-**When:** For small projects (<50 translation keys)
+**Why:** CSS animations on `transform` and `opacity` are GPU-composited -- they run on the compositor thread without blocking main thread or causing layout/paint. This is critical for a landing page hero where scroll and interaction must stay smooth. No animation library dependency means zero bundle cost.
+
+**Confidence:** HIGH -- GPU compositing of transform/opacity is well-documented by [Chrome DevRel](https://developer.chrome.com/blog/hardware-accelerated-animations) and [Smashing Magazine](https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/).
+
+**Animations needed (add to index.html `<style>` block):**
+```css
+/* Core glow - subtle brightness pulse */
+@keyframes core-glow {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+.animate-core-glow {
+  animation: core-glow 2s ease-in-out infinite;
+}
+
+/* Data flow - dashed line marching along path */
+@keyframes data-flow {
+  to { stroke-dashoffset: -20; }
+}
+.animate-data-flow {
+  stroke-dasharray: 8 4;
+  animation: data-flow 1s linear infinite;
+}
+
+/* Memory bus shimmer - gradient slide */
+@keyframes memory-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.animate-memory-shimmer {
+  animation: memory-shimmer 3s ease-in-out infinite;
+}
+
+/* Neural engine pulse */
+@keyframes neural-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+.animate-neural-pulse {
+  animation: neural-pulse 1.5s ease-in-out infinite;
+}
+```
+
+**Performance rules:**
+- Only animate `opacity` and `transform` (GPU-composited properties)
+- Use `will-change: opacity` sparingly and only on actively animating elements
+- Avoid animating `filter` properties (not GPU-composited on mobile)
+- Stagger animations with `animation-delay` to reduce simultaneous GPU work
+
+### Pattern 3: useCountUp Hook for Number Animations
+
+**What:** A custom hook using `requestAnimationFrame` to animate numbers from 0 to target value over a duration. Triggers on chip change via the `target` dependency.
+
+**Why:** Counting-up spec numbers (e.g., "10-core CPU", "273 GB/s") creates visual impact when switching chips. Using `requestAnimationFrame` directly avoids animation library overhead and gives frame-accurate control. The hook pattern matches existing project conventions (`useParticleEngine`, `useI18n`).
+
+**Confidence:** HIGH -- `requestAnimationFrame` + `useRef` is the standard React pattern. Verified at [CSS-Tricks](https://css-tricks.com/using-requestanimationframe-with-react-hooks/).
+
+**Implementation:**
+```typescript
+// hooks/useCountUp.ts
+import { useState, useEffect, useRef } from 'react';
+
+export const useCountUp = (target: number, duration = 800): number => {
+  const [current, setCurrent] = useState(0);
+  const startTimeRef = useRef<number>(0);
+  const rafRef = useRef<number>(0);
+
+  useEffect(() => {
+    startTimeRef.current = 0;
+
+    const animate = (timestamp: number) => {
+      if (!startTimeRef.current) startTimeRef.current = timestamp;
+      const elapsed = timestamp - startTimeRef.current;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Ease-out cubic for satisfying deceleration
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCurrent(Math.round(target * eased));
+
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [target, duration]);
+
+  return current;
+};
+```
+
+### Pattern 4: Responsive SVG with viewBox
+
+**What:** The root SVG uses a fixed `viewBox` (e.g., `0 0 600 400`) and responsive width via CSS (`width: 100%; max-width: 600px; height: auto`). The `preserveAspectRatio="xMidYMid meet"` ensures uniform scaling.
+
+**Why:** SVG viewBox scaling is resolution-independent. The diagram looks sharp on retina displays and scales naturally between mobile (300px wide) and desktop (600px wide) without media queries or breakpoints.
+
+**Confidence:** HIGH -- this is the standard SVG responsive pattern.
+
+**Mobile note:** At narrow widths (<400px), the diagram scales down uniformly. Ensure minimum readable font sizes by using at least 14px in viewBox coordinate space (at 320px viewport, this renders as roughly 7.5px physical -- small but still readable for numbers). If testing shows readability issues, consider a breakpoint that stacks the diagram blocks vertically for mobile.
+
+### Pattern 5: Key-Driven Transitions on Chip Switch
+
+**What:** When the user selects a different chip (M4 -> M4 Pro), use React's `key` prop on `ChipSVG` to force unmount/remount, restarting all CSS animations and count-up hooks.
+
+**Why:** Simpler than managing animation reset state across all child components. The SVG is lightweight (no network requests, just DOM operations). Each remount triggers fresh `useCountUp` from 0 and fresh CSS animation starts.
+
+**Confidence:** MEDIUM -- this is a pragmatic shortcut. If smooth morphing transitions between chips are later desired, switch to `useEffect` watching chip ID instead. For a landing page with discrete chip states, remounting is simpler and sufficient.
+
 **Example:**
+```typescript
+// ChipDiagram.tsx
+<ChipSVG key={selectedChip.id} chip={selectedChip} />
 ```
-src/i18n/translations/
-  ├── en.ts    (all English strings)
-  ├── vi.ts    (all Vietnamese strings)
-  └── index.ts (export merged object)
-```
-
-**Why:** Simpler than namespacing for landing pages. Use namespaces only if >100 keys.
 
 ## Anti-Patterns to Avoid
 
-### Anti-Pattern 1: Passing Language as Prop
+### Anti-Pattern 1: Animation Library for Simple Effects
 
-**What:** Drilling language state through component props
-**Why bad:** Prop drilling defeats the purpose of Context API
-**Instead:** Use Context—every component accesses directly via `useContext`
+**What:** Adding Framer Motion, React Spring, or GSAP for glow/pulse/flow animations.
 
-```tsx
-// BAD
-<Hero language={language} />
+**Why bad:** These animations are purely decorative CSS effects (opacity, transform, stroke-dashoffset). A library adds 15-40KB+ gzipped for functionality CSS handles natively with better performance. The project constraint explicitly says "Keep additions minimal -- SVG animations preferred over heavy libraries."
 
-// GOOD
-const Hero = () => {
-  const { t } = useContext(I18nContext);
-  return <h1>{t('hero.title')}</h1>;
-};
-```
+**Instead:** CSS `@keyframes` for visual effects, `requestAnimationFrame` hook for counting numbers.
 
-### Anti-Pattern 2: Inline Translation Objects
+### Anti-Pattern 2: External SVG Files with Dynamic Data
 
-**What:** Defining translations inside components
-**Why bad:** Duplication, no single source of truth, unmaintainable
-**Instead:** Centralize in `src/i18n/translations/`
+**What:** Creating `.svg` files for the chip diagram and loading them via `<img>` or a bundler plugin like SVGR.
 
-```tsx
-// BAD
-const Hero = () => {
-  const translations = { en: "Welcome", vi: "Chào mừng" };
-  return <h1>{translations[language]}</h1>;
-};
+**Why bad:** External SVGs cannot receive React props. The diagram must render different numbers of cores based on chip data. SVGR adds tooling complexity for something JSX handles directly.
 
-// GOOD
-const Hero = () => {
-  const { t } = useContext(I18nContext);
-  return <h1>{t('hero.welcome')}</h1>;
-};
-```
+**Instead:** Write SVG elements directly as JSX in component files.
 
-### Anti-Pattern 3: Deeply Nested Keys (>3 levels)
+### Anti-Pattern 3: Canvas or WebGL for the Chip Diagram
 
-**What:** Translation paths like `sections.hero.header.main.title.primary`
-**Why bad:** Verbose, hard to navigate, no added benefit
-**Instead:** Keep to 2-3 levels: `hero.title`
+**What:** Using `<canvas>` or WebGL/Three.js for the chip visualization.
 
-```typescript
-// BAD
-{ sections: { hero: { header: { main: { title: "..." } } } } }
+**Why bad:** Canvas is opaque to the DOM -- no accessibility, no CSS styling, no text selection. The diagram contains text labels that should be accessible. The project explicitly rules out WebGL/Three.js as too heavy.
 
-// GOOD
-{ hero: { title: "..." } }
-```
+**Instead:** SVG is DOM-native, accessible, resolution-independent, and CSS-styleable.
 
-### Anti-Pattern 4: Mixing Languages in Same File
+### Anti-Pattern 4: Animating SVG filter on Mobile
 
-**What:** Storing EN and VI in one object
-**Why bad:** Hard to review translations, error-prone
-**Instead:** Separate files (en.ts, vi.ts)
+**What:** Using SVG `<filter>` elements (`feGaussianBlur`, `feDropShadow`) for glow effects and animating them.
 
-```typescript
-// BAD
-const translations = {
-  hero: {
-    en: "Welcome",
-    vi: "Chào mừng"
-  }
-};
+**Why bad:** SVG filters are CPU-rendered on most mobile browsers, causing frame drops and battery drain. A blur filter must re-render every animation frame.
 
-// GOOD - en.ts
-export const en = {
-  hero: { title: "Welcome" }
-};
+**Instead:** Use CSS `opacity` changes on a pre-blurred static glow element beneath each core rect. Or use CSS `box-shadow` on an HTML overlay if needed.
 
-// GOOD - vi.ts
-export const vi = {
-  hero: { title: "Chào mừng" }
-};
-```
+### Anti-Pattern 5: One Monolithic SVG Component
 
-### Anti-Pattern 5: Not Handling Missing Keys
+**What:** Putting all SVG elements (cores, GPU, neural engine, memory bus, labels, paths) in a single component file.
 
-**What:** Returning undefined or throwing on missing translation
-**Why bad:** Breaks UI, poor user experience
-**Instead:** Return the key itself as fallback
+**Why bad:** Becomes 300+ lines, hard to test individual sections, hard to iterate on layout of one block without risking others. Violates single-responsibility principle.
 
-```typescript
-// BAD
-const t = (key: string) => {
-  return translations[language][key]; // undefined if missing
-};
+**Instead:** One component per logical block (CoreGrid, GPUBlock, etc.), composed by ChipSVG parent.
 
-// GOOD
-const t = (key: string) => {
-  const value = translations[language]?.[key];
-  return value || key; // fallback to key if missing
-};
-```
+## Integration Points with Existing Code
 
-### Anti-Pattern 6: Over-Engineering for Simple Needs
+### Modified Files
 
-**What:** Using react-i18next library for a 2-language landing page
-**Why bad:** Adds 50KB+ bundle size, complexity, learning curve for no benefit
-**Instead:** Use Context API—sufficient for <100 translation keys
+| File | Change | Scope |
+|------|--------|-------|
+| `components/Hero.tsx` | Remove inline `ChipCard` component and the static chip grid (lines 5-167 of current file). Import and render `ChipDiagram`. Keep headline, badge, CTAs, background blurs, unified memory section. | Moderate -- delete ~120 lines of static chip cards and agent layer, add ~5 lines for `ChipDiagram` import/render |
+| `index.html` | Add new `@keyframes` rules to existing `<style>` block (core-glow, data-flow, memory-shimmer, neural-pulse) | Small -- append ~30 lines of CSS |
 
-**When libraries make sense:**
-- 5+ languages
-- Pluralization rules (1 item vs 2 items)
-- Dynamic translation loading
-- Professional translation workflow integration
+### New Files
 
-**For this project:** Context API is the right choice.
+| File | Purpose | Dependencies |
+|------|---------|--------------|
+| `components/chip-diagram/ChipDiagram.tsx` | Parent container, chip selection state, data filtering | `chips.ts`, `types.ts` |
+| `components/chip-diagram/ChipSelector.tsx` | Tab buttons for M4 / M4 Pro / M4 Max | None (pure UI) |
+| `components/chip-diagram/ChipSVG.tsx` | Root SVG element, positions child groups | All SVG children below |
+| `components/chip-diagram/CoreGrid.tsx` | CPU core visualization | None |
+| `components/chip-diagram/GPUBlock.tsx` | GPU core visualization | None |
+| `components/chip-diagram/NeuralEngineBlock.tsx` | Neural Engine visualization | None |
+| `components/chip-diagram/MemoryBus.tsx` | Unified memory band | None |
+| `components/chip-diagram/SpecLabel.tsx` | Animated spec number display | `useCountUp` |
+| `components/chip-diagram/DataFlowPaths.tsx` | Animated connection paths | None |
+| `hooks/useCountUp.ts` | requestAnimationFrame count-up hook | None |
+
+### Untouched Files
+
+- `components/data/chips.ts` -- already has all M4 chip data needed
+- `components/data/types.ts` -- `Chip` type has all required fields
+- `components/ChipComparison.tsx` -- separate section, unaffected
+- `components/particles/` -- independent background system, no conflicts
+- `App.tsx` -- Hero already imported and rendered, no changes needed
+
+## Suggested Build Order
+
+Build order follows dependency graph. Each step is independently testable.
+
+| Order | Component | Rationale | Testable In Isolation |
+|-------|-----------|-----------|----------------------|
+| 1 | `hooks/useCountUp.ts` | Zero dependencies, unit-testable | Yes -- render hook with test values |
+| 2 | CSS keyframes in `index.html` | No component dependencies | Yes -- apply classes to any element |
+| 3 | `SpecLabel.tsx` | Depends on `useCountUp` (step 1) | Yes -- render with hardcoded number |
+| 4 | `CoreGrid.tsx` | Pure SVG, no dependencies | Yes -- wrap in `<svg>` for visual test |
+| 5 | `GPUBlock.tsx` | Pure SVG, no dependencies | Yes |
+| 6 | `NeuralEngineBlock.tsx` | Pure SVG, no dependencies | Yes |
+| 7 | `MemoryBus.tsx` | Pure SVG, uses CSS from step 2 | Yes |
+| 8 | `DataFlowPaths.tsx` | Pure SVG, uses CSS from step 2 | Yes |
+| 9 | `ChipSVG.tsx` | Composes steps 3-8 into positioned layout | Yes -- hardcode a Chip object |
+| 10 | `ChipSelector.tsx` | Pure HTML/Tailwind buttons | Yes -- renders standalone |
+| 11 | `ChipDiagram.tsx` | Composes selector + SVG, connects to `chips.ts` | Yes -- renders standalone |
+| 12 | `Hero.tsx` modification | Remove old grid, add ChipDiagram | Integration test |
+
+**Steps 4-8 can be built in parallel** since they are independent leaf components.
 
 ## Scalability Considerations
 
-| Scale | Approach | Rationale |
-|-------|----------|-----------|
-| **<50 keys** (this project) | Single file per language | Simple, maintainable, fast |
-| **50-200 keys** | Namespace by page/feature | Lazy load sections on route change |
-| **200-1000 keys** | Namespace + library (i18next) | Need pluralization, interpolation, async loading |
-| **1000+ keys** | Professional i18n platform | CMS integration, translator workflows, version control |
-
-## Alternative Architectures Considered
-
-### react-i18next (Industry Standard Library)
-
-**Structure:**
-- Separate translation JSON files per namespace
-- i18next core + react-i18next wrapper
-- I18nextProvider wraps app
-- useTranslation hook in components
-- Automatic resource loading and caching
-
-**When to use:**
-- 5+ languages
-- Need pluralization (`{count} items`)
-- Need interpolation (`Hello {{name}}`)
-- Need lazy loading by route
-- Professional translation workflow
-
-**Why not for this project:**
-- Adds ~50KB to bundle (significant for landing page)
-- Overkill for 2 languages, 9 components, ~40 translation keys
-- No pluralization needs
-- No dynamic content needs
-
-**Confidence:** HIGH (verified via official docs)
-
-### react-intl (Format.JS)
-
-**Structure:**
-- IntlProvider wraps app
-- FormattedMessage components for display
-- formatMessage for imperative translations
-- Built-in date/time/number formatting
-
-**When to use:**
-- Heavy date/time/currency formatting needs
-- ICU message syntax preference
-- React Native cross-platform
-
-**Why not for this project:**
-- No date/time/currency formatting needs
-- Heavier bundle than needed
-- More complex API for simple string replacement
-
-**Confidence:** MEDIUM (WebSearch verified)
-
-### LinguiJS (Compile-Time)
-
-**Structure:**
-- Extract messages at build time
-- Compile translations to optimized format
-- <Trans> component for JSX
-- Type-safe by default
-
-**When to use:**
-- Performance-critical applications
-- Large translation sets (1000+ keys)
-- TypeScript projects wanting compiler validation
-
-**Why not for this project:**
-- Build step complexity
-- Setup overhead for small project
-- Vite integration requires configuration
-
-**Confidence:** MEDIUM (WebSearch verified)
-
-## Build Order
-
-To implement i18n for this project, follow this order to manage dependencies:
-
-### Phase 1: Foundation (No Dependencies)
-
-**1.1 Create Translation Data Files**
-- `src/i18n/translations/en.ts` - English strings
-- `src/i18n/translations/vi.ts` - Vietnamese strings
-- `src/i18n/translations/index.ts` - Export combined
-
-**Why first:** No dependencies, can be reviewed in parallel with code changes
-
-**1.2 Extract All Strings from Components**
-- Audit all 9 components
-- Document every hardcoded Vietnamese string
-- Create mapping: component → translation keys
-
-**Why second:** Identifies full scope before building system
-
-### Phase 2: Context System (Depends on Phase 1)
-
-**2.1 Create I18nContext**
-- `src/contexts/I18nContext.tsx`
-- Define types (Language, I18nContextType)
-- Implement I18nProvider
-- Implement t() function with nested key access
-- Add localStorage persistence
-- Add HTML lang attribute sync
-
-**Why third:** Needs translation data structure from Phase 1
-
-### Phase 3: Integration (Depends on Phase 2)
-
-**3.1 Wrap Application**
-- Modify `index.tsx`
-- Add `<I18nProvider>` wrapper
-
-**Why fourth:** Provider must exist before consumers
-
-**3.2 Update Components**
-- One component at a time
-- Replace hardcoded strings with `t('key.path')`
-- Test after each component
-
-**Why fifth:** Incremental updates reduce risk
-
-**3.3 Add Language Toggle UI**
-- Modify `Navbar.tsx`
-- Add EN | VI toggle buttons
-- Wire to `setLanguage()`
-- Style active state
-
-**Why last:** Needs full system working before exposing to users
-
-### Phase 4: Polish (Depends on Phase 3)
-
-**4.1 Verify SEO**
-- Confirm `<html lang>` updates correctly
-- Test in browser DevTools
-
-**4.2 Test Persistence**
-- Clear localStorage
-- Verify defaults to EN
-- Switch to VI, reload, verify persists
-
-**4.3 TypeScript Validation**
-- Ensure no `any` types
-- Verify t() type safety
-
-## Critical Dependencies
-
-| Component | Depends On | Reason |
-|-----------|-----------|--------|
-| I18nContext | Translation data files | Must know structure to implement t() |
-| index.tsx wrapper | I18nProvider | Can't import before it exists |
-| Component updates | Context provider | useContext fails without provider |
-| Toggle UI | Working context | Needs setLanguage function |
-| localStorage | Language state | Needs current language value |
-| HTML lang attribute | Language state | Needs current language value |
-
-## Testing Considerations
-
-**Unit Tests:**
-- Test t() function with valid keys
-- Test t() function with missing keys (should return key)
-- Test localStorage read/write
-- Test HTML lang attribute updates
-
-**Integration Tests:**
-- Test language switching triggers re-render
-- Test persistence across page reloads
-- Test default language on first visit
-
-**Manual Tests:**
-- Visual inspection of all components in both languages
-- Toggle between languages multiple times
-- Check browser DevTools for `<html lang>` attribute
-- Check localStorage in DevTools
-
-## Performance Impact
-
-**Bundle Size:**
-- Context API: 0KB (built into React)
-- Translation files: ~5-10KB (EN + VI strings)
-- Total added: <10KB
-
-**Runtime:**
-- Initial load: +1 localStorage read (~1ms)
-- Language switch: 1 setState + localStorage write (~5ms)
-- Component renders: Negligible (simple object lookup)
-
-**Compared to libraries:**
-- react-i18next: +50KB bundle
-- react-intl: +60KB bundle
-- LinguiJS: +30KB bundle
-
-**Recommendation:** Context API is the clear winner for performance on this project.
-
-## SEO Integration
-
-**Requirements:**
-1. Set `<html lang="en">` or `<html lang="vi">` based on current language
-2. Update on language switch
-3. Set on initial load (before first paint if possible)
-
-**Implementation in I18nProvider:**
-```typescript
-useEffect(() => {
-  document.documentElement.lang = language;
-}, [language]);
-```
-
-**Benefits:**
-- Search engines index for correct language
-- Screen readers announce correct language to users
-- Browsers offer translation for opposite language users
-- Improves accessibility score
-
-**Note:** For multi-page sites, also consider `hreflang` tags. Not needed for SPA landing page.
-
-## Accessibility Notes
-
-**WCAG 2.1 Requirements:**
-- AA: Page language must be programmatically determined
-- AAA: Language of parts must be programmatically determined
-
-**Satisfied by:**
-- `<html lang>` attribute (page level)
-- Context ensures consistent language across all content
-- No mixed-language content in this project
-
-**Screen Reader Impact:**
-- Correct pronunciation rules applied
-- Language switching announced automatically
-- Improved experience for non-native English/Vietnamese users
+| Concern | Current (3 chips) | Future (add M4 Ultra) | Notes |
+|---------|-------------------|-----------------------|-------|
+| Chip count | 3 tabs (M4/Pro/Max) | 4 tabs -- add entry to selector | Data already structured for it in chips.ts |
+| SVG complexity | ~50-80 DOM nodes | Same order | Core count changes, node count stays similar |
+| Animation perf | 3-4 concurrent CSS animations | Same | CSS animations are GPU-composited, no scaling concern |
+| Mobile | viewBox scaling | Same | No change needed |
+| i18n | Labels in English | Add translation keys later | SpecLabel accepts label as prop string, easy to swap for t() calls |
 
 ## Sources
 
-**HIGH Confidence** (Official Documentation):
-- [react-i18next documentation](https://react.i18next.com)
-- [i18next documentation](https://www.i18next.com/)
-- [React Context API pattern for i18n](https://www.seeratawan.me/blog/react-internationalization-using-context-api/)
-- [localStorage in React](https://www.robinwieruch.de/local-storage-react/)
-
-**MEDIUM Confidence** (Technical Articles):
-- [Designing Robust i18n for React Web Applications](https://www.technetexperts.com/react-application-i18n-configuration/)
-- [Internationalization (i18n) in React: Complete Guide 2026](https://www.glorywebs.com/blog/internationalization-in-react)
-- [React Internationalization Best Practices](https://www.bureauworks.com/blog/react-internationalization-best-practices)
-- [The Art of the Key: i18n Key Naming](https://www.locize.com/blog/guide-to-i18n-key-naming/)
-- [Building a multi-language app with React JS](https://dev.to/franklin030601/building-a-multi-language-app-with-react-js-2och)
-- [A Guide to React Localization with i18next](https://phrase.com/blog/posts/localizing-react-apps-with-i18next/)
-
-**LOW Confidence** (WebSearch Only):
-- [Best i18n Libraries for React 2026](https://syntaxhut.tech/blog/best-i18n-libraries-react-2026)
-- [React + LinguiJS Guide 2026](https://intlpull.com/blog/linguijs-react-i18n-guide-2026)
+- [Mastering React SVG Integration - Strapi](https://strapi.io/blog/mastering-react-svg-integration-animation-optimization) -- HIGH confidence
+- [CSS GPU Animation - Smashing Magazine](https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/) -- HIGH confidence
+- [requestAnimationFrame with React Hooks - CSS-Tricks](https://css-tricks.com/using-requestanimationframe-with-react-hooks/) -- HIGH confidence
+- [Hardware-accelerated animations - Chrome Developers](https://developer.chrome.com/blog/hardware-accelerated-animations) -- HIGH confidence
+- [SVG performance with CSS transforms - Charlie Marsh](https://www.crmarsh.com/svg-performance/) -- HIGH confidence
+- [Motion library SVG animation docs](https://motion.dev/docs/react-svg-animation) -- MEDIUM confidence (evaluated but not recommended)
+- [SVG animation optimization guide - Zigpoll](https://www.zigpoll.com/content/how-can-i-optimize-svg-animations-to-run-smoothly-on-both-desktop-and-mobile-browsers-without-significant-performance-loss) -- MEDIUM confidence
+- [Guide to SVGs in React - LogRocket](https://blog.logrocket.com/guide-svgs-react/) -- HIGH confidence
 
 ---
 
 *Research completed: 2026-03-07*
-*Confidence: HIGH (core patterns), MEDIUM (library comparisons)*
+*Confidence: HIGH (core patterns verified with official sources and established references)*
