@@ -26,7 +26,7 @@ Add English/Vietnamese internationalization to the existing landing page using R
 **Plans**: 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Test infrastructure + translation files (EN/VI)
+- [x] 01-01-PLAN.md — Test infrastructure + translation files (EN/VI)
 - [ ] 01-02-PLAN.md — I18nContext provider with persistence and lang sync
 
 ### Phase 2: Component Integration
