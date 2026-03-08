@@ -98,11 +98,12 @@ Plans:
   3. CTA buttons are updated to match the new visual direction and remain functional
   4. Spec callout badges prominently display key numbers (TOPS, memory bandwidth) outside the diagram for quick scanning
   5. Chip diagram is visually integrated into the Hero section with proper hierarchy -- headline and CTAs remain the primary focus, diagram supports the message
-**Plans**: 2 plans
+**Plans**: 3 plans
 
 Plans:
 - [ ] 05-01-PLAN.md — Hero rewrite with ChipDiagram, spec badges, new messaging, and translation updates
 - [ ] 05-02-PLAN.md — Visual verification on desktop and mobile viewports
+- [ ] 05-03-PLAN.md — Update translation test assertions for new hero content
 
 ## Progress
 
@@ -115,4 +116,4 @@ Phases execute in numeric order: 3 -> 4 -> 5
 | 2. Mac Hardware Data | v1.0 | 3/3 | Abandoned | 2026-03-07 |
 | 3. Animation Infrastructure | 2/2 | Complete   | 2026-03-08 | - |
 | 4. SVG Chip Diagram | 2/2 | Complete   | 2026-03-08 | - |
-| 5. Hero Integration | v2.0 | 0/2 | Not started | - |
+| 5. Hero Integration | v2.0 | 0/3 | Not started | - |
