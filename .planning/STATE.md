@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Hero Apple Silicon Showcase
 status: completed
-stopped_at: Completed 05-03-PLAN.md (translation test updates)
-last_updated: "2026-03-08T04:24:15.081Z"
-last_activity: 2026-03-08 — Completed 04-02 visual verification
+stopped_at: Completed 05-01-PLAN.md (hero integration)
+last_updated: "2026-03-08T04:25:30Z"
+last_activity: 2026-03-08 — Completed 05-01 Hero redesign with ChipDiagram
 progress:
   total_phases: 6
   completed_phases: 5
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-07)
 
 **Core value:** Visitors immediately grasp Apple Silicon's raw power as AI infrastructure
-**Current focus:** All phases complete
+**Current focus:** Phase 05 hero integration
 
 ## Current Position
 
-Phase: 5 of 5 (Complete)
-Plan: 2 of 2 complete
-Status: Complete
-Last activity: 2026-03-08 — Completed 04-02 visual verification
+Phase: 5 of 6
+Plan: 1 of 3 complete
+Status: In Progress
+Last activity: 2026-03-08 — Completed 05-01 Hero redesign with ChipDiagram
 
 Progress: [██████████] 100%
 
@@ -46,6 +46,7 @@ Progress: [██████████] 100%
 | 03-animation-infrastructure | 2 | 4 min | 2 min |
 | Phase 04 P01 | 2 | 2 tasks | 2 files |
 | Phase 04 P02 | 2min | 3 tasks | 1 files |
+| Phase 05 P01 | 3min | 2 tasks | 4 files |
 | Phase 05 P03 | 1min | 1 tasks | 2 files |
 
 ## Accumulated Context
@@ -71,6 +72,8 @@ Recent decisions affecting current work:
 - [Phase 04]: Block regions with text labels to stay under 100 SVG DOM elements
 - [Phase 04]: Visual verification approved -- diagram readable at 320px, color-coded blocks distinct, tabs functional
 - [Phase 05]: Direct value assertions for hero content tests to catch regressions precisely
+- [Phase 05-01]: Spec badges use m4-base TOPS and m4-max bandwidth/memory/GPU for hero callouts
+- [Phase 05-01]: Removed all old infographic elements (ChipCard, Agent Layer, Unified Memory grid)
 
 ### Pending Todos
 
@@ -82,6 +85,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-08T04:24:15.079Z
-Stopped at: Completed 05-03-PLAN.md (translation test updates)
+Last session: 2026-03-08T04:25:30Z
+Stopped at: Completed 05-01-PLAN.md (hero integration)
 Resume file: None
