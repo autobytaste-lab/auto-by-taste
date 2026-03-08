@@ -1,47 +1,51 @@
-# Requirements: AI-Local Hub i18n
+# Requirements: AI-Local Hub Hero Apple Silicon Showcase
 
-**Defined:** 2026-03-07
-**Core Value:** Visitors can understand the AI-Local Hub offering and contact the founder — in their preferred language (English or Vietnamese)
+**Defined:** 2026-03-08
+**Core Value:** Visitors immediately grasp Apple Silicon's raw power as AI infrastructure
 
-## v1 Requirements
+## v2.0 Requirements
 
-Requirements for English/Vietnamese internationalization. Each maps to roadmap phases.
+Requirements for Hero Apple Silicon chip diagram showcase. Each maps to roadmap phases.
 
-### Translation Infrastructure
+### Chip Diagram
 
-- [x] **I18N-01**: English translation files exist with all content from 9 components
-- [x] **I18N-02**: Vietnamese translation files exist with all existing content preserved
-- [x] **I18N-03**: Translation files use type-safe TypeScript structure preventing key mismatches
-- [x] **I18N-04**: I18n Context provides language state management via React Context API
-- [x] **I18N-05**: Language preference persists in localStorage across browser sessions
-- [x] **I18N-06**: HTML lang attribute syncs with current language for SEO/accessibility
+- [ ] **CHIP-01**: SVG chip block diagram displays CPU cores, GPU cores, Neural Engine, and unified memory as distinct visual blocks
+- [ ] **CHIP-02**: User can select M4 variant (M4 / M4 Pro / M4 Max) and diagram updates to show that chip's specs
+- [ ] **CHIP-03**: Spec numbers animate with count-up effect when diagram enters viewport
+- [ ] **CHIP-04**: Chip diagram is responsive and readable on mobile (320px+), tablet, and desktop
+- [ ] **CHIP-05**: TOPS field added to chip data layer for Neural Engine performance display
 
-### User-Facing Features
+### Hero Layout
 
-- [ ] **UX-01**: English displays as default language on first visit
-- [ ] **UX-02**: Language switcher (EN | VI toggle buttons) appears in navbar
-- [ ] **UX-03**: Clicking language toggle switches all content immediately
-- [ ] **UX-04**: Active language button shows visual feedback (styling)
-- [ ] **UX-05**: All 9 components display content in selected language
+- [ ] **HERO-01**: Hero section displays new headline communicating Apple Silicon raw power for AI
+- [ ] **HERO-02**: Hero subtext explains unified memory architecture advantage for local AI agents
+- [ ] **HERO-03**: CTA buttons updated to match new visual direction
+- [ ] **HERO-04**: Spec callout badges show key numbers (TOPS, memory bandwidth) prominently
+- [ ] **HERO-05**: Chip diagram integrated into Hero section with proper visual hierarchy
 
-### Content Quality
+### Accessibility & Performance
 
-- [x] **CONT-01**: All translatable strings extracted from components (text, aria-labels, placeholders, alt text)
-- [ ] **CONT-02**: English translations are accurate and professional
-- [x] **CONT-03**: Vietnamese content matches existing page content exactly
-- [ ] **CONT-04**: Responsive layouts accommodate Vietnamese text expansion (30-40% longer)
+- [ ] **A11Y-01**: Animations respect prefers-reduced-motion (static fallback when enabled)
+- [ ] **A11Y-02**: All animations use compositor-only properties (opacity, transform) for GPU acceleration
+- [ ] **A11Y-03**: SVG diagram DOM stays under 100 elements for mobile performance
+- [ ] **A11Y-04**: Animations trigger via IntersectionObserver (no off-screen animation waste)
 
-## v2 Requirements
+## v2.1 Requirements
 
 Deferred to future release. Tracked but not in current roadmap.
 
-### Enhanced Features
+### Enhanced Animations
 
-- **ENH-01**: Browser language detection (auto-detect Vietnamese for VI users)
-- **ENH-02**: Type-safe translation keys (TypeScript enforcement prevents typos)
-- **ENH-03**: Number/currency formatting for pricing tiers (Intl.NumberFormat)
-- **ENH-04**: Build-time validation script ensuring EN/VI key synchronization
-- **ENH-05**: Trans component for mixed content (embedded links in translations)
+- **ENH-01**: Glowing core animations on CPU/GPU blocks
+- **ENH-02**: Flowing data path animations between chip blocks
+- **ENH-03**: Scroll-triggered entrance animation for chip diagram
+- **ENH-04**: Animated transitions when switching between M4 variants
+
+### i18n (Carried from v1.0)
+
+- **I18N-07**: Hero section text translated to English and Vietnamese
+- **I18N-08**: All 9 components use t() function for content switching
+- **I18N-09**: Navbar EN | VI toggle with active state styling
 
 ## Out of Scope
 
@@ -49,15 +53,13 @@ Explicitly excluded. Documented to prevent scope creep.
 
 | Feature | Reason |
 |---------|--------|
-| Additional languages beyond EN/VI | Not needed for current market |
-| CMS for content management | Hardcoded translations sufficient for static landing page |
-| Server-side language detection | localStorage simpler, no backend needed |
-| URL-based routing (/en/, /vi/) | Adds significant complexity, localStorage is sufficient |
-| Heavy i18n libraries (react-i18next, react-intl) | 22+ KB bundle overhead, overkill for 2 languages |
-| Lazy loading translations | 2 languages with small files, unnecessary overhead |
-| Namespace splitting | 9 components don't need organization overhead |
-| Pluralization rules | Not displaying counts on landing page |
-| Date formatting | Not needed for marketing content |
+| 3D chip rendering (WebGL/Three.js) | Too heavy for landing page, bundle size constraint |
+| Real benchmark data | Marketing specs sufficient for landing page |
+| Auto-cycling chip variants | Anti-pattern per research (user loses control) |
+| Hover tooltips on chip blocks | Mobile-hostile interaction pattern |
+| Sound effects | Unnecessary, accessibility burden |
+| Particle effects on diagram | Conflicts with existing particle background |
+| Animation libraries (Framer Motion, GSAP) | Zero dependencies needed per research |
 
 ## Traceability
 
@@ -65,27 +67,26 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| I18N-01 | Phase 1 | Complete |
-| I18N-02 | Phase 1 | Complete |
-| I18N-03 | Phase 1 | Complete |
-| I18N-04 | Phase 1 | Complete |
-| I18N-05 | Phase 1 | Complete |
-| I18N-06 | Phase 1 | Complete |
-| UX-01 | Phase 2 | Pending |
-| UX-02 | Phase 2 | Pending |
-| UX-03 | Phase 2 | Pending |
-| UX-04 | Phase 2 | Pending |
-| UX-05 | Phase 2 | Pending |
-| CONT-01 | Phase 1 | Complete |
-| CONT-02 | Phase 3 | Pending |
-| CONT-03 | Phase 1 | Complete |
-| CONT-04 | Phase 3 | Pending |
+| CHIP-01 | - | Pending |
+| CHIP-02 | - | Pending |
+| CHIP-03 | - | Pending |
+| CHIP-04 | - | Pending |
+| CHIP-05 | - | Pending |
+| HERO-01 | - | Pending |
+| HERO-02 | - | Pending |
+| HERO-03 | - | Pending |
+| HERO-04 | - | Pending |
+| HERO-05 | - | Pending |
+| A11Y-01 | - | Pending |
+| A11Y-02 | - | Pending |
+| A11Y-03 | - | Pending |
+| A11Y-04 | - | Pending |
 
 **Coverage:**
-- v1 requirements: 14 total
-- Mapped to phases: 14
-- Unmapped: 0 ✓
+- v2.0 requirements: 14 total
+- Mapped to phases: 0
+- Unmapped: 14
 
 ---
-*Requirements defined: 2026-03-07*
-*Last updated: 2026-03-07 after initial definition*
+*Requirements defined: 2026-03-08*
+*Last updated: 2026-03-08 after initial definition*
