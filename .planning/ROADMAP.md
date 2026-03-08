@@ -66,7 +66,11 @@ Plans:
   3. A useInView hook reports when a target element enters the viewport via IntersectionObserver, and animations only run when the element is visible
   4. A useReducedMotion hook detects prefers-reduced-motion and all CSS keyframe animations are disabled when the preference is active
   5. CSS keyframes for core-glow, data-flow, and memory-shimmer are defined and animate only compositor-friendly properties (opacity, transform)
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — TOPS data field, useReducedMotion, useInView, and useCountUp hooks
+- [ ] 03-02-PLAN.md — CSS keyframes (core-glow, data-flow, memory-shimmer) and reduced-motion media query
 
 ### Phase 4: SVG Chip Diagram
 **Goal**: A standalone, animated chip diagram component that visualizes any M4 variant's architecture and can be dropped into any container
@@ -101,6 +105,6 @@ Phases execute in numeric order: 3 -> 4 -> 5
 |-------|-----------|----------------|--------|-----------|
 | 1. i18n Foundation | v1.0 | 2/2 | Abandoned | 2026-03-07 |
 | 2. Mac Hardware Data | v1.0 | 3/3 | Abandoned | 2026-03-07 |
-| 3. Animation Infrastructure | v2.0 | 0/0 | Not started | - |
+| 3. Animation Infrastructure | v2.0 | 0/2 | Not started | - |
 | 4. SVG Chip Diagram | v2.0 | 0/0 | Not started | - |
 | 5. Hero Integration | v2.0 | 0/0 | Not started | - |
