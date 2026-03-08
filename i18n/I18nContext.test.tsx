@@ -25,12 +25,12 @@ describe('I18nContext', () => {
     <I18nProvider>{children}</I18nProvider>
   );
 
-  it('provides language, setLanguage, and t function', () => {
+  it('provides language, setLanguage, and translations', () => {
     const { result } = renderHook(() => useI18n(), { wrapper });
 
     expect(result.current.language).toBeDefined();
     expect(typeof result.current.setLanguage).toBe('function');
-    expect(typeof result.current.t).toBe('function');
+    expect(result.current.translations).toBeDefined();
   });
 
   it('defaults to English language', () => {
@@ -38,16 +38,9 @@ describe('I18nContext', () => {
     expect(result.current.language).toBe('en');
   });
 
-  it('t() resolves nested translation keys', () => {
+  it('translations resolve nested keys', () => {
     const { result } = renderHook(() => useI18n(), { wrapper });
-    const title = result.current.t('navbar.title');
-    expect(title).toBe('AI-Local Hub');
-  });
-
-  it('t() returns key as fallback for missing translations', () => {
-    const { result } = renderHook(() => useI18n(), { wrapper });
-    const missing = result.current.t('nonexistent.key');
-    expect(missing).toBe('nonexistent.key');
+    expect(result.current.translations.navbar.title).toBe('Auto By Taste');
   });
 
   it('setLanguage changes language state', () => {
@@ -60,6 +53,18 @@ describe('I18nContext', () => {
     expect(result.current.language).toBe('vi');
   });
 
+  it('translations change when language changes', () => {
+    const { result } = renderHook(() => useI18n(), { wrapper });
+
+    const enOverview = result.current.translations.navbar.overview;
+
+    act(() => {
+      result.current.setLanguage('vi');
+    });
+
+    expect(result.current.translations.navbar.overview).not.toBe(enOverview);
+  });
+
   it('throws error when useI18n used outside provider', () => {
     expect(() => {
       renderHook(() => useI18n());
@@ -68,11 +73,10 @@ describe('I18nContext', () => {
 
   it('context value is memoized', () => {
     const { result, rerender } = renderHook(() => useI18n(), { wrapper });
-    const firstValue = result.current;
+    const firstTranslations = result.current.translations;
 
     rerender();
 
-    // Same reference when language unchanged
-    expect(result.current.t).toBe(firstValue.t);
+    expect(result.current.translations).toBe(firstTranslations);
   });
 });

@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useI18n } from '../i18n/I18nContext';
 
 const Card: React.FC<{ title: string; description: string; icon: string; isProblem?: boolean }> = ({ title, description, icon, isProblem }) => (
   <div className={`p-8 rounded-3xl glass-card border ${isProblem ? 'border-red-500/10' : 'border-emerald-500/10'}`}>
@@ -12,24 +13,26 @@ const Card: React.FC<{ title: string; description: string; icon: string; isProbl
 );
 
 export const ProblemSolution: React.FC = () => {
+  const { translations: t } = useI18n();
+
   return (
     <div className="py-24 bg-[#0a0a0a]">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4">Tại sao là bây giờ?</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">Doanh nghiệp đang đứng trước thách thức lớn giữa việc ứng dụng AI và bảo vệ quyền riêng tư dữ liệu.</p>
+          <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4">{t.problemSolution.heading}</h2>
+          <p className="text-slate-400 max-w-2xl mx-auto">{t.problemSolution.description}</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <Card 
-            title="Nguy cơ rò rỉ dữ liệu" 
-            description="ChatGPT, Claude hay các dịch vụ Cloud AI yêu cầu gửi dữ liệu nội bộ lên máy chủ bên thứ ba, tiềm ẩn rủi ro lộ bí mật kinh doanh cực cao."
+          <Card
+            title={t.problemSolution.problem1Title}
+            description={t.problemSolution.problem1Description}
             icon="🔒"
             isProblem
           />
-          <Card 
-            title="Chi phí vận hành khổng lồ" 
-            description="Thuê server GPU đám mây (A100, H100) tiêu tốn hàng nghìn USD mỗi tháng, gây áp lực tài chính dài hạn cho doanh nghiệp."
+          <Card
+            title={t.problemSolution.problem2Title}
+            description={t.problemSolution.problem2Description}
             icon="💸"
             isProblem
           />
@@ -39,31 +42,31 @@ export const ProblemSolution: React.FC = () => {
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2"></div>
           <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-3xl font-bold text-white mb-6">Giải pháp: Local AI trên Apple Silicon</h3>
+              <h3 className="text-3xl font-bold text-white mb-6">{t.problemSolution.solutionTitle}</h3>
               <p className="text-slate-300 mb-8 leading-relaxed">
-                Tận dụng kiến trúc Unified Memory trên chip Apple M-series, chúng tôi mang sức mạnh của các mô hình LLM hàng đầu (Llama 3, DeepSeek) về ngay tại văn phòng bạn.
+                {t.problemSolution.solutionDescription}
               </p>
               <ul className="space-y-4 text-slate-400 mb-8">
                 <li className="flex items-center space-x-3">
                   <span className="w-5 h-5 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center text-xs">✓</span>
-                  <span>Bảo mật 100%, không cần Internet</span>
+                  <span>{t.problemSolution.check1}</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <span className="w-5 h-5 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center text-xs">✓</span>
-                  <span>Phản hồi cực nhanh nhờ băng thông bộ nhớ lớn</span>
+                  <span>{t.problemSolution.check2}</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <span className="w-5 h-5 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center text-xs">✓</span>
-                  <span>Chi phí đầu tư một lần, sử dụng vĩnh viễn</span>
+                  <span>{t.problemSolution.check3}</span>
                 </li>
               </ul>
               <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
-                 <p className="text-sm font-bold text-emerald-400 uppercase tracking-widest mb-1">Cam kết vàng</p>
-                 <p className="text-slate-300 text-sm italic">"Dữ liệu của bạn ở lại với bạn. Mãi mãi."</p>
+                 <p className="text-sm font-bold text-emerald-400 uppercase tracking-widest mb-1">{t.problemSolution.commitmentTitle}</p>
+                 <p className="text-slate-300 text-sm italic">{t.problemSolution.commitmentQuote}</p>
               </div>
             </div>
             <div className="relative">
-              <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/gemini_generated_image_3mlypz3mlypz3mly_1769612846736.png" className="rounded-2xl shadow-2xl" alt="Apple Silicon Tech" />
+              <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/gemini_generated_image_3mlypz3mlypz3mly_1769612846736.png" className="rounded-2xl shadow-2xl" alt={t.problemSolution.solutionImageAlt} />
             </div>
           </div>
         </div>

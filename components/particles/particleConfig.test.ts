@@ -47,31 +47,31 @@ describe('particleConfig', () => {
 
   describe('getPrefersReducedMotion', () => {
     it('returns true when user prefers reduced motion', () => {
-      vi.stubGlobal('window', {
-        matchMedia: vi.fn((query) => ({
-          matches: query === '(prefers-reduced-motion: reduce)',
-          media: query,
-          onchange: null,
-          addEventListener: vi.fn(),
-          removeEventListener: vi.fn(),
-          dispatchEvent: vi.fn(),
-        })),
-      });
+      window.matchMedia = vi.fn((query) => ({
+        matches: query === '(prefers-reduced-motion: reduce)',
+        media: query,
+        onchange: null,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+      })) as unknown as typeof window.matchMedia;
 
       expect(getPrefersReducedMotion()).toBe(true);
     });
 
     it('returns false when user does not prefer reduced motion', () => {
-      vi.stubGlobal('window', {
-        matchMedia: vi.fn(() => ({
-          matches: false,
-          media: '',
-          onchange: null,
-          addEventListener: vi.fn(),
-          removeEventListener: vi.fn(),
-          dispatchEvent: vi.fn(),
-        })),
-      });
+      window.matchMedia = vi.fn(() => ({
+        matches: false,
+        media: '',
+        onchange: null,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+      })) as unknown as typeof window.matchMedia;
 
       expect(getPrefersReducedMotion()).toBe(false);
     });

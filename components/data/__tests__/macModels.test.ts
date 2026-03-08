@@ -54,7 +54,7 @@ describe('macModels data', () => {
     expect(macStudios.every(m => m.category === 'Mac Studio')).toBe(true);
   });
 
-  it('should have at least 18 Mac models', () => {
-    expect(macModels.length).toBeGreaterThanOrEqual(18);
+  it('should have at least 17 Mac models', () => {
+    expect(macModels.length).toBeGreaterThanOrEqual(17);
   });
 });

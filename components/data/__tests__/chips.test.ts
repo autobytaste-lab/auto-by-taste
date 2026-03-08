@@ -24,19 +24,20 @@ describe('chips data', () => {
     expect(variants).toContain('Ultra');
   });
 
-  it('should contain all M3 variants (base, Pro, Max)', () => {
+  it('should contain all M3 variants (base, Pro, Max, Ultra)', () => {
     const m3Chips = chips.filter(c => c.generation === 'M3');
-    expect(m3Chips).toHaveLength(3);
+    expect(m3Chips).toHaveLength(4);
 
     const variants = m3Chips.map(c => c.variant);
     expect(variants).toContain('base');
     expect(variants).toContain('Pro');
     expect(variants).toContain('Max');
+    expect(variants).toContain('Ultra');
   });
 
-  it('should contain all M4 variants (base, Pro, Max)', () => {
+  it('should contain all M4 variants (base, Pro, Max x2)', () => {
     const m4Chips = chips.filter(c => c.generation === 'M4');
-    expect(m4Chips).toHaveLength(3);
+    expect(m4Chips).toHaveLength(4);
 
     const variants = m4Chips.map(c => c.variant);
     expect(variants).toContain('base');

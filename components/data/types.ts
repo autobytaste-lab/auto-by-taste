@@ -23,6 +23,7 @@ export interface Chip {
   readonly memoryBandwidth: number; // GB/s
   readonly maxMemory: number; // GB
   readonly processNode: string;
+  readonly tops?: number; // Trillion Operations Per Second (Neural Engine)
 }
 
 export interface MacModel {

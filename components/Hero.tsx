@@ -4,7 +4,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { ChipDiagram } from './ChipDiagram';
 import { chips } from './data/chips';
 
-const m4Max = chips.find(c => c.id === 'm4-max')!;
+const m4Max = chips.find(c => c.id === 'm4-max-40gpu')!;
 const m4Base = chips.find(c => c.id === 'm4-base')!;
 
 const HERO_SPECS = [

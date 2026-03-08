@@ -139,6 +139,20 @@ export const chips: readonly Chip[] = [
     processNode: '3nm'
   },
 
+  // M3 Ultra (2024-2025)
+  {
+    id: 'm3-ultra',
+    name: 'M3 Ultra',
+    generation: 'M3',
+    variant: 'Ultra',
+    cpuCores: { performance: 24, efficiency: 8, total: 32 },
+    gpuCores: 80,
+    neuralEngineCores: 32,
+    memoryBandwidth: 819,
+    maxMemory: 256,
+    processNode: '3nm'
+  },
+
   // M4 Generation (2024-2025)
   {
     id: 'm4-base',
@@ -169,6 +183,19 @@ export const chips: readonly Chip[] = [
   {
     id: 'm4-max',
     name: 'M4 Max',
+    generation: 'M4',
+    variant: 'Max',
+    cpuCores: { performance: 10, efficiency: 4, total: 14 },
+    gpuCores: 32,
+    neuralEngineCores: 16,
+    memoryBandwidth: 410,
+    maxMemory: 128,
+    processNode: '3nm (2nd gen)',
+    tops: 38
+  },
+  {
+    id: 'm4-max-40gpu',
+    name: 'M4 Max (40-GPU)',
     generation: 'M4',
     variant: 'Max',
     cpuCores: { performance: 12, efficiency: 4, total: 16 },

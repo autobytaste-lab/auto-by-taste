@@ -79,9 +79,9 @@ export const ChipComparison: React.FC = () => {
         type: 'warning'
       };
     }
-    if (chipId === 'm4-max') {
+    if (chipId === 'm4-max' || chipId === 'm4-max-40gpu') {
       return {
-        text: 'Nhanh nhất cho AI workloads - băng thông 546 GB/s',
+        text: 'Nhanh nhất cho AI workloads - băng thông lên đến 546 GB/s',
         type: 'success'
       };
     }
@@ -138,7 +138,7 @@ export const ChipComparison: React.FC = () => {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={chartData}
-                  onClick={(state) => state && setActiveIndex(state.activeTooltipIndex || 0)}
+                  onClick={(state) => state && setActiveIndex(Number(state.activeTooltipIndex) || 0)}
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
                   <XAxis

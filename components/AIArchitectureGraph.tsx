@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useI18n } from '../i18n/I18nContext';
 
 const messagingApps = [
   { name: 'Telegram', icon: 'https://img.icons8.com/color/48/telegram-app.png', color: '#0088cc' },
@@ -26,18 +27,20 @@ const hardware = [
 ];
 
 export const AIArchitectureGraph: React.FC = () => {
+  const { translations: t } = useI18n();
+
   return (
     <div className="py-24 bg-gradient-to-b from-[#050505] via-[#0a0a15] to-[#050505]">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 bg-purple-500/10 border border-purple-500/20 rounded-full text-xs font-semibold text-purple-400 mb-4">
-            KIẾN TRÚC HỆ THỐNG
+            {t.aiArchitecture.badge}
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-gradient">AI Agent</span> Architecture
+            <span className="text-gradient">{t.aiArchitecture.heading}</span>
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto">
-            Hệ thống AI Agent đa tầng, kết nối liền mạch từ các kênh giao tiếp đến phần cứng mạnh mẽ
+            {t.aiArchitecture.description}
           </p>
         </div>
 
@@ -47,8 +50,8 @@ export const AIArchitectureGraph: React.FC = () => {
           {/* Layer 1: Messaging Apps */}
           <div className="relative mb-8">
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-24 text-right pr-4">
-              <span className="text-xs font-bold text-blue-400 uppercase tracking-wider">Layer 1</span>
-              <p className="text-[10px] text-slate-500">Kênh giao tiếp</p>
+              <span className="text-xs font-bold text-blue-400 uppercase tracking-wider">{t.aiArchitecture.layer1Label}</span>
+              <p className="text-[10px] text-slate-500">{t.aiArchitecture.layer1Description}</p>
             </div>
             <div className="ml-28 glass-card rounded-2xl p-6 border-blue-500/20">
               <div className="flex flex-wrap justify-center gap-4">
@@ -80,8 +83,8 @@ export const AIArchitectureGraph: React.FC = () => {
           {/* Layer 2: AI Agent Brain */}
           <div className="relative mb-8">
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-24 text-right pr-4">
-              <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">Layer 2</span>
-              <p className="text-[10px] text-slate-500">Bộ não AI</p>
+              <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">{t.aiArchitecture.layer2Label}</span>
+              <p className="text-[10px] text-slate-500">{t.aiArchitecture.layer2Description}</p>
             </div>
             <div className="ml-28 relative">
               <div className="absolute inset-0 bg-purple-500/20 blur-3xl rounded-full"></div>
@@ -93,9 +96,9 @@ export const AIArchitectureGraph: React.FC = () => {
                       <span className="text-4xl">🧠</span>
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">AI Agent Brain</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">{t.aiArchitecture.agentBrainTitle}</h3>
                   <p className="text-sm text-slate-400 text-center max-w-md">
-                    Trung tâm xử lý thông minh - Nhận lệnh từ các kênh giao tiếp và điều phối các công cụ tự động
+                    {t.aiArchitecture.agentBrainDescription}
                   </p>
                   <div className="flex gap-2 mt-4">
                     <span className="px-3 py-1 bg-purple-500/20 rounded-full text-xs text-purple-300">NLP</span>
@@ -119,8 +122,8 @@ export const AIArchitectureGraph: React.FC = () => {
           {/* Layer 3: AI Tools */}
           <div className="relative mb-8">
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-24 text-right pr-4">
-              <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">Layer 3</span>
-              <p className="text-[10px] text-slate-500">Công cụ AI</p>
+              <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">{t.aiArchitecture.layer3Label}</span>
+              <p className="text-[10px] text-slate-500">{t.aiArchitecture.layer3Description}</p>
             </div>
             <div className="ml-28 glass-card rounded-2xl p-6 border-emerald-500/20">
               <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-3">
@@ -149,8 +152,8 @@ export const AIArchitectureGraph: React.FC = () => {
           {/* Layer 4: Hardware */}
           <div className="relative">
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-24 text-right pr-4">
-              <span className="text-xs font-bold text-orange-400 uppercase tracking-wider">Layer 4</span>
-              <p className="text-[10px] text-slate-500">Phần cứng</p>
+              <span className="text-xs font-bold text-orange-400 uppercase tracking-wider">{t.aiArchitecture.layer4Label}</span>
+              <p className="text-[10px] text-slate-500">{t.aiArchitecture.layer4Description}</p>
             </div>
             <div className="ml-28 glass-card rounded-2xl p-6 border-orange-500/20 bg-gradient-to-br from-orange-900/10 to-slate-900/50">
               <div className="flex flex-wrap justify-center gap-6">
@@ -168,7 +171,7 @@ export const AIArchitectureGraph: React.FC = () => {
                 ))}
               </div>
               <p className="text-center text-xs text-slate-500 mt-4">
-                Powered by Apple Silicon - M2/M3/M4 Ultra với Neural Engine mạnh mẽ
+                {t.aiArchitecture.hardwarePowered}
               </p>
             </div>
           </div>
@@ -179,19 +182,19 @@ export const AIArchitectureGraph: React.FC = () => {
         <div className="flex flex-wrap justify-center gap-6 mt-12 text-xs">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-            <span className="text-slate-400">Kênh giao tiếp</span>
+            <span className="text-slate-400">{t.aiArchitecture.legendCommunication}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-            <span className="text-slate-400">AI Agent Core</span>
+            <span className="text-slate-400">{t.aiArchitecture.legendCore}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-            <span className="text-slate-400">Automation Tools</span>
+            <span className="text-slate-400">{t.aiArchitecture.legendTools}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-orange-500"></div>
-            <span className="text-slate-400">Hardware Infrastructure</span>
+            <span className="text-slate-400">{t.aiArchitecture.legendHardware}</span>
           </div>
         </div>
 

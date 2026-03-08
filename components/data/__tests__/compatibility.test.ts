@@ -27,12 +27,12 @@ describe('getCompatibleModels', () => {
   });
 
   it('should return correct chip information in result', () => {
-    const macStudio = macModels.find(m => m.id === 'mac-studio-m2-ultra-2023')!;
-    const result = getCompatibleModels(macStudio, 128);
+    const macStudio = macModels.find(m => m.id === 'mac-studio-m3-ultra-2025')!;
+    const result = getCompatibleModels(macStudio, 96);
 
-    expect(result.chip.id).toBe('m2-ultra');
-    expect(result.chip.maxMemory).toBe(192);
-    expect(result.maxRam).toBe(128);
+    expect(result.chip.id).toBe('m3-ultra');
+    expect(result.chip.maxMemory).toBe(256);
+    expect(result.maxRam).toBe(96);
   });
 
   it('should throw error for invalid Mac with nonexistent chipId', () => {
@@ -45,17 +45,17 @@ describe('getCompatibleModels', () => {
       .toThrow('Chip not found');
   });
 
-  it('should verify Mac Studio M2 Ultra with 128GB can run 70B models', () => {
-    const macStudio = macModels.find(m => m.id === 'mac-studio-m2-ultra-2023')!;
-    const result = getCompatibleModels(macStudio, 128);
+  it('should verify Mac Studio M3 Ultra with 256GB can run 70B models', () => {
+    const macStudio = macModels.find(m => m.id === 'mac-studio-m3-ultra-2025')!;
+    const result = getCompatibleModels(macStudio, 256);
 
     // Should be able to run 70B models (64GB requirement)
     const llama70b = result.compatible.find(ai => ai.id === 'llama-3-1-70b');
     expect(llama70b).toBeDefined();
 
-    // Should NOT be able to run DeepSeek models (128GB requirement) with 128GB selected
+    // Should be able to run DeepSeek models (128GB requirement) with 256GB selected
     const deepseek = result.compatible.find(ai => ai.id === 'deepseek-v3');
-    expect(deepseek).toBeDefined(); // Should be included in compatible since minRamGB === 128
+    expect(deepseek).toBeDefined();
   });
 
   it('should verify MacBook Air M1 with 8GB only gets small models', () => {

@@ -48,7 +48,7 @@ export const macModels: readonly MacModel[] = [
     id: 'mbp14-m4-max-2024',
     name: 'MacBook Pro 14" M4 Max',
     category: 'MacBook Pro',
-    chipId: 'm4-max',
+    chipId: 'm4-max-40gpu',
     releaseYear: 2024,
     ramOptions: [36, 48, 64, 128]
   },
@@ -66,7 +66,7 @@ export const macModels: readonly MacModel[] = [
     id: 'mbp16-m4-max-2024',
     name: 'MacBook Pro 16" M4 Max',
     category: 'MacBook Pro',
-    chipId: 'm4-max',
+    chipId: 'm4-max-40gpu',
     releaseYear: 2024,
     ramOptions: [36, 48, 64, 128]
   },
@@ -113,38 +113,30 @@ export const macModels: readonly MacModel[] = [
     ramOptions: [24, 48, 64]
   },
 
-  // Mac Studio
+  // Mac Studio (2025 - current lineup from apple.com/vn/mac-studio)
   {
-    id: 'mac-studio-m1-max-2022',
-    name: 'Mac Studio M1 Max',
+    id: 'mac-studio-m4-max-2025',
+    name: 'Mac Studio M4 Max',
     category: 'Mac Studio',
-    chipId: 'm1-max',
-    releaseYear: 2022,
-    ramOptions: [32, 64]
+    chipId: 'm4-max',
+    releaseYear: 2025,
+    ramOptions: [36, 48, 64, 128]
   },
   {
-    id: 'mac-studio-m1-ultra-2022',
-    name: 'Mac Studio M1 Ultra',
+    id: 'mac-studio-m4-max-40gpu-2025',
+    name: 'Mac Studio M4 Max (40-GPU)',
     category: 'Mac Studio',
-    chipId: 'm1-ultra',
-    releaseYear: 2022,
-    ramOptions: [64, 128]
+    chipId: 'm4-max-40gpu',
+    releaseYear: 2025,
+    ramOptions: [36, 48, 64, 128]
   },
   {
-    id: 'mac-studio-m2-max-2023',
-    name: 'Mac Studio M2 Max',
+    id: 'mac-studio-m3-ultra-2025',
+    name: 'Mac Studio M3 Ultra',
     category: 'Mac Studio',
-    chipId: 'm2-max',
-    releaseYear: 2023,
-    ramOptions: [32, 64, 96]
-  },
-  {
-    id: 'mac-studio-m2-ultra-2023',
-    name: 'Mac Studio M2 Ultra',
-    category: 'Mac Studio',
-    chipId: 'm2-ultra',
-    releaseYear: 2023,
-    ramOptions: [64, 128, 192]
+    chipId: 'm3-ultra',
+    releaseYear: 2025,
+    ramOptions: [96, 256]
   },
 
   // Mac Pro
