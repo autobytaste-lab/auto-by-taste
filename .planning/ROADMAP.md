@@ -82,7 +82,11 @@ Plans:
   3. Spec numbers (core counts, TOPS, memory bandwidth) animate with a count-up effect when the diagram scrolls into view
   4. Diagram is readable and usable on mobile (320px width), tablet, and desktop without horizontal scrolling or overlapping elements
   5. Total SVG DOM element count stays under 100 elements (verified in DevTools)
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — Test scaffold and ChipDiagram component (SVG blocks, tabs, hooks, responsive)
+- [ ] 04-02-PLAN.md — Visual verification on mobile and desktop viewports
 
 ### Phase 5: Hero Integration
 **Goal**: The Hero section showcases Apple Silicon's raw power through the chip diagram, new messaging, and updated CTAs -- delivering the complete v2.0 user experience
@@ -106,5 +110,5 @@ Phases execute in numeric order: 3 -> 4 -> 5
 | 1. i18n Foundation | v1.0 | 2/2 | Abandoned | 2026-03-07 |
 | 2. Mac Hardware Data | v1.0 | 3/3 | Abandoned | 2026-03-07 |
 | 3. Animation Infrastructure | 2/2 | Complete   | 2026-03-08 | - |
-| 4. SVG Chip Diagram | v2.0 | 0/0 | Not started | - |
+| 4. SVG Chip Diagram | v2.0 | 0/2 | Not started | - |
 | 5. Hero Integration | v2.0 | 0/0 | Not started | - |
