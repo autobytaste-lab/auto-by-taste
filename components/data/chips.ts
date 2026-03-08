@@ -150,7 +150,8 @@ export const chips: readonly Chip[] = [
     neuralEngineCores: 16,
     memoryBandwidth: 120,
     maxMemory: 32,
-    processNode: '3nm (2nd gen)'
+    processNode: '3nm (2nd gen)',
+    tops: 38
   },
   {
     id: 'm4-pro',
@@ -162,7 +163,8 @@ export const chips: readonly Chip[] = [
     neuralEngineCores: 16,
     memoryBandwidth: 273,
     maxMemory: 64,
-    processNode: '3nm (2nd gen)'
+    processNode: '3nm (2nd gen)',
+    tops: 38
   },
   {
     id: 'm4-max',
@@ -174,7 +176,8 @@ export const chips: readonly Chip[] = [
     neuralEngineCores: 16,
     memoryBandwidth: 546,
     maxMemory: 128,
-    processNode: '3nm (2nd gen)'
+    processNode: '3nm (2nd gen)',
+    tops: 38
   }
 ] as const;
 

@@ -73,6 +73,20 @@ describe('chips data', () => {
     expect(nonexistent).toBeUndefined();
   });
 
+  it('should have all M4 chips with tops: 38', () => {
+    const m4Chips = chips.filter(c => c.generation === 'M4');
+    m4Chips.forEach(chip => {
+      expect(chip.tops).toBe(38);
+    });
+  });
+
+  it('should have non-M4 chips with undefined tops', () => {
+    const nonM4Chips = chips.filter(c => c.generation !== 'M4');
+    nonM4Chips.forEach(chip => {
+      expect(chip.tops).toBeUndefined();
+    });
+  });
+
   it('should have all chips with required properties', () => {
     chips.forEach(chip => {
       expect(chip.id).toBeDefined();
