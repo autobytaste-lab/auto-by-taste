@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -115,6 +115,34 @@
         }
         .hologram-glow {
             box-shadow: 0 0 50px rgba(59, 130, 246, 0.3);
+        }
+        @keyframes core-glow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        .animate-core-glow {
+            animation: core-glow 2s ease-in-out infinite;
+        }
+        @keyframes data-flow {
+            to { stroke-dashoffset: -20; }
+        }
+        .animate-data-flow {
+            stroke-dasharray: 8 4;
+            animation: data-flow 1s linear infinite;
+        }
+        @keyframes memory-shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .animate-memory-shimmer {
+            animation: memory-shimmer 3s ease-in-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 <script type="importmap">
