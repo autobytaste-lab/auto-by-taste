@@ -5,8 +5,9 @@ describe('English translations', () => {
   it('exports all required top-level keys', () => {
     const requiredKeys = [
       'navbar', 'hero', 'problemSolution', 'targetSegments',
-      'productTiers', 'businessModel', 'strategy', 'funding',
-      'footer', 'floatingButton'
+      'productTiers', 'businessModel', 'strategy',
+      'footer', 'floatingButton', 'aiArchitecture', 'orgChart',
+      'modelHardware', 'servicePricing'
     ];
     requiredKeys.forEach(key => {
       expect(en).toHaveProperty(key);
@@ -33,8 +34,8 @@ describe('English translations', () => {
   });
 
   it('has nested keys accessible', () => {
-    expect(en.navbar.title).toBe('AI-Local Hub');
-    expect(en.hero.badge).toBeDefined();
+    expect(en.navbar.title).toBe('Auto By Taste');
+    expect(en.hero.badge).toBe('Apple Silicon AI Infrastructure');
     expect(en.productTiers.heading).toBeDefined();
   });
 });

@@ -25,10 +25,9 @@ describe('Vietnamese translations', () => {
   });
 
   it('preserves existing Vietnamese content', () => {
-    // Spot-check actual Vietnamese strings from existing components
     expect(vi.navbar.overview).toBe('Tổng quan');
-    expect(vi.hero.titleLine1).toBe('Kỷ Nguyên');
+    expect(vi.hero.titleLine1).toBe('Suc Manh Silicon');
     expect(vi.productTiers.heading).toBe('Các Gói Giải Pháp');
-    expect(vi.footer.brand).toBe('AI-Local Hub');
+    expect(vi.footer.brand).toBe('Auto By Taste');
   });
 });
