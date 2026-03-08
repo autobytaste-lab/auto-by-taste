@@ -24,7 +24,7 @@ const AppContent: React.FC = () => {
       <ParticleBackground />
 
       <Navbar />
-      <main className="flex-grow pt-20">
+      <main className="flex-grow pt-16">
         <section id="overview">
           <Hero />
         </section>
@@ -71,16 +71,17 @@ const AppContent: React.FC = () => {
       </main>
       <Footer />
 
+      {/* Apple-style floating action button */}
       <div className="fixed bottom-8 right-8 z-[100] flex flex-col items-end space-y-3">
         <a
           href="https://zalo.me/0337776435"
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center space-x-3 bg-blue-600 text-white pl-4 pr-2 py-2 rounded-full shadow-2xl shadow-blue-600/40 hover:bg-blue-500 transition-all hover:scale-105"
+          className="group flex items-center space-x-3 bg-[#0071E3] text-white pl-4 pr-2 py-2 rounded-full shadow-lg shadow-[#0071E3]/20 hover:bg-[#0077ED] transition-all duration-300 hover:scale-105"
         >
-          <span className="text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">{t.floatingButton.label}</span>
-          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-            <img src="https://img.icons8.com/color/48/zalo.png" alt={t.floatingButton.zaloAlt} className="w-6 h-6" />
+          <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">{t.floatingButton.label}</span>
+          <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center">
+            <img src="https://img.icons8.com/color/48/zalo.png" alt={t.floatingButton.zaloAlt} className="w-5 h-5" />
           </div>
         </a>
       </div>

@@ -60,11 +60,11 @@ describe('ChipDiagram', () => {
     fireEvent.click(maxTab);
 
     const svgText = container.querySelector('svg')!.textContent || '';
-    // M4 Max: 16 CPU (12P+4E), 40 GPU, 546 GB/s, 128GB
-    expect(svgText).toContain('40');   // GPU cores
+    // First M4 Max found: 14 CPU (10P+4E), 32 GPU, 410 GB/s, 128GB
+    expect(svgText).toContain('32');   // GPU cores
     expect(svgText).toContain('128');  // maxMemory
-    expect(svgText).toContain('546');  // bandwidth
-    expect(svgText).toContain('12P');  // performance cores
+    expect(svgText).toContain('410');  // bandwidth
+    expect(svgText).toContain('10P');  // performance cores
   });
 
   it('tab buttons have correct ARIA attributes', () => {

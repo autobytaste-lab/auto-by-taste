@@ -16,10 +16,8 @@ export const ChipComparison: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [viewMode, setViewMode] = useState<'all' | 'generation'>('generation');
 
-  // Transform chip data for chart
   const getChartData = (): ChartDataPoint[] => {
     if (viewMode === 'generation') {
-      // Show one representative chip per generation (Pro variant for comparison)
       const representativeChips = [
         chips.find(c => c.id === 'm1-pro'),
         chips.find(c => c.id === 'm2-pro'),
@@ -36,7 +34,6 @@ export const ChipComparison: React.FC = () => {
         chip
       }));
     } else {
-      // Show all chips except Ultra variants (too many bars)
       const filteredChips = chips.filter(c => c.variant !== 'Ultra');
       return filteredChips.map(chip => ({
         name: chip.name,
@@ -53,16 +50,14 @@ export const ChipComparison: React.FC = () => {
   const activeChip = chartData[activeIndex]?.chip;
 
   const colors = {
-    cpuCores: '#60A5FA',
-    gpuCores: '#3B82F6',
-    memoryBandwidth: '#2563EB',
-    maxMemory: '#8B5CF6'
+    cpuCores: '#2997FF',
+    gpuCores: '#5AC8FA',
+    memoryBandwidth: '#0071E3',
+    maxMemory: '#BF5AF2'
   };
 
-  // Calculate performance uplift percentages (generation view only)
   const getPerformanceUplift = (chipId: string): string | null => {
     if (viewMode !== 'generation') return null;
-
     const uplifts: Record<string, string> = {
       'm2-pro': '+20% vs M1',
       'm3-pro': '+30% vs M2',
@@ -71,55 +66,48 @@ export const ChipComparison: React.FC = () => {
     return uplifts[chipId] || null;
   };
 
-  // Get special notes for chips
   const getChipNote = (chipId: string): { text: string; type: 'warning' | 'success' } | null => {
     if (chipId === 'm3-pro') {
-      return {
-        text: 'Lưu ý: Băng thông giảm xuống 150 GB/s (M2 Pro: 200 GB/s)',
-        type: 'warning'
-      };
+      return { text: 'Lưu ý: Băng thông giảm xuống 150 GB/s (M2 Pro: 200 GB/s)', type: 'warning' };
     }
     if (chipId === 'm4-max' || chipId === 'm4-max-40gpu') {
-      return {
-        text: 'Nhanh nhất cho AI workloads - băng thông lên đến 546 GB/s',
-        type: 'success'
-      };
+      return { text: 'Nhanh nhất cho AI workloads - băng thông lên đến 546 GB/s', type: 'success' };
     }
     return null;
   };
 
   return (
-    <div className="py-24 bg-[#050505]">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4">So sánh chip M-series</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto mb-2">
+    <div className="apple-section bg-black">
+      <div className="max-w-[980px] mx-auto px-6">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl lg:text-[56px] font-bold text-[#F5F5F7] mb-4 tracking-[-0.03em] leading-tight">So sánh chip M-series</h2>
+          <p className="text-[#86868B] max-w-2xl mx-auto mb-2 text-lg">
             So sánh hiệu năng và thông số kỹ thuật của các thế hệ chip Apple Silicon
           </p>
-          <p className="text-slate-500 text-sm font-medium italic">
+          <p className="text-[#6E6E73] text-sm font-medium italic">
             M1, M2, M3, và M4 - Sự tiến hóa của công nghệ chip tùy chỉnh
           </p>
         </div>
 
-        {/* View Toggle */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex rounded-2xl p-1 glass-card border border-white/5">
+        {/* View Toggle - Apple style segmented control */}
+        <div className="flex justify-center mb-10">
+          <div className="inline-flex rounded-full p-1 bg-[#1D1D1F] border border-white/5">
             <button
               onClick={() => setViewMode('generation')}
-              className={`px-6 py-3 rounded-xl font-bold text-sm transition-all ${
+              className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
                 viewMode === 'generation'
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-white/10 text-[#F5F5F7]'
+                  : 'text-[#86868B] hover:text-[#F5F5F7]'
               }`}
             >
               Theo thế hệ
             </button>
             <button
               onClick={() => setViewMode('all')}
-              className={`px-6 py-3 rounded-xl font-bold text-sm transition-all ${
+              className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
                 viewMode === 'all'
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-white/10 text-[#F5F5F7]'
+                  : 'text-[#86868B] hover:text-[#F5F5F7]'
               }`}
             >
               Tất cả chip
@@ -127,42 +115,27 @@ export const ChipComparison: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
+        <div className="grid lg:grid-cols-12 gap-5 items-start">
           {/* Chart Section */}
-          <div className="lg:col-span-7 glass-card p-6 lg:p-10 rounded-[2.5rem] border border-white/5">
-            <h4 className="text-white font-bold mb-8 flex items-center">
-              <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+          <div className="lg:col-span-7 bg-[#1D1D1F] p-6 lg:p-10 rounded-[28px] border border-white/5">
+            <h4 className="text-[#F5F5F7] font-medium mb-8 flex items-center text-sm">
+              <span className="w-2 h-2 bg-[#2997FF] rounded-full mr-3"></span>
               Thông số kỹ thuật
             </h4>
-            <div className="h-[400px] w-full">
+            <div className="h-[380px] w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={chartData}
                   onClick={(state) => state && setActiveIndex(Number(state.activeTooltipIndex) || 0)}
                 >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                  <XAxis
-                    dataKey="name"
-                    stroke="#94a3b8"
-                    fontSize={12}
-                    tickLine={false}
-                    axisLine={false}
-                    interval={0}
-                    angle={-20}
-                    textAnchor="end"
-                    height={60}
-                  />
-                  <YAxis
-                    stroke="#94a3b8"
-                    fontSize={12}
-                    tickLine={false}
-                    axisLine={false}
-                  />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                  <XAxis dataKey="name" stroke="#6E6E73" fontSize={11} tickLine={false} axisLine={false} interval={0} angle={-20} textAnchor="end" height={60} />
+                  <YAxis stroke="#6E6E73" fontSize={11} tickLine={false} axisLine={false} />
                   <Tooltip
-                    cursor={{ fill: 'rgba(255,255,255,0.05)' }}
-                    contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '12px' }}
-                    itemStyle={{ color: '#fff' }}
-                    labelStyle={{ color: '#94a3b8' }}
+                    cursor={{ fill: 'rgba(255,255,255,0.03)' }}
+                    contentStyle={{ backgroundColor: '#1D1D1F', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px' }}
+                    itemStyle={{ color: '#F5F5F7' }}
+                    labelStyle={{ color: '#86868B' }}
                     formatter={(value, name) => {
                       const labels: Record<string, string> = {
                         cpuCores: 'Nhân CPU',
@@ -179,95 +152,92 @@ export const ChipComparison: React.FC = () => {
                       const labels: Record<string, string> = {
                         cpuCores: 'Nhân CPU',
                         gpuCores: 'Nhân GPU',
-                        memoryBandwidth: 'Băng thông bộ nhớ (GB/s)',
-                        maxMemory: 'RAM tối đa (GB)'
+                        memoryBandwidth: 'Băng thông (GB/s)',
+                        maxMemory: 'RAM (GB)'
                       };
                       return labels[value] || value;
                     }}
                   />
-                  <Bar dataKey="cpuCores" fill={colors.cpuCores} radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="gpuCores" fill={colors.gpuCores} radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="memoryBandwidth" fill={colors.memoryBandwidth} radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="maxMemory" fill={colors.maxMemory} radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="cpuCores" fill={colors.cpuCores} radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="gpuCores" fill={colors.gpuCores} radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="memoryBandwidth" fill={colors.memoryBandwidth} radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="maxMemory" fill={colors.maxMemory} radius={[6, 6, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
-            <p className="text-xs text-slate-500 mt-6 italic text-center">
+            <p className="text-xs text-[#6E6E73] mt-6 italic text-center">
               * Dữ liệu dựa trên thông số kỹ thuật chính thức từ Apple
             </p>
           </div>
 
           {/* Details Panel */}
           {activeChip && (
-            <div className="lg:col-span-5 space-y-6">
-              <div className="p-8 rounded-[2.5rem] bg-gradient-to-br from-blue-600/10 to-purple-600/10 border border-blue-500/20 shadow-2xl shadow-blue-500/5">
+            <div className="lg:col-span-5 space-y-5">
+              <div className="p-8 rounded-[28px] bg-[#1D1D1F] border border-white/5">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shadow-inner bg-white/5">
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl bg-black/30">
                     💻
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white">{activeChip.name}</h3>
-                    <p className="text-blue-400 font-bold uppercase tracking-widest text-xs">
+                    <h3 className="text-xl font-semibold text-[#F5F5F7] tracking-[-0.02em]">{activeChip.name}</h3>
+                    <p className="text-[#2997FF] font-medium uppercase tracking-widest text-xs">
                       {activeChip.generation} • {activeChip.processNode}
                     </p>
                     {getPerformanceUplift(activeChip.id) && (
-                      <p className="text-green-400 font-bold text-sm mt-1">
+                      <p className="text-[#30D158] font-medium text-sm mt-1">
                         {getPerformanceUplift(activeChip.id)}
                       </p>
                     )}
                   </div>
                 </div>
 
-                {/* Special Notes */}
                 {getChipNote(activeChip.id) && (
                   <div className={`p-4 rounded-xl mb-6 border ${
                     getChipNote(activeChip.id)?.type === 'warning'
-                      ? 'bg-yellow-500/10 border-yellow-500/30'
-                      : 'bg-green-500/10 border-green-500/30'
+                      ? 'bg-[#FF9F0A]/5 border-[#FF9F0A]/15'
+                      : 'bg-[#30D158]/5 border-[#30D158]/15'
                   }`}>
                     <p className={`text-sm font-medium ${
-                      getChipNote(activeChip.id)?.type === 'warning'
-                        ? 'text-yellow-400'
-                        : 'text-green-400'
+                      getChipNote(activeChip.id)?.type === 'warning' ? 'text-[#FF9F0A]' : 'text-[#30D158]'
                     }`}>
                       {getChipNote(activeChip.id)?.text}
                     </p>
                   </div>
                 )}
 
-                <div className="space-y-6">
+                <div className="space-y-5">
                   <div>
-                    <p className="text-slate-500 text-xs font-bold uppercase mb-2">CPU Cores</p>
-                    <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
+                    <p className="text-[#6E6E73] text-xs font-medium uppercase mb-2">CPU Cores</p>
+                    <div className="p-4 bg-black/30 rounded-2xl border border-white/5">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-slate-400 text-sm">Performance</span>
-                        <span className="text-white font-bold">{activeChip.cpuCores.performance}</span>
+                        <span className="text-[#86868B] text-sm">Performance</span>
+                        <span className="text-[#F5F5F7] font-semibold">{activeChip.cpuCores.performance}</span>
                       </div>
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-slate-400 text-sm">Efficiency</span>
-                        <span className="text-white font-bold">{activeChip.cpuCores.efficiency}</span>
+                        <span className="text-[#86868B] text-sm">Efficiency</span>
+                        <span className="text-[#F5F5F7] font-semibold">{activeChip.cpuCores.efficiency}</span>
                       </div>
-                      <div className="flex justify-between items-center pt-2 border-t border-white/10">
-                        <span className="text-blue-400 text-sm font-bold">Tổng</span>
-                        <span className="text-blue-400 font-bold">{activeChip.cpuCores.total}</span>
+                      <div className="flex justify-between items-center pt-2 border-t border-white/5">
+                        <span className="text-[#2997FF] text-sm font-medium">Tổng</span>
+                        <span className="text-[#2997FF] font-semibold">{activeChip.cpuCores.total}</span>
                       </div>
                     </div>
                   </div>
 
                   <div>
-                    <p className="text-slate-500 text-xs font-bold uppercase mb-2">Thông số khác</p>
+                    <p className="text-[#6E6E73] text-xs font-medium uppercase mb-2">Thông số khác</p>
                     <div className="space-y-2">
-                      <div className="p-3 bg-white/5 rounded-xl border border-white/10 flex justify-between">
-                        <span className="text-slate-400 text-sm">Nhân GPU</span>
-                        <span className="text-white font-bold">{activeChip.gpuCores}</span>
+                      <div className="p-3 bg-black/30 rounded-xl border border-white/5 flex justify-between">
+                        <span className="text-[#86868B] text-sm">Nhân GPU</span>
+                        <span className="text-[#F5F5F7] font-semibold">{activeChip.gpuCores}</span>
                       </div>
-                      <div className="p-3 bg-white/5 rounded-xl border border-white/10 flex justify-between">
-                        <span className="text-slate-400 text-sm">Băng thông bộ nhớ</span>
-                        <span className="text-white font-bold">{activeChip.memoryBandwidth} GB/s</span>
+                      <div className="p-3 bg-black/30 rounded-xl border border-white/5 flex justify-between">
+                        <span className="text-[#86868B] text-sm">Băng thông bộ nhớ</span>
+                        <span className="text-[#F5F5F7] font-semibold">{activeChip.memoryBandwidth} GB/s</span>
                       </div>
-                      <div className="p-3 bg-white/5 rounded-xl border border-white/10 flex justify-between">
-                        <span className="text-slate-400 text-sm">RAM tối đa</span>
-                        <span className="text-white font-bold">{activeChip.maxMemory} GB</span>
+                      <div className="p-3 bg-black/30 rounded-xl border border-white/5 flex justify-between">
+                        <span className="text-[#86868B] text-sm">RAM tối đa</span>
+                        <span className="text-[#F5F5F7] font-semibold">{activeChip.maxMemory} GB</span>
                       </div>
                     </div>
                   </div>
@@ -275,15 +245,15 @@ export const ChipComparison: React.FC = () => {
               </div>
 
               {/* Chip Selector Grid */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2">
                 {chartData.map((data, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveIndex(idx)}
-                    className={`p-3 rounded-xl border text-xs font-bold transition-all ${
+                    className={`p-3 rounded-xl border text-xs font-medium transition-all duration-300 ${
                       idx === activeIndex
-                        ? 'bg-blue-600 border-blue-500 text-white'
-                        : 'glass-card border-white/5 text-slate-400 hover:border-white/20'
+                        ? 'bg-[#0071E3] border-[#0071E3] text-white'
+                        : 'bg-[#1D1D1F] border-white/5 text-[#86868B] hover:border-white/10'
                     }`}
                   >
                     {data.name}

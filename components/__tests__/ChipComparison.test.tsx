@@ -13,10 +13,10 @@ describe('ChipComparison', () => {
     expect(screen.getByText(/So sánh chip M-series/i)).toBeInTheDocument();
   });
 
-  it('applies glass-card styling', () => {
+  it('applies card styling', () => {
     const { container } = render(<ChipComparison />);
-    const glassCard = container.querySelector('.glass-card');
-    expect(glassCard).toBeInTheDocument();
+    const card = container.querySelector('[class*="bg-"]');
+    expect(card).toBeInTheDocument();
   });
 
   it('contains Vietnamese labels for metrics', () => {

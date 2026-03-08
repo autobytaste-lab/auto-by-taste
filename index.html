@@ -61,7 +61,7 @@
     }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --z-particles: 0;
@@ -71,51 +71,116 @@
             --z-navbar: 20;
             --z-modal: 50;
             --z-fab: 100;
+            --apple-blue: #0071E3;
+            --apple-blue-hover: #0077ED;
+            --apple-gray: #86868B;
+            --apple-gray-light: #A1A1A6;
+            --apple-gray-dark: #6E6E73;
+            --apple-bg: #000000;
+            --apple-card: #1D1D1F;
         }
 
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            letter-spacing: -0.01em;
+        }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px); /* Safari fallback */
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             position: relative;
             z-index: var(--z-glass-cards);
         }
 
-        /* Fallback for browsers without backdrop-filter support */
-        @supports not (backdrop-filter: blur(10px)) {
+        @supports not (backdrop-filter: blur(40px)) {
             .glass-card {
-                background: rgba(255, 255, 255, 0.08);
+                background: rgba(29, 29, 31, 0.95);
             }
         }
 
         .glass-card-strong {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(60px) saturate(200%);
+            -webkit-backdrop-filter: blur(60px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
             z-index: var(--z-glass-cards);
         }
 
         .text-gradient {
-            background: linear-gradient(135deg, #60A5FA 0%, #A78BFA 100%);
+            background: linear-gradient(135deg, #2997FF 0%, #5AC8FA 50%, #BF5AF2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        .apple-btn-primary {
+            background: var(--apple-blue);
+            color: white;
+            border: none;
+            border-radius: 980px;
+            padding: 12px 24px;
+            font-weight: 600;
+            font-size: 17px;
+            letter-spacing: -0.01em;
+            transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            cursor: pointer;
+        }
+        .apple-btn-primary:hover {
+            background: var(--apple-blue-hover);
+            transform: scale(1.02);
+        }
+
+        .apple-btn-secondary {
+            background: transparent;
+            color: var(--apple-blue);
+            border: none;
+            border-radius: 980px;
+            padding: 12px 24px;
+            font-weight: 600;
+            font-size: 17px;
+            letter-spacing: -0.01em;
+            transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            cursor: pointer;
+        }
+        .apple-btn-secondary:hover {
+            text-decoration: underline;
+        }
+
+        .apple-section {
+            padding: 100px 0;
+        }
+
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
         .animate-float {
             animation: float 6s ease-in-out infinite;
         }
-        .hologram-glow {
-            box-shadow: 0 0 50px rgba(59, 130, 246, 0.3);
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+        }
+
+        .hologram-glow {
+            box-shadow: 0 0 40px rgba(0, 113, 227, 0.15);
+        }
+
         @keyframes core-glow {
             0%, 100% { opacity: 0.6; }
             50% { opacity: 1; }
@@ -123,6 +188,7 @@
         .animate-core-glow {
             animation: core-glow 2s ease-in-out infinite;
         }
+
         @keyframes data-flow {
             to { stroke-dashoffset: -20; }
         }
@@ -130,6 +196,7 @@
             stroke-dasharray: 8 4;
             animation: data-flow 1s linear infinite;
         }
+
         @keyframes memory-shimmer {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
@@ -137,6 +204,33 @@
         .animate-memory-shimmer {
             animation: memory-shimmer 3s ease-in-out infinite;
         }
+
+        /* Apple-style smooth transitions */
+        * {
+            transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        /* Apple-style scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Apple-style selection */
+        ::selection {
+            background: rgba(0, 113, 227, 0.3);
+            color: white;
+        }
+
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -157,7 +251,7 @@
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-[#050505] text-slate-200 antialiased overflow-x-hidden">
+<body class="bg-black text-[#F5F5F7] antialiased overflow-x-hidden">
     <div id="root"></div>
 <script type="module" src="/index.tsx"></script>
 </body>

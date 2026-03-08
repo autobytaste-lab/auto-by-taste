@@ -23,13 +23,11 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
   const chip = M4_CHIPS.find(c => c.variant === activeVariant)!;
   const shouldAnimate = inView && !reducedMotion;
 
-  // Count-up values
   const cpuCount = useCountUp(chip.cpuCores.total, 1200, inView);
   const gpuCount = useCountUp(chip.gpuCores, 1200, inView);
   const topsCount = useCountUp(chip.tops ?? 0, 1200, inView);
   const bwCount = useCountUp(chip.memoryBandwidth, 1200, inView);
 
-  // Display values: final if reduced motion, else animated
   const cpu = reducedMotion ? chip.cpuCores.total : cpuCount;
   const gpu = reducedMotion ? chip.gpuCores : gpuCount;
   const tops = reducedMotion ? (chip.tops ?? 0) : topsCount;
@@ -37,19 +35,19 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
 
   return (
     <div ref={containerRef} className={`w-full max-w-2xl mx-auto px-4${className ? ` ${className}` : ''}`}>
-      {/* Tab buttons */}
-      <div role="tablist" aria-label="M4 chip variant selector" className="flex gap-2 mb-4 justify-center">
+      {/* Apple-style segmented control */}
+      <div role="tablist" aria-label="M4 chip variant selector" className="flex gap-1 mb-6 justify-center bg-[#1D1D1F] rounded-full p-1 max-w-xs mx-auto">
         {(['base', 'Pro', 'Max'] as M4Variant[]).map(variant => (
           <button
             key={variant}
             role="tab"
             aria-selected={activeVariant === variant}
             onClick={() => setActiveVariant(variant)}
-            className={
+            className={`flex-1 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
               activeVariant === variant
-                ? 'bg-blue-600 text-white rounded-lg px-4 py-2'
-                : 'text-slate-400 hover:text-white px-4 py-2'
-            }
+                ? 'bg-white/10 text-[#F5F5F7]'
+                : 'text-[#86868B] hover:text-[#F5F5F7]'
+            }`}
           >
             {VARIANT_LABELS[variant]}
           </button>
@@ -65,9 +63,9 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
         aria-label={`${VARIANT_LABELS[activeVariant]} chip architecture diagram`}
       >
         <defs>
-          <rect id="chip-block-lg" width="185" height="120" rx="8" />
-          <rect id="chip-block-sm" width="185" height="90" rx="8" />
-          <rect id="chip-block-bar" width="380" height="40" rx="8" />
+          <rect id="chip-block-lg" width="185" height="120" rx="12" />
+          <rect id="chip-block-sm" width="185" height="90" rx="12" />
+          <rect id="chip-block-bar" width="380" height="40" rx="12" />
         </defs>
 
         {/* CPU block */}
@@ -76,16 +74,16 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
             href="#chip-block-lg"
             x="10"
             y="10"
-            fill="#1e3a5f"
-            fillOpacity={0.3}
-            stroke="currentColor"
-            strokeOpacity={0.2}
+            fill="#0071E3"
+            fillOpacity={0.08}
+            stroke="#2997FF"
+            strokeOpacity={0.15}
             className={shouldAnimate ? 'animate-core-glow' : ''}
           />
-          <text x="102" y="50" fill="white" fontSize="16" textAnchor="middle" fontWeight="bold">
+          <text x="102" y="50" fill="#F5F5F7" fontSize="15" textAnchor="middle" fontWeight="600" fontFamily="Inter, -apple-system, sans-serif">
             CPU
           </text>
-          <text x="102" y="75" fill="white" fontSize="14" textAnchor="middle">
+          <text x="102" y="75" fill="#A1A1A6" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
             {cpu}-core ({chip.cpuCores.performance}P+{chip.cpuCores.efficiency}E)
           </text>
         </g>
@@ -96,16 +94,16 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
             href="#chip-block-lg"
             x="205"
             y="10"
-            fill="#2d1f5e"
-            fillOpacity={0.3}
-            stroke="currentColor"
-            strokeOpacity={0.2}
+            fill="#BF5AF2"
+            fillOpacity={0.08}
+            stroke="#BF5AF2"
+            strokeOpacity={0.15}
             className={shouldAnimate ? 'animate-core-glow' : ''}
           />
-          <text x="297" y="50" fill="white" fontSize="16" textAnchor="middle" fontWeight="bold">
+          <text x="297" y="50" fill="#F5F5F7" fontSize="15" textAnchor="middle" fontWeight="600" fontFamily="Inter, -apple-system, sans-serif">
             GPU
           </text>
-          <text x="297" y="75" fill="white" fontSize="14" textAnchor="middle">
+          <text x="297" y="75" fill="#A1A1A6" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
             {gpu}-core
           </text>
         </g>
@@ -116,15 +114,15 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
             href="#chip-block-sm"
             x="10"
             y="145"
-            fill="#064e3b"
-            fillOpacity={0.3}
-            stroke="currentColor"
-            strokeOpacity={0.2}
+            fill="#30D158"
+            fillOpacity={0.08}
+            stroke="#30D158"
+            strokeOpacity={0.15}
           />
-          <text x="102" y="180" fill="white" fontSize="16" textAnchor="middle" fontWeight="bold">
+          <text x="102" y="180" fill="#F5F5F7" fontSize="15" textAnchor="middle" fontWeight="600" fontFamily="Inter, -apple-system, sans-serif">
             Neural Engine
           </text>
-          <text x="102" y="205" fill="white" fontSize="14" textAnchor="middle">
+          <text x="102" y="205" fill="#A1A1A6" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
             {tops} TOPS
           </text>
         </g>
@@ -135,16 +133,16 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
             href="#chip-block-sm"
             x="205"
             y="145"
-            fill="#164e63"
-            fillOpacity={0.3}
-            stroke="currentColor"
-            strokeOpacity={0.2}
+            fill="#5AC8FA"
+            fillOpacity={0.08}
+            stroke="#5AC8FA"
+            strokeOpacity={0.15}
             className={shouldAnimate ? 'animate-memory-shimmer' : ''}
           />
-          <text x="297" y="180" fill="white" fontSize="16" textAnchor="middle" fontWeight="bold">
+          <text x="297" y="180" fill="#F5F5F7" fontSize="15" textAnchor="middle" fontWeight="600" fontFamily="Inter, -apple-system, sans-serif">
             Memory
           </text>
-          <text x="297" y="205" fill="white" fontSize="14" textAnchor="middle">
+          <text x="297" y="205" fill="#A1A1A6" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
             {chip.maxMemory}GB Unified
           </text>
         </g>
@@ -155,12 +153,12 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
             href="#chip-block-bar"
             x="10"
             y="250"
-            fill="#0f172a"
-            fillOpacity={0.5}
-            stroke="currentColor"
-            strokeOpacity={0.2}
+            fill="#1D1D1F"
+            fillOpacity={0.8}
+            stroke="#F5F5F7"
+            strokeOpacity={0.05}
           />
-          <text x="200" y="275" fill="white" fontSize="14" textAnchor="middle">
+          <text x="200" y="275" fill="#A1A1A6" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
             {bw} GB/s bandwidth
           </text>
         </g>
