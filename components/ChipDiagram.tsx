@@ -36,7 +36,7 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
   return (
     <div ref={containerRef} className={`w-full max-w-2xl mx-auto px-4${className ? ` ${className}` : ''}`}>
       {/* Apple-style segmented control */}
-      <div role="tablist" aria-label="M4 chip variant selector" className="flex gap-1 mb-6 justify-center bg-[#1D1D1F] rounded-full p-1 max-w-xs mx-auto">
+      <div role="tablist" aria-label="M4 chip variant selector" className="flex gap-1 mb-6 justify-center bg-white rounded-full p-1 max-w-xs mx-auto">
         {(['base', 'Pro', 'Max'] as M4Variant[]).map(variant => (
           <button
             key={variant}
@@ -45,8 +45,8 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
             onClick={() => setActiveVariant(variant)}
             className={`flex-1 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
               activeVariant === variant
-                ? 'bg-white/10 text-[#F5F5F7]'
-                : 'text-[#86868B] hover:text-[#F5F5F7]'
+                ? 'bg-black/[0.05] text-[#2C2C2C]'
+                : 'text-[#6B7280] hover:text-[#2C2C2C]'
             }`}
           >
             {VARIANT_LABELS[variant]}
@@ -74,16 +74,16 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
             href="#chip-block-lg"
             x="10"
             y="10"
-            fill="#0071E3"
+            fill="#D4AF37"
             fillOpacity={0.08}
-            stroke="#2997FF"
+            stroke="#D4AF37"
             strokeOpacity={0.15}
             className={shouldAnimate ? 'animate-core-glow' : ''}
           />
-          <text x="102" y="50" fill="#F5F5F7" fontSize="15" textAnchor="middle" fontWeight="600" fontFamily="Inter, -apple-system, sans-serif">
+          <text x="102" y="50" fill="#2C2C2C" fontSize="15" textAnchor="middle" fontWeight="600" fontFamily="Inter, -apple-system, sans-serif">
             CPU
           </text>
-          <text x="102" y="75" fill="#A1A1A6" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
+          <text x="102" y="75" fill="#78716C" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
             {cpu}-core ({chip.cpuCores.performance}P+{chip.cpuCores.efficiency}E)
           </text>
         </g>
@@ -94,16 +94,16 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
             href="#chip-block-lg"
             x="205"
             y="10"
-            fill="#BF5AF2"
+            fill="#C0C0C0"
             fillOpacity={0.08}
-            stroke="#BF5AF2"
+            stroke="#C0C0C0"
             strokeOpacity={0.15}
             className={shouldAnimate ? 'animate-core-glow' : ''}
           />
-          <text x="297" y="50" fill="#F5F5F7" fontSize="15" textAnchor="middle" fontWeight="600" fontFamily="Inter, -apple-system, sans-serif">
+          <text x="297" y="50" fill="#2C2C2C" fontSize="15" textAnchor="middle" fontWeight="600" fontFamily="Inter, -apple-system, sans-serif">
             GPU
           </text>
-          <text x="297" y="75" fill="#A1A1A6" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
+          <text x="297" y="75" fill="#78716C" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
             {gpu}-core
           </text>
         </g>
@@ -119,10 +119,10 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
             stroke="#30D158"
             strokeOpacity={0.15}
           />
-          <text x="102" y="180" fill="#F5F5F7" fontSize="15" textAnchor="middle" fontWeight="600" fontFamily="Inter, -apple-system, sans-serif">
+          <text x="102" y="180" fill="#2C2C2C" fontSize="15" textAnchor="middle" fontWeight="600" fontFamily="Inter, -apple-system, sans-serif">
             Neural Engine
           </text>
-          <text x="102" y="205" fill="#A1A1A6" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
+          <text x="102" y="205" fill="#78716C" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
             {tops} TOPS
           </text>
         </g>
@@ -133,16 +133,16 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
             href="#chip-block-sm"
             x="205"
             y="145"
-            fill="#5AC8FA"
+            fill="#F5D76E"
             fillOpacity={0.08}
-            stroke="#5AC8FA"
+            stroke="#F5D76E"
             strokeOpacity={0.15}
             className={shouldAnimate ? 'animate-memory-shimmer' : ''}
           />
-          <text x="297" y="180" fill="#F5F5F7" fontSize="15" textAnchor="middle" fontWeight="600" fontFamily="Inter, -apple-system, sans-serif">
+          <text x="297" y="180" fill="#2C2C2C" fontSize="15" textAnchor="middle" fontWeight="600" fontFamily="Inter, -apple-system, sans-serif">
             Memory
           </text>
-          <text x="297" y="205" fill="#A1A1A6" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
+          <text x="297" y="205" fill="#78716C" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
             {chip.maxMemory}GB Unified
           </text>
         </g>
@@ -153,12 +153,12 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
             href="#chip-block-bar"
             x="10"
             y="250"
-            fill="#1D1D1F"
-            fillOpacity={0.8}
-            stroke="#F5F5F7"
-            strokeOpacity={0.05}
+            fill="#F5F5F5"
+            fillOpacity={1}
+            stroke="#E5E5E5"
+            strokeOpacity={0.5}
           />
-          <text x="200" y="275" fill="#A1A1A6" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
+          <text x="200" y="275" fill="#78716C" fontSize="13" textAnchor="middle" fontFamily="Inter, -apple-system, sans-serif">
             {bw} GB/s bandwidth
           </text>
         </g>

@@ -77,7 +77,7 @@ const AppContent: React.FC = () => {
           href="https://zalo.me/0337776435"
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center space-x-3 bg-[#0071E3] text-white pl-4 pr-2 py-2 rounded-full shadow-lg shadow-[#0071E3]/20 hover:bg-[#0077ED] transition-all duration-300 hover:scale-105"
+          className="group flex items-center space-x-3 bg-[#D4AF37] text-black pl-4 pr-2 py-2 rounded-full shadow-lg shadow-[#D4AF37]/20 hover:bg-[#E8C84A] transition-all duration-300 hover:scale-105"
         >
           <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">{t.floatingButton.label}</span>
           <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center">

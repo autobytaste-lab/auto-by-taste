@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://autobytaste.tech/">
     <meta property="og:title" content="Auto By Taste - Giải pháp AI Nội bộ Bảo mật cho Doanh nghiệp">
     <meta property="og:description" content="Triển khai AI Agent nội bộ trên Apple Silicon - bảo mật tuyệt đối, không phụ thuộc cloud. Phục vụ tài chính, pháp lý, y tế, sản xuất.">
-    <meta property="og:image" content="https://autobytaste.tech/logo.jpg">
+    <meta property="og:image" content="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/4833d5d3_f7a3_4c37_b648_5e433d2e2a1c_1773368431203.png">
     <meta property="og:locale" content="vi_VN">
     <meta property="og:site_name" content="Auto By Taste">
 
@@ -25,7 +25,7 @@
     <meta name="twitter:url" content="https://autobytaste.tech/">
     <meta name="twitter:title" content="Auto By Taste - Giải pháp AI Nội bộ Bảo mật cho Doanh nghiệp">
     <meta name="twitter:description" content="Triển khai AI Agent nội bộ trên Apple Silicon - bảo mật tuyệt đối, không phụ thuộc cloud.">
-    <meta name="twitter:image" content="https://autobytaste.tech/logo.jpg">
+    <meta name="twitter:image" content="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/4833d5d3_f7a3_4c37_b648_5e433d2e2a1c_1773368431203.png">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -34,7 +34,7 @@
       "@type": "Organization",
       "name": "Auto By Taste",
       "url": "https://autobytaste.tech",
-      "logo": "https://autobytaste.tech/logo.jpg",
+      "logo": "https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/4833d5d3_f7a3_4c37_b648_5e433d2e2a1c_1773368431203.png",
       "description": "Giải pháp AI nội bộ bảo mật cho doanh nghiệp Việt Nam, triển khai on-premise trên Apple Silicon.",
       "contactPoint": {
         "@type": "ContactPoint",
@@ -61,7 +61,7 @@
     }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --z-particles: 0;
@@ -71,92 +71,60 @@
             --z-navbar: 20;
             --z-modal: 50;
             --z-fab: 100;
-            --apple-blue: #0071E3;
-            --apple-blue-hover: #0077ED;
-            --apple-gray: #86868B;
-            --apple-gray-light: #A1A1A6;
-            --apple-gray-dark: #6E6E73;
-            --apple-bg: #000000;
-            --apple-card: #1D1D1F;
+            --gold: #D4AF37;
+            --gold-light: #F5D76E;
+            --gold-dark: #B8962E;
+            --anthracite: #2C2C2C;
+            --silver: #C0C0C0;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-weight: 300;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            letter-spacing: -0.01em;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', 'Be Vietnam Pro', sans-serif;
+            font-weight: 800;
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
             position: relative;
             z-index: var(--z-glass-cards);
         }
 
-        @supports not (backdrop-filter: blur(40px)) {
+        @supports not (backdrop-filter: blur(16px)) {
             .glass-card {
-                background: rgba(29, 29, 31, 0.95);
+                background: rgba(255, 255, 255, 0.95);
             }
         }
 
         .glass-card-strong {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(60px) saturate(200%);
-            -webkit-backdrop-filter: blur(60px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
             position: relative;
             z-index: var(--z-glass-cards);
         }
 
         .text-gradient {
-            background: linear-gradient(135deg, #2997FF 0%, #5AC8FA 50%, #BF5AF2 100%);
+            background: linear-gradient(135deg, #B8962E 0%, #D4AF37 50%, #B8962E 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .apple-btn-primary {
-            background: var(--apple-blue);
-            color: white;
-            border: none;
-            border-radius: 980px;
-            padding: 12px 24px;
-            font-weight: 600;
-            font-size: 17px;
-            letter-spacing: -0.01em;
-            transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-            cursor: pointer;
-        }
-        .apple-btn-primary:hover {
-            background: var(--apple-blue-hover);
-            transform: scale(1.02);
-        }
-
-        .apple-btn-secondary {
-            background: transparent;
-            color: var(--apple-blue);
-            border: none;
-            border-radius: 980px;
-            padding: 12px 24px;
-            font-weight: 600;
-            font-size: 17px;
-            letter-spacing: -0.01em;
-            transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-            cursor: pointer;
-        }
-        .apple-btn-secondary:hover {
-            text-decoration: underline;
-        }
-
-        .apple-section {
-            padding: 100px 0;
-        }
-
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
         .animate-float {
@@ -164,70 +132,49 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in-up {
-            animation: fadeInUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
         .hologram-glow {
-            box-shadow: 0 0 40px rgba(0, 113, 227, 0.15);
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
         }
 
-        @keyframes core-glow {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-        .animate-core-glow {
-            animation: core-glow 2s ease-in-out infinite;
+        .apple-section {
+            padding: 100px 0;
         }
 
-        @keyframes data-flow {
-            to { stroke-dashoffset: -20; }
+        /* Circuit line glow animation */
+        @keyframes circuit-glow {
+            0% { opacity: 0.3; box-shadow: 0 0 5px rgba(212, 175, 55, 0.1); }
+            50% { opacity: 1; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            100% { opacity: 0.3; box-shadow: 0 0 5px rgba(212, 175, 55, 0.1); }
         }
-        .animate-data-flow {
-            stroke-dasharray: 8 4;
-            animation: data-flow 1s linear infinite;
-        }
-
-        @keyframes memory-shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        .animate-memory-shimmer {
-            animation: memory-shimmer 3s ease-in-out infinite;
+        .circuit-glow {
+            animation: circuit-glow 3s ease-in-out infinite;
         }
 
-        /* Apple-style smooth transitions */
-        * {
-            transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+        /* Gold hover glow for feature cards */
+        .gold-hover-glow {
+            transition: all 0.4s ease;
+        }
+        .gold-hover-glow:hover {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.12), 0 12px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-6px);
+            border-color: rgba(212, 175, 55, 0.3);
         }
 
-        /* Apple-style scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.2); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(212, 175, 55, 0.4); }
 
-        /* Apple-style selection */
         ::selection {
-            background: rgba(0, 113, 227, 0.3);
+            background: rgba(212, 175, 55, 0.3);
             color: white;
         }
 
@@ -251,7 +198,7 @@
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-black text-[#F5F5F7] antialiased overflow-x-hidden">
+<body class="bg-[#FAFAFA] text-[#2C2C2C] antialiased overflow-x-hidden">
     <div id="root"></div>
 <script type="module" src="/index.tsx"></script>
 </body>

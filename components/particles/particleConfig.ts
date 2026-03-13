@@ -25,7 +25,7 @@ export const getPrefersReducedMotion = (): boolean => {
 
 /**
  * Neural network style particle configuration
- * - Brand colors: blue-400 (#60a5fa)
+ * - Brand colors: blue-400 (#D4AF37)
  * - Adaptive particle counts based on device
  * - Links disabled on mobile for performance
  * - Motion disabled if user prefers reduced motion
@@ -43,10 +43,10 @@ export const neuralNetworkConfig: ISourceOptions = {
   fpsLimit: 60,
   particles: {
     color: {
-      value: '#60a5fa', // blue-400 from brand palette
+      value: '#B8962E', // blue-400 from brand palette
     },
     links: {
-      color: '#60a5fa',
+      color: '#B8962E',
       distance: 150,
       enable: !isMobile, // disable on mobile for performance
       opacity: 0.4,
