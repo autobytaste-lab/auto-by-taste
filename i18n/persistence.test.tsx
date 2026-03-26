@@ -47,7 +47,7 @@ describe('localStorage persistence', () => {
     );
 
     // Initial save
-    expect(localStorage.setItem).toHaveBeenCalledWith('language', 'en');
+    expect(localStorage.setItem).toHaveBeenCalledWith('language', 'vi');
 
     // Switch language
     await act(async () => {
@@ -70,7 +70,7 @@ describe('localStorage persistence', () => {
     expect(screen.getByTestId('language').textContent).toBe('vi');
   });
 
-  it('defaults to en when no localStorage value', () => {
+  it('defaults to vi when no localStorage value', () => {
     (localStorage.getItem as any).mockReturnValueOnce(null);
 
     render(
@@ -79,7 +79,7 @@ describe('localStorage persistence', () => {
       </I18nProvider>
     );
 
-    expect(screen.getByTestId('language').textContent).toBe('en');
+    expect(screen.getByTestId('language').textContent).toBe('vi');
   });
 
   it('handles invalid localStorage values gracefully', () => {
@@ -91,7 +91,7 @@ describe('localStorage persistence', () => {
       </I18nProvider>
     );
 
-    // Should fallback to 'en'
-    expect(screen.getByTestId('language').textContent).toBe('en');
+    // Should fallback to 'vi'
+    expect(screen.getByTestId('language').textContent).toBe('vi');
   });
 });

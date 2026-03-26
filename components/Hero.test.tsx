@@ -24,19 +24,19 @@ afterEach(() => {
 });
 
 describe('Hero', () => {
-  // HERO-01: Headline with Apple Silicon power messaging
-  it('renders headline with Apple Silicon power messaging', () => {
+  // HERO-01: Headline with OpenClaw services messaging
+  it('renders headline with OpenClaw services messaging', () => {
     const { container } = render(<Hero />);
     const h1 = container.querySelector('h1');
     expect(h1).toBeTruthy();
-    expect(h1!.textContent).toContain('Raw Silicon Power');
-    expect(h1!.textContent).toContain('For Local AI.');
+    expect(h1!.textContent).toContain('OpenClaw Services');
+    expect(h1!.textContent).toContain('Tailored For You.');
   });
 
-  // HERO-02: Subtitle with unified memory architecture explanation
-  it('renders subtitle about unified memory architecture', () => {
+  // HERO-02: Subtitle with OpenClaw service description
+  it('renders subtitle about OpenClaw services', () => {
     const { getByText } = render(<Hero />);
-    const subtitle = getByText(/unified memory architecture/i);
+    const subtitle = getByText(/Installation, performance optimization/i);
     expect(subtitle).toBeTruthy();
     expect(subtitle.tagName.toLowerCase()).toBe('p');
   });
@@ -46,29 +46,22 @@ describe('Hero', () => {
     const { container } = render(<Hero />);
     const pricingLink = container.querySelector('a[href="#pricing"]');
     expect(pricingLink).toBeTruthy();
-    expect(pricingLink!.textContent).toContain('See configurations');
+    expect(pricingLink!.textContent).toContain('View pricing');
 
     const zaloLink = container.querySelector('a[href*="zalo.me"]');
     expect(zaloLink).toBeTruthy();
     expect(zaloLink!.textContent).toContain('Free consultation');
   });
 
-  // HERO-04: Spec callout badges with chip data values
-  it('renders spec callout badges with TOPS, bandwidth, memory, and GPU cores', () => {
+  // HERO-04: Service highlight badges
+  it('renders service highlight badges', () => {
     const { container } = render(<Hero />);
     const text = container.textContent || '';
 
-    // M4 base TOPS = 38, M4 Max bandwidth = 546, M4 Max memory = 128GB, M4 Max GPU = 40
-    expect(text).toContain('38');
-    expect(text).toContain('546');
-    expect(text).toContain('128');
-    expect(text).toContain('40');
-
-    // Also check labels
-    expect(text).toContain('TOPS');
-    expect(text).toContain('GB/s');
-    expect(text).toContain('Unified Memory');
-    expect(text).toContain('GPU Cores');
+    expect(text).toContain('OpenClaw Setup');
+    expect(text).toContain('Performance Tuning');
+    expect(text).toContain('Personal Consulting');
+    expect(text).toContain('Custom AI Agent');
   });
 
   // HERO-05: ChipDiagram component renders

@@ -26,7 +26,7 @@ describe('Vietnamese translations', () => {
 
   it('preserves existing Vietnamese content', () => {
     expect(vi.navbar.overview).toBe('Tổng quan');
-    expect(vi.hero.titleLine1).toBe('Suc Manh Silicon');
+    expect(vi.hero.titleLine1).toBe('Dịch Vụ OpenClaw');
     expect(vi.productTiers.heading).toBe('Các Gói Giải Pháp');
     expect(vi.footer.brand).toBe('Auto By Taste');
   });

@@ -33,48 +33,48 @@ describe('HTML lang attribute sync', () => {
     Object.defineProperty(window, 'localStorage', { value: mockStorage, writable: true });
   });
 
-  it('sets HTML lang attribute to en by default', () => {
+  it('sets HTML lang attribute to vi by default', () => {
     render(
       <I18nProvider>
         <LanguageSwitcher />
       </I18nProvider>
     );
-
-    expect(document.documentElement.lang).toBe('en');
-  });
-
-  it('updates HTML lang attribute when language changes to vi', async () => {
-    render(
-      <I18nProvider>
-        <LanguageSwitcher />
-      </I18nProvider>
-    );
-
-    expect(document.documentElement.lang).toBe('en');
-
-    await act(async () => {
-      screen.getByTestId('switch-vi').click();
-    });
 
     expect(document.documentElement.lang).toBe('vi');
   });
 
-  it('updates HTML lang attribute when language changes back to en', async () => {
+  it('updates HTML lang attribute when language changes to en', async () => {
     render(
       <I18nProvider>
         <LanguageSwitcher />
       </I18nProvider>
     );
 
-    await act(async () => {
-      screen.getByTestId('switch-vi').click();
-    });
     expect(document.documentElement.lang).toBe('vi');
 
     await act(async () => {
       screen.getByTestId('switch-en').click();
     });
+
     expect(document.documentElement.lang).toBe('en');
+  });
+
+  it('updates HTML lang attribute when language changes back to vi', async () => {
+    render(
+      <I18nProvider>
+        <LanguageSwitcher />
+      </I18nProvider>
+    );
+
+    await act(async () => {
+      screen.getByTestId('switch-en').click();
+    });
+    expect(document.documentElement.lang).toBe('en');
+
+    await act(async () => {
+      screen.getByTestId('switch-vi').click();
+    });
+    expect(document.documentElement.lang).toBe('vi');
   });
 
   it('lang attribute reflects current language state', async () => {
@@ -85,14 +85,14 @@ describe('HTML lang attribute sync', () => {
     );
 
     // Verify sync between state and DOM
-    expect(screen.getByTestId('current-lang').textContent).toBe('en');
-    expect(document.documentElement.lang).toBe('en');
-
-    await act(async () => {
-      screen.getByTestId('switch-vi').click();
-    });
-
     expect(screen.getByTestId('current-lang').textContent).toBe('vi');
     expect(document.documentElement.lang).toBe('vi');
+
+    await act(async () => {
+      screen.getByTestId('switch-en').click();
+    });
+
+    expect(screen.getByTestId('current-lang').textContent).toBe('en');
+    expect(document.documentElement.lang).toBe('en');
   });
 });

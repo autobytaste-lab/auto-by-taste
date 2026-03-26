@@ -2,17 +2,6 @@
 import React from 'react';
 import { useI18n } from '../i18n/I18nContext';
 import { ChipDiagram } from './ChipDiagram';
-import { chips } from './data/chips';
-
-const m4Max = chips.find(c => c.id === 'm4-max-40gpu')!;
-const m4Base = chips.find(c => c.id === 'm4-base')!;
-
-const HERO_SPECS = [
-  { value: `${m4Base.tops}`, label: 'TOPS' },
-  { value: `${m4Max.memoryBandwidth}`, label: 'GB/s' },
-  { value: `${m4Max.maxMemory}GB`, label: 'Unified Memory' },
-  { value: `${m4Max.gpuCores}`, label: 'GPU Cores' },
-];
 
 export const Hero: React.FC = () => {
   const { translations: t } = useI18n();
@@ -46,12 +35,12 @@ export const Hero: React.FC = () => {
           </a>
         </div>
 
-        {/* Spec Callout Badges - Apple style pills */}
+        {/* Service Highlight Badges */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {HERO_SPECS.map((spec) => (
-            <div key={spec.label} className="px-5 py-2.5 rounded-full bg-[#161920] border border-[#1e2028]">
-              <span className="text-lg font-semibold text-[#f4f4f5]">{spec.value}</span>
-              <span className="text-xs text-[#838387] ml-1.5">{spec.label}</span>
+          {t.hero.serviceHighlights.map((item: { icon: string; label: string }) => (
+            <div key={item.label} className="px-5 py-2.5 rounded-full bg-[#161920] border border-[#1e2028] flex items-center space-x-2">
+              <span className="text-lg">{item.icon}</span>
+              <span className="text-sm font-medium text-[#f4f4f5]">{item.label}</span>
             </div>
           ))}
         </div>
