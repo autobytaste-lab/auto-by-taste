@@ -33,9 +33,9 @@ describe('I18nContext', () => {
     expect(result.current.translations).toBeDefined();
   });
 
-  it('defaults to English language', () => {
+  it('defaults to Vietnamese language', () => {
     const { result } = renderHook(() => useI18n(), { wrapper });
-    expect(result.current.language).toBe('en');
+    expect(result.current.language).toBe('vi');
   });
 
   it('translations resolve nested keys', () => {
@@ -56,13 +56,13 @@ describe('I18nContext', () => {
   it('translations change when language changes', () => {
     const { result } = renderHook(() => useI18n(), { wrapper });
 
-    const enOverview = result.current.translations.navbar.overview;
+    const viOverview = result.current.translations.navbar.overview;
 
     act(() => {
-      result.current.setLanguage('vi');
+      result.current.setLanguage('en');
     });
 
-    expect(result.current.translations.navbar.overview).not.toBe(enOverview);
+    expect(result.current.translations.navbar.overview).not.toBe(viOverview);
   });
 
   it('throws error when useI18n used outside provider', () => {

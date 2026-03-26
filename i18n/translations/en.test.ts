@@ -35,7 +35,7 @@ describe('English translations', () => {
 
   it('has nested keys accessible', () => {
     expect(en.navbar.title).toBe('Auto By Taste');
-    expect(en.hero.badge).toBe('Apple Silicon AI Infrastructure');
+    expect(en.hero.badge).toBe('Official OpenClaw Service Partner');
     expect(en.productTiers.heading).toBeDefined();
   });
 });

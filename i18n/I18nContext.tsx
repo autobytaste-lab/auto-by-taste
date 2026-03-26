@@ -20,7 +20,7 @@ export const I18nProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       const saved = localStorage.getItem('language');
       if (saved === 'en' || saved === 'vi') return saved;
     }
-    return 'en';
+    return 'vi';
   });
 
   useEffect(() => {
