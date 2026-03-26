@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
   const { translations: t } = useI18n();
 
   return (
-    <footer className="relative bg-white border-t border-black/5 py-14">
+    <footer className="relative bg-[#0e1015] border-t border-[#1e2028] py-14">
       <div className="max-w-[980px] mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-2">
@@ -15,12 +15,15 @@ export const Footer: React.FC = () => {
                 <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/4833d5d3_f7a3_4c37_b648_5e433d2e2a1c_1773368431203.png" alt={t.footer.brand} className="w-full h-full object-contain" />
               </div>
             </div>
-            <p className="text-[#6B7280] max-w-sm leading-relaxed mb-6 text-sm">
+            <p className="text-[#838387] max-w-sm leading-relaxed mb-6 text-sm">
               {t.footer.brandDescription}
             </p>
-            <div className="flex space-x-3">
-              <a href="https://zalo.me/0337776435" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/15 border border-[#D4AF37]/15 rounded-full text-xs font-medium text-[#D4AF37] transition-all duration-300">
+            <div className="flex flex-wrap gap-2">
+              <a href="https://zalo.me/0337776435" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#ff5c5c]/10 hover:bg-[#ff5c5c]/15 border border-[#ff5c5c]/15 rounded-full text-xs font-medium text-[#ff5c5c] transition-all duration-300">
                 {t.footer.zaloLink}
+              </a>
+              <a href="https://t.me/autobytaste_community" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#14b8a6]/10 hover:bg-[#14b8a6]/15 border border-[#14b8a6]/15 rounded-full text-xs font-medium text-[#14b8a6] transition-all duration-300">
+                {t.footer.telegramLink}
               </a>
               <a href="https://wa.me/84337776435" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#30D158]/10 hover:bg-[#30D158]/15 border border-[#30D158]/15 rounded-full text-xs font-medium text-[#30D158] transition-all duration-300">
                 {t.footer.whatsappLink}
@@ -29,33 +32,33 @@ export const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h5 className="text-[#2C2C2C] font-semibold text-xs uppercase tracking-wider mb-5">{t.footer.linksTitle}</h5>
-            <ul className="space-y-3 text-sm text-[#6B7280]">
-              <li><a href="#overview" className="hover:text-[#2C2C2C] transition-colors duration-300">{t.footer.aboutUs}</a></li>
-              <li><a href="#products" className="hover:text-[#2C2C2C] transition-colors duration-300">{t.footer.solutions}</a></li>
-              <li><a href="#pricing" className="hover:text-[#2C2C2C] transition-colors duration-300">{t.footer.pricing}</a></li>
-              <li><a href="#" className="hover:text-[#2C2C2C] transition-colors duration-300">{t.footer.careers}</a></li>
+            <h5 className="text-[#f4f4f5] font-semibold text-xs uppercase tracking-wider mb-5">{t.footer.linksTitle}</h5>
+            <ul className="space-y-3 text-sm text-[#838387]">
+              <li><a href="#overview" className="hover:text-[#f4f4f5] transition-colors duration-300">{t.footer.aboutUs}</a></li>
+              <li><a href="#products" className="hover:text-[#f4f4f5] transition-colors duration-300">{t.footer.solutions}</a></li>
+              <li><a href="#pricing" className="hover:text-[#f4f4f5] transition-colors duration-300">{t.footer.pricing}</a></li>
+              <li><a href="#" className="hover:text-[#f4f4f5] transition-colors duration-300">{t.footer.careers}</a></li>
             </ul>
           </div>
 
           <div>
-            <h5 className="text-[#2C2C2C] font-semibold text-xs uppercase tracking-wider mb-5">{t.footer.contactTitle}</h5>
-            <ul className="space-y-3 text-sm text-[#6B7280]">
+            <h5 className="text-[#f4f4f5] font-semibold text-xs uppercase tracking-wider mb-5">{t.footer.contactTitle}</h5>
+            <ul className="space-y-3 text-sm text-[#838387]">
               <li>{t.footer.address}</li>
               <li>{t.footer.email}</li>
               <li className="flex flex-col space-y-1">
-                <span className="text-[#78716C] font-medium">{t.footer.founderLabel}</span>
-                <a href="tel:0337776435" className="text-[#D4AF37] font-semibold text-lg hover:underline transition-all">{t.footer.phone}</a>
+                <span className="text-[#838387] font-medium">{t.footer.founderLabel}</span>
+                <a href="tel:0337776435" className="text-[#ff5c5c] font-semibold text-lg hover:underline transition-all">{t.footer.phone}</a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center text-xs text-[#9CA3AF]">
+        <div className="pt-8 border-t border-[#1e2028] flex flex-col md:flex-row justify-between items-center text-xs text-[#636366]">
           <p>{t.footer.copyright}</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-[#78716C] transition-colors duration-300">{t.footer.terms}</a>
-            <a href="#" className="hover:text-[#78716C] transition-colors duration-300">{t.footer.privacy}</a>
+            <a href="#" className="hover:text-[#838387] transition-colors duration-300">{t.footer.terms}</a>
+            <a href="#" className="hover:text-[#838387] transition-colors duration-300">{t.footer.privacy}</a>
           </div>
         </div>
       </div>

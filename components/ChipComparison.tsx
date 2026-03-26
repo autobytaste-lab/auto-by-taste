@@ -50,10 +50,10 @@ export const ChipComparison: React.FC = () => {
   const activeChip = chartData[activeIndex]?.chip;
 
   const colors = {
-    cpuCores: '#D4AF37',
-    gpuCores: '#F5D76E',
-    memoryBandwidth: '#B8962E',
-    maxMemory: '#C0C0C0'
+    cpuCores: '#ff5c5c',
+    gpuCores: '#ff7070',
+    memoryBandwidth: '#14b8a6',
+    maxMemory: '#838387'
   };
 
   const getPerformanceUplift = (chipId: string): string | null => {
@@ -77,27 +77,27 @@ export const ChipComparison: React.FC = () => {
   };
 
   return (
-    <div className="apple-section bg-[#FAFAFA]">
+    <div className="apple-section bg-[#0e1015]">
       <div className="max-w-[980px] mx-auto px-6">
         <div className="text-center mb-20">
-          <h2 className="text-4xl lg:text-[56px] font-bold text-[#2C2C2C] mb-4 tracking-[-0.03em] leading-tight">So sánh chip M-series</h2>
-          <p className="text-[#6B7280] max-w-2xl mx-auto mb-2 text-lg">
+          <h2 className="text-4xl lg:text-[56px] font-bold text-[#f4f4f5] mb-4 tracking-[-0.03em] leading-tight">So sánh chip M-series</h2>
+          <p className="text-[#838387] max-w-2xl mx-auto mb-2 text-lg">
             So sánh hiệu năng và thông số kỹ thuật của các thế hệ chip Apple Silicon
           </p>
-          <p className="text-[#9CA3AF] text-sm font-medium italic">
+          <p className="text-[#636366] text-sm font-medium italic">
             M1, M2, M3, và M4 - Sự tiến hóa của công nghệ chip tùy chỉnh
           </p>
         </div>
 
         {/* View Toggle - Apple style segmented control */}
         <div className="flex justify-center mb-10">
-          <div className="inline-flex rounded-full p-1 bg-white border border-black/5">
+          <div className="inline-flex rounded-full p-1 bg-[#161920] border border-[#1e2028]">
             <button
               onClick={() => setViewMode('generation')}
               className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
                 viewMode === 'generation'
-                  ? 'bg-black/[0.05] text-[#2C2C2C]'
-                  : 'text-[#6B7280] hover:text-[#2C2C2C]'
+                  ? 'bg-[#1f2330] text-[#f4f4f5]'
+                  : 'text-[#838387] hover:text-[#f4f4f5]'
               }`}
             >
               Theo thế hệ
@@ -106,8 +106,8 @@ export const ChipComparison: React.FC = () => {
               onClick={() => setViewMode('all')}
               className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
                 viewMode === 'all'
-                  ? 'bg-black/[0.05] text-[#2C2C2C]'
-                  : 'text-[#6B7280] hover:text-[#2C2C2C]'
+                  ? 'bg-[#1f2330] text-[#f4f4f5]'
+                  : 'text-[#838387] hover:text-[#f4f4f5]'
               }`}
             >
               Tất cả chip
@@ -117,9 +117,9 @@ export const ChipComparison: React.FC = () => {
 
         <div className="grid lg:grid-cols-12 gap-5 items-start">
           {/* Chart Section */}
-          <div className="lg:col-span-7 bg-white p-6 lg:p-10 rounded-[28px] border border-black/5">
-            <h4 className="text-[#2C2C2C] font-medium mb-8 flex items-center text-sm">
-              <span className="w-2 h-2 bg-[#D4AF37] rounded-full mr-3"></span>
+          <div className="lg:col-span-7 bg-[#161920] p-6 lg:p-10 rounded-[28px] border border-[#1e2028]">
+            <h4 className="text-[#f4f4f5] font-medium mb-8 flex items-center text-sm">
+              <span className="w-2 h-2 bg-[#ff5c5c] rounded-full mr-3"></span>
               Thông số kỹ thuật
             </h4>
             <div className="h-[380px] w-full">
@@ -128,14 +128,14 @@ export const ChipComparison: React.FC = () => {
                   data={chartData}
                   onClick={(state) => state && setActiveIndex(Number(state.activeTooltipIndex) || 0)}
                 >
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.06)" vertical={false} />
-                  <XAxis dataKey="name" stroke="#9CA3AF" fontSize={11} tickLine={false} axisLine={false} interval={0} angle={-20} textAnchor="end" height={60} />
-                  <YAxis stroke="#9CA3AF" fontSize={11} tickLine={false} axisLine={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+                  <XAxis dataKey="name" stroke="#636366" fontSize={11} tickLine={false} axisLine={false} interval={0} angle={-20} textAnchor="end" height={60} />
+                  <YAxis stroke="#636366" fontSize={11} tickLine={false} axisLine={false} />
                   <Tooltip
-                    cursor={{ fill: 'rgba(255,255,255,0.03)' }}
-                    contentStyle={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '12px' }}
-                    itemStyle={{ color: '#2C2C2C' }}
-                    labelStyle={{ color: '#6B7280' }}
+                    cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                    contentStyle={{ backgroundColor: '#161920', border: '1px solid #2e3040', borderRadius: '12px' }}
+                    itemStyle={{ color: '#f4f4f5' }}
+                    labelStyle={{ color: '#838387' }}
                     formatter={(value, name) => {
                       const labels: Record<string, string> = {
                         cpuCores: 'Nhân CPU',
@@ -165,7 +165,7 @@ export const ChipComparison: React.FC = () => {
                 </BarChart>
               </ResponsiveContainer>
             </div>
-            <p className="text-xs text-[#9CA3AF] mt-6 italic text-center">
+            <p className="text-xs text-[#636366] mt-6 italic text-center">
               * Dữ liệu dựa trên thông số kỹ thuật chính thức từ Apple
             </p>
           </div>
@@ -173,14 +173,14 @@ export const ChipComparison: React.FC = () => {
           {/* Details Panel */}
           {activeChip && (
             <div className="lg:col-span-5 space-y-5">
-              <div className="p-8 rounded-[28px] bg-white border border-black/5">
+              <div className="p-8 rounded-[28px] bg-[#161920] border border-[#1e2028]">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl bg-[#F5F5F5]">
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl bg-[#13151b]">
                     💻
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-[#2C2C2C] tracking-[-0.02em]">{activeChip.name}</h3>
-                    <p className="text-[#D4AF37] font-medium uppercase tracking-widest text-xs">
+                    <h3 className="text-xl font-semibold text-[#f4f4f5] tracking-[-0.02em]">{activeChip.name}</h3>
+                    <p className="text-[#ff5c5c] font-medium uppercase tracking-widest text-xs">
                       {activeChip.generation} • {activeChip.processNode}
                     </p>
                     {getPerformanceUplift(activeChip.id) && (
@@ -207,37 +207,37 @@ export const ChipComparison: React.FC = () => {
 
                 <div className="space-y-5">
                   <div>
-                    <p className="text-[#9CA3AF] text-xs font-medium uppercase mb-2">CPU Cores</p>
-                    <div className="p-4 bg-[#F5F5F5] rounded-2xl border border-black/5">
+                    <p className="text-[#636366] text-xs font-medium uppercase mb-2">CPU Cores</p>
+                    <div className="p-4 bg-[#13151b] rounded-2xl border border-[#1e2028]">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-[#6B7280] text-sm">Performance</span>
-                        <span className="text-[#2C2C2C] font-semibold">{activeChip.cpuCores.performance}</span>
+                        <span className="text-[#838387] text-sm">Performance</span>
+                        <span className="text-[#f4f4f5] font-semibold">{activeChip.cpuCores.performance}</span>
                       </div>
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-[#6B7280] text-sm">Efficiency</span>
-                        <span className="text-[#2C2C2C] font-semibold">{activeChip.cpuCores.efficiency}</span>
+                        <span className="text-[#838387] text-sm">Efficiency</span>
+                        <span className="text-[#f4f4f5] font-semibold">{activeChip.cpuCores.efficiency}</span>
                       </div>
-                      <div className="flex justify-between items-center pt-2 border-t border-black/5">
-                        <span className="text-[#D4AF37] text-sm font-medium">Tổng</span>
-                        <span className="text-[#D4AF37] font-semibold">{activeChip.cpuCores.total}</span>
+                      <div className="flex justify-between items-center pt-2 border-t border-[#1e2028]">
+                        <span className="text-[#ff5c5c] text-sm font-medium">Tổng</span>
+                        <span className="text-[#ff5c5c] font-semibold">{activeChip.cpuCores.total}</span>
                       </div>
                     </div>
                   </div>
 
                   <div>
-                    <p className="text-[#9CA3AF] text-xs font-medium uppercase mb-2">Thông số khác</p>
+                    <p className="text-[#636366] text-xs font-medium uppercase mb-2">Thông số khác</p>
                     <div className="space-y-2">
-                      <div className="p-3 bg-[#F5F5F5] rounded-xl border border-black/5 flex justify-between">
-                        <span className="text-[#6B7280] text-sm">Nhân GPU</span>
-                        <span className="text-[#2C2C2C] font-semibold">{activeChip.gpuCores}</span>
+                      <div className="p-3 bg-[#13151b] rounded-xl border border-[#1e2028] flex justify-between">
+                        <span className="text-[#838387] text-sm">Nhân GPU</span>
+                        <span className="text-[#f4f4f5] font-semibold">{activeChip.gpuCores}</span>
                       </div>
-                      <div className="p-3 bg-[#F5F5F5] rounded-xl border border-black/5 flex justify-between">
-                        <span className="text-[#6B7280] text-sm">Băng thông bộ nhớ</span>
-                        <span className="text-[#2C2C2C] font-semibold">{activeChip.memoryBandwidth} GB/s</span>
+                      <div className="p-3 bg-[#13151b] rounded-xl border border-[#1e2028] flex justify-between">
+                        <span className="text-[#838387] text-sm">Băng thông bộ nhớ</span>
+                        <span className="text-[#f4f4f5] font-semibold">{activeChip.memoryBandwidth} GB/s</span>
                       </div>
-                      <div className="p-3 bg-[#F5F5F5] rounded-xl border border-black/5 flex justify-between">
-                        <span className="text-[#6B7280] text-sm">RAM tối đa</span>
-                        <span className="text-[#2C2C2C] font-semibold">{activeChip.maxMemory} GB</span>
+                      <div className="p-3 bg-[#13151b] rounded-xl border border-[#1e2028] flex justify-between">
+                        <span className="text-[#838387] text-sm">RAM tối đa</span>
+                        <span className="text-[#f4f4f5] font-semibold">{activeChip.maxMemory} GB</span>
                       </div>
                     </div>
                   </div>
@@ -252,8 +252,8 @@ export const ChipComparison: React.FC = () => {
                     onClick={() => setActiveIndex(idx)}
                     className={`p-3 rounded-xl border text-xs font-medium transition-all duration-300 ${
                       idx === activeIndex
-                        ? 'bg-[#D4AF37] border-[#D4AF37] text-[#2C2C2C]'
-                        : 'bg-white border-black/5 text-[#6B7280] hover:border-black/10'
+                        ? 'bg-[#ff5c5c] border-[#ff5c5c] text-[#f4f4f5]'
+                        : 'bg-[#161920] border-[#1e2028] text-[#838387] hover:border-[#2e3040]'
                     }`}
                   >
                     {data.name}
