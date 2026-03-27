@@ -13,6 +13,7 @@ import { OrgChartAgents } from './components/OrgChartAgents';
 import { ServicePricing } from './components/ServicePricing';
 import { Footer } from './components/Footer';
 import { ChatWidget } from './components/ChatWidget';
+import { DisclaimerPage } from './components/DisclaimerPage';
 import ParticleBackground from './components/particles/ParticleBackground';
 import { DocsPage } from './components/DocsPage';
 
@@ -104,6 +105,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/docs" element={<DocsPage />} />
           <Route path="/docs/*" element={<DocsPage />} />
+          <Route path="/disclaimer" element={<DisclaimerPage />} />
         </Routes>
       </I18nProvider>
     </BrowserRouter>

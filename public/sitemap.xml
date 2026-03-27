@@ -12,6 +12,14 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://autobytaste.tech/"/>
   </url>
 
+  <!-- Miễn trừ trách nhiệm -->
+  <url>
+    <loc>https://autobytaste.tech/disclaimer</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
   <!-- Trang tài liệu -->
   <url>
     <loc>https://autobytaste.tech/docs</loc>

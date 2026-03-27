@@ -59,8 +59,9 @@ export const Footer: React.FC = () => {
         <div className="pt-8 border-t border-[#1e2028] flex flex-col md:flex-row justify-between items-center text-xs text-[#636366]">
           <p>{t.footer.copyright}</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-[#838387] transition-colors duration-300">{t.footer.terms}</a>
-            <a href="#" className="hover:text-[#838387] transition-colors duration-300">{t.footer.privacy}</a>
+            <a href="/disclaimer" className="hover:text-[#838387] transition-colors duration-300">{t.footer.terms}</a>
+            <a href="/disclaimer" className="hover:text-[#838387] transition-colors duration-300">{t.footer.privacy}</a>
+            <a href="/disclaimer" className="hover:text-[#838387] transition-colors duration-300">Bảo mật & Miễn trừ</a>
           </div>
         </div>
       </div>
