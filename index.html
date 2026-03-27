@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto By Taste - OpenClaw AI Agent 24/7 | Bảo Mật Tuyệt Đối, Không Cloud</title>
-    <meta name="description" content="Triển khai OpenClaw AI Agent 24/7 ngay trên máy chủ của bạn — dữ liệu không bao giờ rời khỏi văn phòng. Dữ liệu nội bộ, không phụ thuộc cloud, chi phí thấp hơn 5 lần nhân viên thực.">
-    <meta name="keywords" content="OpenClaw, AI Agent, Local AI, AI 24/7, bảo mật dữ liệu, không cloud, on-premise AI, AI Agent Việt Nam, tự động hóa doanh nghiệp, Auto By Taste, thuê AI Agent, AI Agent theo tháng, chatbot AI bảo mật, Local LLM, Ollama, AI doanh nghiệp Việt Nam">
+    <title>Cài Đặt OpenClaw Việt Nam | Hướng Dẫn OpenClaw Tiếng Việt | AutoByTaste</title>
+    <meta name="description" content="Hướng dẫn cài đặt OpenClaw tiếng Việt đầy đủ nhất. Dịch vụ cài đặt OpenClaw chuyên nghiệp tại Việt Nam — macOS, Windows, Linux. AI Agent 24/7 chạy local, dữ liệu không lên cloud.">
+    <meta name="keywords" content="cài đặt OpenClaw, cài đặt openclaw tiếng việt, hướng dẫn openclaw, openclaw việt nam, openclaw tutorial, openclaw setup, cài openclaw windows, cài openclaw macos, openclaw linux, openclaw zalo, openclaw telegram, dịch vụ openclaw, AI Agent local, local LLM việt nam, ollama openclaw, openclaw 24/7, AI agent cá nhân, tự động hóa AI, không cloud AI">
     <meta name="author" content="Auto By Taste">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://autobytaste.tech/">
@@ -15,8 +15,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://autobytaste.tech/">
-    <meta property="og:title" content="Auto By Taste — OpenClaw AI Agent 24/7 | Bảo Mật Tuyệt Đối, Không Cloud">
-    <meta property="og:description" content="Triển khai OpenClaw AI Agent 24/7 ngay trên máy chủ của bạn. Dữ liệu không bao giờ rời khỏi văn phòng — dữ liệu nội bộ, không cloud, tiết kiệm 80% chi phí so với nhân viên.">
+    <meta property="og:title" content="Cài Đặt OpenClaw Việt Nam | Hướng Dẫn Tiếng Việt Đầy Đủ">
+    <meta property="og:description" content="Dịch vụ cài đặt OpenClaw chuyên nghiệp tại Việt Nam. Hỗ trợ macOS, Windows, Linux — kết nối Zalo, Telegram. AI Agent 24/7 chạy local, an toàn tuyệt đối.">
     <meta property="og:image" content="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/4833d5d3_f7a3_4c37_b648_5e433d2e2a1c_1773368431203.png">
     <meta property="og:locale" content="vi_VN">
     <meta property="og:site_name" content="Auto By Taste">
@@ -24,8 +24,8 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://autobytaste.tech/">
-    <meta name="twitter:title" content="Auto By Taste — OpenClaw AI Agent 24/7 | Không Cloud, Không Rủi Ro">
-    <meta name="twitter:description" content="Triển khai AI Agent 24/7 ngay trên máy chủ của bạn — dữ liệu nội bộ, không phụ thuộc cloud, tiết kiệm 80% so với nhân viên.">
+    <meta name="twitter:title" content="Cài Đặt OpenClaw Việt Nam | AI Agent 24/7 Local">
+    <meta name="twitter:description" content="Hướng dẫn cài đặt OpenClaw tiếng Việt. Dịch vụ setup chuyên nghiệp — macOS, Windows, Linux, Zalo, Telegram. AI chạy local, không cloud.">
     <meta name="twitter:image" content="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/4833d5d3_f7a3_4c37_b648_5e433d2e2a1c_1773368431203.png">
 
     <!-- Structured Data -->
@@ -78,30 +78,142 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Cách cài đặt OpenClaw tại Việt Nam",
+      "description": "Hướng dẫn cài đặt OpenClaw AI Agent đầy đủ bằng tiếng Việt — từ cài đặt đến kết nối Telegram, Zalo và chạy AI Agent 24/7.",
+      "totalTime": "PT30M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "VND",
+        "value": "0"
+      },
+      "tool": [
+        { "@type": "HowToTool", "name": "Node.js 22+" },
+        { "@type": "HowToTool", "name": "Terminal / Command Prompt" },
+        { "@type": "HowToTool", "name": "API key (Anthropic hoặc OpenAI)" }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Cài đặt OpenClaw",
+          "text": "Chạy lệnh: curl -fsSL https://openclaw.ai/install.sh | bash (macOS/Linux) hoặc iwr -useb https://openclaw.ai/install.ps1 | iex (Windows PowerShell)",
+          "url": "https://autobytaste.tech/docs#getting-started"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Chạy onboarding",
+          "text": "Chạy lệnh: openclaw onboard --install-daemon. Wizard hướng dẫn chọn model provider, nhập API key và cấu hình Gateway trong khoảng 2 phút.",
+          "url": "https://autobytaste.tech/docs#getting-started"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Kiểm tra Gateway",
+          "text": "Chạy: openclaw gateway status để xác nhận Gateway đang hoạt động trên port 18789.",
+          "url": "https://autobytaste.tech/docs#getting-started"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Kết nối Telegram hoặc Zalo",
+          "text": "Tạo Telegram bot qua @BotFather, lấy token, cấu hình trong OpenClaw. Hoặc kết nối Zalo cá nhân qua QR code.",
+          "url": "https://autobytaste.tech/docs#channels"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Nhắn tin và dùng AI Agent",
+          "text": "Gửi tin nhắn qua Telegram hoặc Zalo — AI Agent phản hồi và thực hiện tác vụ ngay lập tức.",
+          "url": "https://autobytaste.tech/docs"
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Dịch vụ cài đặt OpenClaw tại Việt Nam",
+      "serviceType": "AI Agent Setup & Configuration",
+      "description": "Dịch vụ cài đặt, cấu hình và hỗ trợ OpenClaw AI Agent chuyên nghiệp tại Việt Nam. Hỗ trợ macOS, Windows, Linux — kết nối Telegram, Zalo, WhatsApp.",
+      "provider": {
+        "@type": "Organization",
+        "name": "AutoByTaste",
+        "url": "https://autobytaste.tech"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Vietnam"
+      },
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://zalo.me/0337776435",
+        "servicePhone": "+84337776435"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "VND",
+        "price": "0",
+        "description": "Tư vấn miễn phí — liên hệ để nhận báo giá"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Cài đặt OpenClaw như thế nào?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cài đặt OpenClaw bằng 1 lệnh: curl -fsSL https://openclaw.ai/install.sh | bash (macOS/Linux) hoặc iwr -useb https://openclaw.ai/install.ps1 | iex (Windows). Sau đó chạy openclaw onboard --install-daemon để cấu hình. Tổng thời gian khoảng 5 phút. AutoByTaste cũng cung cấp dịch vụ cài đặt chuyên nghiệp tại Việt Nam."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "OpenClaw chạy trên hệ điều hành nào?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OpenClaw hỗ trợ macOS, Windows (native và WSL2), Linux. Trên Windows, WSL2 cho trải nghiệm ổn định nhất. AutoByTaste hỗ trợ cài đặt trên cả 3 nền tảng."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "OpenClaw kết nối được với Zalo và Telegram không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có. OpenClaw hỗ trợ Telegram (Bot API), Zalo cá nhân, Zalo OA, WhatsApp, Discord, Slack, iMessage và nhiều kênh khác. AutoByTaste hỗ trợ cài đặt và kết nối tất cả kênh phổ biến tại Việt Nam."
+          }
+        },
         {
           "@type": "Question",
           "name": "OpenClaw AI Agent là gì?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "OpenClaw là nền tảng AI Agent chạy 24/7 trên máy chủ của bạn — dữ liệu không bao giờ rời khỏi văn phòng, không phụ thuộc cloud."
+            "text": "OpenClaw là nền tảng AI Agent mã nguồn mở, chạy 24/7 trên máy chủ của bạn — dữ liệu không bao giờ rời khỏi văn phòng, không phụ thuộc cloud. Hỗ trợ kết nối Telegram, Zalo, WhatsApp và nhiều kênh khác."
           }
         },
         {
           "@type": "Question",
-          "name": "Chi phí thuê AI Agent là bao nhiêu?",
+          "name": "Cài đặt OpenClaw cần gì?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Gói Starter từ 2.990.000đ/tháng cho 1 AI Agent làm việc 24/7. Tiết kiệm tới 80% chi phí so với nhân viên thực."
+            "text": "Cần Node.js 22+ và API key từ model provider (Anthropic Claude, OpenAI GPT, Google Gemini hoặc dùng Ollama miễn phí). Không cần server riêng — chạy ngay trên máy tính hiện có."
           }
         },
         {
           "@type": "Question",
-          "name": "AI Agent có bảo mật không?",
+          "name": "Chi phí dùng OpenClaw là bao nhiêu?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Có. OpenClaw chạy hoàn toàn local — dữ liệu của bạn không bao giờ rời khỏi máy chủ, không qua cloud, không bên thứ ba nào có thể truy cập."
+            "text": "Phần mềm OpenClaw miễn phí. Chi phí chỉ là API calls — từ 1.500đ/ngày với Gemini Flash đến 50.000-100.000đ/ngày với Claude Sonnet tùy mức sử dụng. Hoặc dùng Ollama local hoàn toàn miễn phí, chỉ tốn tiền điện."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AutoByTaste có dịch vụ cài đặt OpenClaw không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có. AutoByTaste cung cấp dịch vụ cài đặt OpenClaw chuyên nghiệp tại Việt Nam — setup trên máy của bạn, kết nối Telegram/Zalo, đào tạo sử dụng. Liên hệ Zalo 0337776435 hoặc Telegram @agentic_ai_vn để được tư vấn miễn phí."
           }
         }
       ]
