@@ -15,7 +15,7 @@ export const vi: Translation = {
     ctaButton: 'Thuê AI Agent',
   },
   hero: {
-    badge: 'OpenClaw 24/7 AI Agent • Bảo mật tuyệt đối',
+    badge: 'Cộng đồng Agentic AI Việt Nam',
     titleLine1: 'AI Agent Chạy 24/7',
     titleLine2: 'Không Cloud, Không Rủi Ro.',
     subtitle: 'Triển khai AI Agent ngay trên máy chủ của bạn — dữ liệu không bao giờ rời khỏi văn phòng. Bảo mật tuyệt đối, hoạt động liên tục, không phụ thuộc internet.',

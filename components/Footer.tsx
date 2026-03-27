@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
                 <span className="text-2xl">🦞</span>
                 <span className="text-xl font-bold text-white tracking-tight">AutoByTaste</span>
               </div>
-              <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-8">Đối tác OpenClaw Chính Thức · Việt Nam</span>
+              <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-8">Cộng đồng Agentic AI Việt Nam</span>
             </div>
             <p className="text-[#838387] max-w-sm leading-relaxed mb-6 text-sm">
               {t.footer.brandDescription}
