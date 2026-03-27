@@ -20,6 +20,142 @@ const InlineCode: React.FC<{ children: string }> = ({ children }) => (
 
 const docSections: DocSection[] = [
   {
+    id: 'non-tech',
+    icon: '👋',
+    title: 'Dành cho người mới',
+    content: (
+      <div className="space-y-6">
+        <div>
+          <h2 className="text-xl font-bold text-white mb-1">👋 Dành cho người chưa biết gì về AI</h2>
+          <p className="text-[#707070] text-sm">Không cần biết lập trình. Đọc từ đầu, làm theo từng bước.</p>
+        </div>
+
+        {/* What is it */}
+        <section className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl p-5">
+          <h3 className="text-white font-semibold mb-3">🤔 OpenClaw là gì? (giải thích đơn giản)</h3>
+          <p className="text-[#a0a0a0] text-sm leading-relaxed mb-3">
+            Hãy tưởng tượng bạn có một <strong className="text-white">nhân viên AI</strong> làm việc 24/7 — không nghỉ, không lương, không bảo hiểm.
+          </p>
+          <p className="text-[#a0a0a0] text-sm leading-relaxed mb-3">
+            Bạn nhắn tin qua <strong className="text-white">Telegram hoặc Zalo</strong> như chat với người thật. AI đọc, hiểu, rồi tự động làm việc cho bạn — trả lời khách hàng, tóm tắt tài liệu, nhắc lịch, phân tích dữ liệu...
+          </p>
+          <p className="text-[#a0a0a0] text-sm leading-relaxed">
+            Điểm đặc biệt: <strong className="text-white">AI chạy ngay trên máy tính của bạn</strong>. Dữ liệu không đi đâu cả — không lên Google, không lên ChatGPT, không bên nào đọc được.
+          </p>
+        </section>
+
+        {/* Analogy */}
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-3 text-sm uppercase tracking-widest">📱 Ví dụ thực tế</h3>
+          <div className="space-y-3">
+            {[
+              { who: 'Chủ shop online', what: 'AI tự trả lời inbox Zalo, báo giá, nhận đơn 24/7 — kể cả lúc bạn đang ngủ' },
+              { who: 'Văn phòng luật', what: 'AI đọc 50 trang hợp đồng, tóm tắt điểm quan trọng trong 30 giây — hoàn toàn bảo mật' },
+              { who: 'Quản lý nhà hàng', what: 'AI nhắc lịch đặt bàn, gửi xác nhận tự động, tổng hợp doanh thu cuối ngày' },
+              { who: 'Giáo viên / Đào tạo', what: 'AI trả lời câu hỏi học viên qua Telegram, lên lịch học, gửi tài liệu tự động' },
+            ].map((item, i) => (
+              <div key={i} className="flex gap-3 p-4 bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl">
+                <div className="text-[#ff5c5c] font-semibold text-sm shrink-0 w-32">{item.who}</div>
+                <div className="text-[#a0a0a0] text-sm">{item.what}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Step by step */}
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-3 text-sm uppercase tracking-widest">🪜 Bắt đầu từ đâu? (3 bước)</h3>
+          <div className="space-y-3">
+            {[
+              {
+                step: '1',
+                title: 'Liên hệ AutoByTaste',
+                desc: 'Chúng tôi cài đặt và cấu hình toàn bộ cho bạn. Bạn không cần tự làm gì.',
+                action: 'Nhắn Zalo: 0337 776 435',
+                href: 'https://zalo.me/0337776435',
+              },
+              {
+                step: '2',
+                title: 'Kết nối kênh nhắn tin',
+                desc: 'Chọn kênh bạn dùng hàng ngày: Telegram, Zalo, hoặc WhatsApp. Chúng tôi kết nối trong vài phút.',
+                action: null,
+                href: null,
+              },
+              {
+                step: '3',
+                title: 'Nhắn tin và dùng thử',
+                desc: 'Gửi tin nhắn như bình thường. AI sẽ trả lời và làm việc cho bạn ngay lập tức.',
+                action: null,
+                href: null,
+              },
+            ].map((item) => (
+              <div key={item.step} className="flex gap-4 p-4 bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl">
+                <div className="w-8 h-8 rounded-full bg-[#ff5c5c] flex items-center justify-center text-white font-bold text-sm shrink-0">{item.step}</div>
+                <div className="flex-1">
+                  <div className="text-white font-semibold text-sm mb-1">{item.title}</div>
+                  <div className="text-[#a0a0a0] text-sm mb-2">{item.desc}</div>
+                  {item.href && (
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#ff5c5c] hover:underline">
+                      → {item.action}
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-3 text-sm uppercase tracking-widest">❓ Câu hỏi thường gặp</h3>
+          <div className="space-y-3">
+            {[
+              {
+                q: 'Tôi không biết lập trình, có dùng được không?',
+                a: 'Hoàn toàn được. Bạn chỉ cần nhắn tin như bình thường. AutoByTaste lo toàn bộ phần kỹ thuật.',
+              },
+              {
+                q: 'Dữ liệu của tôi có bị lộ không?',
+                a: 'Không. AI chạy trên máy của bạn, dữ liệu không bao giờ ra ngoài. Đây là lý do chính để chọn OpenClaw thay vì ChatGPT.',
+              },
+              {
+                q: 'Cần máy tính gì?',
+                a: 'Máy tính thông thường (Windows hoặc macOS) là đủ cho AI cơ bản. Máy mạnh hơn chạy được model AI lớn hơn, thông minh hơn.',
+              },
+              {
+                q: 'Khác gì ChatGPT?',
+                a: 'ChatGPT là dịch vụ cloud — bạn trả tiền theo tháng và dữ liệu đi qua server của OpenAI. OpenClaw chạy local — một lần thiết lập, dùng mãi, dữ liệu ở lại với bạn.',
+              },
+              {
+                q: 'Chi phí như thế nào?',
+                a: 'Gói Starter từ 2.990.000đ/tháng cho 1 AI Agent làm việc 24/7. So với lương nhân viên (10-20 triệu/tháng), tiết kiệm 70-80%.',
+              },
+            ].map((item, i) => (
+              <div key={i} className="p-4 bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl">
+                <div className="text-white font-medium text-sm mb-1.5">Q: {item.q}</div>
+                <div className="text-[#707070] text-sm">→ {item.a}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <div className="p-5 bg-[#ff5c5c]/5 border border-[#ff5c5c]/20 rounded-xl text-center">
+          <p className="text-white font-semibold mb-1">Sẵn sàng bắt đầu?</p>
+          <p className="text-[#707070] text-sm mb-4">Tư vấn miễn phí — chúng tôi giải thích mọi thứ bằng tiếng người.</p>
+          <a
+            href="https://zalo.me/0337776435"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-[#ff5c5c] hover:bg-[#ff7070] text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all"
+          >
+            💬 Nhắn Zalo ngay
+          </a>
+        </div>
+      </div>
+    ),
+  },
+  {
     id: 'getting-started',
     icon: '🚀',
     title: 'Bắt đầu',
