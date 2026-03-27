@@ -15,6 +15,7 @@ import { Footer } from './components/Footer';
 import { ChatWidget } from './components/ChatWidget';
 import { DisclaimerPage } from './components/DisclaimerPage';
 import { CostCalculator } from './components/CostCalculator';
+import { IndustrySolutions } from './components/IndustrySolutions';
 import { ShowcaseSection } from './components/ShowcaseSection';
 import ParticleBackground from './components/particles/ParticleBackground';
 import { DocsPage } from './components/DocsPage';
@@ -59,6 +60,10 @@ function HomePage() {
 
         <section id="org-chart">
           <OrgChartAgents />
+        </section>
+
+        <section id="industry-solutions">
+          <IndustrySolutions />
         </section>
 
         <section id="showcase">
