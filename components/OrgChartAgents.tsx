@@ -38,7 +38,7 @@ const AgentCard: React.FC<{
   color: string;
   tasksLabel: string;
 }> = ({ agent, color, tasksLabel }) => (
-  <div className="group relative bg-[#161920] rounded-2xl border border-[#1e2028] hover:border-[#2e3040] transition-all duration-300 hover:scale-[1.01] overflow-hidden">
+  <div className="group relative bg-[#0a0a0a] rounded-xl border border-[#1a1a1a] hover:border-[#ff5c5c]/20 transition-all duration-300 hover:scale-[1.01] overflow-hidden">
     <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${color}`}></div>
 
     <div className="p-5">
@@ -107,8 +107,8 @@ const OrgChart: React.FC<{
         const color = deptColors[companyIndex]?.[deptIdx] ?? 'from-[#636366] to-[#4a4a4e]';
         return (
           <div key={dept.name} className="space-y-4">
-            <div className={`text-center p-3 rounded-xl bg-gradient-to-r ${color}`}>
-              <h4 className="font-semibold text-[#f4f4f5] text-sm">{dept.name}</h4>
+            <div className="px-3 py-2 rounded-lg bg-[#ff5c5c]/10 border border-[#ff5c5c]/20">
+              <h4 className="font-mono text-xs text-[#ff9090] tracking-wider">› {dept.name}</h4>
             </div>
 
             <div className="space-y-3">
@@ -146,55 +146,41 @@ export const OrgChartAgents: React.FC = () => {
   const selectedCompany = companies[selectedIndex];
 
   return (
-    <div className="apple-section bg-[#13151b]">
-      <div className="max-w-[980px] mx-auto px-6">
+    <section className="py-24 px-6 border-t border-[#1a1a1a] bg-[#000000]" id="org-chart">
+      <div className="max-w-[980px] mx-auto">
         {/* Header */}
-        <div className="text-center mb-20">
-          <span className="inline-block px-4 py-2 bg-[#ff5c5c]/10 border border-[#ff5c5c]/15 rounded-full text-xs font-medium text-[#ff5c5c] mb-4">
-            {t.orgChart.badge}
-          </span>
-          <h2 className="text-4xl md:text-[56px] font-bold mb-6 tracking-[-0.03em] leading-tight">
-            <span className="text-gradient">{t.orgChart.headingHighlight}</span>
-          </h2>
-          <p className="text-[#838387] max-w-2xl mx-auto mb-4 text-lg">
-            {t.orgChart.description}
+        <div className="mb-16">
+          <p className="text-xs font-medium text-[#ff5c5c] tracking-[0.2em] uppercase mb-4">
+            › {t.orgChart.badge}
           </p>
-          <p className="text-sm text-[#636366] max-w-3xl mx-auto">
-            {t.orgChart.subDescription}
+          <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4">
+            {t.orgChart.headingHighlight}
+          </h2>
+          <p className="text-[#606060] max-w-2xl text-base">
+            {t.orgChart.description}
           </p>
         </div>
 
         {/* Company Type Selector */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap gap-2 mb-10">
           {companies.map((company, idx) => (
             <button
               key={company.id}
               onClick={() => setSelectedIndex(idx)}
-              className={`flex items-center gap-3 px-5 py-3.5 rounded-2xl border transition-all duration-300 ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium border transition-all duration-300 ${
                 selectedIndex === idx
-                  ? 'bg-[#161920] border-[#ff5c5c]/30 scale-[1.02]'
-                  : 'bg-[#161920] border-[#1e2028] hover:border-[#2e3040]'
+                  ? 'bg-[#ff5c5c] text-white border-[#ff5c5c]'
+                  : 'bg-[#0f0f0f] border-[#1e1e1e] text-[#606060] hover:text-white hover:border-[#333]'
               }`}
             >
-              <span className="text-2xl">{company.icon}</span>
-              <div className="text-left">
-                <div className="font-medium text-[#f4f4f5] text-sm">{company.name}</div>
-                <div className="text-xs text-[#636366]">{t.orgChart.viewSample}</div>
-              </div>
+              <span className="text-base">{company.icon}</span>
+              <span>{company.name}</span>
             </button>
           ))}
         </div>
 
-        {/* Selected Company Description */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-[#161920] rounded-full border border-[#1e2028]">
-            <span className="text-xl">{selectedCompany.icon}</span>
-            <span className="text-[#838387] text-sm font-medium">{selectedCompany.description}</span>
-          </div>
-        </div>
-
         {/* Org Chart */}
-        <div className="bg-[#161920] rounded-[28px] p-8 md:p-12 border border-[#1e2028]">
+        <div className="bg-[#0f0f0f] rounded-2xl p-6 md:p-10 border border-[#1a1a1a]">
           <OrgChart
             company={selectedCompany}
             companyIndex={selectedIndex}
@@ -206,25 +192,21 @@ export const OrgChartAgents: React.FC = () => {
         </div>
 
         {/* Benefits callout */}
-        <div className="mt-10 grid md:grid-cols-3 gap-5">
-          <div className="bg-[#161920] rounded-2xl p-6 border border-[#30D158]/10 text-center transition-all duration-300 hover:scale-[1.01]">
-            <div className="text-3xl mb-3">💰</div>
-            <h4 className="font-semibold text-[#f4f4f5] mb-2">{t.orgChart.saveCost}</h4>
-            <p className="text-sm text-[#838387]">{t.orgChart.saveCostDesc}</p>
-          </div>
-          <div className="bg-[#161920] rounded-2xl p-6 border border-[#ff5c5c]/10 text-center transition-all duration-300 hover:scale-[1.01]">
-            <div className="text-3xl mb-3">⚡</div>
-            <h4 className="font-semibold text-[#f4f4f5] mb-2">{t.orgChart.speed}</h4>
-            <p className="text-sm text-[#838387]">{t.orgChart.speedDesc}</p>
-          </div>
-          <div className="bg-[#161920] rounded-2xl p-6 border border-[#2e3040] text-center transition-all duration-300 hover:scale-[1.01]">
-            <div className="text-3xl mb-3">🎯</div>
-            <h4 className="font-semibold text-[#f4f4f5] mb-2">{t.orgChart.accuracy}</h4>
-            <p className="text-sm text-[#838387]">{t.orgChart.accuracyDesc}</p>
-          </div>
+        <div className="mt-8 grid md:grid-cols-3 gap-4">
+          {[
+            { icon: '💰', title: t.orgChart.saveCost, desc: t.orgChart.saveCostDesc, border: 'border-[#ff5c5c]/10' },
+            { icon: '⚡', title: t.orgChart.speed, desc: t.orgChart.speedDesc, border: 'border-[#ff5c5c]/10' },
+            { icon: '🎯', title: t.orgChart.accuracy, desc: t.orgChart.accuracyDesc, border: 'border-[#1a1a1a]' },
+          ].map((item, i) => (
+            <div key={i} className={`bg-[#0f0f0f] rounded-xl p-5 border ${item.border} text-center`}>
+              <div className="text-2xl mb-2">{item.icon}</div>
+              <h4 className="font-semibold text-white text-sm mb-1">{item.title}</h4>
+              <p className="text-xs text-[#606060]">{item.desc}</p>
+            </div>
+          ))}
         </div>
 
       </div>
-    </div>
+    </section>
   );
 };
