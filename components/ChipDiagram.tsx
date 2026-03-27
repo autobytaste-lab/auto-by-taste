@@ -74,9 +74,9 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
             href="#chip-block-lg"
             x="10"
             y="10"
-            fill="#ff5c5c"
+            fill="#6366f1"
             fillOpacity={0.08}
-            stroke="#ff5c5c"
+            stroke="#6366f1"
             strokeOpacity={0.15}
             className={shouldAnimate ? 'animate-core-glow' : ''}
           />
@@ -133,9 +133,9 @@ export const ChipDiagram: React.FC<{ className?: string }> = ({ className }) => 
             href="#chip-block-sm"
             x="205"
             y="145"
-            fill="#ff7070"
+            fill="#8b5cf6"
             fillOpacity={0.08}
-            stroke="#ff7070"
+            stroke="#8b5cf6"
             strokeOpacity={0.15}
             className={shouldAnimate ? 'animate-memory-shimmer' : ''}
           />

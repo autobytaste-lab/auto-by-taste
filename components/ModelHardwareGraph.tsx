@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { useI18n } from '../i18n/I18nContext';
 
-const modelColors = ['#ff5c5c', '#ff7070', '#14b8a6', '#3b82f6', '#838387', '#636366'];
+const modelColors = ['#6366f1', '#8b5cf6', '#14b8a6', '#3b82f6', '#838387', '#636366'];
 
 export const ModelHardwareGraph: React.FC = () => {
   const { translations: t } = useI18n();
@@ -29,7 +29,7 @@ export const ModelHardwareGraph: React.FC = () => {
           {/* Chart Section */}
           <div className="lg:col-span-7 bg-[#161920] p-6 lg:p-10 rounded-[28px] border border-[#1e2028]">
             <h4 className="text-[#f4f4f5] font-medium mb-8 flex items-center text-sm">
-              <span className="w-2 h-2 bg-[#ff5c5c] rounded-full mr-3"></span>
+              <span className="w-2 h-2 bg-[#6366f1] rounded-full mr-3"></span>
               {t.modelHardware.chartTitle}
             </h4>
             <div className="h-[380px] w-full">
@@ -69,7 +69,7 @@ export const ModelHardwareGraph: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-[#f4f4f5] tracking-[-0.02em]">{activeModel.name}</h3>
-                  <p className="text-[#ff5c5c] font-medium uppercase tracking-widest text-xs">{t.modelHardware.recommendedLabel}</p>
+                  <p className="text-[#6366f1] font-medium uppercase tracking-widest text-xs">{t.modelHardware.recommendedLabel}</p>
                 </div>
               </div>
 
@@ -78,7 +78,7 @@ export const ModelHardwareGraph: React.FC = () => {
                   <p className="text-[#636366] text-xs font-medium uppercase mb-2">{t.modelHardware.optimalHardware}</p>
                   <div className="p-4 bg-[#13151b] rounded-2xl border border-[#1e2028] flex items-center justify-between">
                     <span className="text-[#f4f4f5] font-medium">{activeModel.hardware}</span>
-                    <span className="text-[#ff5c5c] font-semibold">{activeModel.ram}GB RAM</span>
+                    <span className="text-[#6366f1] font-semibold">{activeModel.ram}GB RAM</span>
                   </div>
                 </div>
 
@@ -87,7 +87,7 @@ export const ModelHardwareGraph: React.FC = () => {
                   <p className="text-[#838387] leading-relaxed italic">"{activeModel.description}"</p>
                 </div>
 
-                <button className="w-full py-3.5 bg-[#ff5c5c] hover:bg-[#ff7070] text-white font-semibold rounded-full transition-all duration-300 text-[15px]">
+                <button className="w-full py-3.5 bg-[#6366f1] hover:bg-[#8b5cf6] text-white font-semibold rounded-full transition-all duration-300 text-[15px]">
                   {t.modelHardware.consultButton}
                 </button>
               </div>
@@ -101,7 +101,7 @@ export const ModelHardwareGraph: React.FC = () => {
                   onClick={() => setActiveIndex(idx)}
                   className={`p-3 rounded-xl border text-xs font-medium transition-all duration-300 ${
                     idx === activeIndex
-                      ? 'bg-[#ff5c5c] border-[#ff5c5c] text-[#f4f4f5]'
+                      ? 'bg-[#6366f1] border-[#6366f1] text-[#f4f4f5]'
                       : 'bg-[#161920] border-[#1e2028] text-[#838387] hover:border-[#2e3040]'
                   }`}
                 >

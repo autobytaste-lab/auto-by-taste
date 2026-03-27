@@ -31,7 +31,7 @@ export const Navbar: React.FC = () => {
           <a href="#products" className="text-xs font-normal text-[#838387] hover:text-[#f4f4f5] transition-colors duration-300">{t.navbar.products}</a>
           <a href="#business" className="text-xs font-normal text-[#838387] hover:text-[#f4f4f5] transition-colors duration-300">{t.navbar.business}</a>
           <a href="#pricing" className="text-xs font-normal text-[#838387] hover:text-[#f4f4f5] transition-colors duration-300">{t.navbar.pricing}</a>
-          <a href="#openclaw" className="text-xs font-normal text-[#ff5c5c] hover:text-[#ff7070] transition-colors duration-300">{t.navbar.openclaw}</a>
+          <a href="#openclaw" className="text-xs font-normal text-[#6366f1] hover:text-[#8b5cf6] transition-colors duration-300">{t.navbar.openclaw}</a>
         </div>
 
         <div className="flex items-center space-x-4">
@@ -41,7 +41,7 @@ export const Navbar: React.FC = () => {
           >
             {language === 'en' ? 'VI' : 'EN'}
           </button>
-          <a href="#pricing" className="bg-[#ff5c5c] hover:bg-[#ff7070] text-white px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300">
+          <a href="#pricing" className="bg-[#6366f1] hover:bg-[#8b5cf6] text-white px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300">
             {t.navbar.ctaButton}
           </a>
         </div>

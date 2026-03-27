@@ -1,17 +1,11 @@
-
 import React from 'react';
 import { I18nProvider, useI18n } from './i18n/I18nContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ProblemSolution } from './components/ProblemSolution';
 import { TargetSegments } from './components/TargetSegments';
-import { ChipComparison } from './components/ChipComparison';
-import { ModelHardwareGraph } from './components/ModelHardwareGraph';
 import { AIArchitectureGraph } from './components/AIArchitectureGraph';
 import { OrgChartAgents } from './components/OrgChartAgents';
-import { ProductTiers } from './components/ProductTiers';
-import { BusinessModel } from './components/BusinessModel';
-import { StrategySection } from './components/StrategySection';
 import { ServicePricing } from './components/ServicePricing';
 import { Footer } from './components/Footer';
 import { OpenClawServices } from './components/OpenClawServices';
@@ -35,6 +29,10 @@ const AppContent: React.FC = () => {
           <ProblemSolution />
         </section>
 
+        <section id="openclaw">
+          <OpenClawServices />
+        </section>
+
         <section id="segments">
           <TargetSegments />
         </section>
@@ -47,32 +45,8 @@ const AppContent: React.FC = () => {
           <OrgChartAgents />
         </section>
 
-        <section id="chip-comparison">
-          <ChipComparison />
-        </section>
-
-        <section id="models">
-          <ModelHardwareGraph />
-        </section>
-
-        <section id="products">
-          <ProductTiers />
-        </section>
-
-        <section id="business">
-          <BusinessModel />
-        </section>
-
-        <section id="strategy">
-          <StrategySection />
-        </section>
-
         <section id="pricing">
           <ServicePricing />
-        </section>
-
-        <section id="openclaw">
-          <OpenClawServices />
         </section>
       </main>
       <Footer />
@@ -97,7 +71,7 @@ const AppContent: React.FC = () => {
           href="https://zalo.me/0337776435"
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center space-x-2 bg-[#ff5c5c] text-white pl-3 pr-2 py-2 rounded-full shadow-lg shadow-[#ff5c5c]/20 hover:bg-[#ff7070] transition-all duration-300 hover:scale-105"
+          className="group flex items-center space-x-2 bg-[#6366f1] text-white pl-3 pr-2 py-2 rounded-full shadow-lg shadow-[#6366f1]/20 hover:bg-[#8b5cf6] transition-all duration-300 hover:scale-105"
         >
           <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">{t.floatingButton.label}</span>
           <div className="w-9 h-9 bg-[#161920] rounded-full flex items-center justify-center">

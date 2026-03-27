@@ -24,7 +24,7 @@ export const TargetSegments: React.FC = () => {
                 <p className="text-xs font-semibold text-[#636366] uppercase tracking-widest">{t.targetSegments.needsLabel}</p>
                 {s.needs.map((need, ni) => (
                   <div key={ni} className="flex items-start space-x-2 text-sm text-[#838387]">
-                    <span className="text-[#ff5c5c] mt-0.5">•</span>
+                    <span className="text-[#6366f1] mt-0.5">•</span>
                     <span>{need}</span>
                   </div>
                 ))}

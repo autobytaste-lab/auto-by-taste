@@ -117,7 +117,7 @@
             --z-navbar: 20;
             --z-modal: 50;
             --z-fab: 100;
-            --bg: #0e1015;
+            --bg: #000000;
             --bg-accent: #13151b;
             --bg-elevated: #191c24;
             --bg-hover: #1f2330;
@@ -128,9 +128,10 @@
             --muted: #838387;
             --border: #1e2028;
             --border-strong: #2e3040;
-            --accent: #ff5c5c;
-            --accent-hover: #ff7070;
+            --accent: #6366f1;
+            --accent-hover: #8b5cf6;
             --accent-2: #14b8a6;
+            --accent-3: #a78bfa;
             --ok: #22c55e;
             --warn: #f59e0b;
             --danger: #ef4444;
@@ -179,8 +180,9 @@
         }
 
         .text-gradient {
-            background: linear-gradient(135deg, #ff5c5c 0%, #ff7070 50%, #ff5c5c 100%);
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a78bfa 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -202,7 +204,7 @@
         }
 
         .hologram-glow {
-            box-shadow: 0 0 50px rgba(255, 92, 92, 0.15);
+            box-shadow: 0 0 50px rgba(99, 102, 241, 0.15);
         }
 
         .apple-section {
@@ -211,9 +213,9 @@
 
         /* Circuit line glow animation */
         @keyframes circuit-glow {
-            0% { opacity: 0.3; box-shadow: 0 0 5px rgba(255, 92, 92, 0.1); }
-            50% { opacity: 1; box-shadow: 0 0 20px rgba(255, 92, 92, 0.25); }
-            100% { opacity: 0.3; box-shadow: 0 0 5px rgba(255, 92, 92, 0.1); }
+            0% { opacity: 0.3; box-shadow: 0 0 5px rgba(99, 102, 241, 0.1); }
+            50% { opacity: 1; box-shadow: 0 0 20px rgba(99, 102, 241, 0.25); }
+            100% { opacity: 0.3; box-shadow: 0 0 5px rgba(99, 102, 241, 0.1); }
         }
         .circuit-glow {
             animation: circuit-glow 3s ease-in-out infinite;
@@ -224,19 +226,19 @@
             transition: all 0.4s ease;
         }
         .gold-hover-glow:hover {
-            box-shadow: 0 0 30px rgba(255, 92, 92, 0.1), 0 12px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.1), 0 12px 40px rgba(0, 0, 0, 0.3);
             transform: translateY(-6px);
-            border-color: rgba(255, 92, 92, 0.3);
+            border-color: rgba(99, 102, 241, 0.3);
         }
 
         /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: rgba(255, 92, 92, 0.2); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 92, 92, 0.4); }
+        ::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.2); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.4); }
 
         ::selection {
-            background: rgba(255, 92, 92, 0.3);
+            background: rgba(99, 102, 241, 0.3);
             color: white;
         }
 
@@ -260,8 +262,18 @@
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-[#0e1015] text-[#d4d4d8] antialiased overflow-x-hidden">
+<body class="bg-[#000000] text-[#d4d4d8] antialiased overflow-x-hidden">
     <div id="root"></div>
 <script type="module" src="/index.tsx"></script>
 </body>
 </html>
+x.tsx"></script>
+</body>
+</html>
+
+x.tsx"></script>
+</body>
+</html>
+
+>
+
