@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -29,6 +30,7 @@ export const Navbar: React.FC = () => {
           <a href="#usecases" className="text-xs font-normal text-[#707070] hover:text-white transition-colors duration-300">Use Cases</a>
           <a href="#architecture" className="text-xs font-normal text-[#707070] hover:text-white transition-colors duration-300">Kiến trúc</a>
           <a href="#pricing" className="text-xs font-normal text-[#707070] hover:text-white transition-colors duration-300">Bảng giá</a>
+          <Link to="/docs" className="text-xs font-normal text-[#707070] hover:text-white transition-colors duration-300">📚 Tài liệu</Link>
         </div>
 
         {/* CTA */}

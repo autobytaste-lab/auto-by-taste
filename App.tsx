@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { I18nProvider } from './i18n/I18nContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -13,10 +14,10 @@ import { ServicePricing } from './components/ServicePricing';
 import { Footer } from './components/Footer';
 import { ChatWidget } from './components/ChatWidget';
 import ParticleBackground from './components/particles/ParticleBackground';
+import { DocsPage } from './components/DocsPage';
 
-function App() {
+function HomePage() {
   return (
-    <I18nProvider>
     <div className="min-h-screen flex flex-col relative">
       <ParticleBackground />
 
@@ -60,7 +61,7 @@ function App() {
       </main>
       <Footer />
 
-      {/* Floating action buttons */}
+      {/* Floating action buttons — HomePage only */}
       <div className="fixed bottom-8 right-8 z-[100] flex flex-col items-end space-y-3">
         {/* Telegram link */}
         <a
@@ -92,7 +93,20 @@ function App() {
         <ChatWidget />
       </div>
     </div>
-    </I18nProvider>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <I18nProvider>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/docs" element={<DocsPage />} />
+          <Route path="/docs/*" element={<DocsPage />} />
+        </Routes>
+      </I18nProvider>
+    </BrowserRouter>
   );
 }
 
