@@ -78,6 +78,61 @@ const scenarios: Scenario[] = [
       },
     ],
   },
+  {
+    industry: '🏥 Y tế / Phòng khám',
+    demo: [
+      { role: 'user', msg: 'Nhắc lịch tái khám cho tất cả bệnh nhân tuần tới và tổng hợp hồ sơ' },
+      {
+        role: 'agent',
+        msg: '🏥 Đã tìm 34 bệnh nhân tái khám tuần tới. Gửi nhắc nhở SMS cho 34 người. Tổng hợp hồ sơ bệnh án cho 8 ca phức tạp — lưu local, không qua cloud.',
+        tools: ['read_file', 'send_message', 'memory_search'],
+      },
+    ],
+  },
+  {
+    industry: '🏗️ Bất động sản',
+    demo: [
+      { role: 'user', msg: 'Tổng hợp báo cáo dự án và nhắc các deadline tuần này' },
+      {
+        role: 'agent',
+        msg: '📋 Tổng hợp 3 dự án: Vinhomes (đúng tiến độ), Green Valley (trễ 5 ngày — cần escalate), Sunrise (sắp bàn giao). 4 deadline trong tuần: họp nghiệm thu T4, nộp hồ sơ T5...',
+        tools: ['read_file', 'calendar_check', 'send_message'],
+      },
+    ],
+  },
+  {
+    industry: '📚 Giáo dục / Đào tạo',
+    demo: [
+      { role: 'user', msg: 'Trả lời câu hỏi học viên và chấm bài tập nộp qua Telegram' },
+      {
+        role: 'agent',
+        msg: '📚 18 câu hỏi từ học viên đã được trả lời tự động. 12 bài tập nộp qua Telegram — đã chấm điểm và phản hồi chi tiết cho từng học viên. 3 học viên cần hỗ trợ thêm → đã báo giáo viên.',
+        tools: ['read_file', 'memory_search', 'send_message'],
+      },
+    ],
+  },
+  {
+    industry: '🏭 Sản xuất / Nhà máy',
+    demo: [
+      { role: 'user', msg: 'Kiểm tra tiến độ dây chuyền sản xuất và cảnh báo sự cố' },
+      {
+        role: 'agent',
+        msg: '⚙️ Dây chuyền A: 94% công suất (bình thường). Dây chuyền B: ⚠️ nhiệt độ lò 420°C vượt ngưỡng — đã gửi cảnh báo cho kỹ thuật viên trực. Dây chuyền C: tạm dừng bảo trì, dự kiến hoạt động lại 14h.',
+        tools: ['exec', 'send_message', 'analytics_track'],
+      },
+    ],
+  },
+  {
+    industry: '🛒 E-commerce / Shop',
+    demo: [
+      { role: 'user', msg: 'Cập nhật tồn kho, xử lý đơn hàng mới và báo cáo doanh thu hôm nay' },
+      {
+        role: 'agent',
+        msg: '🛒 Xử lý 47 đơn hàng mới. Cập nhật tồn kho: 3 SKU sắp hết (son đỏ, kem dưỡng, serum). Doanh thu hôm nay: 18.4 triệu (+23% so với hôm qua). Đã tạo PO nhập hàng tự động.',
+        tools: ['db_query', 'exec', 'send_message'],
+      },
+    ],
+  },
 ];
 
 export const UseCaseScenarios: React.FC = () => {
