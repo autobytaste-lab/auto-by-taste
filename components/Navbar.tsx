@@ -20,7 +20,7 @@ export const Navbar: React.FC = () => {
             <span className="text-2xl">🦞</span>
             <span className="text-base font-bold text-white tracking-tight">AutoByTaste</span>
           </div>
-          <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-8 -mt-0.5">Cộng đồng Agentic AI Việt Nam</span>
+          <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-8 -mt-0.5">Agentic AI · Việt Nam</span>
         </div>
 
         {/* Nav links */}

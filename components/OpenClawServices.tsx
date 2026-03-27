@@ -35,7 +35,7 @@ export const OpenClawServices: React.FC = () => {
         {/* Intro block: OpenClaw là gì? */}
         <div className="text-center mb-20">
           <span className="inline-block px-4 py-2 bg-[#ff5c5c]/10 border border-[#ff5c5c]/20 rounded-full text-xs font-medium text-[#ff9090] mb-6 tracking-wide">
-            🦞 Cộng đồng Agentic AI Việt Nam
+            🦞 OpenClaw · Local AI
           </span>
           <h2 className="text-4xl md:text-[56px] font-bold mb-6 tracking-[-0.03em] leading-tight">
             <span className="text-gradient">OpenClaw là gì?</span>

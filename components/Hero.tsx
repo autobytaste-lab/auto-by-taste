@@ -19,7 +19,7 @@ export const Hero: React.FC = () => {
 
         {/* Red uppercase tagline */}
         <p className="text-xs font-bold text-[#ff5c5c] tracking-[0.25em] uppercase mb-6">
-          CỘNG ĐỒNG AGENTIC AI VIỆT NAM
+          AGENTIC AI · VIỆT NAM
         </p>
 
         {/* Subtitle */}

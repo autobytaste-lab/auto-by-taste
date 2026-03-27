@@ -13,7 +13,7 @@ export const en = {
     ctaButton: 'Hire AI Agent',
   },
   hero: {
-    badge: 'Agentic AI Community Vietnam',
+    badge: 'Agentic AI · Vietnam',
     titleLine1: 'AI Agent Running 24/7',
     titleLine2: 'No Cloud, No Risk.',
     subtitle: 'Deploy AI Agents directly on your server — data never leaves your office. Absolute security, always on, no internet dependency.',

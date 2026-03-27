@@ -15,7 +15,7 @@ export const vi: Translation = {
     ctaButton: 'Thuê AI Agent',
   },
   hero: {
-    badge: 'Cộng đồng Agentic AI Việt Nam',
+    badge: 'Agentic AI · Việt Nam',
     titleLine1: 'AI Agent Chạy 24/7',
     titleLine2: 'Không Cloud, Không Rủi Ro.',
     subtitle: 'Triển khai AI Agent ngay trên máy chủ của bạn — dữ liệu không bao giờ rời khỏi văn phòng. Bảo mật tuyệt đối, hoạt động liên tục, không phụ thuộc internet.',
@@ -614,7 +614,7 @@ export const vi: Translation = {
   },
   footer: {
     brand: 'Auto By Taste',
-    brandDescription: 'Đối tác OpenClaw chính thức — triển khai AI Agent 24/7 cho doanh nghiệp Việt Nam. Bảo mật tuyệt đối, chi phí thấp, hiệu suất cao.',
+    brandDescription: 'Triển khai AI Agent 24/7 cho doanh nghiệp Việt Nam. Bảo mật tuyệt đối, chi phí thấp, hiệu suất cao.',
     zaloLink: 'Zalo: 0337776435',
     telegramLink: 'Telegram @autobytaste',
     whatsappLink: 'WhatsApp',
