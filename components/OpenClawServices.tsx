@@ -98,7 +98,7 @@ export const OpenClawServices: React.FC = () => {
                 Nhắn Zalo tư vấn
               </a>
               <a
-                href="https://t.me/autobytaste_community"
+                href="https://t.me/agentic_ai_vn"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-3.5 bg-[#0a0a0f] hover:bg-[#161920] text-[#14b8a6] font-semibold rounded-full border border-[#14b8a6]/20 hover:border-[#14b8a6]/40 transition-all duration-300 text-[15px]"

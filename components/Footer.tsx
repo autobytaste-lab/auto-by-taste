@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
               <a href="https://zalo.me/0337776435" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#ff5c5c]/10 hover:bg-[#ff5c5c]/15 border border-[#ff5c5c]/15 rounded-full text-xs font-medium text-[#ff5c5c] transition-all duration-300">
                 {t.footer.zaloLink}
               </a>
-              <a href="https://t.me/autobytaste_community" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#14b8a6]/10 hover:bg-[#14b8a6]/15 border border-[#14b8a6]/15 rounded-full text-xs font-medium text-[#14b8a6] transition-all duration-300">
+              <a href="https://t.me/agentic_ai_vn" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#14b8a6]/10 hover:bg-[#14b8a6]/15 border border-[#14b8a6]/15 rounded-full text-xs font-medium text-[#14b8a6] transition-all duration-300">
                 {t.footer.telegramLink}
               </a>
               <a href="https://wa.me/84337776435" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#30D158]/10 hover:bg-[#30D158]/15 border border-[#30D158]/15 rounded-full text-xs font-medium text-[#30D158] transition-all duration-300">

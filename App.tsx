@@ -64,7 +64,7 @@ function App() {
       <div className="fixed bottom-8 right-8 z-[100] flex flex-col items-end space-y-3">
         {/* Telegram link */}
         <a
-          href="https://t.me/autobytaste_community"
+          href="https://t.me/agentic_ai_vn"
           target="_blank"
           rel="noopener noreferrer"
           className="group flex items-center space-x-2 bg-[#0f0f0f] border border-[#1e1e1e] text-[#22c55e] pl-3 pr-2 py-2 rounded-full shadow-lg hover:border-[#22c55e]/30 transition-all duration-300 hover:scale-105"
