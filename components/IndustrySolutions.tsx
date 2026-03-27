@@ -193,14 +193,14 @@ export const IndustrySolutions: React.FC = () => {
         {/* Header */}
         <div className="mb-12">
           <p className="text-xs font-medium text-[#ff5c5c] tracking-[0.2em] uppercase mb-4">
-            › AI Agent Cho Từng Ngành
+            › Thuê AI Agent Theo Ngành
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4">
-            Doanh nghiệp của bạn<br />
-            <span className="text-[#606060]">ứng dụng AI ở đâu?</span>
+            Thuê nhân sự AI<br />
+            <span className="text-[#606060]">cho ngành của bạn</span>
           </h2>
           <p className="text-[#606060] text-base max-w-xl">
-            Chọn lĩnh vực kinh doanh của bạn — xem ngay AI Agent có thể làm gì cụ thể cho công việc hàng ngày.
+            Chọn lĩnh vực kinh doanh — xem đội ngũ AI Agent được thiết kế riêng cho ngành của bạn.
           </p>
         </div>
 
@@ -246,7 +246,7 @@ export const IndustrySolutions: React.FC = () => {
             {/* AI Agents for this industry */}
             <div>
               <p className="text-xs text-[#ff5c5c] uppercase tracking-widest mb-3">
-                › AI Agents AutoByTaste thiết kế cho {activeIndustry.name}
+                › Đội ngũ AI Agent cho thuê — {activeIndustry.name}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {activeIndustry.agents.map((agent) => (
@@ -307,10 +307,10 @@ export const IndustrySolutions: React.FC = () => {
             <div className="bg-[#0f0f0f] border border-[#ff5c5c]/20 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <p className="text-white font-semibold mb-1">
-                  AutoByTaste thiết kế AI Agent riêng cho {activeIndustry.name}
+                  Thuê ngay đội ngũ AI Agent cho {activeIndustry.name}
                 </p>
                 <p className="text-[#606060] text-sm">
-                  Tư vấn miễn phí — demo thực tế với dữ liệu của doanh nghiệp bạn.
+                  Tư vấn miễn phí — thiết kế nhân sự AI theo đúng nhu cầu doanh nghiệp.
                 </p>
               </div>
               <div className="flex gap-3 shrink-0">
@@ -320,7 +320,7 @@ export const IndustrySolutions: React.FC = () => {
                   rel="noopener noreferrer"
                   className="px-5 py-2.5 bg-[#ff5c5c] hover:bg-[#ff7070] text-white text-sm font-semibold rounded-full transition-all whitespace-nowrap"
                 >
-                  Tư vấn ngay →
+                  Thuê AI Agent →
                 </a>
               </div>
             </div>
@@ -332,7 +332,7 @@ export const IndustrySolutions: React.FC = () => {
         {!activeIndustry && (
           <div className="text-center py-12 text-[#404040]">
             <p className="text-4xl mb-3">👆</p>
-            <p className="text-sm">Chọn lĩnh vực của bạn để xem AI Agent phù hợp</p>
+            <p className="text-sm">Chọn ngành của bạn để xem đội ngũ AI Agent cho thuê</p>
           </div>
         )}
 
