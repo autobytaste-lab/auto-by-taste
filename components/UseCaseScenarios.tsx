@@ -56,6 +56,28 @@ const scenarios: Scenario[] = [
       },
     ],
   },
+  {
+    industry: '💬 Zalo Business',
+    demo: [
+      { role: 'user', msg: 'Trả lời tự động khách hỏi giá trên Zalo OA và lưu lead vào CRM' },
+      {
+        role: 'agent',
+        msg: '✅ Đã kết nối Zalo OA. Nhận 8 tin nhắn mới — đã trả lời tự động bảng giá cho 6 khách, ghi nhận 8 leads vào CRM. 2 khách hỏi thêm chi tiết → đã chuyển cho sales phụ trách.',
+        tools: ['zalo_receive', 'zalo_send', 'crm_create_lead'],
+      },
+    ],
+  },
+  {
+    industry: '📣 Marketing Zalo',
+    demo: [
+      { role: 'user', msg: 'Gửi broadcast khuyến mãi tới 500 khách trong danh sách Zalo OA' },
+      {
+        role: 'agent',
+        msg: '📨 Đang gửi broadcast... Đã gửi thành công 487/500 (13 số không nhận được). Tỷ lệ mở: 73%. 42 khách reply hỏi thêm — đã xếp hàng trả lời tự động.',
+        tools: ['zalo_broadcast', 'zalo_template', 'analytics_track'],
+      },
+    ],
+  },
 ];
 
 export const UseCaseScenarios: React.FC = () => {
