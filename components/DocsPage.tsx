@@ -93,6 +93,33 @@ openclaw dashboard        # Mở Control UI trên trình duyệt`}</CodeBlock>
         </section>
 
         <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Telegram — Chi tiết cài đặt</h3>
+          <ol className="space-y-1.5 text-sm text-[#a0a0a0] list-decimal list-inside mb-3">
+            <li>Chat với <strong className="text-white">@BotFather</strong> trên Telegram</li>
+            <li>Gửi <InlineCode>/newbot</InlineCode> → đặt tên và username cho bot</li>
+            <li>Lưu token (dạng <InlineCode>123456:ABCdef...</InlineCode>)</li>
+            <li>Cấu hình trong openclaw.json:
+              <CodeBlock>{`{
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "YOUR_TOKEN",
+      "dmPolicy": "pairing",
+      "groups": { "*": { "requireMention": true } }
+    }
+  }
+}`}</CodeBlock>
+            </li>
+            <li>Restart: <InlineCode>openclaw gateway restart</InlineCode></li>
+            <li>Approve pairing: <InlineCode>openclaw pairing approve telegram &lt;code&gt;</InlineCode></li>
+          </ol>
+          <p className="text-[#707070] text-xs font-semibold uppercase tracking-widest mb-1">Multi-bot setup</p>
+          <p className="text-[#a0a0a0] text-sm mb-2">Chạy nhiều bot từ 1 OpenClaw instance:</p>
+          <CodeBlock>{`channels.telegram.accounts.bot2.botToken = "SECOND_TOKEN"
+channels.telegram.accounts.bot2.dmPolicy = "allowlist"`}</CodeBlock>
+        </section>
+
+        <section>
           <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Zalo Personal</h3>
           <ul className="space-y-1 text-sm text-[#a0a0a0]">
             <li>• Kết nối tài khoản Zalo cá nhân qua QR code</li>
@@ -188,6 +215,35 @@ openclaw config set models.providers.ollama.baseUrl http://localhost:11434`}</Co
           <p className="text-[#a0a0a0] text-sm mb-2">Chạy agent theo lịch cố định (cú pháp cron tiêu chuẩn):</p>
           <CodeBlock>{`openclaw cron add --schedule "0 9 * * 1-5" --message "Tóm tắt email buổi sáng"`}</CodeBlock>
           <p className="text-[#707070] text-xs mt-1">Ví dụ trên: mỗi ngày thường 9h sáng agent sẽ tóm tắt email.</p>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Cron Jobs — Ví dụ thực tế</h3>
+          <CodeBlock>{`# Nhắc nhở hàng ngày lúc 9 giờ sáng (UTC+7)
+openclaw cron add \\
+  --name "Morning briefing" \\
+  --schedule "0 2 * * *" \\
+  --session main \\
+  --system-event "Kiểm tra email và tóm tắt lịch hôm nay"
+
+# One-shot reminder tại thời điểm cụ thể
+openclaw cron add \\
+  --name "Reminder" \\
+  --at "2026-01-01T09:00:00+07:00" \\
+  --session main \\
+  --system-event "Reminder: họp lúc 9h" \\
+  --delete-after-run
+
+# Isolated job với delivery
+openclaw cron add \\
+  --name "Weekly report" \\
+  --schedule "0 8 * * 1" \\
+  --session isolated \\
+  --message "Tạo báo cáo tuần"`}</CodeBlock>
+          <p className="text-[#707070] text-xs font-semibold uppercase tracking-widest mt-3 mb-1">Cron expressions</p>
+          <CodeBlock>{`0 9 * * 1-5   = 9h sáng Thứ 2-6
+0 */6 * * *   = Mỗi 6 tiếng
+0 0 * * 0     = Midnight Chủ nhật`}</CodeBlock>
         </section>
 
         <section>
@@ -294,6 +350,286 @@ OpenClaw Gateway (port 18789)
               <p className="text-[#707070] text-xs">{c.desc}</p>
             </div>
           ))}
+        </section>
+      </div>
+    ),
+  },
+  {
+    id: 'pairing',
+    icon: '🔑',
+    title: 'Pairing & Bảo mật',
+    content: (
+      <div className="space-y-5">
+        <div>
+          <h2 className="text-xl font-bold text-white mb-1">🔑 Pairing & Bảo mật</h2>
+          <p className="text-[#707070] text-sm">Cách kiểm soát ai có thể nhắn tin với agent của bạn.</p>
+        </div>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Pairing là gì?</h3>
+          <p className="text-[#a0a0a0] text-sm leading-relaxed">
+            Pairing là cơ chế xác thực người dùng. Khi <InlineCode>dmPolicy = "pairing"</InlineCode>, người dùng cần được approve trước khi chat được với bot.
+          </p>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Luồng hoạt động</h3>
+          <ol className="space-y-1.5 text-sm text-[#a0a0a0] list-decimal list-inside">
+            <li>Người dùng gửi tin nhắn đầu tiên → bot trả về pairing code</li>
+            <li>Operator chạy: <InlineCode>openclaw pairing approve telegram &lt;CODE&gt;</InlineCode></li>
+            <li>Người dùng được approve → có thể chat bình thường</li>
+          </ol>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Các lệnh pairing</h3>
+          <CodeBlock>{`openclaw pairing list telegram              # xem danh sách pending
+openclaw pairing approve telegram <code>   # approve
+openclaw pairing deny telegram <code>      # từ chối
+openclaw pairing revoke telegram <userId>  # thu hồi quyền`}</CodeBlock>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">dmPolicy options</h3>
+          <div className="space-y-2">
+            {[
+              { key: 'pairing', desc: '(mặc định) — yêu cầu approve thủ công' },
+              { key: 'allowlist', desc: '— chỉ cho phép user IDs trong allowFrom list' },
+              { key: 'open', desc: '— cho phép tất cả (chỉ dùng khi có allowFrom: ["*"])' },
+            ].map(o => (
+              <div key={o.key} className="flex items-start gap-3 bg-[#0f0f0f] border border-[#1a1a1a] rounded px-3 py-2">
+                <InlineCode>{o.key}</InlineCode>
+                <span className="text-[#707070] text-xs pt-0.5">{o.desc}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Group policy</h3>
+          <ul className="space-y-1 text-sm text-[#a0a0a0] mb-3">
+            <li>• Thêm bot vào group, set <InlineCode>requireMention: true</InlineCode> để bot chỉ trả lời khi được @mention</li>
+            <li>• <InlineCode>allowFrom: ["*"]</InlineCode> cho phép tất cả thành viên group</li>
+          </ul>
+          <CodeBlock>{`channels.telegram.dmPolicy = "pairing"
+channels.telegram.groups["GROUP_ID"].requireMention = true
+channels.telegram.groups["GROUP_ID"].allowFrom = ["*"]`}</CodeBlock>
+        </section>
+      </div>
+    ),
+  },
+  {
+    id: 'memory',
+    icon: '🧠',
+    title: 'Memory & Context',
+    content: (
+      <div className="space-y-5">
+        <div>
+          <h2 className="text-xl font-bold text-white mb-1">🧠 Memory & Context</h2>
+          <p className="text-[#707070] text-sm">Cách agent ghi nhớ và duy trì context.</p>
+        </div>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-3 text-sm uppercase tracking-widest">Hệ thống memory</h3>
+          <p className="text-[#a0a0a0] text-sm mb-3">OpenClaw có 3 lớp memory:</p>
+          <div className="space-y-3">
+            {[
+              {
+                name: 'MEMORY.md',
+                sub: 'Bộ nhớ dài hạn, curated',
+                desc: 'Chứa thông tin quan trọng về người dùng, preferences, decisions. Agent đọc khi bắt đầu main session. Cập nhật thủ công hoặc agent tự cập nhật.',
+              },
+              {
+                name: 'Daily notes',
+                sub: 'memory/YYYY-MM-DD.md — nhật ký hàng ngày',
+                desc: 'Raw log của những gì đã xảy ra. Agent tạo/cập nhật trong session.',
+              },
+              {
+                name: 'Session context',
+                sub: 'Trong phiên chat hiện tại',
+                desc: 'Tự động, agent nhớ trong suốt session hiện tại.',
+              },
+            ].map(m => (
+              <div key={m.name} className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-lg px-4 py-3">
+                <div className="text-white font-semibold text-sm mb-0.5">{m.name}</div>
+                <div className="text-[#ff5c5c] text-xs mb-1">{m.sub}</div>
+                <p className="text-[#707070] text-xs">{m.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Workspace files</h3>
+          <div className="space-y-1.5 text-sm">
+            {[
+              { file: 'SOUL.md', desc: 'Persona và tone của agent' },
+              { file: 'USER.md', desc: 'Thông tin về người dùng' },
+              { file: 'AGENTS.md', desc: 'Hướng dẫn session startup' },
+              { file: 'TOOLS.md', desc: 'Notes về tools, SSH, cameras...' },
+            ].map(f => (
+              <div key={f.file} className="flex items-center gap-3">
+                <InlineCode>{f.file}</InlineCode>
+                <span className="text-[#707070] text-xs">— {f.desc}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Memory commands</h3>
+          <CodeBlock>{`openclaw memory search "query"  # tìm kiếm trong memory
+openclaw memory list            # xem memory files`}</CodeBlock>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Context pruning</h3>
+          <p className="text-[#a0a0a0] text-sm mb-2">Khi context quá dài, OpenClaw tự động prune để tối ưu token:</p>
+          <CodeBlock>{`config: agents.defaults.contextPruning.mode = "cache-ttl"`}</CodeBlock>
+        </section>
+      </div>
+    ),
+  },
+  {
+    id: 'plugins',
+    icon: '🔌',
+    title: 'Plugins & Tích hợp',
+    content: (
+      <div className="space-y-5">
+        <div>
+          <h2 className="text-xl font-bold text-white mb-1">🔌 Plugins & Tích hợp</h2>
+          <p className="text-[#707070] text-sm">Mở rộng khả năng của OpenClaw.</p>
+        </div>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Plugin là gì?</h3>
+          <p className="text-[#a0a0a0] text-sm leading-relaxed">
+            Plugin là package npm có thể đăng ký: channels mới, model providers, tools, skills, speech, image generation.
+          </p>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Cài plugin</h3>
+          <CodeBlock>{`openclaw plugins install <package-name>
+openclaw plugins list
+openclaw plugins enable <plugin-id>`}</CodeBlock>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Core plugins (có sẵn)</h3>
+          <div className="space-y-1.5">
+            {[
+              { name: 'telegram', desc: 'Telegram Bot API' },
+              { name: 'zalouser', desc: 'Zalo personal account' },
+              { name: 'acpx', desc: 'Agent Communication Protocol' },
+            ].map(p => (
+              <div key={p.name} className="flex items-center gap-3 bg-[#0f0f0f] border border-[#1a1a1a] rounded px-3 py-2">
+                <InlineCode>{p.name}</InlineCode>
+                <span className="text-[#707070] text-xs">— {p.desc}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Community plugins</h3>
+          <p className="text-[#a0a0a0] text-sm">
+            Tìm tại:{' '}
+            <a href="https://clawhub.com" target="_blank" rel="noopener noreferrer" className="text-[#ff5c5c] hover:underline">clawhub.com</a>
+          </p>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Tạo plugin</h3>
+          <ol className="space-y-1.5 text-sm text-[#a0a0a0] list-decimal list-inside">
+            <li>Tạo npm package với entry point export capabilities</li>
+            <li>Đăng ký channels, tools, skills trong plugin</li>
+            <li>Publish lên npm hoặc dùng local path</li>
+          </ol>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Skills ecosystem</h3>
+          <ul className="space-y-1 text-sm text-[#a0a0a0] mb-3">
+            <li>• Skills là file <InlineCode>SKILL.md</InlineCode> định nghĩa hành vi agent</li>
+            <li>• Tìm và cài từ <a href="https://clawhub.com" target="_blank" rel="noopener noreferrer" className="text-[#ff5c5c] hover:underline">clawhub.com</a></li>
+            <li>• Tự tạo: <InlineCode>workspace/skills/my-skill/SKILL.md</InlineCode></li>
+            <li>• Format: YAML frontmatter + Markdown content</li>
+          </ul>
+          <p className="text-[#707070] text-xs mb-2 font-semibold uppercase tracking-widest">Ví dụ SKILL.md</p>
+          <CodeBlock>{`---
+name: weather
+description: Get weather forecasts
+---
+# Weather Skill
+When asked about weather, use web_search with query "weather [location]"...`}</CodeBlock>
+        </section>
+      </div>
+    ),
+  },
+  {
+    id: 'cli',
+    icon: '🖥️',
+    title: 'CLI Reference',
+    content: (
+      <div className="space-y-5">
+        <div>
+          <h2 className="text-xl font-bold text-white mb-1">🖥️ CLI Reference</h2>
+          <p className="text-[#707070] text-sm">Các lệnh CLI thường dùng.</p>
+        </div>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Gateway</h3>
+          <CodeBlock>{`openclaw gateway start    # Khởi động gateway
+openclaw gateway stop     # Dừng gateway
+openclaw gateway status   # Kiểm tra trạng thái
+openclaw gateway restart  # Khởi động lại`}</CodeBlock>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Channels</h3>
+          <CodeBlock>{`openclaw channels list    # Xem các channel đang active
+openclaw channels status  # Chi tiết trạng thái từng channel`}</CodeBlock>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Config</h3>
+          <CodeBlock>{`openclaw config get              # Xem toàn bộ config
+openclaw config set key value   # Set một giá trị
+openclaw configure              # Chạy wizard cấu hình lại`}</CodeBlock>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Cron</h3>
+          <CodeBlock>{`openclaw cron list           # Xem jobs
+openclaw cron add --name "..." --schedule "0 9 * * *" --message "..."
+openclaw cron run <id>       # Chạy job ngay
+openclaw cron remove <id>    # Xóa job`}</CodeBlock>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Pairing</h3>
+          <CodeBlock>{`openclaw pairing list telegram
+openclaw pairing approve telegram <code>
+openclaw pairing revoke telegram <userId>`}</CodeBlock>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Logs & Debug</h3>
+          <CodeBlock>{`openclaw logs          # Xem logs gần nhất
+openclaw doctor        # Kiểm tra sức khỏe hệ thống
+openclaw doctor --fix  # Auto-fix các vấn đề phổ biến`}</CodeBlock>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Agents</h3>
+          <CodeBlock>{`openclaw agents list  # Xem các agents đã cấu hình
+openclaw agent chat   # Chat trực tiếp qua CLI`}</CodeBlock>
+        </section>
+
+        <section>
+          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Dashboard</h3>
+          <CodeBlock>{`openclaw dashboard  # Mở Control UI`}</CodeBlock>
         </section>
       </div>
     ),
