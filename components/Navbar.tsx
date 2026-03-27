@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useI18n } from '../i18n/I18nContext';
 
 const navLinks = [
   { href: '#services', label: 'Dịch vụ' },
@@ -11,6 +12,7 @@ const navLinks = [
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { language, setLanguage } = useI18n();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -118,6 +120,27 @@ export const Navbar: React.FC = () => {
             📚 Tài liệu
           </Link>
         </nav>
+
+        {/* Language toggle */}
+        <div className="px-4 pb-4">
+          <div className="flex items-center justify-between px-4 py-3 rounded-xl bg-[#111] border border-[#222]">
+            <span className="text-xs text-[#888]">Ngôn ngữ</span>
+            <button
+              onClick={() => setLanguage(language === 'vi' ? 'en' : 'vi')}
+              className="relative w-14 h-7 rounded-full bg-[#1a1a1a] border border-[#333] transition-colors duration-300"
+            >
+              <span
+                className={`absolute top-0.5 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all duration-300 ${
+                  language === 'vi'
+                    ? 'left-0.5 bg-[#ff5c5c] text-white'
+                    : 'left-[26px] bg-[#14b8a6] text-white'
+                }`}
+              >
+                {language === 'vi' ? 'VI' : 'EN'}
+              </span>
+            </button>
+          </div>
+        </div>
 
         {/* CTA */}
         <div className="px-4 pb-8">
