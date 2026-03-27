@@ -1,24 +1,35 @@
 import React from 'react';
 
+const LOBE_CDN = 'https://unpkg.com/@lobehub/icons-static-png@latest/dark';
+
+const LobeIcon: React.FC<{ name: string; className?: string }> = ({ name, className = 'w-4 h-4 object-contain' }) => (
+  <img
+    src={`${LOBE_CDN}/${name}.png`}
+    alt={name}
+    className={className}
+    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+  />
+);
+
 const integrations = [
   // Channels
-  { label: 'Telegram', emoji: '✈️' },
-  { label: 'Zalo', emoji: '🇻🇳' },
-  { label: 'WhatsApp', emoji: '📱' },
-  { label: 'Discord', emoji: '🎮' },
-  { label: 'Signal', emoji: '🔐' },
+  { label: 'Telegram', icon: <LobeIcon name="telegram" /> },
+  { label: 'Zalo', icon: <span className="text-sm">🇻🇳</span> },
+  { label: 'WhatsApp', icon: <LobeIcon name="whatsapp" /> },
+  { label: 'Discord', icon: <LobeIcon name="discord" /> },
+  { label: 'Signal', icon: <span className="text-sm">🔐</span> },
   // Models
-  { label: 'Ollama', emoji: '🦙' },
-  { label: 'LM Studio', emoji: '🖥️' },
-  { label: 'EXO', emoji: '⚡' },
-  { label: 'Claude', emoji: '🧠' },
-  { label: 'GPT', emoji: '🤖' },
+  { label: 'Ollama', icon: <LobeIcon name="ollama" /> },
+  { label: 'LM Studio', icon: <span className="text-sm">🖥️</span> },
+  { label: 'EXO', icon: <span className="text-sm">⚡</span> },
+  { label: 'Claude', icon: <LobeIcon name="claude" /> },
+  { label: 'OpenAI', icon: <LobeIcon name="openai" /> },
   // Productivity
-  { label: 'Google Calendar', emoji: '📅' },
-  { label: 'Gmail', emoji: '📧' },
-  { label: 'GitHub', emoji: '🐙' },
-  { label: 'Notion', emoji: '📝' },
-  { label: 'Slack', emoji: '💬' },
+  { label: 'Google Calendar', icon: <LobeIcon name="google" /> },
+  { label: 'Gmail', icon: <LobeIcon name="gmail" /> },
+  { label: 'GitHub', icon: <LobeIcon name="github" /> },
+  { label: 'Notion', icon: <LobeIcon name="notion" /> },
+  { label: 'Slack', icon: <LobeIcon name="slack" /> },
 ];
 
 export const IntegrationStrip: React.FC = () => {
@@ -42,7 +53,7 @@ export const IntegrationStrip: React.FC = () => {
               key={i}
               className="flex items-center gap-1.5 px-3 py-1.5 bg-[#0f0f0f] border border-[#1e1e1e] rounded-full hover:border-[#ff5c5c]/30 hover:bg-[#ff5c5c]/5 transition-all duration-300 cursor-default"
             >
-              <span className="text-sm">{item.emoji}</span>
+              {item.icon}
               <span className="text-xs text-[#909090] font-medium">{item.label}</span>
             </div>
           ))}

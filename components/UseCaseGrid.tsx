@@ -1,33 +1,56 @@
 import React from 'react';
 
+const LOBE_CDN = 'https://unpkg.com/@lobehub/icons-static-png@latest/dark';
+
+const LobeIcon: React.FC<{ name: string }> = ({ name }) => (
+  <img
+    src={`${LOBE_CDN}/${name}.png`}
+    alt={name}
+    className="w-5 h-5 object-contain"
+    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+  />
+);
+
 const usecases = [
   {
-    icon: '🏠',
+    icon: <span className="text-3xl">🏠</span>,
     title: 'Chạy Hoàn Toàn Local',
     desc: 'OpenClaw chạy trên máy chủ của bạn. Hỗ trợ Ollama, LM Studio, EXO. Dữ liệu không bao giờ rời khỏi văn phòng.',
   },
   {
-    icon: '💬',
+    icon: (
+      <div className="flex items-center gap-1.5 mb-2">
+        <LobeIcon name="telegram" />
+        <LobeIcon name="discord" />
+        <LobeIcon name="whatsapp" />
+      </div>
+    ),
     title: 'Mọi Kênh Chat',
     desc: 'Kết nối Telegram, Zalo, WhatsApp, Discord. AI Agent trả lời 24/7 trên tất cả kênh cùng lúc.',
   },
   {
-    icon: '🧠',
+    icon: <span className="text-3xl">🧠</span>,
     title: 'Bộ Nhớ Liên Tục',
     desc: 'Agent nhớ mọi thứ — khách hàng, lịch sử, quy trình. Không cần nhắc lại, không mất context.',
   },
   {
-    icon: '🌐',
+    icon: <span className="text-3xl">🌐</span>,
     title: 'Điều Khiển Trình Duyệt',
     desc: 'Tự động fill form, scrape data, submit, chụp screenshot. AI làm được tất cả những gì con người làm trên web.',
   },
   {
-    icon: '⚡',
+    icon: <span className="text-3xl">⚡</span>,
     title: 'Full System Access',
     desc: 'Đọc/ghi file, chạy scripts, gọi API. Agent thao tác trực tiếp trên hệ thống — sandbox hoặc toàn quyền.',
   },
   {
-    icon: '🔧',
+    icon: (
+      <div className="flex items-center gap-1.5 mb-2">
+        <LobeIcon name="github" />
+        <LobeIcon name="notion" />
+        <LobeIcon name="slack" />
+      </div>
+    ),
     title: 'Skills & Tích Hợp',
     desc: 'Hàng trăm Skills sẵn có. Tự viết skill mới bằng markdown. Tích hợp bất kỳ tool nào qua MCP/API.',
   },
