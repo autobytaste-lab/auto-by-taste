@@ -11,10 +11,10 @@ export const Footer: React.FC = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-2">
             <div className="mb-6">
-              <div className="flex items-center space-x-2">
-                <img src="/logo.jpg" alt="AutoByTaste" className="w-9 h-9 rounded-full object-cover" />
-                <span className="text-xl font-bold text-white tracking-tight">AutoByTaste</span>
-              </div>
+              <a href="/" className="flex items-center space-x-2 group w-fit">
+                <img src="/logo.jpg" alt="AutoByTaste" className="w-9 h-9 rounded-full object-cover group-hover:opacity-80 transition-opacity" />
+                <span className="text-xl font-bold text-white tracking-tight group-hover:text-[#ff5c5c] transition-colors">AutoByTaste</span>
+              </a>
               <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-8">Agentic AI · Việt Nam</span>
             </div>
             <p className="text-[#838387] max-w-sm leading-relaxed mb-6 text-sm">

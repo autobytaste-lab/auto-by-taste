@@ -28,13 +28,13 @@ export const Navbar: React.FC = () => {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-[#1a1a1a] py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-[980px] mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex flex-col">
+          <Link to="/" className="flex flex-col group">
             <div className="flex items-center space-x-2">
-              <img src="/logo.jpg" alt="AutoByTaste" className="w-8 h-8 rounded-full object-cover" />
-              <span className="text-base font-bold text-white tracking-tight">AutoByTaste</span>
+              <img src="/logo.jpg" alt="AutoByTaste" className="w-8 h-8 rounded-full object-cover group-hover:opacity-80 transition-opacity" />
+              <span className="text-base font-bold text-white tracking-tight group-hover:text-[#ff5c5c] transition-colors">AutoByTaste</span>
             </div>
             <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-10 -mt-0.5">Agentic AI · Việt Nam</span>
-          </div>
+          </Link>
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center space-x-6">
@@ -82,10 +82,10 @@ export const Navbar: React.FC = () => {
       <div className={`fixed top-0 right-0 h-full w-72 z-50 bg-[#0a0a0a] border-l border-[#1a1a1a] flex flex-col transition-transform duration-300 md:hidden ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-[#1a1a1a]">
-          <div className="flex items-center gap-2">
+          <Link to="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-2">
             <img src="/logo.jpg" alt="AutoByTaste" className="w-8 h-8 rounded-full object-cover" />
             <span className="text-sm font-bold text-white">AutoByTaste</span>
-          </div>
+          </Link>
           <button onClick={() => setMenuOpen(false)} className="w-8 h-8 flex items-center justify-center text-[#606060] hover:text-white">
             ✕
           </button>
