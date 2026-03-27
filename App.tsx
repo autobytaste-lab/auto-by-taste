@@ -18,6 +18,9 @@ import { CostCalculator } from './components/CostCalculator';
 import { ShowcaseSection } from './components/ShowcaseSection';
 import ParticleBackground from './components/particles/ParticleBackground';
 import { DocsPage } from './components/DocsPage';
+import { BlogPage } from './components/BlogPage';
+import { BlogPost } from './components/BlogPost';
+import { BlogPreview } from './components/BlogPreview';
 
 function HomePage() {
   return (
@@ -69,6 +72,10 @@ function HomePage() {
         <section id="pricing">
           <ServicePricing />
         </section>
+
+        <section id="blog-preview">
+          <BlogPreview />
+        </section>
       </main>
       <Footer />
 
@@ -115,6 +122,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/docs" element={<DocsPage />} />
           <Route path="/docs/*" element={<DocsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/disclaimer" element={<DisclaimerPage />} />
         </Routes>
       </I18nProvider>

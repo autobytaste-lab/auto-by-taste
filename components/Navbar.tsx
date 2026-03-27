@@ -41,6 +41,7 @@ export const Navbar: React.FC = () => {
             {navLinks.map(l => (
               <a key={l.href} href={l.href} className="text-xs font-normal text-[#707070] hover:text-white transition-colors duration-300">{l.label}</a>
             ))}
+            <Link to="/blog" className="text-xs font-normal text-[#707070] hover:text-white transition-colors duration-300">✍️ Blog</Link>
             <Link to="/docs" className="text-xs font-normal text-[#707070] hover:text-white transition-colors duration-300">📚 Tài liệu</Link>
           </div>
 
@@ -102,6 +103,13 @@ export const Navbar: React.FC = () => {
               {l.label}
             </a>
           ))}
+          <Link
+            to="/blog"
+            onClick={() => setMenuOpen(false)}
+            className="flex items-center px-4 py-3 rounded-xl text-sm text-[#888] hover:text-white hover:bg-[#111] transition-all duration-200"
+          >
+            ✍️ Blog
+          </Link>
           <Link
             to="/docs"
             onClick={() => setMenuOpen(false)}
