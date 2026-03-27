@@ -52,7 +52,7 @@ export const Hero: React.FC = () => {
         <div className="inline-flex items-center space-x-2 bg-[#0f0f0f] border border-[#ff5c5c]/20 rounded-full px-5 py-2.5 animate-fade-in-up">
           <span className="text-sm">🦞</span>
           <span className="text-xs font-medium text-[#ff9090]">
-            AutoByTaste là đối tác OpenClaw chính thức tại Việt Nam
+            Cộng đồng Agentic AI Việt Nam
           </span>
           <span className="text-[#ff5c5c] text-xs">→</span>
         </div>
