@@ -251,7 +251,7 @@ export const CostCalculator: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-[280px,1fr] gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[260px,1fr] gap-6">
           {/* Profile selector */}
           <div className="space-y-2">
             {profiles.map((p, i) => (
@@ -284,16 +284,16 @@ export const CostCalculator: React.FC = () => {
                     <button
                       key={i}
                       onClick={() => setModelIdx(i)}
-                      className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg border text-left transition-all text-xs ${
+                      className={`w-full flex flex-col sm:flex-row sm:items-center sm:justify-between px-3 py-2.5 rounded-lg border text-left transition-all text-xs gap-0.5 ${
                         modelIdx === i ? 'bg-[#ff5c5c]/10 border-[#ff5c5c]/30 text-white' : 'border-[#1a1a1a] text-[#606060] hover:text-white'
                       }`}
                     >
-                      <span className="font-mono">{m.name}</span>
-                      <div className="text-right">
-                        <span className={`font-bold ${modelIdx === i ? 'text-[#ff5c5c]' : ''}`}>
-                          {m.costPerDay === 0 ? 'Local' : fmt(m.costPerDay) + '/ngày'}
+                      <span className="font-mono text-xs leading-tight">{m.name}</span>
+                      <div className="flex items-center gap-2 sm:flex-row-reverse">
+                        <span className={`font-bold text-xs shrink-0 ${modelIdx === i ? 'text-[#ff5c5c]' : ''}`}>
+                          {m.costPerDay === 0 ? '0đ/ngày' : fmt(m.costPerDay) + '/ngày'}
                         </span>
-                        <span className="text-[#404040] ml-2 hidden sm:inline">{m.note}</span>
+                        <span className="text-[#404040] text-[10px] truncate sm:hidden">{m.note}</span>
                       </div>
                     </button>
                   ))}
@@ -303,16 +303,16 @@ export const CostCalculator: React.FC = () => {
             )}
 
             {/* Cost summary cards */}
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
-                { label: 'Chi phí / Ngày', value: fmt(dailyCost), sub: `${DAYS_PER_MONTH} ngày làm/tháng` },
-                { label: 'Chi phí / Tháng', value: fmt(monthlyCost), sub: mode === 'local' ? `Tiết kiệm ${fmt(savingMonthly)}/tháng` : `vs Local: tiết kiệm ${fmt(savingMonthly)}/tháng` },
-                { label: 'Chi phí / Năm', value: fmt(yearlyCost), sub: `Tiết kiệm vs cloud: ${fmt(savingMonthly * 12)}/năm` },
+                { label: 'Ngày', value: fmt(dailyCost), sub: `${DAYS_PER_MONTH} ngày làm/tháng` },
+                { label: 'Tháng', value: fmt(monthlyCost), sub: `Tiết kiệm ${fmt(savingMonthly)}` },
+                { label: 'Năm', value: fmt(yearlyCost), sub: `Tiết kiệm ${fmt(savingMonthly * 12)}` },
               ].map((item, i) => (
-                <div key={i} className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl p-4 text-center">
+                <div key={i} className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl p-4">
                   <div className="text-[10px] text-[#ff5c5c] uppercase tracking-widest mb-1">{item.label}</div>
-                  <div className="text-xl font-bold text-white">{item.value}</div>
-                  <div className="text-[10px] text-[#404040] mt-1">{item.sub}</div>
+                  <div className="text-2xl font-bold text-white break-all leading-tight">{item.value}</div>
+                  <div className="text-[10px] text-[#404040] mt-1 break-words">{item.sub}</div>
                 </div>
               ))}
             </div>
@@ -321,7 +321,7 @@ export const CostCalculator: React.FC = () => {
             <div className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl p-5">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-xs text-[#ff5c5c] uppercase tracking-widest">› Công việc hàng ngày</p>
-                <span className="text-xs text-[#404040]">{profile.modelChoice}</span>
+                <span className="text-xs text-[#404040] text-right max-w-[140px] leading-tight">{profile.usageNote}</span>
               </div>
               <div className="grid sm:grid-cols-2 gap-2">
                 {profile.dailyTasks.map((task, i) => (
@@ -343,8 +343,8 @@ export const CostCalculator: React.FC = () => {
                   <div className="text-[10px] text-[#22c55e] text-right">🖥️ Local</div>
                 </div>
                 <div className="grid grid-cols-4 gap-2 py-2 border-b border-[#111]">
-                  <div className="text-xs text-[#a0a0a0] col-span-2">API calls ({selectedModel.name.replace('⚠️ ', '').replace('✅ ', '')})</div>
-                  <div className="text-xs text-[#ff5c5c] text-right">{fmt(selectedModel.costPerDay)}</div>
+                  <div className="text-xs text-[#a0a0a0] col-span-2 break-words">API ({selectedModel.name.replace('⚠️ ', '').replace('✅ ', '').split(' ')[0]})</div>
+                  <div className="text-xs text-[#ff5c5c] text-right break-all">{fmt(selectedModel.costPerDay)}</div>
                   <div className="text-xs text-[#22c55e] text-right font-medium">0đ</div>
                 </div>
                 <div className="grid grid-cols-4 gap-2 py-2 border-b border-[#111]">
