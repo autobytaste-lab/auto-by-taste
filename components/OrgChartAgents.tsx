@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { useI18n } from '../i18n/I18nContext';
 
 const deptColors = [
-  ['from-[#6366f1] to-[#8b5cf6]', 'from-[#C0C0C0] to-[#E0E0E0]', 'from-[#30D158] to-[#63E6BE]'],
-  ['from-[#6366f1] to-[#8b5cf6]', 'from-[#30D158] to-[#63E6BE]', 'from-[#C0C0C0] to-[#E0E0E0]'],
-  ['from-[#6366f1] to-[#8b5cf6]', 'from-[#C0C0C0] to-[#E0E0E0]', 'from-[#30D158] to-[#63E6BE]'],
+  ['from-[#ff5c5c] to-[#ff7070]', 'from-[#C0C0C0] to-[#E0E0E0]', 'from-[#30D158] to-[#63E6BE]'],
+  ['from-[#ff5c5c] to-[#ff7070]', 'from-[#30D158] to-[#63E6BE]', 'from-[#C0C0C0] to-[#E0E0E0]'],
+  ['from-[#ff5c5c] to-[#ff7070]', 'from-[#C0C0C0] to-[#E0E0E0]', 'from-[#30D158] to-[#63E6BE]'],
 ];
 
 interface Agent {
@@ -79,14 +79,14 @@ const OrgChart: React.FC<{
     {/* Boss/CEO Section */}
     <div className="flex flex-col items-center">
       <div className="relative">
-        <div className="absolute inset-0 bg-[#6366f1]/10 blur-[60px] rounded-full"></div>
-        <div className="relative bg-[#161920] rounded-2xl p-6 border border-[#6366f1]/10 min-w-[300px]">
+        <div className="absolute inset-0 bg-[#ff5c5c]/10 blur-[60px] rounded-full"></div>
+        <div className="relative bg-[#161920] rounded-2xl p-6 border border-[#ff5c5c]/10 min-w-[300px]">
           <div className="flex flex-col items-center text-center">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#6366f1] flex items-center justify-center text-3xl mb-4">
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#ff7070] to-[#ff5c5c] flex items-center justify-center text-3xl mb-4">
               {company.boss.icon}
             </div>
             <h3 className="text-lg font-semibold text-[#f4f4f5] mb-1">{company.boss.title}</h3>
-            <span className="inline-block px-3 py-1 bg-[#6366f1]/10 rounded-full text-xs text-[#6366f1] mb-3">
+            <span className="inline-block px-3 py-1 bg-[#ff5c5c]/10 rounded-full text-xs text-[#ff5c5c] mb-3">
               {bossLabel}
             </span>
             <p className="text-sm text-[#838387]">{company.boss.description}</p>
@@ -95,7 +95,7 @@ const OrgChart: React.FC<{
       </div>
 
       <div className="flex flex-col items-center">
-        <div className="w-px h-6 bg-gradient-to-b from-[#6366f1]/40 to-white/5"></div>
+        <div className="w-px h-6 bg-gradient-to-b from-[#ff5c5c]/40 to-white/5"></div>
         <div className="w-2 h-2 rounded-full bg-[#161920]/20"></div>
         <div className="w-px h-4 bg-[#191c24]"></div>
       </div>
@@ -132,7 +132,7 @@ const OrgChart: React.FC<{
         <div className="text-xs text-[#838387]">{departmentsLabel}</div>
       </div>
       <div className="text-center">
-        <div className="text-3xl font-bold text-[#6366f1]">24/7</div>
+        <div className="text-3xl font-bold text-[#ff5c5c]">24/7</div>
         <div className="text-xs text-[#838387]">{operatingLabel}</div>
       </div>
     </div>
@@ -150,7 +150,7 @@ export const OrgChartAgents: React.FC = () => {
       <div className="max-w-[980px] mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-20">
-          <span className="inline-block px-4 py-2 bg-[#6366f1]/10 border border-[#6366f1]/15 rounded-full text-xs font-medium text-[#6366f1] mb-4">
+          <span className="inline-block px-4 py-2 bg-[#ff5c5c]/10 border border-[#ff5c5c]/15 rounded-full text-xs font-medium text-[#ff5c5c] mb-4">
             {t.orgChart.badge}
           </span>
           <h2 className="text-4xl md:text-[56px] font-bold mb-6 tracking-[-0.03em] leading-tight">
@@ -172,7 +172,7 @@ export const OrgChartAgents: React.FC = () => {
               onClick={() => setSelectedIndex(idx)}
               className={`flex items-center gap-3 px-5 py-3.5 rounded-2xl border transition-all duration-300 ${
                 selectedIndex === idx
-                  ? 'bg-[#161920] border-[#6366f1]/30 scale-[1.02]'
+                  ? 'bg-[#161920] border-[#ff5c5c]/30 scale-[1.02]'
                   : 'bg-[#161920] border-[#1e2028] hover:border-[#2e3040]'
               }`}
             >
@@ -212,7 +212,7 @@ export const OrgChartAgents: React.FC = () => {
             <h4 className="font-semibold text-[#f4f4f5] mb-2">{t.orgChart.saveCost}</h4>
             <p className="text-sm text-[#838387]">{t.orgChart.saveCostDesc}</p>
           </div>
-          <div className="bg-[#161920] rounded-2xl p-6 border border-[#6366f1]/10 text-center transition-all duration-300 hover:scale-[1.01]">
+          <div className="bg-[#161920] rounded-2xl p-6 border border-[#ff5c5c]/10 text-center transition-all duration-300 hover:scale-[1.01]">
             <div className="text-3xl mb-3">⚡</div>
             <h4 className="font-semibold text-[#f4f4f5] mb-2">{t.orgChart.speed}</h4>
             <p className="text-sm text-[#838387]">{t.orgChart.speedDesc}</p>

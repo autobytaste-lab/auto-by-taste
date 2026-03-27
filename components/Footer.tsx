@@ -11,15 +11,17 @@ export const Footer: React.FC = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-2">
             <div className="mb-6">
-              <div className="w-40 h-14 overflow-hidden">
-                <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/4833d5d3_f7a3_4c37_b648_5e433d2e2a1c_1773368431203.png" alt={t.footer.brand} className="w-full h-full object-contain" />
+              <div className="flex items-center space-x-2">
+                <span className="text-2xl">🦞</span>
+                <span className="text-xl font-bold text-white tracking-tight">AutoByTaste</span>
               </div>
+              <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-8">Đối tác OpenClaw Chính Thức · Việt Nam</span>
             </div>
             <p className="text-[#838387] max-w-sm leading-relaxed mb-6 text-sm">
               {t.footer.brandDescription}
             </p>
             <div className="flex flex-wrap gap-2">
-              <a href="https://zalo.me/0337776435" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#6366f1]/10 hover:bg-[#6366f1]/15 border border-[#6366f1]/15 rounded-full text-xs font-medium text-[#6366f1] transition-all duration-300">
+              <a href="https://zalo.me/0337776435" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#ff5c5c]/10 hover:bg-[#ff5c5c]/15 border border-[#ff5c5c]/15 rounded-full text-xs font-medium text-[#ff5c5c] transition-all duration-300">
                 {t.footer.zaloLink}
               </a>
               <a href="https://t.me/autobytaste_community" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#14b8a6]/10 hover:bg-[#14b8a6]/15 border border-[#14b8a6]/15 rounded-full text-xs font-medium text-[#14b8a6] transition-all duration-300">
@@ -48,7 +50,7 @@ export const Footer: React.FC = () => {
               <li>{t.footer.email}</li>
               <li className="flex flex-col space-y-1">
                 <span className="text-[#838387] font-medium">{t.footer.founderLabel}</span>
-                <a href="tel:0337776435" className="text-[#6366f1] font-semibold text-lg hover:underline transition-all">{t.footer.phone}</a>
+                <a href="tel:0337776435" className="text-[#ff5c5c] font-semibold text-lg hover:underline transition-all">{t.footer.phone}</a>
               </li>
             </ul>
           </div>

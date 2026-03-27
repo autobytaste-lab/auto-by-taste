@@ -22,21 +22,21 @@ export const StrategySection: React.FC = () => {
 
         <div className="grid lg:grid-cols-2 gap-5">
           {/* Strategy 1: Real Trial */}
-          <div className="relative p-8 lg:p-10 rounded-[28px] bg-[#161920] border border-[#6366f1]/10 group transition-all duration-300 hover:border-[#6366f1]/20">
+          <div className="relative p-8 lg:p-10 rounded-[28px] bg-[#161920] border border-[#ff5c5c]/10 group transition-all duration-300 hover:border-[#ff5c5c]/20">
             <div className="absolute top-0 right-0 p-6 text-5xl opacity-5 group-hover:opacity-10 transition-opacity duration-500">🧪</div>
             <h3 className="text-xl font-semibold text-[#f4f4f5] mb-5 flex items-center tracking-[-0.01em]">
-              <span className="w-8 h-8 bg-[#6366f1] rounded-full flex items-center justify-center text-xs font-semibold mr-3">01</span>
+              <span className="w-8 h-8 bg-[#ff5c5c] rounded-full flex items-center justify-center text-xs font-semibold mr-3">01</span>
               {t.strategy.strategy1Title}
             </h3>
             <p className="text-[#838387] leading-relaxed mb-6">
               {t.strategy.strategy1Description}
             </p>
             <div className="p-4 bg-[#13151b] rounded-2xl border border-[#1e2028]">
-              <p className="text-sm italic text-[#6366f1]">{t.strategy.strategy1Quote}</p>
+              <p className="text-sm italic text-[#ff5c5c]">{t.strategy.strategy1Quote}</p>
             </div>
 
             <div className="mt-6 flex justify-center">
-               <div className="w-full h-40 rounded-2xl bg-[#6366f1]/5 border border-[#6366f1]/10 flex items-center justify-center p-6 text-center">
+               <div className="w-full h-40 rounded-2xl bg-[#ff5c5c]/5 border border-[#ff5c5c]/10 flex items-center justify-center p-6 text-center">
                   <p className="text-xs text-[#636366] leading-relaxed">
                     {t.strategy.strategy1RagNote}
                   </p>
@@ -70,18 +70,18 @@ export const StrategySection: React.FC = () => {
                     type="monotone"
                     name={t.strategy.traditionalLabel}
                     dataKey="traditional"
-                    stroke="#6366f1"
+                    stroke="#ff5c5c"
                     strokeWidth={2}
-                    dot={{ r: 3, fill: '#6366f1' }}
+                    dot={{ r: 3, fill: '#ff5c5c' }}
                     activeDot={{ r: 5 }}
                   />
                   <Line
                     type="monotone"
                     name={t.strategy.aiLocalLabel}
                     dataKey="ai"
-                    stroke="#6366f1"
+                    stroke="#ff5c5c"
                     strokeWidth={2}
-                    dot={{ r: 3, fill: '#6366f1' }}
+                    dot={{ r: 3, fill: '#ff5c5c' }}
                     activeDot={{ r: 5 }}
                   />
                 </LineChart>

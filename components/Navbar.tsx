@@ -1,10 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
-import { useI18n } from '../i18n/I18nContext';
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
-  const { translations: t, language, setLanguage } = useI18n();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,36 +12,34 @@ export const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-20 transition-all duration-500 ${scrolled ? 'bg-[#0e1015]/90 backdrop-blur-xl saturate-150 border-b border-[#1e2028] py-3' : 'bg-transparent py-5'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-[#1a1a1a] py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-[980px] mx-auto px-6 flex items-center justify-between">
-        <div className="flex items-center">
-          <div className="w-36 h-12 overflow-hidden">
-            <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/4833d5d3_f7a3_4c37_b648_5e433d2e2a1c_1773368431203.png" alt={t.navbar.title} className="w-full h-full object-contain" />
+        {/* Logo */}
+        <div className="flex flex-col">
+          <div className="flex items-center space-x-2">
+            <span className="text-2xl">🦞</span>
+            <span className="text-base font-bold text-white tracking-tight">AutoByTaste</span>
           </div>
+          <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-8 -mt-0.5">Đối tác OpenClaw Chính Thức · Việt Nam</span>
         </div>
 
-        <div className="hidden md:flex items-center space-x-7">
-          <a href="#overview" className="text-xs font-normal text-[#838387] hover:text-[#f4f4f5] transition-colors duration-300">{t.navbar.overview}</a>
-          <a href="#problem" className="text-xs font-normal text-[#838387] hover:text-[#f4f4f5] transition-colors duration-300">{t.navbar.solution}</a>
-          <a href="#architecture" className="text-xs font-normal text-[#838387] hover:text-[#f4f4f5] transition-colors duration-300">{t.navbar.architecture}</a>
-          <a href="#org-chart" className="text-xs font-normal text-[#838387] hover:text-[#f4f4f5] transition-colors duration-300">{t.navbar.orgChart}</a>
-          <a href="#products" className="text-xs font-normal text-[#838387] hover:text-[#f4f4f5] transition-colors duration-300">{t.navbar.products}</a>
-          <a href="#business" className="text-xs font-normal text-[#838387] hover:text-[#f4f4f5] transition-colors duration-300">{t.navbar.business}</a>
-          <a href="#pricing" className="text-xs font-normal text-[#838387] hover:text-[#f4f4f5] transition-colors duration-300">{t.navbar.pricing}</a>
-          <a href="#openclaw" className="text-xs font-normal text-[#6366f1] hover:text-[#8b5cf6] transition-colors duration-300">{t.navbar.openclaw}</a>
+        {/* Nav links */}
+        <div className="hidden md:flex items-center space-x-6">
+          <a href="#services" className="text-xs font-normal text-[#707070] hover:text-white transition-colors duration-300">Dịch vụ</a>
+          <a href="#usecases" className="text-xs font-normal text-[#707070] hover:text-white transition-colors duration-300">Use Cases</a>
+          <a href="#architecture" className="text-xs font-normal text-[#707070] hover:text-white transition-colors duration-300">Kiến trúc</a>
+          <a href="#pricing" className="text-xs font-normal text-[#707070] hover:text-white transition-colors duration-300">Bảng giá</a>
         </div>
 
-        <div className="flex items-center space-x-4">
-          <button
-            onClick={() => setLanguage(language === 'en' ? 'vi' : 'en')}
-            className="text-xs font-medium text-[#838387] hover:text-[#f4f4f5] transition-colors duration-300"
-          >
-            {language === 'en' ? 'VI' : 'EN'}
-          </button>
-          <a href="#pricing" className="bg-[#6366f1] hover:bg-[#8b5cf6] text-white px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300">
-            {t.navbar.ctaButton}
-          </a>
-        </div>
+        {/* CTA */}
+        <a
+          href="https://zalo.me/0337776435"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-[#ff5c5c] hover:bg-[#ff7070] text-white px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 shadow-lg shadow-[#ff5c5c]/25"
+        >
+          Tư vấn miễn phí
+        </a>
       </div>
     </nav>
   );

@@ -50,7 +50,7 @@ export const ServicePricing: React.FC = () => {
 
                   <div className="mb-6">
                     <h3 className="text-2xl font-semibold text-[#f4f4f5] mb-2 tracking-[-0.02em]">{plan.name}</h3>
-                    <div className="text-sm text-[#6366f1] font-medium">{plan.agents}</div>
+                    <div className="text-sm text-[#ff5c5c] font-medium">{plan.agents}</div>
                   </div>
 
                   <div className="mb-6">
@@ -117,7 +117,7 @@ export const ServicePricing: React.FC = () => {
               href="https://zalo.me/0337776435"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-3 bg-[#6366f1] hover:bg-[#8b5cf6] text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 text-[17px]"
+              className="inline-flex items-center space-x-3 bg-[#ff5c5c] hover:bg-[#ff7070] text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 text-[17px]"
             >
               <span>{t.servicePricing.consultCta}</span>
               <img src="https://img.icons8.com/color/48/zalo.png" alt="Zalo" className="w-5 h-5" />
