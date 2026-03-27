@@ -18,7 +18,7 @@ export const Navbar: React.FC = () => {
         {/* Logo */}
         <div className="flex flex-col">
           <div className="flex items-center space-x-2">
-            <span className="text-2xl">🦞</span>
+            <img src="/logo.jpg" alt="AutoByTaste" className="w-8 h-8 rounded-full object-cover" />
             <span className="text-base font-bold text-white tracking-tight">AutoByTaste</span>
           </div>
           <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-8 -mt-0.5">Agentic AI · Việt Nam</span>

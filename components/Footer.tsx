@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
           <div className="col-span-2">
             <div className="mb-6">
               <div className="flex items-center space-x-2">
-                <span className="text-2xl">🦞</span>
+                <img src="/logo.jpg" alt="AutoByTaste" className="w-9 h-9 rounded-full object-cover" />
                 <span className="text-xl font-bold text-white tracking-tight">AutoByTaste</span>
               </div>
               <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-8">Agentic AI · Việt Nam</span>

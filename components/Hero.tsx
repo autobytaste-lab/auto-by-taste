@@ -9,7 +9,7 @@ export const Hero: React.FC = () => {
       <div className="max-w-[860px] mx-auto px-6 relative z-10 text-center">
         {/* Floating logo */}
         <div className="animate-float mb-8 inline-block">
-          <span style={{ fontSize: '72px', lineHeight: 1 }}>🦞</span>
+          <img src="/logo.jpg" alt="AutoByTaste Logo" className="w-28 h-28 rounded-full object-cover shadow-2xl shadow-[#ff5c5c]/20" />
         </div>
 
         {/* H1 */}
