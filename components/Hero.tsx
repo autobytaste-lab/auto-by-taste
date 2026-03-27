@@ -19,15 +19,15 @@ export const Hero: React.FC = () => {
 
         {/* Red uppercase tagline */}
         <p className="text-xs font-bold text-[#ff5c5c] tracking-[0.25em] uppercase mb-6">
-          AGENTIC AI · VIỆT NAM
+          CHO THUÊ NHÂN SỰ AI AGENT · VIỆT NAM
         </p>
 
         {/* Subtitle */}
         <p className="max-w-lg mx-auto text-lg lg:text-[20px] text-[#707070] mb-2 leading-relaxed font-normal">
-          Chạy AI Agent 24/7 ngay trên máy chủ của bạn.
+          Thuê AI Agent làm việc 24/7 — không lương, không nghỉ phép.
         </p>
         <p className="max-w-lg mx-auto text-lg lg:text-[20px] text-[#707070] mb-10 leading-relaxed font-normal">
-          Dữ liệu ở lại với bạn. <span className="text-white font-medium">Mãi mãi.</span>
+          Thiết kế đội ngũ AI theo nhu cầu. <span className="text-white font-medium">Bắt đầu ngay hôm nay.</span>
         </p>
 
         {/* CTAs */}
@@ -38,13 +38,13 @@ export const Hero: React.FC = () => {
             rel="noopener noreferrer"
             className="w-full sm:w-auto px-8 py-3.5 bg-[#ff5c5c] text-white font-semibold rounded-full hover:bg-[#ff7070] transition-all duration-300 text-[16px] shadow-lg shadow-[#ff5c5c]/25"
           >
-            Tư vấn miễn phí →
+            Thuê AI Agent ngay →
           </a>
           <a
             href="#usecases"
             className="w-full sm:w-auto px-8 py-3.5 text-[#707070] font-medium rounded-full hover:text-white transition-all duration-300 text-[16px] border border-[#1e1e1e] hover:border-[#333]"
           >
-            Xem use cases
+            Xem đội ngũ AI mẫu
           </a>
         </div>
 
@@ -52,7 +52,7 @@ export const Hero: React.FC = () => {
         <div className="inline-flex items-center space-x-2 bg-[#0f0f0f] border border-[#ff5c5c]/20 rounded-full px-5 py-2.5 animate-fade-in-up">
           <span className="text-sm">🦞</span>
           <span className="text-xs font-medium text-[#ff9090]">
-            Cộng đồng Agentic AI Việt Nam
+            Cho thuê nhân sự AI Agent — Thiết kế theo nhu cầu
           </span>
           <span className="text-[#ff5c5c] text-xs">→</span>
         </div>

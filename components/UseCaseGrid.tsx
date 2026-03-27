@@ -13,9 +13,9 @@ const LobeIcon: React.FC<{ name: string }> = ({ name }) => (
 
 const usecases = [
   {
-    icon: <span className="text-3xl">🏠</span>,
-    title: 'Chạy Hoàn Toàn Local',
-    desc: 'OpenClaw chạy trên máy chủ của bạn. Hỗ trợ Ollama, LM Studio, EXO. Dữ liệu không bao giờ rời khỏi văn phòng.',
+    icon: <span className="text-3xl">⏰</span>,
+    title: 'Làm Việc 24/7 Không Nghỉ',
+    desc: 'AI Agent làm việc liên tục 24 giờ, 7 ngày — không lương, không nghỉ phép, không bảo hiểm. Luôn sẵn sàng phục vụ.',
   },
   {
     icon: (
@@ -25,8 +25,8 @@ const usecases = [
         <LobeIcon name="whatsapp" />
       </div>
     ),
-    title: 'Mọi Kênh Chat',
-    desc: 'Kết nối Telegram, Zalo, WhatsApp, Discord. AI Agent trả lời 24/7 trên tất cả kênh cùng lúc.',
+    title: 'Phục Vụ Mọi Kênh',
+    desc: 'AI Agent trả lời khách hàng qua Telegram, Zalo, WhatsApp, Discord — tất cả kênh cùng lúc, không bỏ sót.',
   },
   {
     icon: <span className="text-3xl">🧠</span>,
@@ -63,11 +63,11 @@ export const UseCaseGrid: React.FC = () => {
         {/* Section header */}
         <div className="mb-16">
           <p className="text-xs font-medium text-[#ff5c5c] tracking-[0.2em] uppercase mb-4">
-            › OpenClaw Làm Được Gì?
+            › AI Agent Làm Được Gì?
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            Một Agent.<br />
-            <span className="text-[#707070]">Mọi tác vụ.</span>
+            Nhân sự AI.<br />
+            <span className="text-[#707070]">Mọi tác vụ. 24/7.</span>
           </h2>
         </div>
 

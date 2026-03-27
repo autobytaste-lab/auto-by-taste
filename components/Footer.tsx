@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
                 <img src="/logo.jpg" alt="AutoByTaste" className="w-9 h-9 rounded-full object-cover group-hover:opacity-80 transition-opacity" />
                 <span className="text-xl font-bold text-white tracking-tight group-hover:text-[#ff5c5c] transition-colors">AutoByTaste</span>
               </a>
-              <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-8">Agentic AI · Việt Nam</span>
+              <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-8">Cho thuê AI Agent · 24/7</span>
             </div>
             <p className="text-[#838387] max-w-sm leading-relaxed mb-6 text-sm">
               {t.footer.brandDescription}

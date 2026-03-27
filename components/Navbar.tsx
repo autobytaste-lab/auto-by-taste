@@ -33,7 +33,7 @@ export const Navbar: React.FC = () => {
               <img src="/logo.jpg" alt="AutoByTaste" className="w-8 h-8 rounded-full object-cover group-hover:opacity-80 transition-opacity" />
               <span className="text-base font-bold text-white tracking-tight group-hover:text-[#ff5c5c] transition-colors">AutoByTaste</span>
             </div>
-            <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-10 -mt-0.5">Agentic AI · Việt Nam</span>
+            <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-10 -mt-0.5">Cho thuê AI Agent · 24/7</span>
           </Link>
 
           {/* Desktop nav links */}
