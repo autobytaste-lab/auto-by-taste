@@ -1,4 +1,5 @@
 import React from 'react';
+import { I18nProvider } from './i18n/I18nContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { UseCaseGrid } from './components/UseCaseGrid';
@@ -15,6 +16,7 @@ import ParticleBackground from './components/particles/ParticleBackground';
 
 function App() {
   return (
+    <I18nProvider>
     <div className="min-h-screen flex flex-col relative">
       <ParticleBackground />
 
@@ -90,6 +92,7 @@ function App() {
         <ChatWidget />
       </div>
     </div>
+    </I18nProvider>
   );
 }
 
