@@ -1,23 +1,41 @@
 import React, { useState } from 'react';
 
+// ===== BẢNG GIÁ THỰC TẾ (cập nhật Q1 2026) =====
+// Tỷ giá: 1 USD = 25,500 VNĐ
+// Đơn vị: USD / 1M tokens
+// Claude Haiku 3.5:  input $0.80 / output $4.00
+// Claude Sonnet 4:   input $3.00 / output $15.00
+// GPT-4o mini:       input $0.15 / output $0.60
+// GPT-4o:            input $2.50 / output $10.00
+// Gemini 2.0 Flash:  input $0.10 / output $0.40
+// Local (Ollama):    $0 / $0  (chỉ tốn điện)
+
+const USD = 25500; // VNĐ
+const toVND = (usd: number) => Math.round(usd * USD);
+
+// Tính chi phí cloud theo token thực tế
+// inputK: nghìn tokens input/ngày, outputK: nghìn tokens output/ngày
+const calcCloud = (inputK: number, outputK: number, inputPrice: number, outputPrice: number) =>
+  toVND((inputK * inputPrice + outputK * outputPrice) / 1000);
+
+interface ModelOption {
+  name: string;
+  costPerDay: number;
+  note: string;
+}
+
 interface Profile {
   id: string;
   icon: string;
   title: string;
   role: string;
   dailyTasks: string[];
-  hardware: string;
-  hardwareCost: number; // VND một lần
-  modelChoice: string;
-  apiCostPerDay: number; // VND/ngày nếu dùng cloud API
-  localCostPerDay: number; // VND/ngày nếu dùng local
-  electricPerDay: number; // VND/ngày
-  breakdown: {
-    label: string;
-    cloud: string;
-    local: string;
-    saving: string;
-  }[];
+  inputKPerDay: number;   // nghìn tokens input
+  outputKPerDay: number;  // nghìn tokens output
+  usageNote: string;
+  modelOptions: ModelOption[];
+  electricPerDay: number;
+  localElectric: number;
   roi: string;
   color: string;
 }
@@ -29,23 +47,23 @@ const profiles: Profile[] = [
     title: 'Freelancer / Cá nhân',
     role: 'Designer, writer, consultant',
     dailyTasks: [
-      'Trả lời email, soạn đề xuất',
-      'Tóm tắt tài liệu, brief khách hàng',
-      'Lên lịch, nhắc nhở deadline',
-      'Nghiên cứu thị trường nhanh',
+      '~50 lượt chat/ngày',
+      'Soạn email, đề xuất, brief',
+      'Tóm tắt tài liệu ngắn',
+      'Nhắc lịch, nghiên cứu nhanh',
     ],
-    hardware: 'MacBook hiện có / PC cơ bản',
-    hardwareCost: 0,
-    modelChoice: 'Llama 3.1 8B (Ollama) hoặc Claude Haiku',
-    apiCostPerDay: 25000,
-    localCostPerDay: 0,
-    electricPerDay: 2000,
-    breakdown: [
-      { label: 'API calls (Claude Haiku)', cloud: '~25.000đ', local: '0đ', saving: '25.000đ' },
-      { label: 'Điện năng', cloud: '2.000đ', local: '2.000đ', saving: '0đ' },
-      { label: 'OpenClaw license', cloud: '0đ', local: '0đ', saving: '0đ' },
+    inputKPerDay: 50,   // ~50K tokens input
+    outputKPerDay: 25,  // ~25K tokens output
+    usageNote: '50 lượt × ~1.5K input + 500 output tokens',
+    modelOptions: [
+      { name: 'Gemini 2.0 Flash', costPerDay: calcCloud(50, 25, 0.10, 0.40), note: 'Rẻ nhất, đủ dùng' },
+      { name: 'GPT-4o mini', costPerDay: calcCloud(50, 25, 0.15, 0.60), note: 'Phổ biến, ổn định' },
+      { name: 'Claude Haiku 3.5', costPerDay: calcCloud(50, 25, 0.80, 4.00), note: 'Chất lượng cao hơn' },
+      { name: 'Claude Sonnet 4', costPerDay: calcCloud(50, 25, 3.00, 15.00), note: 'Premium, overkill cho use case này' },
     ],
-    roi: 'Tiết kiệm 2-3 giờ/ngày soạn nội dung — tương đương 150.000-300.000đ giá trị công việc',
+    electricPerDay: 1500,
+    localElectric: 1500,
+    roi: 'Tiết kiệm 2-3 giờ/ngày soạn nội dung — tương đương 150.000-300.000đ công việc',
     color: '#14b8a6',
   },
   {
@@ -54,23 +72,23 @@ const profiles: Profile[] = [
     title: 'Nhân viên Kinh doanh',
     role: 'Sales, account manager, tư vấn',
     dailyTasks: [
+      '~80 lượt chat/ngày (inbox + báo cáo)',
       'Soạn email chào hàng cá nhân hóa',
-      'Theo dõi pipeline khách hàng',
-      'Tổng hợp báo cáo doanh số',
-      'Trả lời inbox Zalo/Messenger 24/7',
+      'Phân tích khách hàng, pipeline',
+      'Trả lời Zalo/Messenger tự động',
     ],
-    hardware: 'Laptop văn phòng',
-    hardwareCost: 0,
-    modelChoice: 'Qwen 7B (local) hoặc GPT-4o Mini',
-    apiCostPerDay: 40000,
-    localCostPerDay: 0,
-    electricPerDay: 3000,
-    breakdown: [
-      { label: 'API calls (GPT-4o Mini)', cloud: '~40.000đ', local: '0đ', saving: '40.000đ' },
-      { label: 'Điện năng', cloud: '3.000đ', local: '3.000đ', saving: '0đ' },
-      { label: 'OpenClaw license', cloud: '0đ', local: '0đ', saving: '0đ' },
+    inputKPerDay: 80,
+    outputKPerDay: 60,
+    usageNote: '80 lượt × ~1.5K input + 750 output tokens',
+    modelOptions: [
+      { name: 'Gemini 2.0 Flash', costPerDay: calcCloud(80, 60, 0.10, 0.40), note: 'Rẻ nhất' },
+      { name: 'GPT-4o mini', costPerDay: calcCloud(80, 60, 0.15, 0.60), note: 'Khuyên dùng' },
+      { name: 'Claude Haiku 3.5', costPerDay: calcCloud(80, 60, 0.80, 4.00), note: 'Chất lượng văn phong tốt' },
+      { name: 'GPT-4o', costPerDay: calcCloud(80, 60, 2.50, 10.00), note: 'Overkill cho sales thông thường' },
     ],
-    roi: 'Tăng 30-50% số leads xử lý được/ngày — doanh thu tăng 5-10 triệu/tháng',
+    electricPerDay: 2000,
+    localElectric: 2000,
+    roi: 'Xử lý 2-3x lượng leads/ngày — doanh thu tiềm năng tăng 5-15 triệu/tháng',
     color: '#f59e0b',
   },
   {
@@ -79,23 +97,23 @@ const profiles: Profile[] = [
     title: 'Lập trình viên',
     role: 'Backend, frontend, fullstack dev',
     dailyTasks: [
-      'Code review, fix bug tự động',
-      'Viết unit test & documentation',
-      'Debug lỗi, giải thích error logs',
-      'Research tech stack, best practices',
+      '~150 lượt/ngày (code nặng token)',
+      'Code review, fix bug, refactor',
+      'Viết test, docs, debug logs',
+      'Research stack, PR comments',
     ],
-    hardware: 'Máy dev mạnh (16GB+ RAM)',
-    hardwareCost: 0,
-    modelChoice: 'DeepSeek Coder / Qwen Coder (local)',
-    apiCostPerDay: 80000,
-    localCostPerDay: 0,
+    inputKPerDay: 450,   // code context dài
+    outputKPerDay: 300,
+    usageNote: '150 lượt × ~3K input + 2K output tokens (code dài hơn text)',
+    modelOptions: [
+      { name: 'GPT-4o mini', costPerDay: calcCloud(450, 300, 0.15, 0.60), note: 'Rẻ nhưng code yếu hơn' },
+      { name: 'Claude Haiku 3.5', costPerDay: calcCloud(450, 300, 0.80, 4.00), note: 'Tốt cho code cơ bản' },
+      { name: 'GPT-4o', costPerDay: calcCloud(450, 300, 2.50, 10.00), note: 'Code mạnh, chi phí cao' },
+      { name: 'Claude Sonnet 4', costPerDay: calcCloud(450, 300, 3.00, 15.00), note: 'Mạnh nhất, đắt nhất' },
+    ],
     electricPerDay: 8000,
-    breakdown: [
-      { label: 'API calls (Claude Sonnet)', cloud: '~80.000đ', local: '0đ', saving: '80.000đ' },
-      { label: 'Điện năng', cloud: '8.000đ', local: '8.000đ', saving: '0đ' },
-      { label: 'GitHub Copilot (thay thế)', cloud: '70.000đ', local: '0đ', saving: '70.000đ' },
-    ],
-    roi: 'Viết code nhanh gấp 2-3x — tiết kiệm 2-4 giờ/ngày debugging & boilerplate',
+    localElectric: 8000,
+    roi: 'Code nhanh gấp 2-3x — thay thế GitHub Copilot (~70.000đ/ngày) với chất lượng cao hơn',
     color: '#8b5cf6',
   },
   {
@@ -104,23 +122,23 @@ const profiles: Profile[] = [
     title: 'Marketer / Content Creator',
     role: 'Digital marketing, social media, SEO',
     dailyTasks: [
-      'Viết content Facebook, TikTok, Blog',
-      'Lên lịch đăng bài tự động',
-      'Phân tích hiệu quả chiến dịch',
+      '~100 lượt/ngày (content dài)',
+      'Viết bài Facebook, TikTok, Blog',
       'Nghiên cứu từ khóa, đối thủ',
+      'Phân tích chiến dịch, báo cáo',
     ],
-    hardware: 'MacBook / PC văn phòng',
-    hardwareCost: 0,
-    modelChoice: 'Llama 3.1 70B hoặc Claude Sonnet',
-    apiCostPerDay: 60000,
-    localCostPerDay: 0,
-    electricPerDay: 4000,
-    breakdown: [
-      { label: 'API calls (Claude Sonnet)', cloud: '~60.000đ', local: '0đ', saving: '60.000đ' },
-      { label: 'Điện năng', cloud: '4.000đ', local: '4.000đ', saving: '0đ' },
-      { label: 'Jasper/Copy.ai (thay thế)', cloud: '150.000đ', local: '0đ', saving: '150.000đ' },
+    inputKPerDay: 120,
+    outputKPerDay: 100,
+    usageNote: '100 lượt × ~1.2K input + 1K output tokens (content dài)',
+    modelOptions: [
+      { name: 'Gemini 2.0 Flash', costPerDay: calcCloud(120, 100, 0.10, 0.40), note: 'Rẻ nhất' },
+      { name: 'GPT-4o mini', costPerDay: calcCloud(120, 100, 0.15, 0.60), note: 'Phổ biến nhất' },
+      { name: 'Claude Haiku 3.5', costPerDay: calcCloud(120, 100, 0.80, 4.00), note: 'Văn phong tự nhiên hơn' },
+      { name: 'Claude Sonnet 4', costPerDay: calcCloud(120, 100, 3.00, 15.00), note: 'Chất lượng premium' },
     ],
-    roi: 'Sản xuất content gấp 5-10x — từ 2 bài/ngày lên 10-20 bài/ngày',
+    electricPerDay: 3000,
+    localElectric: 3000,
+    roi: 'Sản xuất content 5-10x — thay Jasper/Copy.ai (~150.000-300.000đ/ngày)',
     color: '#ec4899',
   },
   {
@@ -129,23 +147,23 @@ const profiles: Profile[] = [
     title: 'Quản lý / Giám đốc',
     role: 'CEO, manager, team lead',
     dailyTasks: [
-      'Tóm tắt báo cáo, email hàng ngày',
-      'Chuẩn bị tài liệu họp, meeting notes',
-      'Theo dõi KPI đội nhóm',
-      'Phân tích dữ liệu kinh doanh',
+      '~60 lượt/ngày (báo cáo dài)',
+      'Tóm tắt email, meeting notes',
+      'Phân tích KPI, báo cáo',
+      'Soạn tài liệu chiến lược',
     ],
-    hardware: 'MacBook Pro / máy công ty',
-    hardwareCost: 0,
-    modelChoice: 'Claude Sonnet / GPT-4o (local qua EXO)',
-    apiCostPerDay: 50000,
-    localCostPerDay: 0,
-    electricPerDay: 5000,
-    breakdown: [
-      { label: 'API calls (GPT-4o)', cloud: '~50.000đ', local: '0đ', saving: '50.000đ' },
-      { label: 'Điện năng', cloud: '5.000đ', local: '5.000đ', saving: '0đ' },
-      { label: 'Thư ký AI (thay thế)', cloud: '200.000đ', local: '0đ', saving: '200.000đ' },
+    inputKPerDay: 200,   // báo cáo, tài liệu dài
+    outputKPerDay: 80,
+    usageNote: '60 lượt × ~3.3K input + 1.3K output tokens (docs dài)',
+    modelOptions: [
+      { name: 'GPT-4o mini', costPerDay: calcCloud(200, 80, 0.15, 0.60), note: 'Tiết kiệm' },
+      { name: 'Gemini 2.0 Flash', costPerDay: calcCloud(200, 80, 0.10, 0.40), note: 'Rẻ nhất' },
+      { name: 'Claude Haiku 3.5', costPerDay: calcCloud(200, 80, 0.80, 4.00), note: 'Phân tích tốt hơn' },
+      { name: 'GPT-4o', costPerDay: calcCloud(200, 80, 2.50, 10.00), note: 'Khuyên dùng cho quyết định quan trọng' },
     ],
-    roi: 'Tiết kiệm 1-2 giờ admin/ngày — focus vào quyết định chiến lược',
+    electricPerDay: 4000,
+    localElectric: 4000,
+    roi: 'Tiết kiệm 1-2 giờ admin/ngày — tương đương thư ký AI 150.000-300.000đ/ngày',
     color: '#3b82f6',
   },
   {
@@ -154,43 +172,48 @@ const profiles: Profile[] = [
     title: 'Luật sư / Tư vấn pháp lý',
     role: 'Luật sư, pháp chế doanh nghiệp',
     dailyTasks: [
+      '~40 lượt/ngày (hồ sơ rất dài)',
       'Nghiên cứu văn bản pháp luật',
-      'Soạn thảo hợp đồng, tờ trình',
-      'Tóm tắt hồ sơ vụ việc',
-      'Tra cứu án lệ, tiền lệ',
+      'Soạn hợp đồng, tờ trình',
+      'Tóm tắt hồ sơ, tra cứu án lệ',
     ],
-    hardware: 'MacBook / PC văn phòng',
-    hardwareCost: 0,
-    modelChoice: 'Llama 70B local (dữ liệu tuyệt mật)',
-    apiCostPerDay: 0,
-    localCostPerDay: 0,
-    electricPerDay: 6000,
-    breakdown: [
-      { label: 'API calls', cloud: '~70.000đ', local: '0đ', saving: '70.000đ' },
-      { label: 'Điện năng', cloud: '6.000đ', local: '6.000đ', saving: '0đ' },
-      { label: 'Rủi ro rò rỉ dữ liệu', cloud: '⚠️ Cao', local: '✅ Không', saving: 'Vô giá' },
+    inputKPerDay: 300,   // hợp đồng, hồ sơ rất dài
+    outputKPerDay: 100,
+    usageNote: '40 lượt × ~7.5K input + 2.5K output (hồ sơ dài 20-50 trang)',
+    modelOptions: [
+      { name: '⚠️ Cloud (rủi ro bảo mật)', costPerDay: calcCloud(300, 100, 0.80, 4.00), note: 'KHÔNG KHUYẾN NGHỊ — dữ liệu khách hàng lên cloud' },
+      { name: 'Claude Sonnet 4 (cloud)', costPerDay: calcCloud(300, 100, 3.00, 15.00), note: 'Mạnh nhưng vi phạm PDPA' },
+      { name: '✅ Llama 3.1 70B (local)', costPerDay: 0, note: 'KHUYẾN NGHỊ — hoàn toàn offline, bảo mật 100%' },
+      { name: '✅ DeepSeek R1 (local)', costPerDay: 0, note: 'Lý luận pháp lý xuất sắc, local hoàn toàn' },
     ],
-    roi: 'Nghiên cứu pháp lý nhanh gấp 10x — 2 giờ xuống 12 phút',
+    electricPerDay: 10000,
+    localElectric: 10000,
+    roi: 'Nghiên cứu pháp lý 10x nhanh hơn — 2 tiếng xuống 12 phút. Bảo vệ bí mật nghề nghiệp.',
     color: '#ff5c5c',
   },
 ];
 
-const DAYS_PER_MONTH = 22; // ngày làm việc
+const DAYS_PER_MONTH = 22;
 
 export const CostCalculator: React.FC = () => {
   const [selected, setSelected] = useState(0);
+  const [modelIdx, setModelIdx] = useState(0);
   const [mode, setMode] = useState<'cloud' | 'local'>('local');
 
   const profile = profiles[selected];
-  const dailyCost = mode === 'cloud'
-    ? profile.apiCostPerDay + profile.electricPerDay
-    : profile.localCostPerDay + profile.electricPerDay;
+  const selectedModel = profile.modelOptions[modelIdx] || profile.modelOptions[0];
+
+  const cloudDailyCost = selectedModel.costPerDay + profile.electricPerDay;
+  const localDailyCost = profile.localElectric;
+  const dailyCost = mode === 'cloud' ? cloudDailyCost : localDailyCost;
   const monthlyCost = dailyCost * DAYS_PER_MONTH;
   const yearlyCost = monthlyCost * 12;
-  const cloudMonthlyCost = (profile.apiCostPerDay + profile.electricPerDay) * DAYS_PER_MONTH;
-  const savingMonthly = cloudMonthlyCost - monthlyCost;
+  const savingMonthly = (cloudDailyCost - localDailyCost) * DAYS_PER_MONTH;
 
-  const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ';
+  // reset model when profile changes
+  const handleSelectProfile = (i: number) => { setSelected(i); setModelIdx(0); };
+
+  const fmt = (n: number) => n >= 1000 ? n.toLocaleString('vi-VN') + 'đ' : n + 'đ';
 
   return (
     <section className="py-24 px-6 border-t border-[#1a1a1a] bg-[#000]">
@@ -234,7 +257,7 @@ export const CostCalculator: React.FC = () => {
             {profiles.map((p, i) => (
               <button
                 key={p.id}
-                onClick={() => setSelected(i)}
+                onClick={() => handleSelectProfile(i)}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl border text-left transition-all duration-200 ${
                   selected === i
                     ? 'bg-[#0f0f0f] border-[#ff5c5c]/40 text-white'
@@ -252,12 +275,39 @@ export const CostCalculator: React.FC = () => {
 
           {/* Detail panel */}
           <div className="space-y-4">
+            {/* Model selector (cloud mode) */}
+            {mode === 'cloud' && (
+              <div className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl p-4">
+                <p className="text-xs text-[#ff5c5c] uppercase tracking-widest mb-3">› Chọn model AI</p>
+                <div className="space-y-2">
+                  {profile.modelOptions.map((m, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setModelIdx(i)}
+                      className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg border text-left transition-all text-xs ${
+                        modelIdx === i ? 'bg-[#ff5c5c]/10 border-[#ff5c5c]/30 text-white' : 'border-[#1a1a1a] text-[#606060] hover:text-white'
+                      }`}
+                    >
+                      <span className="font-mono">{m.name}</span>
+                      <div className="text-right">
+                        <span className={`font-bold ${modelIdx === i ? 'text-[#ff5c5c]' : ''}`}>
+                          {m.costPerDay === 0 ? 'Local' : fmt(m.costPerDay) + '/ngày'}
+                        </span>
+                        <span className="text-[#404040] ml-2 hidden sm:inline">{m.note}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+                <p className="text-[10px] text-[#404040] mt-3">{profile.usageNote}</p>
+              </div>
+            )}
+
             {/* Cost summary cards */}
             <div className="grid grid-cols-3 gap-3">
               {[
                 { label: 'Chi phí / Ngày', value: fmt(dailyCost), sub: `${DAYS_PER_MONTH} ngày làm/tháng` },
-                { label: 'Chi phí / Tháng', value: fmt(monthlyCost), sub: mode === 'local' ? `Tiết kiệm ${fmt(savingMonthly)}/tháng` : 'Dùng cloud API' },
-                { label: 'Chi phí / Năm', value: fmt(yearlyCost), sub: mode === 'local' ? `So với cloud: ${fmt(savingMonthly * 12)}/năm` : 'Tổng chi phí năm' },
+                { label: 'Chi phí / Tháng', value: fmt(monthlyCost), sub: mode === 'local' ? `Tiết kiệm ${fmt(savingMonthly)}/tháng` : `vs Local: tiết kiệm ${fmt(savingMonthly)}/tháng` },
+                { label: 'Chi phí / Năm', value: fmt(yearlyCost), sub: `Tiết kiệm vs cloud: ${fmt(savingMonthly * 12)}/năm` },
               ].map((item, i) => (
                 <div key={i} className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl p-4 text-center">
                   <div className="text-[10px] text-[#ff5c5c] uppercase tracking-widest mb-1">{item.label}</div>
@@ -285,27 +335,37 @@ export const CostCalculator: React.FC = () => {
 
             {/* Cost breakdown table */}
             <div className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl p-5">
-              <p className="text-xs text-[#ff5c5c] uppercase tracking-widest mb-4">› Chi tiết chi phí / ngày</p>
+              <p className="text-xs text-[#ff5c5c] uppercase tracking-widest mb-4">› So sánh chi phí / ngày</p>
               <div className="space-y-0">
                 <div className="grid grid-cols-4 gap-2 pb-2 border-b border-[#1a1a1a] mb-2">
                   <div className="text-[10px] text-[#404040] col-span-2">Khoản mục</div>
-                  <div className="text-[10px] text-[#404040] text-right">Cloud API</div>
-                  <div className="text-[10px] text-[#22c55e] text-right">Local AI</div>
+                  <div className="text-[10px] text-[#ff5c5c] text-right">☁️ Cloud</div>
+                  <div className="text-[10px] text-[#22c55e] text-right">🖥️ Local</div>
                 </div>
-                {profile.breakdown.map((row, i) => (
-                  <div key={i} className="grid grid-cols-4 gap-2 py-2 border-b border-[#111] last:border-0">
-                    <div className="text-xs text-[#a0a0a0] col-span-2">{row.label}</div>
-                    <div className="text-xs text-[#606060] text-right">{row.cloud}</div>
-                    <div className="text-xs text-[#22c55e] text-right font-medium">{row.local}</div>
-                  </div>
-                ))}
+                <div className="grid grid-cols-4 gap-2 py-2 border-b border-[#111]">
+                  <div className="text-xs text-[#a0a0a0] col-span-2">API calls ({selectedModel.name.replace('⚠️ ', '').replace('✅ ', '')})</div>
+                  <div className="text-xs text-[#ff5c5c] text-right">{fmt(selectedModel.costPerDay)}</div>
+                  <div className="text-xs text-[#22c55e] text-right font-medium">0đ</div>
+                </div>
+                <div className="grid grid-cols-4 gap-2 py-2 border-b border-[#111]">
+                  <div className="text-xs text-[#a0a0a0] col-span-2">Điện năng ({mode === 'cloud' ? 'PC nhẹ' : 'GPU/CPU chạy model'})</div>
+                  <div className="text-xs text-[#606060] text-right">{fmt(profile.electricPerDay)}</div>
+                  <div className="text-xs text-[#22c55e] text-right">{fmt(profile.localElectric)}</div>
+                </div>
+                <div className="grid grid-cols-4 gap-2 py-2 border-b border-[#111]">
+                  <div className="text-xs text-[#a0a0a0] col-span-2">OpenClaw software</div>
+                  <div className="text-xs text-[#606060] text-right">Miễn phí</div>
+                  <div className="text-xs text-[#22c55e] text-right">Miễn phí</div>
+                </div>
                 <div className="grid grid-cols-4 gap-2 pt-3 mt-1">
                   <div className="text-xs font-semibold text-white col-span-2">Tổng / ngày</div>
-                  <div className="text-xs text-[#ff5c5c] text-right font-semibold">
-                    {fmt(profile.apiCostPerDay + profile.electricPerDay)}
-                  </div>
-                  <div className="text-xs text-[#22c55e] text-right font-bold">
-                    {fmt(profile.localCostPerDay + profile.electricPerDay)}
+                  <div className="text-xs text-[#ff5c5c] text-right font-bold">{fmt(cloudDailyCost)}</div>
+                  <div className="text-xs text-[#22c55e] text-right font-bold">{fmt(localDailyCost)}</div>
+                </div>
+                <div className="grid grid-cols-4 gap-2 pt-1">
+                  <div className="text-xs text-[#404040] col-span-2">Tiết kiệm khi dùng Local</div>
+                  <div className="col-span-2 text-right text-xs font-semibold text-[#22c55e]">
+                    {fmt(savingMonthly)}/tháng · {fmt(savingMonthly * 12)}/năm
                   </div>
                 </div>
               </div>
