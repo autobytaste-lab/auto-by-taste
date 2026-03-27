@@ -301,6 +301,194 @@ export const en = {
         ],
       },
       {
+        id: 'ecommerce',
+        name: 'E-commerce / Online Shop',
+        icon: '🛒',
+        description: 'AI Agent organizational model for online shops, optimizing multi-channel sales and customer service',
+        boss: {
+          title: 'CEO / Online Shop Owner',
+          icon: '🛒',
+          description: 'Manage all shop operations, track sales performance and make strategic decisions',
+        },
+        departments: [
+          {
+            name: 'Sales Department',
+            agents: [
+              {
+                name: 'Sales Agent',
+                icon: '💬',
+                role: 'AI Sales Consultant',
+                tasks: [
+                  'Advise products and close orders automatically',
+                  'Reply inbox on Shopee, Lazada, TikTok Shop',
+                  'Smart upsell & cross-sell',
+                  'Follow up abandoned carts',
+                ],
+              },
+              {
+                name: 'Order Agent',
+                icon: '📦',
+                role: 'Order Processing',
+                tasks: [
+                  'Confirm and process orders automatically',
+                  'Update shipping status in real-time',
+                  'Handle returns and exchanges',
+                  'Notify customers on delivery',
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Marketing Department',
+            agents: [
+              {
+                name: 'Content Agent',
+                icon: '✍️',
+                role: 'Content Producer',
+                tasks: [
+                  'Write product content for multi-channel',
+                  'Auto-post to Facebook, TikTok, Instagram',
+                  'Create compelling captions from product images',
+                  'Schedule posts at peak engagement hours',
+                ],
+              },
+              {
+                name: 'Ads Agent',
+                icon: '📣',
+                role: 'Automated Advertising',
+                tasks: [
+                  'Run Facebook & TikTok Ads campaigns',
+                  'Optimize CPA and ROAS by budget',
+                  'Auto A/B test creatives',
+                  'Real-time campaign performance reports',
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Customer Service',
+            agents: [
+              {
+                name: 'Support Agent',
+                icon: '🎧',
+                role: 'Customer Support',
+                tasks: [
+                  'Reply inbox and resolve complaints',
+                  'Handle exchange/return/refund requests',
+                  'Track NPS and satisfaction levels',
+                  'Re-engage past customers with reminders',
+                ],
+              },
+              {
+                name: 'Review Agent',
+                icon: '⭐',
+                role: 'Review Management',
+                tasks: [
+                  'Monitor and respond to product reviews',
+                  'Encourage customers to leave 5-star reviews',
+                  'Analyze feedback to improve products',
+                  'Handle negative reviews professionally',
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'startup',
+        name: 'Tech Startup',
+        icon: '💻',
+        description: 'AI Agent organizational model for tech startups, accelerating product development and growth',
+        boss: {
+          title: 'CTO / Co-founder',
+          icon: '💻',
+          description: 'Set technical direction, make architecture decisions and drive product growth strategy',
+        },
+        departments: [
+          {
+            name: 'Engineering',
+            agents: [
+              {
+                name: 'Dev Agent',
+                icon: '👨‍💻',
+                role: 'AI Software Engineer',
+                tasks: [
+                  'Automated code review and bug fixing',
+                  'Write unit tests and integration tests',
+                  'Generate technical documentation from code',
+                  'Suggest refactoring and improvements',
+                ],
+              },
+              {
+                name: 'DevOps Agent',
+                icon: '🔧',
+                role: 'DevOps & Infrastructure',
+                tasks: [
+                  'Auto-deploy to staging/production',
+                  'Monitor uptime and alert incidents',
+                  'Optimize infrastructure costs',
+                  'Manage CI/CD pipelines',
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Product',
+            agents: [
+              {
+                name: 'PM Agent',
+                icon: '📋',
+                role: 'AI Product Manager',
+                tasks: [
+                  'Manage backlog and sprint planning',
+                  'Auto-write PRDs and user stories',
+                  'Track progress and update stakeholders',
+                  'Analyze feature requests from users',
+                ],
+              },
+              {
+                name: 'QA Agent',
+                icon: '✅',
+                role: 'Quality Assurance',
+                tasks: [
+                  'Run test automation after each deploy',
+                  'Report bugs and regression testing',
+                  'Check UX/UI against checklist',
+                  'Automated performance testing',
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Growth',
+            agents: [
+              {
+                name: 'Marketing Agent',
+                icon: '📈',
+                role: 'Growth Marketing',
+                tasks: [
+                  'Write technical blog content & SEO',
+                  'Manage startup social media',
+                  'Email marketing and lead nurturing',
+                  'Competitor analysis and positioning',
+                ],
+              },
+              {
+                name: 'Analytics Agent',
+                icon: '📊',
+                role: 'Data Analytics',
+                tasks: [
+                  'Analyze user behavior data',
+                  'Auto-generate KPI dashboards',
+                  'A/B testing and result analysis',
+                  'Weekly cohort and retention reports',
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
         id: 'law',
         name: 'Legal Consulting Firm',
         icon: '⚖️',

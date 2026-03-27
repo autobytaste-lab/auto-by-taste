@@ -311,6 +311,194 @@ export const vi: Translation = {
         ],
       },
       {
+        id: 'ecommerce',
+        name: 'E-commerce / Shop Online',
+        icon: '🛒',
+        description: 'Mô hình tổ chức AI Agent cho shop online, tối ưu bán hàng đa kênh và chăm sóc khách hàng',
+        boss: {
+          title: 'CEO / Chủ shop online',
+          icon: '🛒',
+          description: 'Quản lý toàn bộ hoạt động shop, theo dõi doanh số và quyết định chiến lược',
+        },
+        departments: [
+          {
+            name: 'Phòng Bán hàng',
+            agents: [
+              {
+                name: 'Sales Agent',
+                icon: '💬',
+                role: 'Nhân viên tư vấn AI',
+                tasks: [
+                  'Tư vấn sản phẩm và chốt đơn tự động',
+                  'Trả lời inbox Shopee, Lazada, TikTok Shop',
+                  'Upsell & cross-sell thông minh',
+                  'Theo dõi giỏ hàng bỏ dở',
+                ],
+              },
+              {
+                name: 'Order Agent',
+                icon: '📦',
+                role: 'Xử lý đơn hàng',
+                tasks: [
+                  'Xác nhận và xử lý đơn hàng tự động',
+                  'Cập nhật trạng thái vận chuyển',
+                  'Xử lý đơn hoàn, đổi trả',
+                  'Thông báo giao hàng cho khách',
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Phòng Marketing',
+            agents: [
+              {
+                name: 'Content Agent',
+                icon: '✍️',
+                role: 'Sản xuất nội dung',
+                tasks: [
+                  'Viết content sản phẩm cho đa kênh',
+                  'Đăng bài Facebook, TikTok, Instagram tự động',
+                  'Tạo caption hấp dẫn từ hình ảnh sản phẩm',
+                  'Lên lịch đăng bài theo giờ vàng',
+                ],
+              },
+              {
+                name: 'Ads Agent',
+                icon: '📣',
+                role: 'Quảng cáo tự động',
+                tasks: [
+                  'Chạy quảng cáo Facebook & TikTok Ads',
+                  'Tối ưu CPA và ROAS theo ngân sách',
+                  'A/B test creative tự động',
+                  'Báo cáo hiệu quả chiến dịch real-time',
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Phòng CSKH',
+            agents: [
+              {
+                name: 'Support Agent',
+                icon: '🎧',
+                role: 'Chăm sóc khách hàng',
+                tasks: [
+                  'Trả lời inbox và giải quyết khiếu nại',
+                  'Xử lý yêu cầu đổi/trả/hoàn tiền',
+                  'Theo dõi NPS và mức độ hài lòng',
+                  'Nhắc nhở mua lại cho khách cũ',
+                ],
+              },
+              {
+                name: 'Review Agent',
+                icon: '⭐',
+                role: 'Quản lý đánh giá',
+                tasks: [
+                  'Theo dõi và phản hồi đánh giá sản phẩm',
+                  'Kêu gọi khách để lại đánh giá 5 sao',
+                  'Phân tích feedback để cải thiện sản phẩm',
+                  'Xử lý đánh giá tiêu cực chuyên nghiệp',
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'startup',
+        name: 'Startup Công nghệ',
+        icon: '💻',
+        description: 'Mô hình tổ chức AI Agent cho startup công nghệ, tăng tốc phát triển sản phẩm và tăng trưởng',
+        boss: {
+          title: 'CTO / Co-founder',
+          icon: '💻',
+          description: 'Định hướng kỹ thuật, ra quyết định kiến trúc và chiến lược tăng trưởng sản phẩm',
+        },
+        departments: [
+          {
+            name: 'Engineering',
+            agents: [
+              {
+                name: 'Dev Agent',
+                icon: '👨‍💻',
+                role: 'Kỹ sư phần mềm AI',
+                tasks: [
+                  'Code review tự động và fix bugs',
+                  'Viết unit tests và integration tests',
+                  'Tạo tài liệu kỹ thuật từ code',
+                  'Đề xuất refactoring và cải tiến',
+                ],
+              },
+              {
+                name: 'DevOps Agent',
+                icon: '🔧',
+                role: 'DevOps & Infrastructure',
+                tasks: [
+                  'Tự động deploy lên staging/production',
+                  'Monitor uptime và alert sự cố',
+                  'Tối ưu infrastructure chi phí',
+                  'Quản lý CI/CD pipeline',
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Product',
+            agents: [
+              {
+                name: 'PM Agent',
+                icon: '📋',
+                role: 'Product Manager AI',
+                tasks: [
+                  'Quản lý backlog và sprint planning',
+                  'Viết PRD và user stories tự động',
+                  'Theo dõi tiến độ và cập nhật stakeholders',
+                  'Phân tích feature requests từ users',
+                ],
+              },
+              {
+                name: 'QA Agent',
+                icon: '✅',
+                role: 'Quality Assurance',
+                tasks: [
+                  'Chạy test automation sau mỗi deploy',
+                  'Báo cáo bugs và regression testing',
+                  'Kiểm tra UX/UI theo checklist',
+                  'Performance testing tự động',
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Growth',
+            agents: [
+              {
+                name: 'Marketing Agent',
+                icon: '📈',
+                role: 'Growth Marketing',
+                tasks: [
+                  'Viết content blog kỹ thuật & SEO',
+                  'Quản lý social media cho startup',
+                  'Email marketing và nurturing leads',
+                  'Phân tích competitor và positioning',
+                ],
+              },
+              {
+                name: 'Analytics Agent',
+                icon: '📊',
+                role: 'Data Analytics',
+                tasks: [
+                  'Phân tích dữ liệu user behavior',
+                  'Tạo dashboard KPI tự động',
+                  'A/B testing và phân tích kết quả',
+                  'Báo cáo cohort và retention weekly',
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
         id: 'law',
         name: 'Công ty Tư vấn Luật',
         icon: '⚖️',

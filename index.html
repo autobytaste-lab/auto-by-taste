@@ -243,6 +243,37 @@
             color: white;
         }
 
+        /* Org Chart animated data flow */
+        @keyframes flow-down {
+            0% { transform: translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(60px); opacity: 0; }
+        }
+        @keyframes packet-flow {
+            0% { top: 0; opacity: 0; }
+            15% { opacity: 1; }
+            85% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        .flow-packet {
+            animation: packet-flow 2s ease-in-out infinite;
+        }
+        @keyframes online-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(48, 209, 88, 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(48, 209, 88, 0); }
+        }
+        .online-pulse {
+            animation: online-pulse 2s ease-in-out infinite;
+        }
+        @keyframes icon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        .dept-icon-pulse {
+            animation: icon-pulse 1.5s ease-in-out infinite;
+        }
+
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
