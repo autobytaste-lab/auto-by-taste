@@ -83,6 +83,42 @@ const showcases: ShowcaseItem[] = [
     story: 'Cài OpenClaw trên Pi với Cloudflare tunnel, kết nối WHOOP để theo dõi sức khỏe hàng ngày. Xây 1 website hoàn chỉnh từ điện thoại trong vài phút. Cảm giác như phép màu.',
     tags: ['Raspberry Pi', 'Self-hosted', 'DIY'],
   },
+  {
+    avatar: 'QL',
+    name: 'Quỳnh Lan',
+    role: 'Chủ shop mỹ phẩm · TP.HCM',
+    emoji: '💄',
+    highlight: 'AI tự gửi tin nhắn cảm ơn + mã giảm giá cho 200 khách sau mua hàng',
+    story: 'Trước đây mỗi tối tôi phải ngồi copy-paste tin nhắn cảm ơn cho từng khách. Giờ AI đọc lịch sử chat Zalo, tự nhận ra ai vừa mua, gửi tin cá nhân hóa theo tên và sản phẩm họ đã mua. 200 khách/ngày, tôi không cần làm gì. Tỉ lệ mua lại tăng 35%.',
+    tags: ['Zalo cá nhân', 'CSKH tự động', 'Mỹ phẩm'],
+  },
+  {
+    avatar: 'TH',
+    name: 'Thanh Hùng',
+    role: 'Quản lý cộng đồng · Hà Nội',
+    emoji: '👥',
+    highlight: 'Quản lý 5 group Zalo với 3.000+ thành viên — AI lo hết spam và nội quy',
+    story: 'Tôi chạy 5 group Zalo cho cộng đồng AI Việt Nam. Trước mỗi tuần phải thủ công kick spam, nhắc nội quy, ghim thông báo mới. Giờ AI theo dõi tự động — phát hiện spam trong vài giây, kick, block, ghim thông báo. Tôi chỉ cần duyệt quyết định cuối.',
+    tags: ['Zalo group', 'Quản lý cộng đồng', 'Anti-spam'],
+  },
+  {
+    avatar: 'NK',
+    name: 'Ngọc Khánh',
+    role: 'Sales Manager · TP.HCM',
+    emoji: '📊',
+    highlight: 'Phân tích 1.000+ tin nhắn Zalo mỗi tuần — AI tóm tắt insight khách hàng',
+    story: 'Team sales của tôi có 8 người, mỗi ngày nhắn hàng trăm tin Zalo với khách. Tôi không thể đọc hết. AI đọc toàn bộ lịch sử chat local, tóm tắt: khách nào đang phân vân, khách nào sắp chốt, chủ đề nào khách hay hỏi nhất. Cuối tuần nhận 1 báo cáo, biết ngay team cần cải thiện gì.',
+    tags: ['Zalo analytics', 'Sales insight', 'DB local'],
+  },
+  {
+    avatar: 'PD',
+    name: 'Phú Đạt',
+    role: 'Chủ agency digital · Đà Nẵng',
+    emoji: '🚀',
+    highlight: 'Tạo và quản lý group VIP cho 50 khách hàng mỗi tháng — hoàn toàn tự động',
+    story: 'Mỗi tháng tôi có ~50 khách hàng mới. Trước đây phải tay tạo từng group Zalo riêng, thêm khách vào, gửi tài liệu onboarding. Mất 2 tiếng. Giờ AI làm trong 10 phút: tạo group, đặt tên đúng format, thêm khách vào, ghim tài liệu, gửi tin chào. Tôi chỉ approve danh sách.',
+    tags: ['Zalo group automation', 'Agency', 'Onboarding'],
+  },
 ];
 
 const avatarColors = [

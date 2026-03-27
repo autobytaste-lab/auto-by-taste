@@ -133,6 +133,50 @@ const scenarios: Scenario[] = [
       },
     ],
   },
+  {
+    industry: '👥 Quản lý Group Zalo',
+    demo: [
+      { role: 'user', msg: 'Tạo group Zalo cho khách hàng VIP tháng này và gửi thông báo ưu đãi' },
+      {
+        role: 'agent',
+        msg: '✅ Đã tạo group "VIP Tháng 3" với 28 thành viên. Đổi tên group, ghim thông báo ưu đãi lên đầu. Đã gửi tin nhắn cá nhân cho từng thành viên kèm mã giảm giá riêng. Bật link mời group để share thêm.',
+        tools: ['zalo_group_create', 'zalo_group_rename', 'zalo_msg_send', 'zalo_msg_pin', 'zalo_group_link'],
+      },
+    ],
+  },
+  {
+    industry: '🔍 Phân tích Chat Zalo',
+    demo: [
+      { role: 'user', msg: 'Phân tích lịch sử chat nhóm kinh doanh tuần này — ai active, chủ đề nào nhiều nhất?' },
+      {
+        role: 'agent',
+        msg: '📊 Phân tích 847 tin nhắn trong 7 ngày. Top active: Minh Anh (142 msg), Tuấn (98 msg), Hoa (87 msg). Chủ đề hot: đơn hàng (34%), sản phẩm mới (28%), khiếu nại (12%). 3 tin nhắn quan trọng chưa được phản hồi — đã highlight để xử lý.',
+        tools: ['zalo_db_messages', 'memory_search', 'exec'],
+      },
+    ],
+  },
+  {
+    industry: '🤝 Chăm Sóc Khách Hàng Zalo',
+    demo: [
+      { role: 'user', msg: 'Kiểm tra khách nào chưa được follow up sau khi mua hàng và gửi tin nhắn cảm ơn' },
+      {
+        role: 'agent',
+        msg: '💌 Tìm thấy 23 khách mua hàng trong 7 ngày chưa nhận tin cảm ơn. Đã gửi tin nhắn cá nhân hóa theo tên và sản phẩm đã mua. React ❤️ vào các tin nhắn feedback tích cực. 5 khách có phản hồi xấu — đã chuyển cho manager xử lý.',
+        tools: ['zalo_db_chat', 'zalo_msg_send', 'zalo_msg_react', 'friend_list'],
+      },
+    ],
+  },
+  {
+    industry: '📋 Quản lý Cộng đồng Zalo',
+    demo: [
+      { role: 'user', msg: 'Dọn dẹp group Zalo cộng đồng: xóa thành viên spam và ghim thông báo mới' },
+      {
+        role: 'agent',
+        msg: '🛡️ Phát hiện 4 thành viên spam (3 người gửi link lạ, 1 người flood tin nhắn). Đã xóa khỏi group. Ghim thông báo nội quy mới lên đầu. Block 2 tài khoản vào danh sách chặn. Group hiện còn 312 thành viên active.',
+        tools: ['zalo_group_members', 'zalo_group_remove', 'zalo_msg_pin', 'zalo_group_blocked'],
+      },
+    ],
+  },
 ];
 
 export const UseCaseScenarios: React.FC = () => {
