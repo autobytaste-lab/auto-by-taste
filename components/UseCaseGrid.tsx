@@ -18,8 +18,8 @@ const usecases = [
         <circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" />
       </svg>
     ),
-    title: 'Lm Vic 24/7 Khng Ngh',
-    desc: 'AI Agent lm vic lin tc 24 gi, 7 ngy  khng lng, khng ngh php, khng bo him. Lun sn sng phc v.',
+    title: 'Làm Việc 24/7 Không Nghỉ',
+    desc: 'AI Agent làm việc liên tục 24 giờ, 7 ngày — không lương, không nghỉ phép, không bảo hiểm. Luôn sẵn sàng phục vụ.',
   },
   {
     icon: (
@@ -29,8 +29,8 @@ const usecases = [
         <LobeIcon name="whatsapp" />
       </div>
     ),
-    title: 'Phc V Mi Knh',
-    desc: 'AI Agent tr li khch hng qua Telegram, Zalo, WhatsApp, Discord  tt c knh cng lc, khng b st.',
+    title: 'Phục Vụ Mọi Kênh',
+    desc: 'AI Agent trả lời khách hàng qua Telegram, Zalo, WhatsApp, Discord — tất cả kênh cùng lúc, không bỏ sót.',
   },
   {
     icon: (
@@ -38,8 +38,8 @@ const usecases = [
         <path d="M12 2a7 7 0 017 7c0 3-2 5-3 7h-8c-1-2-3-4-3-7a7 7 0 017-7z" /><path d="M9 16v2a3 3 0 006 0v-2" />
       </svg>
     ),
-    title: 'B Nh Lin Tc',
-    desc: 'Agent nh mi th  khch hng, lch s, quy trnh. Khng cn nhc li, khng mt context.',
+    title: 'Bộ Nhớ Liên Tục',
+    desc: 'Agent nhớ mọi thứ — khách hàng, lịch sử, quy trình. Không cần nhắc lại, không mất context.',
   },
   {
     icon: (
@@ -47,8 +47,8 @@ const usecases = [
         <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8" /><path d="M12 17v4" /><circle cx="12" cy="10" r="3" />
       </svg>
     ),
-    title: 'iu Khin Trnh Duyt',
-    desc: 'T ng fill form, scrape data, submit, chp screenshot. AI lm c tt c nhng g con ngi lm trn web.',
+    title: 'Điều Khiển Trình Duyệt',
+    desc: 'Tự động fill form, scrape data, submit, chụp screenshot. AI làm được tất cả những gì con người làm trên web.',
   },
   {
     icon: (
@@ -57,7 +57,7 @@ const usecases = [
       </svg>
     ),
     title: 'Full System Access',
-    desc: 'c/ghi file, chy scripts, gi API. Agent thao tc trc tip trn h thng  sandbox hoc ton quyn.',
+    desc: 'Đọc/ghi file, chạy scripts, gọi API. Agent thao tác trực tiếp trên hệ thống — sandbox hoặc toàn quyền.',
   },
   {
     icon: (
@@ -67,8 +67,8 @@ const usecases = [
         <LobeIcon name="slack" />
       </div>
     ),
-    title: 'Skills & Tch Hp',
-    desc: 'Hng trm Skills sn c. T vit skill mi bng markdown. Tch hp bt k tool no qua MCP/API.',
+    title: 'Skills & Tích Hợp',
+    desc: 'Hàng trăm Skills sẵn có. Tự viết skill mới bằng markdown. Tích hợp bất kỳ tool nào qua MCP/API.',
   },
 ];
 
@@ -79,11 +79,11 @@ export const UseCaseGrid: React.FC = () => {
         {/* Section header */}
         <div className="mb-16 text-center">
           <p className="text-xs font-medium text-[#4ade80] tracking-[0.2em] uppercase mb-4">
-             AI Agent Lm c G?
+            › AI Agent Làm Được Gì?
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-white tracking-tight">
-            Nhn s AI.<br />
-            <span className="text-[#707070]">Mi tc v. 24/7.</span>
+            Nhân sự AI.<br />
+            <span className="text-[#707070]">Mọi tác vụ. 24/7.</span>
           </h2>
         </div>
 
