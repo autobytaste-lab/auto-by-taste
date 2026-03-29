@@ -17,7 +17,6 @@ import { DisclaimerPage } from './components/DisclaimerPage';
 import { CostCalculator } from './components/CostCalculator';
 import { IndustrySolutions } from './components/IndustrySolutions';
 import { ShowcaseSection } from './components/ShowcaseSection';
-import ParticleBackground from './components/particles/ParticleBackground';
 import { DocsPage } from './components/DocsPage';
 import { BlogPage } from './components/BlogPage';
 import { BlogPost } from './components/BlogPost';
@@ -27,8 +26,6 @@ import { DemoChatSection } from './components/DemoChatSection';
 function HomePage() {
   return (
     <div className="min-h-screen flex flex-col relative">
-      <ParticleBackground />
-
       <Navbar />
       <main className="flex-grow pt-16">
         <section id="overview">

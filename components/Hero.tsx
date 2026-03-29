@@ -14,7 +14,7 @@ export const Hero: React.FC = () => {
 
         {/* H1 */}
         <h1 className="text-6xl lg:text-[88px] font-bold text-white mb-4 leading-[1.0] tracking-[-0.04em]">
-          AutoByTaste
+          AutoBy<span className="text-gradient">Taste</span>
         </h1>
 
         {/* Red uppercase tagline */}
