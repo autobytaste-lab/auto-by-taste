@@ -50,8 +50,8 @@ export const ChipComparison: React.FC = () => {
   const activeChip = chartData[activeIndex]?.chip;
 
   const colors = {
-    cpuCores: '#ff5c5c',
-    gpuCores: '#ff7070',
+    cpuCores: '#4ade80',
+    gpuCores: '#86efac',
     memoryBandwidth: '#14b8a6',
     maxMemory: '#838387'
   };
@@ -119,7 +119,7 @@ export const ChipComparison: React.FC = () => {
           {/* Chart Section */}
           <div className="lg:col-span-7 bg-[#161920] p-6 lg:p-10 rounded-[28px] border border-[#1e2028]">
             <h4 className="text-[#f4f4f5] font-medium mb-8 flex items-center text-sm">
-              <span className="w-2 h-2 bg-[#ff5c5c] rounded-full mr-3"></span>
+              <span className="w-2 h-2 bg-[#4ade80] rounded-full mr-3"></span>
               Thông số kỹ thuật
             </h4>
             <div className="h-[380px] w-full">
@@ -180,7 +180,7 @@ export const ChipComparison: React.FC = () => {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-[#f4f4f5] tracking-[-0.02em]">{activeChip.name}</h3>
-                    <p className="text-[#ff5c5c] font-medium uppercase tracking-widest text-xs">
+                    <p className="text-[#4ade80] font-medium uppercase tracking-widest text-xs">
                       {activeChip.generation} • {activeChip.processNode}
                     </p>
                     {getPerformanceUplift(activeChip.id) && (
@@ -218,8 +218,8 @@ export const ChipComparison: React.FC = () => {
                         <span className="text-[#f4f4f5] font-semibold">{activeChip.cpuCores.efficiency}</span>
                       </div>
                       <div className="flex justify-between items-center pt-2 border-t border-[#1e2028]">
-                        <span className="text-[#ff5c5c] text-sm font-medium">Tổng</span>
-                        <span className="text-[#ff5c5c] font-semibold">{activeChip.cpuCores.total}</span>
+                        <span className="text-[#4ade80] text-sm font-medium">Tổng</span>
+                        <span className="text-[#4ade80] font-semibold">{activeChip.cpuCores.total}</span>
                       </div>
                     </div>
                   </div>
@@ -252,7 +252,7 @@ export const ChipComparison: React.FC = () => {
                     onClick={() => setActiveIndex(idx)}
                     className={`p-3 rounded-xl border text-xs font-medium transition-all duration-300 ${
                       idx === activeIndex
-                        ? 'bg-[#ff5c5c] border-[#ff5c5c] text-[#f4f4f5]'
+                        ? 'bg-[#4ade80] border-[#4ade80] text-[#f4f4f5]'
                         : 'bg-[#161920] border-[#1e2028] text-[#838387] hover:border-[#2e3040]'
                     }`}
                   >

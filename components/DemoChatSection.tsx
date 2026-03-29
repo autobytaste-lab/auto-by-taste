@@ -121,7 +121,7 @@ const ChatBubble: React.FC<{ message: ChatMessage; animate: boolean }> = ({ mess
   if (message.role === 'user') {
     return (
       <div className={`flex justify-end ${animate ? 'animate-fade-in-up' : ''}`}>
-        <div className="max-w-[85%] bg-[#ff5c5c] text-white rounded-2xl rounded-tr-sm px-4 py-2.5 text-[13px] leading-relaxed whitespace-pre-line">
+        <div className="max-w-[85%] bg-[#4ade80] text-white rounded-2xl rounded-tr-sm px-4 py-2.5 text-[13px] leading-relaxed whitespace-pre-line">
           {message.text}
         </div>
       </div>
@@ -260,7 +260,7 @@ export const DemoChatSection: React.FC = () => {
             <div className="bg-[#0a0a0a] border border-[#1e1e1e] rounded-2xl overflow-hidden shadow-2xl">
               {/* Chat header */}
               <div className="flex items-center space-x-3 px-5 py-3 border-b border-[#1e1e1e] bg-[#0f0f0f]">
-                <div className="w-3 h-3 rounded-full bg-[#ff5c5c]" />
+                <div className="w-3 h-3 rounded-full bg-[#4ade80]" />
                 <div className="w-3 h-3 rounded-full bg-[#f59e0b]" />
                 <div className="w-3 h-3 rounded-full bg-[#22c55e]" />
                 <span className="text-xs text-[#555] ml-2 font-medium">{currentScenario.label} — OpenClaw Chat</span>

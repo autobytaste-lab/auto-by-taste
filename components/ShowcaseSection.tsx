@@ -122,7 +122,7 @@ const showcases: ShowcaseItem[] = [
 ];
 
 const avatarColors = [
-  'bg-[#ff5c5c]', 'bg-[#14b8a6]', 'bg-[#8b5cf6]', 'bg-[#f59e0b]',
+  'bg-[#4ade80]', 'bg-[#14b8a6]', 'bg-[#8b5cf6]', 'bg-[#f59e0b]',
   'bg-[#22c55e]', 'bg-[#3b82f6]', 'bg-[#ec4899]', 'bg-[#ff7c5c]',
 ];
 
@@ -134,7 +134,7 @@ export const ShowcaseSection: React.FC = () => {
       <div className="max-w-[980px] mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <p className="text-xs font-medium text-[#ff5c5c] tracking-[0.2em] uppercase mb-4">
+          <p className="text-xs font-medium text-[#4ade80] tracking-[0.2em] uppercase mb-4">
             › Showcase
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight mb-3">
@@ -151,7 +151,7 @@ export const ShowcaseSection: React.FC = () => {
           {showcases.map((item, i) => (
             <div
               key={i}
-              className="break-inside-avoid bg-[#0f0f0f] border border-[#1a1a1a] rounded-2xl p-5 hover:border-[#ff5c5c]/20 transition-all duration-300 cursor-pointer"
+              className="break-inside-avoid bg-[#0f0f0f] border border-[#1a1a1a] rounded-2xl p-5 hover:border-[#4ade80]/20 transition-all duration-300 cursor-pointer"
               onClick={() => setExpanded(expanded === i ? null : i)}
             >
               {/* Header */}
@@ -181,14 +181,14 @@ export const ShowcaseSection: React.FC = () => {
               {/* Tags */}
               <div className="flex flex-wrap gap-1.5 mt-3">
                 {item.tags.map((tag) => (
-                  <span key={tag} className="px-2 py-0.5 text-[10px] rounded-full bg-[#ff5c5c]/8 text-[#ff9090] border border-[#ff5c5c]/15">
+                  <span key={tag} className="px-2 py-0.5 text-[10px] rounded-full bg-[#4ade80]/8 text-[#86efac] border border-[#4ade80]/15">
                     {tag}
                   </span>
                 ))}
               </div>
 
               {/* Read more toggle */}
-              <button className="mt-3 text-[10px] text-[#404040] hover:text-[#ff5c5c] transition-colors">
+              <button className="mt-3 text-[10px] text-[#404040] hover:text-[#4ade80] transition-colors">
                 {expanded === i ? '▲ Thu gọn' : '▼ Xem chi tiết'}
               </button>
             </div>
@@ -206,7 +206,7 @@ export const ShowcaseSection: React.FC = () => {
               href="https://t.me/agentic_ai_vn"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 bg-[#ff5c5c] hover:bg-[#ff7070] text-white text-sm font-semibold rounded-full transition-all"
+              className="px-5 py-2.5 bg-[#4ade80] hover:bg-[#86efac] text-white text-sm font-semibold rounded-full transition-all"
             >
               Tham gia cộng đồng →
             </a>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { blogPosts, categories } from '../data/blogPosts';
 
 const categoryColors: Record<string, string> = {
-  'OpenClaw': 'text-[#ff5c5c] bg-[#ff5c5c]/10 border-[#ff5c5c]/20',
+  'OpenClaw': 'text-[#4ade80] bg-[#4ade80]/10 border-[#4ade80]/20',
   'LLM': 'text-[#a78bfa] bg-[#a78bfa]/10 border-[#a78bfa]/20',
   'AI Agent': 'text-[#34d399] bg-[#34d399]/10 border-[#34d399]/20',
   'Hướng dẫn': 'text-[#fbbf24] bg-[#fbbf24]/10 border-[#fbbf24]/20',
@@ -34,13 +34,13 @@ export const BlogPage: React.FC = () => {
           </Link>
 
           <div className="mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#ff5c5c]/20 bg-[#ff5c5c]/5 mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff5c5c] animate-pulse" />
-              <span className="text-[#ff5c5c] text-xs font-medium tracking-wide uppercase">Blog</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#4ade80]/20 bg-[#4ade80]/5 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] animate-pulse" />
+              <span className="text-[#4ade80] text-xs font-medium tracking-wide uppercase">Blog</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
               Kiến thức AI &<br />
-              <span className="text-[#ff5c5c]">Hướng dẫn thực tế</span>
+              <span className="text-[#4ade80]">Hướng dẫn thực tế</span>
             </h1>
             <p className="text-[#666] text-lg max-w-xl leading-relaxed">
               Hiểu về AI Agent, LLM, và cách tận dụng OpenClaw để tự động hoá công việc của bạn.
@@ -55,7 +55,7 @@ export const BlogPage: React.FC = () => {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-full text-xs font-medium border transition-all duration-200 ${
                   activeCategory === cat
-                    ? 'bg-[#ff5c5c] text-white border-[#ff5c5c] shadow-lg shadow-[#ff5c5c]/20'
+                    ? 'bg-[#4ade80] text-white border-[#4ade80] shadow-lg shadow-[#4ade80]/20'
                     : 'border-[#222] text-[#888] hover:text-white hover:border-[#444] bg-transparent'
                 }`}
               >
@@ -74,7 +74,7 @@ export const BlogPage: React.FC = () => {
               <Link
                 key={post.slug}
                 to={`/blog/${post.slug}`}
-                className="group block bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl overflow-hidden hover:border-[#ff5c5c]/30 transition-all duration-300 hover:shadow-xl hover:shadow-[#ff5c5c]/5 hover:-translate-y-1"
+                className="group block bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl overflow-hidden hover:border-[#4ade80]/30 transition-all duration-300 hover:shadow-xl hover:shadow-[#4ade80]/5 hover:-translate-y-1"
               >
                 {/* Card Header */}
                 <div className="p-6">
@@ -92,7 +92,7 @@ export const BlogPage: React.FC = () => {
                   </div>
 
                   {/* Title */}
-                  <h2 className="text-white font-bold text-base leading-snug mb-3 group-hover:text-[#ff5c5c] transition-colors duration-200 line-clamp-2">
+                  <h2 className="text-white font-bold text-base leading-snug mb-3 group-hover:text-[#4ade80] transition-colors duration-200 line-clamp-2">
                     {post.title}
                   </h2>
 
@@ -105,7 +105,7 @@ export const BlogPage: React.FC = () => {
                 {/* Card Footer */}
                 <div className="px-6 pb-5 flex items-center justify-between">
                   <span className="text-[#444] text-xs">{formatDate(post.publishedAt)}</span>
-                  <span className="text-[#ff5c5c] text-xs font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                  <span className="text-[#4ade80] text-xs font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
                     Đọc bài
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

@@ -13,15 +13,15 @@ export const Footer: React.FC = () => {
             <div className="mb-6">
               <a href="/" className="flex items-center space-x-2 group w-fit">
                 <img src="/logo.jpg" alt="AutoByTaste" className="w-9 h-9 rounded-full object-cover group-hover:opacity-80 transition-opacity" />
-                <span className="text-xl font-bold text-white tracking-tight group-hover:text-[#ff5c5c] transition-colors">AutoByTaste</span>
+                <span className="text-xl font-bold text-white tracking-tight group-hover:text-[#4ade80] transition-colors">AutoByTaste</span>
               </a>
-              <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-8">Cho thuê AI Agent · 24/7</span>
+              <span className="text-[10px] text-[#4ade80] font-medium tracking-widest uppercase ml-8">Cho thuê AI Agent · 24/7</span>
             </div>
             <p className="text-[#838387] max-w-sm leading-relaxed mb-6 text-sm">
               {t.footer.brandDescription}
             </p>
             <div className="flex flex-wrap gap-2">
-              <a href="https://zalo.me/0337776435" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#ff5c5c]/10 hover:bg-[#ff5c5c]/15 border border-[#ff5c5c]/15 rounded-full text-xs font-medium text-[#ff5c5c] transition-all duration-300">
+              <a href="https://zalo.me/0337776435" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#4ade80]/10 hover:bg-[#4ade80]/15 border border-[#4ade80]/15 rounded-full text-xs font-medium text-[#4ade80] transition-all duration-300">
                 {t.footer.zaloLink}
               </a>
               <a href="https://t.me/agentic_ai_vn" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#14b8a6]/10 hover:bg-[#14b8a6]/15 border border-[#14b8a6]/15 rounded-full text-xs font-medium text-[#14b8a6] transition-all duration-300">
@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
               <li>{t.footer.email}</li>
               <li className="flex flex-col space-y-1">
                 <span className="text-[#838387] font-medium">{t.footer.founderLabel}</span>
-                <a href="tel:0337776435" className="text-[#ff5c5c] font-semibold text-lg hover:underline transition-all">{t.footer.phone}</a>
+                <a href="tel:0337776435" className="text-[#4ade80] font-semibold text-lg hover:underline transition-all">{t.footer.phone}</a>
               </li>
             </ul>
           </div>

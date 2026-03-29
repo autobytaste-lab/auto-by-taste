@@ -43,10 +43,10 @@ export const neuralNetworkConfig: ISourceOptions = {
   fpsLimit: 60,
   particles: {
     color: {
-      value: '#ff5c5c', // blue-400 from brand palette
+      value: '#4ade80', // blue-400 from brand palette
     },
     links: {
-      color: '#ff5c5c',
+      color: '#4ade80',
       distance: 150,
       enable: !isMobile, // disable on mobile for performance
       opacity: 0.4,
