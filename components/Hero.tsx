@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
             href="#usecases"
             className="w-full sm:w-auto px-8 py-4 text-white font-semibold rounded-full text-[15px] border border-[#2a2a2a] hover:border-[#4ade80]/40 bg-[#111]/80 backdrop-blur-sm transition-all duration-300 hover:bg-[#1a1a1a]"
           >
-            Explore Network
+            Xem đội ngũ AI mẫu
           </a>
           <a
             href="https://zalo.me/0337776435"
@@ -35,7 +35,7 @@ export const Hero: React.FC = () => {
             rel="noopener noreferrer"
             className="w-full sm:w-auto px-8 py-4 btn-gradient rounded-full text-[15px] shadow-lg shadow-[#4ade80]/20"
           >
-            Download Node
+            Tư vấn miễn phí
           </a>
         </div>
 
