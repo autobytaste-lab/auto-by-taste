@@ -97,17 +97,17 @@ function HomePage() {
       <Footer />
 
       {/* Floating action buttons — HomePage only */}
-      <div className="fixed bottom-8 right-8 z-[100] flex flex-col items-end space-y-3">
+      <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-[100] flex flex-col items-end space-y-2 sm:space-y-3">
         {/* Telegram link */}
         <a
           href="https://t.me/agentic_ai_vn"
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center space-x-2 bg-[#0f0f0f] border border-[#1e1e1e] text-[#22c55e] pl-3 pr-2 py-2 rounded-full shadow-lg hover:border-[#22c55e]/30 transition-all duration-300 hover:scale-105"
+          className="group flex items-center space-x-2 bg-[#0f0f0f] border border-[#1e1e1e] text-[#22c55e] pl-2 pr-1.5 py-1.5 sm:pl-3 sm:pr-2 sm:py-2 rounded-full shadow-lg hover:border-[#22c55e]/30 transition-all duration-300 hover:scale-105"
         >
-          <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Telegram</span>
-          <div className="w-9 h-9 bg-[#22c55e]/10 rounded-full flex items-center justify-center">
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap hidden sm:inline">Telegram</span>
+          <div className="w-7 h-7 sm:w-9 sm:h-9 bg-[#22c55e]/10 rounded-full flex items-center justify-center">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
           </div>
         </a>
 
@@ -116,12 +116,11 @@ function HomePage() {
           href="https://zalo.me/0337776435"
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center space-x-2 bg-[#4ade80] text-black pl-3 pr-2 py-2 rounded-full shadow-lg shadow-[#4ade80]/20 hover:bg-[#86efac] transition-all duration-300 hover:scale-105"
+          className="group flex items-center space-x-2 bg-[#4ade80] text-black pl-2 pr-1.5 py-1.5 sm:pl-3 sm:pr-2 sm:py-2 rounded-full shadow-lg shadow-[#4ade80]/20 hover:bg-[#86efac] transition-all duration-300 hover:scale-105"
         >
-          <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Tư vấn Zalo</span>
-          <div className="w-9 h-9 bg-black/20 rounded-full flex items-center justify-center">
-            <img src="https://img.icons8.com/color/48/zalo.png" alt="Zalo" className="w-5 h-5" />
-          </div>
+          <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap hidden sm:inline">Tư vấn Zalo</span>
+          <div className="w-7 h-7 sm:w-9 sm:h-9 bg-black/20 rounded-full flex items-center justify-center">
+            <img src="https://img.icons8.com/color/48/zalo.png" alt="Zalo" className="w-4 h-4 sm:w-5 sm:h-5" />
         </a>
 
         {/* Chat Widget */}
