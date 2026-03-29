@@ -17,7 +17,7 @@ export const DisclaimerPage: React.FC = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#000]/90 backdrop-blur-xl border-b border-[#1a1a1a] py-4">
         <div className="max-w-[860px] mx-auto px-6 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/img_6721_1774808773182.jpeg" alt="AutoByTaste" className="w-7 h-7 rounded-full object-cover" />
+            <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/img_6726_1774809379159.jpeg" alt="AutoByTaste" className="w-7 h-7 rounded-full object-cover" />
             <span className="text-sm font-bold text-white">AutoByTaste</span>
           </Link>
           <Link to="/" className="text-xs text-[#606060] hover:text-white transition-colors">← Về trang chủ</Link>
