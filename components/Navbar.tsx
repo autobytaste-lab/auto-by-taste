@@ -32,7 +32,7 @@ export const Navbar: React.FC = () => {
           {/* Logo — OptimAI style */}
           <Link to="/" className="flex flex-col group">
             <div className="flex items-center space-x-2">
-              <img src="/logo.jpg" alt="AutoByTaste" className="w-8 h-8 rounded-full object-cover group-hover:opacity-80 transition-opacity" />
+              <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/img_6721_1774808773182.jpeg" alt="AutoByTaste" className="w-8 h-8 rounded-full object-cover group-hover:opacity-80 transition-opacity" />
               <div className="flex flex-col">
                 <span className="text-base font-bold text-white tracking-tight group-hover:text-[#4ade80] transition-colors">AutoByTaste</span>
                 <span className="text-[10px] text-[#9ca3af] font-medium -mt-0.5">AI Agent · 24/7</span>
@@ -87,7 +87,7 @@ export const Navbar: React.FC = () => {
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-[#1a1a1a]">
           <Link to="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-2">
-            <img src="/logo.jpg" alt="AutoByTaste" className="w-8 h-8 rounded-full object-cover" />
+            <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/img_6721_1774808773182.jpeg" alt="AutoByTaste" className="w-8 h-8 rounded-full object-cover" />
             <span className="text-sm font-bold text-white">AutoByTaste</span>
           </Link>
           <button onClick={() => setMenuOpen(false)} className="w-8 h-8 flex items-center justify-center text-[#606060] hover:text-white">
