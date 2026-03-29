@@ -2,73 +2,105 @@ import React from 'react';
 
 export const Hero: React.FC = () => {
   return (
-    <div className="relative pt-24 pb-36 lg:pt-40 lg:pb-52 overflow-hidden">
+    <div className="relative pt-24 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#4ade80]/6 blur-[200px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-[860px] mx-auto px-6 relative z-10 text-center">
-        {/* Bold statement headline — OptimAI style */}
-        <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-bold text-white mb-6 leading-[1.05] tracking-[-0.03em]">
-          Your <span className="font-extrabold">Data.</span>{' '}
-          Your <span className="font-extrabold">Agent.</span>
+        {/* Bold statement headline */}
+        <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-bold text-white mb-6 leading-[1.1] tracking-[-0.03em]">
+          AutoByTaste
           <br />
-          Your <span className="text-gradient font-extrabold">Control.</span>
+          <span className="text-gradient">AI Agent Platform</span>
         </h1>
 
         {/* Subtitle */}
-        <p className="max-w-lg mx-auto text-lg lg:text-[20px] text-[#9ca3af] mb-10 leading-relaxed font-normal">
-          AI Agent 24/7 cho doanh nghiệp Việt Nam.
+        <p className="max-w-lg mx-auto text-base lg:text-lg text-[#9ca3af] mb-10 leading-relaxed font-normal">
+          AI Agent 24/7 cho doanh nghiệp Vit Nam.
           <br />
-          Thiết kế đội ngũ AI theo nhu cầu — bắt đầu ngay.
+          Thit k i ng AI theo nhu cu  bt u ngay.
         </p>
 
-        {/* CTAs — OptimAI style */}
-        <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
+        {/* CTAs  two buttons side by side */}
+        <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-14">
+          <a
+            href="#usecases"
+            className="w-full sm:w-auto px-8 py-4 text-white font-semibold rounded-full text-[15px] border border-[#2a2a2a] hover:border-[#4ade80]/40 bg-[#111]/80 backdrop-blur-sm transition-all duration-300 hover:bg-[#1a1a1a]"
+          >
+            Explore Network
+          </a>
           <a
             href="https://zalo.me/0337776435"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-10 py-4 btn-gradient rounded-full text-[16px] shadow-lg shadow-[#4ade80]/20"
+            className="w-full sm:w-auto px-8 py-4 btn-gradient rounded-full text-[15px] shadow-lg shadow-[#4ade80]/20"
           >
-            Get Started
-          </a>
-          <a
-            href="#usecases"
-            className="w-full sm:w-auto px-8 py-3.5 text-[#9ca3af] font-medium rounded-full hover:text-white transition-all duration-300 text-[16px] border border-[#2a2a2a] hover:border-[#4ade80]/40 bg-[#0f0f0f]/60 backdrop-blur-sm"
-          >
-            Xem đội ngũ AI mẫu
+            Download Node
           </a>
         </div>
 
-        {/* Platform icons row */}
-        <div className="flex items-center justify-center space-x-4 mb-14">
-          {['Telegram', 'Chrome', 'Brave', 'Opera', 'Apple', 'Windows', 'Ubuntu', 'Play Store', 'App Store'].map((platform, i) => (
-            <div key={i} className="w-7 h-7 rounded-full bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-xs text-[#9ca3af] hover:border-[#4ade80]/40 transition-colors duration-300" title={platform}>
-              {['✈️', '🌐', '🦁', '🔴', '🍎', '🪟', '🐧', '▶️', '📱'][i]}
+        {/* World map visualization area */}
+        <div className="relative w-full max-w-[700px] mx-auto h-[280px] sm:h-[340px] rounded-2xl overflow-hidden mb-14">
+          {/* Dark map background with dot grid */}
+          <div className="absolute inset-0 bg-[#0a0c10] rounded-2xl">
+            {/* Grid dots pattern */}
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle, #1a2a1a 1px, transparent 1px)',
+              backgroundSize: '20px 20px',
+              opacity: 0.5
+            }}></div>
+            {/* Scattered green glow dots simulating map nodes */}
+            {[
+              { top: '30%', left: '15%' }, { top: '45%', left: '20%' },
+              { top: '35%', left: '25%' }, { top: '40%', left: '45%' },
+              { top: '30%', left: '48%' }, { top: '35%', left: '52%' },
+              { top: '45%', left: '55%' }, { top: '50%', left: '50%' },
+              { top: '25%', left: '70%' }, { top: '35%', left: '72%' },
+              { top: '40%', left: '75%' }, { top: '45%', left: '78%' },
+              { top: '55%', left: '80%' }, { top: '30%', left: '82%' },
+              { top: '50%', left: '65%' }, { top: '60%', left: '35%' },
+            ].map((pos, i) => (
+              <div
+                key={i}
+                className="absolute w-1.5 h-1.5 rounded-full bg-[#4ade80] animate-float"
+                style={{ top: pos.top, left: pos.left, animationDelay: `${i * 0.3}s`, opacity: 0.6 + Math.random() * 0.4 }}
+              ></div>
+            ))}
+            {/* Highlight tooltip */}
+            <div className="absolute top-[25%] right-[18%] bg-[#111]/90 border border-[#2a2a2a] rounded-lg px-3 py-2 backdrop-blur-sm">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs">VN</span>
+                <span className="text-[10px] text-[#9ca3af]">Asia</span>
+              </div>
+              <div className="text-[10px] text-[#9ca3af] space-y-0.5">
+                <div className="flex justify-between gap-4"><span>Agents:</span><span className="text-white font-medium">2,847</span></div>
+                <div className="flex justify-between gap-4"><span>Share:</span><span className="text-white font-medium">4.2%</span></div>
+                <div className="flex justify-between gap-4"><span>Rank:</span><span className="text-white font-medium">#8</span></div>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
 
-        {/* Glowing circular hero visual — OptimAI style */}
-        <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] mx-auto">
-          {/* Outer glow ring */}
-          <div className="hero-glow-ring-outer absolute top-1/2 left-1/2 w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] rounded-full" style={{ transform: 'translate(-50%, -50%)' }}></div>
-
-          {/* Middle ring */}
-          <div className="hero-glow-ring w-[280px] h-[280px] sm:w-[340px] sm:h-[340px]"></div>
-
-          {/* Inner ring */}
-          <div className="hero-glow-ring w-[220px] h-[220px] sm:w-[270px] sm:h-[270px]" style={{ animationDelay: '1s' }}></div>
-
-          {/* Center logo circle */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] sm:w-[200px] sm:h-[200px] rounded-full bg-[#0a0a0a] border border-[#2a2a2a] flex items-center justify-center shadow-2xl shadow-[#4ade80]/10">
-            <img src="/logo.jpg" alt="AutoByTaste Logo" className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover" />
+        {/* Stats cards row */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-[500px] mx-auto">
+          <div className="bg-[#111]/80 border border-[#1e2028] rounded-2xl p-6 backdrop-blur-sm">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm text-[#9ca3af] font-medium">Active Agents</span>
+              <div className="w-8 h-8 rounded-lg bg-[#4ade80]/10 flex items-center justify-center">
+                <svg className="w-4 h-4 text-[#4ade80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18" /><polyline points="17,6 23,6 23,12" /></svg>
+              </div>
+            </div>
+            <p className="text-3xl font-bold text-white tracking-tight">1.061.181</p>
           </div>
-
-          {/* Scattered glow particles */}
-          <div className="absolute top-[10%] right-[5%] w-2 h-2 rounded-full bg-[#4ade80] blur-[2px] animate-float" style={{ animationDelay: '0.5s' }}></div>
-          <div className="absolute bottom-[15%] left-[8%] w-1.5 h-1.5 rounded-full bg-[#a3e635] blur-[2px] animate-float" style={{ animationDelay: '1.5s' }}></div>
-          <div className="absolute top-[40%] right-[-5%] w-1 h-1 rounded-full bg-[#4ade80] blur-[1px] animate-float" style={{ animationDelay: '2.5s' }}></div>
+          <div className="bg-[#111]/80 border border-[#1e2028] rounded-2xl p-6 backdrop-blur-sm">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm text-[#9ca3af] font-medium">Core Nodes</span>
+              <div className="w-8 h-8 rounded-lg bg-[#4ade80]/10 flex items-center justify-center">
+                <svg className="w-4 h-4 text-[#4ade80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18" /><polyline points="17,6 23,6 23,12" /></svg>
+              </div>
+            </div>
+            <p className="text-3xl font-bold text-white tracking-tight">24.576</p>
+          </div>
         </div>
       </div>
     </div>
