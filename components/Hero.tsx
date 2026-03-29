@@ -16,9 +16,9 @@ export const Hero: React.FC = () => {
 
         {/* Subtitle */}
         <p className="max-w-lg mx-auto text-base lg:text-lg text-[#9ca3af] mb-10 leading-relaxed font-normal">
-          AI Agent 24/7 cho doanh nghiệp Vit Nam.
+          AI Agent 24/7 cho doanh nghiệp Việt Nam.
           <br />
-          Thit k i ng AI theo nhu cu  bt u ngay.
+          Thiết kế đội ngũ AI theo nhu cầu — bắt đầu ngay.
         </p>
 
         {/* CTAs  two buttons side by side */}
