@@ -9,56 +9,6 @@ export const Hero: React.FC = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#4ade80]/6 blur-[200px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-[860px] mx-auto px-6 relative z-10 flex flex-col items-center text-center">
-
-        {/* Glowing logo cycle with AutoByTaste text */}
-        <div className="relative w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] mb-10 flex-shrink-0">
-          {/* Outer dark ring */}
-          <div className="absolute inset-0 rounded-full bg-[#111] border border-[#222]"></div>
-
-          {/* Gradient glow ring — spinning */}
-          <div
-            className="absolute inset-3 sm:inset-4 rounded-full"
-            style={{
-              background: 'conic-gradient(from 0deg, #d4fc79, #4ade80, #22c55e, #065f46, #22c55e, #4ade80, #d4fc79)',
-              animation: 'glow-ring-spin 6s linear infinite',
-            }}
-          >
-            {/* Inner black circle cutout */}
-            <div className="absolute inset-[3px] rounded-full bg-[#0a0a0a]"></div>
-          </div>
-
-          {/* Glow blur behind ring */}
-          <div
-            className="absolute inset-2 sm:inset-3 rounded-full pointer-events-none"
-            style={{
-              background: 'conic-gradient(from 180deg, rgba(212,252,121,0.3), rgba(74,222,128,0.4), rgba(34,197,94,0.3), transparent, rgba(74,222,128,0.3), rgba(212,252,121,0.3))',
-              filter: 'blur(16px)',
-              animation: 'glow-ring-spin 6s linear infinite',
-            }}
-          ></div>
-
-          {/* Scattered glow particles on the ring */}
-          {[0, 72, 144, 216, 288].map((deg, i) => (
-            <div
-              key={i}
-              className="absolute w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#4ade80] blur-[2px]"
-              style={{
-                top: `${50 - 44 * Math.cos((deg * Math.PI) / 180)}%`,
-                left: `${50 + 44 * Math.sin((deg * Math.PI) / 180)}%`,
-                transform: 'translate(-50%, -50%)',
-                animation: `glow-pulse ${2 + i * 0.5}s ease-in-out infinite`,
-              }}
-            ></div>
-          ))}
-
-          {/* Center circle with brand text */}
-          <div className="absolute inset-6 sm:inset-8 rounded-full bg-[#0a0a0a] flex items-center justify-center z-10">
-            <span className="text-white font-extrabold text-sm sm:text-base tracking-tight leading-tight text-center">
-              Auto<br />ByTaste
-            </span>
-          </div>
-        </div>
-
         {/* Headline */}
         <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-bold text-white mb-6 leading-[1.1] tracking-[-0.03em]">
           AutoByTaste
