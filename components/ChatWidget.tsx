@@ -100,7 +100,7 @@ export const ChatWidget: React.FC = () => {
                   <button
                     key={i}
                     onClick={() => handleSend(action)}
-                    className="block w-full text-left px-4 py-2.5 bg-[#191c24] border border-[#1e2028] hover:border-[#ff5c5c]/30 rounded-xl text-sm text-[#d4d4d8] hover:text-[#f4f4f5] transition-all duration-200"
+                    className="block w-full text-left px-4 py-2.5 bg-[#191c24] border border-[#1e2028] hover:border-[#4ade80]/30 rounded-xl text-sm text-[#d4d4d8] hover:text-[#f4f4f5] transition-all duration-200"
                   >
                     {action}
                   </button>
@@ -116,7 +116,7 @@ export const ChatWidget: React.FC = () => {
                 <div
                   className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
                     msg.isUser
-                      ? 'bg-[#ff5c5c] text-white rounded-br-md'
+                      ? 'bg-[#4ade80] text-white rounded-br-md'
                       : 'bg-[#191c24] border border-[#1e2028] text-[#d4d4d8] rounded-bl-md'
                   }`}
                 >
@@ -127,7 +127,7 @@ export const ChatWidget: React.FC = () => {
                         href="https://zalo.me/0337776435"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#ff5c5c]/10 border border-[#ff5c5c]/20 rounded-lg text-xs text-[#ff5c5c] hover:bg-[#ff5c5c]/15 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#4ade80]/10 border border-[#4ade80]/20 rounded-lg text-xs text-[#4ade80] hover:bg-[#4ade80]/15 transition-colors"
                       >
                         <img src="https://img.icons8.com/color/48/zalo.png" alt="Zalo" className="w-3.5 h-3.5" />
                         {t.chatWidget.zaloLabel}
@@ -157,12 +157,12 @@ export const ChatWidget: React.FC = () => {
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={t.chatWidget.placeholder}
-                className="flex-1 bg-[#191c24] border border-[#1e2028] rounded-xl px-4 py-2.5 text-sm text-[#f4f4f5] placeholder-[#636366] focus:outline-none focus:border-[#ff5c5c]/40 transition-colors"
+                className="flex-1 bg-[#191c24] border border-[#1e2028] rounded-xl px-4 py-2.5 text-sm text-[#f4f4f5] placeholder-[#636366] focus:outline-none focus:border-[#4ade80]/40 transition-colors"
               />
               <button
                 onClick={() => handleSend()}
                 disabled={!input.trim()}
-                className="w-10 h-10 rounded-xl bg-[#ff5c5c] hover:bg-[#ff7070] text-white flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                className="w-10 h-10 rounded-xl bg-[#4ade80] hover:bg-[#86efac] text-white flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

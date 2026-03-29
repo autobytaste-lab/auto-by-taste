@@ -50,15 +50,15 @@ export const AIArchitectureGraph: React.FC = () => {
           {/* Layer 1: Messaging Apps */}
           <div className="relative mb-6">
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-24 text-right pr-4 hidden md:block">
-              <span className="text-xs font-semibold text-[#ff5c5c] uppercase tracking-wider">{t.aiArchitecture.layer1Label}</span>
+              <span className="text-xs font-semibold text-[#4ade80] uppercase tracking-wider">{t.aiArchitecture.layer1Label}</span>
               <p className="text-[10px] text-[#636366]">{t.aiArchitecture.layer1Description}</p>
             </div>
-            <div className="md:ml-28 bg-[#161920] rounded-2xl p-6 border border-[#ff5c5c]/10">
+            <div className="md:ml-28 bg-[#161920] rounded-2xl p-6 border border-[#4ade80]/10">
               <div className="flex flex-wrap justify-center gap-4">
                 {messagingApps.map((app) => (
                   <div
                     key={app.name}
-                    className="flex flex-col items-center p-4 bg-[#13151b] rounded-xl border border-[#1e2028] hover:border-[#ff5c5c]/20 transition-all duration-300 hover:scale-105 cursor-pointer group"
+                    className="flex flex-col items-center p-4 bg-[#13151b] rounded-xl border border-[#1e2028] hover:border-[#4ade80]/20 transition-all duration-300 hover:scale-105 cursor-pointer group"
                   >
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
                       <img src={app.icon} alt={app.name} className="w-10 h-10" />
@@ -73,7 +73,7 @@ export const AIArchitectureGraph: React.FC = () => {
           {/* Connection Line 1-2 */}
           <div className="flex justify-center mb-6">
             <div className="flex flex-col items-center">
-              <div className="w-px h-6 bg-gradient-to-b from-[#ff5c5c]/50 to-[#C0C0C0]/50"></div>
+              <div className="w-px h-6 bg-gradient-to-b from-[#4ade80]/50 to-[#C0C0C0]/50"></div>
               <div className="w-2 h-2 rounded-full bg-[#14b8a6]/60"></div>
               <div className="w-px h-6 bg-gradient-to-b from-[#C0C0C0]/50 to-[#C0C0C0]/30"></div>
             </div>
@@ -91,7 +91,7 @@ export const AIArchitectureGraph: React.FC = () => {
                 <div className="flex flex-col items-center">
                   <div className="relative mb-4">
                     <div className="absolute inset-0 bg-[#14b8a6]/15 blur-2xl rounded-full"></div>
-                    <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-[#C0C0C0] to-[#ff5c5c] flex items-center justify-center">
+                    <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-[#C0C0C0] to-[#4ade80] flex items-center justify-center">
                       <span className="text-3xl">🧠</span>
                     </div>
                   </div>
@@ -101,7 +101,7 @@ export const AIArchitectureGraph: React.FC = () => {
                   </p>
                   <div className="flex gap-2 mt-4">
                     <span className="px-3 py-1 bg-[#2e3040]/30 rounded-full text-xs text-[#838387]">NLP</span>
-                    <span className="px-3 py-1 bg-[#ff5c5c]/10 rounded-full text-xs text-[#ff5c5c]">RAG</span>
+                    <span className="px-3 py-1 bg-[#4ade80]/10 rounded-full text-xs text-[#4ade80]">RAG</span>
                     <span className="px-3 py-1 bg-[#30D158]/10 rounded-full text-xs text-[#30D158]">LLM</span>
                   </div>
                 </div>
@@ -142,24 +142,24 @@ export const AIArchitectureGraph: React.FC = () => {
           {/* Connection Line 3-4 */}
           <div className="flex justify-center mb-6">
             <div className="flex flex-col items-center">
-              <div className="w-px h-6 bg-gradient-to-b from-[#30D158]/50 to-[#ff5c5c]/50"></div>
-              <div className="w-2 h-2 rounded-full bg-[#ff5c5c]/60"></div>
-              <div className="w-px h-6 bg-gradient-to-b from-[#ff5c5c]/50 to-[#ff5c5c]/30"></div>
+              <div className="w-px h-6 bg-gradient-to-b from-[#30D158]/50 to-[#4ade80]/50"></div>
+              <div className="w-2 h-2 rounded-full bg-[#4ade80]/60"></div>
+              <div className="w-px h-6 bg-gradient-to-b from-[#4ade80]/50 to-[#4ade80]/30"></div>
             </div>
           </div>
 
           {/* Layer 4: Hardware */}
           <div className="relative">
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-24 text-right pr-4 hidden md:block">
-              <span className="text-xs font-semibold text-[#ff5c5c] uppercase tracking-wider">{t.aiArchitecture.layer4Label}</span>
+              <span className="text-xs font-semibold text-[#4ade80] uppercase tracking-wider">{t.aiArchitecture.layer4Label}</span>
               <p className="text-[10px] text-[#636366]">{t.aiArchitecture.layer4Description}</p>
             </div>
-            <div className="md:ml-28 bg-[#161920] rounded-2xl p-6 border border-[#ff5c5c]/10">
+            <div className="md:ml-28 bg-[#161920] rounded-2xl p-6 border border-[#4ade80]/10">
               <div className="flex flex-wrap justify-center gap-6">
                 {hardware.map((hw) => (
                   <div
                     key={hw.name}
-                    className="flex flex-col items-center p-6 bg-[#13151b] rounded-2xl border border-[#1e2028] hover:border-[#ff5c5c]/20 transition-all duration-300 hover:scale-105 cursor-pointer group min-w-[140px]"
+                    className="flex flex-col items-center p-6 bg-[#13151b] rounded-2xl border border-[#1e2028] hover:border-[#4ade80]/20 transition-all duration-300 hover:scale-105 cursor-pointer group min-w-[140px]"
                   >
                     <div className="w-16 h-16 rounded-xl flex items-center justify-center mb-3 overflow-hidden">
                       <img src={hw.icon} alt={hw.name} className="w-14 h-14 opacity-90" />
@@ -180,7 +180,7 @@ export const AIArchitectureGraph: React.FC = () => {
         {/* Legend */}
         <div className="flex flex-wrap justify-center gap-6 mt-12 text-xs">
           <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5c5c]"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-[#4ade80]"></div>
             <span className="text-[#838387]">{t.aiArchitecture.legendCommunication}</span>
           </div>
           <div className="flex items-center gap-2">
@@ -192,7 +192,7 @@ export const AIArchitectureGraph: React.FC = () => {
             <span className="text-[#838387]">{t.aiArchitecture.legendTools}</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5c5c]"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-[#4ade80]"></div>
             <span className="text-[#838387]">{t.aiArchitecture.legendHardware}</span>
           </div>
         </div>

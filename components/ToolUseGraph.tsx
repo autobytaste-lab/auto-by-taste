@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 const TOOLS = [
-  { name: 'web_search', color: '#ff5c5c' },
-  { name: 'browser', color: '#ff5c5c' },
+  { name: 'web_search', color: '#4ade80' },
+  { name: 'browser', color: '#4ade80' },
   { name: 'read_file', color: '#ffffff' },
   { name: 'exec', color: '#ffffff' },
   { name: 'send_message', color: '#22c55e' },
@@ -35,7 +35,7 @@ export const ToolUseGraph: React.FC = () => {
       <div className="max-w-[980px] mx-auto">
         {/* Header */}
         <div className="mb-16">
-          <p className="text-xs font-medium text-[#ff5c5c] tracking-[0.2em] uppercase mb-4">
+          <p className="text-xs font-medium text-[#4ade80] tracking-[0.2em] uppercase mb-4">
             › Cách AI Agent Sử Dụng Tools
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
@@ -54,15 +54,15 @@ export const ToolUseGraph: React.FC = () => {
               USER MESSAGE
             </div>
             <div className={`flex items-center gap-1 transition-all duration-500 ${phase >= 1 ? 'opacity-100' : 'opacity-20'}`}>
-              <div className="w-8 h-px bg-[#ff5c5c]"></div>
-              <div className="w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-[#ff5c5c]"></div>
+              <div className="w-8 h-px bg-[#4ade80]"></div>
+              <div className="w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-[#4ade80]"></div>
             </div>
-            <div className={`px-4 py-2 rounded border text-xs font-semibold transition-all duration-500 ${phase >= 1 ? 'border-[#ff5c5c]/60 text-[#ff5c5c] bg-[#ff5c5c]/10' : 'border-[#2a2a2a] text-[#505050]'}`}>
+            <div className={`px-4 py-2 rounded border text-xs font-semibold transition-all duration-500 ${phase >= 1 ? 'border-[#4ade80]/60 text-[#4ade80] bg-[#4ade80]/10' : 'border-[#2a2a2a] text-[#505050]'}`}>
               OpenClaw Gateway
             </div>
             <div className={`flex items-center gap-1 transition-all duration-500 ${phase >= 1 ? 'opacity-100' : 'opacity-20'}`}>
-              <div className="w-8 h-px bg-[#ff5c5c]"></div>
-              <div className="w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-[#ff5c5c]"></div>
+              <div className="w-8 h-px bg-[#4ade80]"></div>
+              <div className="w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-[#4ade80]"></div>
             </div>
             <div className={`px-4 py-2 rounded border text-xs font-semibold transition-all duration-500 ${phase >= 1 ? 'border-white/40 text-white bg-white/5' : 'border-[#2a2a2a] text-[#505050]'}`}>
               AI Agent (LLM)
@@ -72,10 +72,10 @@ export const ToolUseGraph: React.FC = () => {
           {/* Arrow down from LLM */}
           <div className="flex justify-center mb-4">
             <div className={`flex flex-col items-center gap-1 transition-all duration-500 ${phase >= 2 ? 'opacity-100' : 'opacity-10'}`}>
-              <div className="w-px h-6 bg-[#ff5c5c]"></div>
-              <div className="text-[10px] text-[#ff5c5c] font-bold tracking-widest">tool_use</div>
-              <div className="w-px h-4 bg-[#ff5c5c]"></div>
-              <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#ff5c5c]"></div>
+              <div className="w-px h-6 bg-[#4ade80]"></div>
+              <div className="text-[10px] text-[#4ade80] font-bold tracking-widest">tool_use</div>
+              <div className="w-px h-4 bg-[#4ade80]"></div>
+              <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#4ade80]"></div>
             </div>
           </div>
 

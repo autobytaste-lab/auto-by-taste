@@ -34,7 +34,7 @@ export const OpenClawServices: React.FC = () => {
 
         {/* Intro block: OpenClaw là gì? */}
         <div className="text-center mb-20">
-          <span className="inline-block px-4 py-2 bg-[#ff5c5c]/10 border border-[#ff5c5c]/20 rounded-full text-xs font-medium text-[#ff9090] mb-6 tracking-wide">
+          <span className="inline-block px-4 py-2 bg-[#4ade80]/10 border border-[#4ade80]/20 rounded-full text-xs font-medium text-[#86efac] mb-6 tracking-wide">
             🤖 Cho thuê nhân sự AI Agent
           </span>
           <h2 className="text-4xl md:text-[56px] font-bold mb-6 tracking-[-0.03em] leading-tight">
@@ -59,18 +59,18 @@ export const OpenClawServices: React.FC = () => {
           {services.map((service, i) => (
             <div
               key={i}
-              className="group relative p-8 rounded-[28px] bg-[#0a0a0f] border border-[#1e2028] hover:border-[#ff5c5c]/30 transition-all duration-300 hover:scale-[1.01] overflow-hidden gold-hover-glow"
+              className="group relative p-8 rounded-[28px] bg-[#0a0a0f] border border-[#1e2028] hover:border-[#4ade80]/30 transition-all duration-300 hover:scale-[1.01] overflow-hidden gold-hover-glow"
             >
-              <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-[#ff5c5c]/3 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-[#ff5c5c]/6 transition-all duration-500"></div>
+              <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-[#4ade80]/3 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-[#4ade80]/6 transition-all duration-500"></div>
               <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-[#ff5c5c]/10 flex items-center justify-center mb-6 group-hover:bg-[#ff5c5c]/20 transition-colors duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-[#4ade80]/10 flex items-center justify-center mb-6 group-hover:bg-[#4ade80]/20 transition-colors duration-300">
                   <span className="text-3xl">{service.icon}</span>
                 </div>
                 <h3 className="text-xl font-semibold text-[#f4f4f5] mb-3 tracking-[-0.02em]">{service.title}</h3>
                 <p className="text-[#838387] leading-relaxed mb-5">{service.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {service.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1 text-xs rounded-full bg-[#ff5c5c]/10 text-[#ff9090] border border-[#ff5c5c]/15">
+                    <span key={tag} className="px-3 py-1 text-xs rounded-full bg-[#4ade80]/10 text-[#86efac] border border-[#4ade80]/15">
                       {tag}
                     </span>
                   ))}
@@ -81,8 +81,8 @@ export const OpenClawServices: React.FC = () => {
         </div>
 
         {/* CTA Block */}
-        <div className="relative p-10 lg:p-14 rounded-[28px] bg-[#0a0a0f] border border-[#ff5c5c]/20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#ff5c5c]/5 to-[#ff7070]/5"></div>
+        <div className="relative p-10 lg:p-14 rounded-[28px] bg-[#0a0a0f] border border-[#4ade80]/20 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#4ade80]/5 to-[#86efac]/5"></div>
           <div className="relative z-10 text-center">
             <div className="text-4xl mb-4">🤖</div>
             <h3 className="text-2xl font-bold text-[#f4f4f5] mb-3 tracking-[-0.02em]">Thuê nhân sự AI Agent ngay hôm nay</h3>
@@ -92,7 +92,7 @@ export const OpenClawServices: React.FC = () => {
                 href="https://zalo.me/0337776435"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-3.5 bg-[#ff5c5c] hover:bg-[#ff7070] text-white font-semibold rounded-full transition-all duration-300 text-[15px] shadow-lg shadow-[#ff5c5c]/25"
+                className="inline-flex items-center gap-3 px-8 py-3.5 bg-[#4ade80] hover:bg-[#86efac] text-white font-semibold rounded-full transition-all duration-300 text-[15px] shadow-lg shadow-[#4ade80]/25"
               >
                 <img src="https://img.icons8.com/color/48/zalo.png" alt="Zalo" className="w-5 h-5" />
                 Thuê AI Agent qua Zalo

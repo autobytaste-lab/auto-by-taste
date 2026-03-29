@@ -84,9 +84,9 @@ describe('particleConfig', () => {
       expect(neuralNetworkConfig).toHaveProperty('interactivity');
     });
 
-    it('uses brand colors (red #ff5c5c)', () => {
+    it('uses brand colors (green #4ade80)', () => {
       const particleColor = neuralNetworkConfig.particles?.color?.value;
-      expect(particleColor).toBe('#ff5c5c');
+      expect(particleColor).toBe('#4ade80');
     });
 
     it('sets particle size to 3px', () => {

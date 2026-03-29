@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
   <section className="mb-10">
     <h2 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-      <span className="text-[#ff5c5c]">›</span> {title}
+      <span className="text-[#4ade80]">›</span> {title}
     </h2>
     <div className="text-[#a0a0a0] text-sm leading-relaxed space-y-2">{children}</div>
   </section>
@@ -27,7 +27,7 @@ export const DisclaimerPage: React.FC = () => {
       <div className="max-w-[860px] mx-auto px-6 pt-28 pb-20">
         {/* Header */}
         <div className="mb-12">
-          <p className="text-xs font-medium text-[#ff5c5c] tracking-[0.2em] uppercase mb-3">
+          <p className="text-xs font-medium text-[#4ade80] tracking-[0.2em] uppercase mb-3">
             › Pháp lý & Bảo mật
           </p>
           <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4 tracking-tight">
@@ -39,8 +39,8 @@ export const DisclaimerPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="bg-[#0f0f0f] border border-[#ff5c5c]/20 rounded-xl p-5 mb-10 text-sm">
-          <p className="text-[#ff9090] font-medium mb-1">⚠️ Lưu ý quan trọng</p>
+        <div className="bg-[#0f0f0f] border border-[#4ade80]/20 rounded-xl p-5 mb-10 text-sm">
+          <p className="text-[#86efac] font-medium mb-1">⚠️ Lưu ý quan trọng</p>
           <p className="text-[#a0a0a0] leading-relaxed">
             Tài liệu này mô tả phạm vi trách nhiệm và giới hạn bảo đảm của AutoByTaste liên quan đến việc triển khai và sử dụng phần mềm OpenClaw. Vui lòng đọc kỹ trước khi sử dụng dịch vụ.
           </p>
@@ -65,7 +65,7 @@ export const DisclaimerPage: React.FC = () => {
             <li>• Mô hình AI chạy cục bộ không yêu cầu kết nối internet để hoạt động</li>
           </ul>
           <p className="mt-3 text-[#707070]">
-            <strong className="text-[#ff9090]">Tuy nhiên:</strong> nếu khách hàng chọn sử dụng các model AI đám mây (Claude, GPT-4, Gemini...) thay vì model local, dữ liệu sẽ được gửi đến máy chủ của nhà cung cấp model tương ứng (Anthropic, OpenAI, Google). AutoByTaste không chịu trách nhiệm về chính sách bảo mật của các bên thứ ba này.
+            <strong className="text-[#86efac]">Tuy nhiên:</strong> nếu khách hàng chọn sử dụng các model AI đám mây (Claude, GPT-4, Gemini...) thay vì model local, dữ liệu sẽ được gửi đến máy chủ của nhà cung cấp model tương ứng (Anthropic, OpenAI, Google). AutoByTaste không chịu trách nhiệm về chính sách bảo mật của các bên thứ ba này.
           </p>
         </Section>
 
@@ -104,7 +104,7 @@ export const DisclaimerPage: React.FC = () => {
             <li>• Mật khẩu hệ thống</li>
           </ul>
           <p className="mt-3 text-[#707070]">
-            AutoByTaste sẽ <strong className="text-[#ff9090]">không bao giờ yêu cầu</strong> bạn cung cấp các thông tin trên qua chat, email hay điện thoại. Nếu có ai tự xưng là AutoByTaste yêu cầu thông tin này, đây là hành vi lừa đảo — hãy từ chối và báo cáo.
+            AutoByTaste sẽ <strong className="text-[#86efac]">không bao giờ yêu cầu</strong> bạn cung cấp các thông tin trên qua chat, email hay điện thoại. Nếu có ai tự xưng là AutoByTaste yêu cầu thông tin này, đây là hành vi lừa đảo — hãy từ chối và báo cáo.
           </p>
         </Section>
 
@@ -132,9 +132,9 @@ export const DisclaimerPage: React.FC = () => {
         <Section title="8. Liên hệ">
           <p>Nếu có thắc mắc về chính sách bảo mật hoặc báo cáo sự cố an toàn thông tin:</p>
           <ul className="space-y-1.5 pl-4">
-            <li>• <strong className="text-white">Zalo:</strong> <a href="https://zalo.me/0337776435" target="_blank" rel="noopener noreferrer" className="text-[#ff5c5c] hover:underline">0337 776 435</a></li>
+            <li>• <strong className="text-white">Zalo:</strong> <a href="https://zalo.me/0337776435" target="_blank" rel="noopener noreferrer" className="text-[#4ade80] hover:underline">0337 776 435</a></li>
             <li>• <strong className="text-white">Email:</strong> contact@autobytaste.tech</li>
-            <li>• <strong className="text-white">Telegram:</strong> <a href="https://t.me/agentic_ai_vn" target="_blank" rel="noopener noreferrer" className="text-[#ff5c5c] hover:underline">@agentic_ai_vn</a></li>
+            <li>• <strong className="text-white">Telegram:</strong> <a href="https://t.me/agentic_ai_vn" target="_blank" rel="noopener noreferrer" className="text-[#4ade80] hover:underline">@agentic_ai_vn</a></li>
           </ul>
         </Section>
 

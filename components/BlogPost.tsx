@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { getPostBySlug, getRelatedPosts } from '../data/blogPosts';
 
 const categoryColors: Record<string, string> = {
-  'OpenClaw': 'text-[#ff5c5c] bg-[#ff5c5c]/10 border-[#ff5c5c]/20',
+  'OpenClaw': 'text-[#4ade80] bg-[#4ade80]/10 border-[#4ade80]/20',
   'LLM': 'text-[#a78bfa] bg-[#a78bfa]/10 border-[#a78bfa]/20',
   'AI Agent': 'text-[#34d399] bg-[#34d399]/10 border-[#34d399]/20',
   'Hướng dẫn': 'text-[#fbbf24] bg-[#fbbf24]/10 border-[#fbbf24]/20',
@@ -138,7 +138,7 @@ export const BlogPost: React.FC = () => {
       <div className="min-h-screen bg-[#000] flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#555] text-xl mb-4">Bài viết không tìm thấy.</p>
-          <Link to="/blog" className="text-[#ff5c5c] hover:underline">← Quay lại Blog</Link>
+          <Link to="/blog" className="text-[#4ade80] hover:underline">← Quay lại Blog</Link>
         </div>
       </div>
     );
@@ -153,20 +153,20 @@ export const BlogPost: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#000] text-white">
       <style>{`
-        .blog-h1 { font-size: 2rem; font-weight: 800; color: #ff5c5c; margin: 2rem 0 1rem; line-height: 1.2; }
-        .blog-h2 { font-size: 1.5rem; font-weight: 700; color: #ff5c5c; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #1a1a1a; line-height: 1.3; }
+        .blog-h1 { font-size: 2rem; font-weight: 800; color: #4ade80; margin: 2rem 0 1rem; line-height: 1.2; }
+        .blog-h2 { font-size: 1.5rem; font-weight: 700; color: #4ade80; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #1a1a1a; line-height: 1.3; }
         .blog-h3 { font-size: 1.15rem; font-weight: 600; color: #e0e0e0; margin: 2rem 0 0.75rem; line-height: 1.4; }
         .blog-p { color: #aaa; line-height: 1.85; margin: 0.9rem 0; font-size: 1rem; }
-        .blog-code { background: #0d0d0d; border: 1px solid #222; border-left: 3px solid #ff5c5c; border-radius: 8px; padding: 1rem 1.25rem; overflow-x: auto; margin: 1.25rem 0; font-size: 0.85rem; line-height: 1.6; font-family: 'JetBrains Mono', 'Fira Code', monospace; color: #d4d4d4; }
+        .blog-code { background: #0d0d0d; border: 1px solid #222; border-left: 3px solid #4ade80; border-radius: 8px; padding: 1rem 1.25rem; overflow-x: auto; margin: 1.25rem 0; font-size: 0.85rem; line-height: 1.6; font-family: 'JetBrains Mono', 'Fira Code', monospace; color: #d4d4d4; }
         .blog-code code { color: #d4d4d4; }
-        .blog-inline-code { background: #1a1a1a; border: 1px solid #2a2a2a; color: #ff8080; padding: 0.15em 0.45em; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; }
+        .blog-inline-code { background: #1a1a1a; border: 1px solid #2a2a2a; color: #86efac; padding: 0.15em 0.45em; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; }
         .blog-ul, .blog-ol { color: #aaa; padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
         .blog-li { margin: 0.4rem 0; line-height: 1.75; }
         .blog-ul .blog-li { list-style-type: disc; }
         .blog-ol .blog-li { list-style-type: decimal; }
         .blog-hr { border: none; border-top: 1px solid #1e1e1e; margin: 2.5rem 0; }
-        .blog-link { color: #ff5c5c; text-decoration: underline; text-decoration-color: #ff5c5c40; text-underline-offset: 3px; transition: color 0.2s; }
-        .blog-link:hover { color: #ff8080; }
+        .blog-link { color: #4ade80; text-decoration: underline; text-decoration-color: #4ade8040; text-underline-offset: 3px; transition: color 0.2s; }
+        .blog-link:hover { color: #86efac; }
         .blog-table-wrap { overflow-x: auto; margin: 1.5rem 0; }
         .blog-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
         .blog-table-cell { padding: 0.6rem 1rem; border: 1px solid #222; text-align: left; color: #aaa; }
@@ -199,7 +199,7 @@ export const BlogPost: React.FC = () => {
                       h.level === 3 ? 'ml-3' : ''
                     } ${
                       activeHeading === h.id
-                        ? 'border-[#ff5c5c] text-[#ff5c5c]'
+                        ? 'border-[#4ade80] text-[#4ade80]'
                         : 'border-[#222] text-[#555] hover:text-white hover:border-[#444]'
                     }`}
                   >
@@ -232,7 +232,7 @@ export const BlogPost: React.FC = () => {
             </h1>
 
             {/* Excerpt */}
-            <p className="text-[#888] text-lg leading-relaxed mb-8 border-l-2 border-[#ff5c5c]/40 pl-4 italic">
+            <p className="text-[#888] text-lg leading-relaxed mb-8 border-l-2 border-[#4ade80]/40 pl-4 italic">
               {post.excerpt}
             </p>
 
@@ -288,13 +288,13 @@ export const BlogPost: React.FC = () => {
             </div>
 
             {/* CTA */}
-            <div className="mt-10 p-6 rounded-2xl bg-gradient-to-br from-[#ff5c5c]/10 to-[#0a0a0a] border border-[#ff5c5c]/20">
+            <div className="mt-10 p-6 rounded-2xl bg-gradient-to-br from-[#4ade80]/10 to-[#0a0a0a] border border-[#4ade80]/20">
               <p className="text-white font-semibold text-base mb-2">Thử OpenClaw miễn phí</p>
               <p className="text-[#888] text-sm mb-4">Triển khai AI Agent cá nhân của bạn trong 10 phút. Kết nối Telegram, Zalo, không cần server.</p>
               <a
                 href="https://zalo.me/0337776435"
                 target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#ff5c5c] hover:bg-[#ff7070] text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+                className="inline-flex items-center gap-2 bg-[#4ade80] hover:bg-[#86efac] text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
               >
                 Tư vấn miễn phí →
               </a>
@@ -312,12 +312,12 @@ export const BlogPost: React.FC = () => {
                   key={p.slug}
                   to={`/blog/${p.slug}`}
                   onClick={() => window.scrollTo(0, 0)}
-                  className="group block bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-5 hover:border-[#ff5c5c]/30 transition-all duration-300 hover:-translate-y-0.5"
+                  className="group block bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-5 hover:border-[#4ade80]/30 transition-all duration-300 hover:-translate-y-0.5"
                 >
                   <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${categoryColors[p.category]}`}>
                     {p.category}
                   </span>
-                  <h4 className="text-white font-semibold text-sm mt-3 mb-2 group-hover:text-[#ff5c5c] transition-colors line-clamp-2 leading-snug">
+                  <h4 className="text-white font-semibold text-sm mt-3 mb-2 group-hover:text-[#4ade80] transition-colors line-clamp-2 leading-snug">
                     {p.title}
                   </h4>
                   <p className="text-[#555] text-xs">{p.readTime} phút đọc</p>

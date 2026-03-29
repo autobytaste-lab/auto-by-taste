@@ -29,13 +29,15 @@ export const Navbar: React.FC = () => {
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-[#1a1a1a] py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-[980px] mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo — OptimAI style */}
           <Link to="/" className="flex flex-col group">
             <div className="flex items-center space-x-2">
               <img src="/logo.jpg" alt="AutoByTaste" className="w-8 h-8 rounded-full object-cover group-hover:opacity-80 transition-opacity" />
-              <span className="text-base font-bold text-white tracking-tight group-hover:text-[#ff5c5c] transition-colors">AutoByTaste</span>
+              <div className="flex flex-col">
+                <span className="text-base font-bold text-white tracking-tight group-hover:text-[#4ade80] transition-colors">AutoByTaste</span>
+                <span className="text-[10px] text-[#9ca3af] font-medium -mt-0.5">AI Agent · 24/7</span>
+              </div>
             </div>
-            <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-10 -mt-0.5">Cho thuê AI Agent · 24/7</span>
           </Link>
 
           {/* Desktop nav links */}
@@ -53,9 +55,9 @@ export const Navbar: React.FC = () => {
               href="https://zalo.me/0337776435"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex bg-[#ff5c5c] hover:bg-[#ff7070] text-white px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 shadow-lg shadow-[#ff5c5c]/25"
+              className="hidden sm:inline-flex btn-gradient px-5 py-2 rounded-full text-xs transition-all duration-300"
             >
-              Tư vấn miễn phí
+              Download
             </a>
 
             {/* Hamburger button (mobile only) */}
@@ -132,7 +134,7 @@ export const Navbar: React.FC = () => {
               <span
                 className={`absolute top-0.5 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all duration-300 ${
                   language === 'vi'
-                    ? 'left-0.5 bg-[#ff5c5c] text-white'
+                    ? 'left-0.5 bg-[#4ade80] text-white'
                     : 'left-[26px] bg-[#14b8a6] text-white'
                 }`}
               >
@@ -148,7 +150,7 @@ export const Navbar: React.FC = () => {
             href="https://zalo.me/0337776435"
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full text-center bg-[#ff5c5c] hover:bg-[#ff7070] text-white px-5 py-3 rounded-full text-sm font-semibold transition-all duration-300"
+            className="block w-full text-center btn-gradient px-5 py-3 rounded-full text-sm transition-all duration-300"
           >
             Tư vấn miễn phí →
           </a>

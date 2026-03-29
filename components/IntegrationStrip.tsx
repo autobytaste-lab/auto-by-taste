@@ -38,7 +38,7 @@ export const IntegrationStrip: React.FC = () => {
       <div className="max-w-[980px] mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <p className="text-xs font-medium text-[#ff5c5c] tracking-[0.2em] uppercase mb-4">
+          <p className="text-xs font-medium text-[#4ade80] tracking-[0.2em] uppercase mb-4">
             › Tích Hợp Với Mọi Thứ
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-white tracking-tight">
@@ -51,7 +51,7 @@ export const IntegrationStrip: React.FC = () => {
           {integrations.map((item, i) => (
             <div
               key={i}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-[#0f0f0f] border border-[#1e1e1e] rounded-full hover:border-[#ff5c5c]/30 hover:bg-[#ff5c5c]/5 transition-all duration-300 cursor-default"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-[#0f0f0f] border border-[#1e1e1e] rounded-full hover:border-[#4ade80]/30 hover:bg-[#4ade80]/5 transition-all duration-300 cursor-default"
             >
               {item.icon}
               <span className="text-xs text-[#909090] font-medium">{item.label}</span>
@@ -64,7 +64,7 @@ export const IntegrationStrip: React.FC = () => {
           href="https://docs.openclaw.ai"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-[#ff5c5c] hover:text-[#ff7070] transition-colors duration-300"
+          className="text-sm text-[#4ade80] hover:text-[#86efac] transition-colors duration-300"
         >
           Xem tất cả 50+ tích hợp →
         </a>

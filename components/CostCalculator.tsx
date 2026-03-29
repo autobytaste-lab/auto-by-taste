@@ -189,7 +189,7 @@ const profiles: Profile[] = [
     electricPerDay: 10000,
     localElectric: 10000,
     roi: 'Nghiên cứu pháp lý 10x nhanh hơn — 2 tiếng xuống 12 phút. Bảo vệ bí mật nghề nghiệp.',
-    color: '#ff5c5c',
+    color: '#4ade80',
   },
 ];
 
@@ -220,7 +220,7 @@ export const CostCalculator: React.FC = () => {
       <div className="max-w-[980px] mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <p className="text-xs font-medium text-[#ff5c5c] tracking-[0.2em] uppercase mb-4">
+          <p className="text-xs font-medium text-[#4ade80] tracking-[0.2em] uppercase mb-4">
             › Dự Toán Chi Phí
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight mb-3">
@@ -238,13 +238,13 @@ export const CostCalculator: React.FC = () => {
           <div className="flex bg-[#0f0f0f] border border-[#1a1a1a] rounded-full p-0.5">
             <button
               onClick={() => setMode('local')}
-              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${mode === 'local' ? 'bg-[#ff5c5c] text-white' : 'text-[#606060] hover:text-white'}`}
+              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${mode === 'local' ? 'bg-[#4ade80] text-white' : 'text-[#606060] hover:text-white'}`}
             >
               🖥️ Local AI (Ollama)
             </button>
             <button
               onClick={() => setMode('cloud')}
-              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${mode === 'cloud' ? 'bg-[#ff5c5c] text-white' : 'text-[#606060] hover:text-white'}`}
+              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${mode === 'cloud' ? 'bg-[#4ade80] text-white' : 'text-[#606060] hover:text-white'}`}
             >
               ☁️ Cloud API
             </button>
@@ -260,7 +260,7 @@ export const CostCalculator: React.FC = () => {
                 onClick={() => handleSelectProfile(i)}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl border text-left transition-all duration-200 ${
                   selected === i
-                    ? 'bg-[#0f0f0f] border-[#ff5c5c]/40 text-white'
+                    ? 'bg-[#0f0f0f] border-[#4ade80]/40 text-white'
                     : 'bg-[#0a0a0a] border-[#1a1a1a] text-[#606060] hover:text-white hover:border-[#333]'
                 }`}
               >
@@ -278,19 +278,19 @@ export const CostCalculator: React.FC = () => {
             {/* Model selector (cloud mode) */}
             {mode === 'cloud' && (
               <div className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl p-4">
-                <p className="text-xs text-[#ff5c5c] uppercase tracking-widest mb-3">› Chọn model AI</p>
+                <p className="text-xs text-[#4ade80] uppercase tracking-widest mb-3">› Chọn model AI</p>
                 <div className="space-y-2">
                   {profile.modelOptions.map((m, i) => (
                     <button
                       key={i}
                       onClick={() => setModelIdx(i)}
                       className={`w-full flex flex-col sm:flex-row sm:items-center sm:justify-between px-3 py-2.5 rounded-lg border text-left transition-all text-xs gap-0.5 ${
-                        modelIdx === i ? 'bg-[#ff5c5c]/10 border-[#ff5c5c]/30 text-white' : 'border-[#1a1a1a] text-[#606060] hover:text-white'
+                        modelIdx === i ? 'bg-[#4ade80]/10 border-[#4ade80]/30 text-white' : 'border-[#1a1a1a] text-[#606060] hover:text-white'
                       }`}
                     >
                       <span className="font-mono text-xs leading-tight">{m.name}</span>
                       <div className="flex items-center gap-2 sm:flex-row-reverse">
-                        <span className={`font-bold text-xs shrink-0 ${modelIdx === i ? 'text-[#ff5c5c]' : ''}`}>
+                        <span className={`font-bold text-xs shrink-0 ${modelIdx === i ? 'text-[#4ade80]' : ''}`}>
                           {m.costPerDay === 0 ? '0đ/ngày' : fmt(m.costPerDay) + '/ngày'}
                         </span>
                         <span className="text-[#404040] text-[10px] truncate sm:hidden">{m.note}</span>
@@ -310,7 +310,7 @@ export const CostCalculator: React.FC = () => {
                 { label: 'Năm', value: fmt(yearlyCost), sub: `Tiết kiệm ${fmt(savingMonthly * 12)}` },
               ].map((item, i) => (
                 <div key={i} className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl p-4">
-                  <div className="text-[10px] text-[#ff5c5c] uppercase tracking-widest mb-1">{item.label}</div>
+                  <div className="text-[10px] text-[#4ade80] uppercase tracking-widest mb-1">{item.label}</div>
                   <div className="text-2xl font-bold text-white break-all leading-tight">{item.value}</div>
                   <div className="text-[10px] text-[#404040] mt-1 break-words">{item.sub}</div>
                 </div>
@@ -320,7 +320,7 @@ export const CostCalculator: React.FC = () => {
             {/* Daily tasks */}
             <div className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl p-5">
               <div className="flex items-center justify-between mb-3">
-                <p className="text-xs text-[#ff5c5c] uppercase tracking-widest">› Công việc hàng ngày</p>
+                <p className="text-xs text-[#4ade80] uppercase tracking-widest">› Công việc hàng ngày</p>
                 <span className="text-xs text-[#404040] text-right max-w-[140px] leading-tight">{profile.usageNote}</span>
               </div>
               <div className="grid sm:grid-cols-2 gap-2">
@@ -335,16 +335,16 @@ export const CostCalculator: React.FC = () => {
 
             {/* Cost breakdown table */}
             <div className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl p-5">
-              <p className="text-xs text-[#ff5c5c] uppercase tracking-widest mb-4">› So sánh chi phí / ngày</p>
+              <p className="text-xs text-[#4ade80] uppercase tracking-widest mb-4">› So sánh chi phí / ngày</p>
               <div className="space-y-0">
                 <div className="grid grid-cols-4 gap-2 pb-2 border-b border-[#1a1a1a] mb-2">
                   <div className="text-[10px] text-[#404040] col-span-2">Khoản mục</div>
-                  <div className="text-[10px] text-[#ff5c5c] text-right">☁️ Cloud</div>
+                  <div className="text-[10px] text-[#4ade80] text-right">☁️ Cloud</div>
                   <div className="text-[10px] text-[#22c55e] text-right">🖥️ Local</div>
                 </div>
                 <div className="grid grid-cols-4 gap-2 py-2 border-b border-[#111]">
                   <div className="text-xs text-[#a0a0a0] col-span-2 break-words">API ({selectedModel.name.replace('⚠️ ', '').replace('✅ ', '').split(' ')[0]})</div>
-                  <div className="text-xs text-[#ff5c5c] text-right break-all">{fmt(selectedModel.costPerDay)}</div>
+                  <div className="text-xs text-[#4ade80] text-right break-all">{fmt(selectedModel.costPerDay)}</div>
                   <div className="text-xs text-[#22c55e] text-right font-medium">0đ</div>
                 </div>
                 <div className="grid grid-cols-4 gap-2 py-2 border-b border-[#111]">
@@ -359,7 +359,7 @@ export const CostCalculator: React.FC = () => {
                 </div>
                 <div className="grid grid-cols-4 gap-2 pt-3 mt-1">
                   <div className="text-xs font-semibold text-white col-span-2">Tổng / ngày</div>
-                  <div className="text-xs text-[#ff5c5c] text-right font-bold">{fmt(cloudDailyCost)}</div>
+                  <div className="text-xs text-[#4ade80] text-right font-bold">{fmt(cloudDailyCost)}</div>
                   <div className="text-xs text-[#22c55e] text-right font-bold">{fmt(localDailyCost)}</div>
                 </div>
                 <div className="grid grid-cols-4 gap-2 pt-1">
@@ -382,8 +382,8 @@ export const CostCalculator: React.FC = () => {
 
             {/* Setup note */}
             {mode === 'local' && (
-              <div className="bg-[#0f0f0f] border border-[#ff5c5c]/10 rounded-xl p-4 text-xs text-[#606060]">
-                <span className="text-[#ff5c5c]">⚡ Local AI:</span> Cần cài Ollama miễn phí + tải model một lần (~4GB cho Llama 8B).
+              <div className="bg-[#0f0f0f] border border-[#4ade80]/10 rounded-xl p-4 text-xs text-[#606060]">
+                <span className="text-[#4ade80]">⚡ Local AI:</span> Cần cài Ollama miễn phí + tải model một lần (~4GB cho Llama 8B).
                 AutoByTaste hỗ trợ setup trong <span className="text-white">24 giờ</span> — không cần tự làm.
               </div>
             )}
@@ -391,7 +391,7 @@ export const CostCalculator: React.FC = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-10 p-6 bg-[#0f0f0f] border border-[#ff5c5c]/15 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-10 p-6 bg-[#0f0f0f] border border-[#4ade80]/15 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <p className="text-white font-semibold mb-1">Bắt đầu với chi phí gần bằng 0</p>
             <p className="text-[#606060] text-sm">Local AI = chỉ tốn tiền điện. Tư vấn miễn phí — setup trong 24 giờ.</p>
@@ -400,7 +400,7 @@ export const CostCalculator: React.FC = () => {
             href="https://zalo.me/0337776435"
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 bg-[#ff5c5c] hover:bg-[#ff7070] text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all"
+            className="shrink-0 bg-[#4ade80] hover:bg-[#86efac] text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all"
           >
             Tính chi phí cụ thể →
           </a>

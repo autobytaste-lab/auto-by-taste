@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useI18n } from '../i18n/I18nContext';
 
 const deptColors = [
-  ['from-[#ff5c5c] to-[#ff7070]', 'from-[#C0C0C0] to-[#E0E0E0]', 'from-[#30D158] to-[#63E6BE]'],
-  ['from-[#ff5c5c] to-[#ff7070]', 'from-[#30D158] to-[#63E6BE]', 'from-[#C0C0C0] to-[#E0E0E0]'],
-  ['from-[#ff5c5c] to-[#ff7070]', 'from-[#C0C0C0] to-[#E0E0E0]', 'from-[#30D158] to-[#63E6BE]'],
-  ['from-[#ff5c5c] to-[#ff7070]', 'from-[#30D158] to-[#63E6BE]', 'from-[#C0C0C0] to-[#E0E0E0]'],
-  ['from-[#ff5c5c] to-[#ff7070]', 'from-[#C0C0C0] to-[#E0E0E0]', 'from-[#30D158] to-[#63E6BE]'],
+  ['from-[#4ade80] to-[#86efac]', 'from-[#C0C0C0] to-[#E0E0E0]', 'from-[#30D158] to-[#63E6BE]'],
+  ['from-[#4ade80] to-[#86efac]', 'from-[#30D158] to-[#63E6BE]', 'from-[#C0C0C0] to-[#E0E0E0]'],
+  ['from-[#4ade80] to-[#86efac]', 'from-[#C0C0C0] to-[#E0E0E0]', 'from-[#30D158] to-[#63E6BE]'],
+  ['from-[#4ade80] to-[#86efac]', 'from-[#30D158] to-[#63E6BE]', 'from-[#C0C0C0] to-[#E0E0E0]'],
+  ['from-[#4ade80] to-[#86efac]', 'from-[#C0C0C0] to-[#E0E0E0]', 'from-[#30D158] to-[#63E6BE]'],
 ];
 
 interface Agent {
@@ -142,7 +142,7 @@ const LiveActivityFeed: React.FC<{ companyId: string }> = ({ companyId }) => {
 
   return (
     <div className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-4">
-      <p className="text-xs text-[#ff5c5c] uppercase tracking-widest mb-3 font-mono">› Live Activity</p>
+      <p className="text-xs text-[#4ade80] uppercase tracking-widest mb-3 font-mono">› Live Activity</p>
       {items.map((item, i) => (
         <div
           key={`${item.agent}-${i}`}
@@ -152,7 +152,7 @@ const LiveActivityFeed: React.FC<{ companyId: string }> = ({ companyId }) => {
           <span
             className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${
               item.status === 'active'
-                ? 'bg-[#ff5c5c] animate-pulse'
+                ? 'bg-[#4ade80] animate-pulse'
                 : item.status === 'alert'
                 ? 'bg-[#f59e0b]'
                 : 'bg-[#22c55e]'
@@ -174,7 +174,7 @@ const LiveActivityFeed: React.FC<{ companyId: string }> = ({ companyId }) => {
 const FlowLine: React.FC<{ delay?: number }> = ({ delay = 0 }) => (
   <div className="relative w-px h-8 bg-[#1a1a1a] mx-auto overflow-visible">
     <div
-      className="absolute w-1.5 h-1.5 rounded-full bg-[#ff5c5c] -left-[2px]"
+      className="absolute w-1.5 h-1.5 rounded-full bg-[#4ade80] -left-[2px]"
       style={{
         animation: 'packet-flow 2s ease-in-out infinite',
         animationDelay: `${delay}ms`,
@@ -212,7 +212,7 @@ const AgentCard: React.FC<{
   color: string;
   tasksLabel: string;
 }> = ({ agent, color, tasksLabel }) => (
-  <div className="group relative bg-[#0a0a0a] rounded-xl border border-[#1a1a1a] hover:border-[#ff5c5c]/30 transition-all duration-300 hover:scale-[1.02] overflow-hidden">
+  <div className="group relative bg-[#0a0a0a] rounded-xl border border-[#1a1a1a] hover:border-[#4ade80]/30 transition-all duration-300 hover:scale-[1.02] overflow-hidden">
     <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${color}`}></div>
     <div className="p-5">
       <div className="flex items-start gap-3 mb-4">
@@ -266,16 +266,16 @@ const DeptCard: React.FC<{
       <div
         className={`relative px-3 py-2 rounded-lg border transition-all duration-300 ${
           hovered
-            ? 'bg-[#ff5c5c]/15 border-[#ff5c5c]/40 shadow-[0_0_20px_rgba(255,92,92,0.1)]'
-            : 'bg-[#ff5c5c]/10 border-[#ff5c5c]/20'
+            ? 'bg-[#4ade80]/15 border-[#4ade80]/40 shadow-[0_0_20px_rgba(255,92,92,0.1)]'
+            : 'bg-[#4ade80]/10 border-[#4ade80]/20'
         }`}
       >
         <div className="flex items-center justify-between">
-          <h4 className={`font-mono text-xs tracking-wider transition-colors ${hovered ? 'text-[#ff7070]' : 'text-[#ff9090]'}`}>
+          <h4 className={`font-mono text-xs tracking-wider transition-colors ${hovered ? 'text-[#86efac]' : 'text-[#86efac]'}`}>
             <span className={hovered ? 'dept-icon-pulse inline-block' : ''}>›</span> {dept.name}
           </h4>
           {hovered && (
-            <span className="text-[10px] bg-[#ff5c5c]/20 text-[#ff9090] px-2 py-0.5 rounded-full font-mono animate-pulse">
+            <span className="text-[10px] bg-[#4ade80]/20 text-[#86efac] px-2 py-0.5 rounded-full font-mono animate-pulse">
               {taskCount} tasks running
             </span>
           )}
@@ -314,16 +314,16 @@ const OrgChart: React.FC<{
       {/* Boss/CEO Section */}
       <div className="flex flex-col items-center">
         <div className="relative">
-          <div className="absolute inset-0 bg-[#ff5c5c]/10 blur-[60px] rounded-full"></div>
-          <div className="relative bg-[#161920] rounded-2xl p-6 border border-[#ff5c5c]/10 min-w-[300px] hover:border-[#ff5c5c]/30 transition-all duration-300">
+          <div className="absolute inset-0 bg-[#4ade80]/10 blur-[60px] rounded-full"></div>
+          <div className="relative bg-[#161920] rounded-2xl p-6 border border-[#4ade80]/10 min-w-[300px] hover:border-[#4ade80]/30 transition-all duration-300">
             <div className="flex flex-col items-center text-center">
               <div className="relative mb-4">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#ff7070] to-[#ff5c5c] flex items-center justify-center text-3xl">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#86efac] to-[#4ade80] flex items-center justify-center text-3xl">
                   {company.boss.icon}
                 </div>
               </div>
               <h3 className="text-lg font-semibold text-[#f4f4f5] mb-1">{company.boss.title}</h3>
-              <span className="inline-block px-3 py-1 bg-[#ff5c5c]/10 rounded-full text-xs text-[#ff5c5c] mb-2">
+              <span className="inline-block px-3 py-1 bg-[#4ade80]/10 rounded-full text-xs text-[#4ade80] mb-2">
                 {bossLabel}
               </span>
               {/* ONLINE badge */}
@@ -343,8 +343,8 @@ const OrgChart: React.FC<{
 
         {/* Connector line to departments (center) */}
         <div className="flex flex-col items-center">
-          <div className="w-px h-4 bg-gradient-to-b from-[#ff5c5c]/40 to-[#ff5c5c]/10"></div>
-          <div className="w-2 h-2 rounded-full bg-[#ff5c5c]/30"></div>
+          <div className="w-px h-4 bg-gradient-to-b from-[#4ade80]/40 to-[#4ade80]/10"></div>
+          <div className="w-2 h-2 rounded-full bg-[#4ade80]/30"></div>
         </div>
       </div>
 
@@ -375,7 +375,7 @@ const OrgChart: React.FC<{
           <div className="text-xs text-[#838387]">{departmentsLabel}</div>
         </div>
         <div className="text-center">
-          <div className="text-3xl font-bold text-[#ff5c5c]">24/7</div>
+          <div className="text-3xl font-bold text-[#4ade80]">24/7</div>
           <div className="text-xs text-[#838387]">{operatingLabel}</div>
         </div>
       </div>
@@ -421,7 +421,7 @@ export const OrgChartAgents: React.FC = () => {
       <div className="max-w-[980px] mx-auto">
         {/* Header */}
         <div className="mb-16">
-          <p className="text-xs font-medium text-[#ff5c5c] tracking-[0.2em] uppercase mb-4">
+          <p className="text-xs font-medium text-[#4ade80] tracking-[0.2em] uppercase mb-4">
             › {t.orgChart.badge}
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4">
@@ -440,7 +440,7 @@ export const OrgChartAgents: React.FC = () => {
               onClick={() => handleCompanyChange(idx)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium border transition-all duration-300 ${
                 selectedIndex === idx
-                  ? 'bg-[#ff5c5c] text-white border-[#ff5c5c]'
+                  ? 'bg-[#4ade80] text-white border-[#4ade80]'
                   : 'bg-[#0f0f0f] border-[#1e1e1e] text-[#606060] hover:text-white hover:border-[#333]'
               }`}
             >
@@ -474,8 +474,8 @@ export const OrgChartAgents: React.FC = () => {
         {/* Benefits callout */}
         <div className="mt-8 grid md:grid-cols-3 gap-4">
           {[
-            { icon: '💰', title: t.orgChart.saveCost, desc: t.orgChart.saveCostDesc, border: 'border-[#ff5c5c]/10' },
-            { icon: '⚡', title: t.orgChart.speed, desc: t.orgChart.speedDesc, border: 'border-[#ff5c5c]/10' },
+            { icon: '💰', title: t.orgChart.saveCost, desc: t.orgChart.saveCostDesc, border: 'border-[#4ade80]/10' },
+            { icon: '⚡', title: t.orgChart.speed, desc: t.orgChart.speedDesc, border: 'border-[#4ade80]/10' },
             { icon: '🎯', title: t.orgChart.accuracy, desc: t.orgChart.accuracyDesc, border: 'border-[#1a1a1a]' },
           ].map((item, i) => (
             <div key={i} className={`bg-[#0f0f0f] rounded-xl p-5 border ${item.border} text-center`}>

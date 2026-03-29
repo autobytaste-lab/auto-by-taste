@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { blogPosts } from '../data/blogPosts';
 
 const categoryColors: Record<string, string> = {
-  'OpenClaw': 'text-[#ff5c5c] bg-[#ff5c5c]/10 border-[#ff5c5c]/20',
+  'OpenClaw': 'text-[#4ade80] bg-[#4ade80]/10 border-[#4ade80]/20',
   'LLM': 'text-[#a78bfa] bg-[#a78bfa]/10 border-[#a78bfa]/20',
   'AI Agent': 'text-[#34d399] bg-[#34d399]/10 border-[#34d399]/20',
   'Hướng dẫn': 'text-[#fbbf24] bg-[#fbbf24]/10 border-[#fbbf24]/20',
@@ -26,13 +26,13 @@ export const BlogPreview: React.FC = () => {
         {/* Section header */}
         <div className="flex items-end justify-between mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#ff5c5c]/20 bg-[#ff5c5c]/5 mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff5c5c] animate-pulse" />
-              <span className="text-[#ff5c5c] text-xs font-medium tracking-wide uppercase">Blog</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#4ade80]/20 bg-[#4ade80]/5 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] animate-pulse" />
+              <span className="text-[#4ade80] text-xs font-medium tracking-wide uppercase">Blog</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
               Kiến thức AI &{' '}
-              <span className="text-[#ff5c5c]">Hướng dẫn</span>
+              <span className="text-[#4ade80]">Hướng dẫn</span>
             </h2>
             <p className="text-[#555] text-base mt-3 max-w-md">
               Bài viết chuyên sâu về AI Agent, LLM, và cách tận dụng OpenClaw.
@@ -55,12 +55,12 @@ export const BlogPreview: React.FC = () => {
             <Link
               key={post.slug}
               to={`/blog/${post.slug}`}
-              className={`group block bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl overflow-hidden hover:border-[#ff5c5c]/30 transition-all duration-300 hover:shadow-xl hover:shadow-[#ff5c5c]/5 hover:-translate-y-1 ${i === 0 ? 'md:col-span-1' : ''}`}
+              className={`group block bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl overflow-hidden hover:border-[#4ade80]/30 transition-all duration-300 hover:shadow-xl hover:shadow-[#4ade80]/5 hover:-translate-y-1 ${i === 0 ? 'md:col-span-1' : ''}`}
             >
               {/* Featured badge for first */}
               {i === 0 && (
                 <div className="px-5 pt-5">
-                  <span className="text-[10px] text-[#ff5c5c] bg-[#ff5c5c]/10 border border-[#ff5c5c]/20 px-2 py-0.5 rounded-full font-semibold">
+                  <span className="text-[10px] text-[#4ade80] bg-[#4ade80]/10 border border-[#4ade80]/20 px-2 py-0.5 rounded-full font-semibold">
                     ✦ Mới nhất
                   </span>
                 </div>
@@ -80,7 +80,7 @@ export const BlogPreview: React.FC = () => {
                   </span>
                 </div>
 
-                <h3 className="text-white font-bold text-sm leading-snug mb-2.5 group-hover:text-[#ff5c5c] transition-colors line-clamp-2">
+                <h3 className="text-white font-bold text-sm leading-snug mb-2.5 group-hover:text-[#4ade80] transition-colors line-clamp-2">
                   {post.title}
                 </h3>
                 <p className="text-[#666] text-xs leading-relaxed line-clamp-2">
@@ -90,7 +90,7 @@ export const BlogPreview: React.FC = () => {
 
               <div className="px-5 pb-5 flex items-center justify-between">
                 <span className="text-[#444] text-xs">{formatDate(post.publishedAt)}</span>
-                <span className="text-[#ff5c5c] text-xs font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                <span className="text-[#4ade80] text-xs font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
                   Đọc
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

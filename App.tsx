@@ -106,7 +106,7 @@ function HomePage() {
           href="https://zalo.me/0337776435"
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center space-x-2 bg-[#ff5c5c] text-white pl-3 pr-2 py-2 rounded-full shadow-lg shadow-[#ff5c5c]/20 hover:bg-[#ff7070] transition-all duration-300 hover:scale-105"
+          className="group flex items-center space-x-2 bg-[#4ade80] text-black pl-3 pr-2 py-2 rounded-full shadow-lg shadow-[#4ade80]/20 hover:bg-[#86efac] transition-all duration-300 hover:scale-105"
         >
           <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Tư vấn Zalo</span>
           <div className="w-9 h-9 bg-black/20 rounded-full flex items-center justify-center">

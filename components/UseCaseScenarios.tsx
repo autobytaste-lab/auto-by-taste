@@ -227,7 +227,7 @@ export const UseCaseScenarios: React.FC = () => {
       <div className="max-w-[980px] mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <p className="text-xs font-medium text-[#ff5c5c] tracking-[0.2em] uppercase mb-4">
+          <p className="text-xs font-medium text-[#4ade80] tracking-[0.2em] uppercase mb-4">
             › Use Cases Thực Tế
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
@@ -244,7 +244,7 @@ export const UseCaseScenarios: React.FC = () => {
               onClick={() => setActiveTab(i)}
               className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${
                 activeTab === i
-                  ? 'bg-[#ff5c5c] text-white'
+                  ? 'bg-[#4ade80] text-white'
                   : 'bg-[#0f0f0f] border border-[#1e1e1e] text-[#606060] hover:text-white hover:border-[#333]'
               }`}
             >
@@ -279,7 +279,7 @@ export const UseCaseScenarios: React.FC = () => {
             {/* Agent typing / response */}
             {visibleMsg >= 1 && (
               <div className="flex items-start gap-3">
-                <div className="w-7 h-7 rounded-full bg-[#ff5c5c]/20 border border-[#ff5c5c]/30 flex items-center justify-center text-xs shrink-0">
+                <div className="w-7 h-7 rounded-full bg-[#4ade80]/20 border border-[#4ade80]/30 flex items-center justify-center text-xs shrink-0">
                   🦞
                 </div>
                 <div className="flex-1 space-y-2">
@@ -289,9 +289,9 @@ export const UseCaseScenarios: React.FC = () => {
                       {currentScenario.demo[1].tools!.map((tool, ti) => (
                         <span
                           key={ti}
-                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#ff5c5c]/10 border border-[#ff5c5c]/20 text-[10px] font-mono text-[#ff9090]"
+                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#4ade80]/10 border border-[#4ade80]/20 text-[10px] font-mono text-[#86efac]"
                         >
-                          <span className="text-[#ff5c5c]">⚡</span>
+                          <span className="text-[#4ade80]">⚡</span>
                           {tool}
                         </span>
                       ))}
@@ -301,7 +301,7 @@ export const UseCaseScenarios: React.FC = () => {
                     {isTyping ? (
                       <span>
                         {typedText}
-                        <span className="inline-block w-0.5 h-3.5 bg-[#ff5c5c] ml-0.5 animate-pulse"></span>
+                        <span className="inline-block w-0.5 h-3.5 bg-[#4ade80] ml-0.5 animate-pulse"></span>
                       </span>
                     ) : visibleMsg >= 2 ? (
                       currentScenario.demo[1].msg

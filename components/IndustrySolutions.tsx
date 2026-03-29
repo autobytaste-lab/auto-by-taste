@@ -192,7 +192,7 @@ export const IndustrySolutions: React.FC = () => {
 
         {/* Header */}
         <div className="mb-12">
-          <p className="text-xs font-medium text-[#ff5c5c] tracking-[0.2em] uppercase mb-4">
+          <p className="text-xs font-medium text-[#4ade80] tracking-[0.2em] uppercase mb-4">
             › Thuê AI Agent Theo Ngành
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4">
@@ -212,8 +212,8 @@ export const IndustrySolutions: React.FC = () => {
               onClick={() => setSelected(selected === ind.id ? null : ind.id)}
               className={`flex flex-col items-center gap-2 p-4 rounded-xl border text-center transition-all duration-200 ${
                 selected === ind.id
-                  ? 'bg-[#ff5c5c]/10 border-[#ff5c5c]/50 scale-[1.02]'
-                  : 'bg-[#0f0f0f] border-[#1a1a1a] hover:border-[#ff5c5c]/30 hover:bg-[#ff5c5c]/5'
+                  ? 'bg-[#4ade80]/10 border-[#4ade80]/50 scale-[1.02]'
+                  : 'bg-[#0f0f0f] border-[#1a1a1a] hover:border-[#4ade80]/30 hover:bg-[#4ade80]/5'
               }`}
             >
               <span className="text-3xl">{ind.icon}</span>
@@ -229,7 +229,7 @@ export const IndustrySolutions: React.FC = () => {
           <div className="animate-fade-in-up space-y-6">
 
             {/* Pain point */}
-            <div className="bg-[#0f0f0f] border border-[#ff5c5c]/15 rounded-2xl p-5">
+            <div className="bg-[#0f0f0f] border border-[#4ade80]/15 rounded-2xl p-5">
               <div className="flex items-start gap-3">
                 <span className="text-3xl mt-0.5">{activeIndustry.icon}</span>
                 <div>
@@ -245,13 +245,13 @@ export const IndustrySolutions: React.FC = () => {
 
             {/* AI Agents for this industry */}
             <div>
-              <p className="text-xs text-[#ff5c5c] uppercase tracking-widest mb-3">
+              <p className="text-xs text-[#4ade80] uppercase tracking-widest mb-3">
                 › Đội ngũ AI Agent cho thuê — {activeIndustry.name}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {activeIndustry.agents.map((agent) => (
                   <div key={agent.name} className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl p-4 flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#ff5c5c]/10 flex items-center justify-center text-xl shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-[#4ade80]/10 flex items-center justify-center text-xl shrink-0">
                       {agent.icon}
                     </div>
                     <div>
@@ -265,7 +265,7 @@ export const IndustrySolutions: React.FC = () => {
 
             {/* Before / After tasks */}
             <div>
-              <p className="text-xs text-[#ff5c5c] uppercase tracking-widest mb-3">
+              <p className="text-xs text-[#4ade80] uppercase tracking-widest mb-3">
                 › Công việc hàng ngày: Trước và Sau khi có AI
               </p>
               <div className="space-y-3">
@@ -280,7 +280,7 @@ export const IndustrySolutions: React.FC = () => {
                         <p className="text-[10px] text-[#f59e0b] uppercase tracking-widest mb-1">Trước đây</p>
                         <p className="text-[#606060] text-xs leading-relaxed">{task.before}</p>
                       </div>
-                      <div className="px-4 py-3 bg-[#ff5c5c]/3">
+                      <div className="px-4 py-3 bg-[#4ade80]/3">
                         <p className="text-[10px] text-[#22c55e] uppercase tracking-widest mb-1">Với AI Agent</p>
                         <p className="text-[#a0a0a0] text-xs leading-relaxed">{task.after}</p>
                       </div>
@@ -297,14 +297,14 @@ export const IndustrySolutions: React.FC = () => {
                 <p className="text-[#a0a0a0] text-sm leading-relaxed">{activeIndustry.result}</p>
               </div>
               <div className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl p-4">
-                <p className="text-xs text-[#ff5c5c] uppercase tracking-widest mb-2">📱 Kênh tích hợp</p>
+                <p className="text-xs text-[#4ade80] uppercase tracking-widest mb-2">📱 Kênh tích hợp</p>
                 <p className="text-[#a0a0a0] text-sm">{activeIndustry.channel}</p>
                 <p className="text-[#404040] text-xs mt-1">AI hoạt động ngay trên kênh khách hàng đang dùng</p>
               </div>
             </div>
 
             {/* CTA */}
-            <div className="bg-[#0f0f0f] border border-[#ff5c5c]/20 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="bg-[#0f0f0f] border border-[#4ade80]/20 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <p className="text-white font-semibold mb-1">
                   Thuê ngay đội ngũ AI Agent cho {activeIndustry.name}
@@ -318,7 +318,7 @@ export const IndustrySolutions: React.FC = () => {
                   href="https://zalo.me/0337776435"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2.5 bg-[#ff5c5c] hover:bg-[#ff7070] text-white text-sm font-semibold rounded-full transition-all whitespace-nowrap"
+                  className="px-5 py-2.5 bg-[#4ade80] hover:bg-[#86efac] text-white text-sm font-semibold rounded-full transition-all whitespace-nowrap"
                 >
                   Thuê AI Agent →
                 </a>

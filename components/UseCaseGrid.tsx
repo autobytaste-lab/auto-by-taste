@@ -62,7 +62,7 @@ export const UseCaseGrid: React.FC = () => {
       <div className="max-w-[980px] mx-auto">
         {/* Section header */}
         <div className="mb-16">
-          <p className="text-xs font-medium text-[#ff5c5c] tracking-[0.2em] uppercase mb-4">
+          <p className="text-xs font-medium text-[#4ade80] tracking-[0.2em] uppercase mb-4">
             › AI Agent Làm Được Gì?
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
@@ -79,7 +79,7 @@ export const UseCaseGrid: React.FC = () => {
               className="bg-[#0a0a0a] p-8 group hover:bg-[#0f0f0f] transition-all duration-300"
             >
               <div className="text-3xl mb-5">{uc.icon}</div>
-              <h3 className="text-base font-semibold text-white mb-3 group-hover:text-[#ff5c5c] transition-colors duration-300">
+              <h3 className="text-base font-semibold text-white mb-3 group-hover:text-[#4ade80] transition-colors duration-300">
                 {uc.title}
               </h3>
               <p className="text-sm text-[#606060] leading-relaxed">

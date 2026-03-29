@@ -15,7 +15,7 @@ const CodeBlock: React.FC<{ children: string; language?: string }> = ({ children
 );
 
 const InlineCode: React.FC<{ children: string }> = ({ children }) => (
-  <code className="bg-[#1a1a1a] text-[#ff5c5c] px-1.5 py-0.5 rounded text-sm font-mono">{children}</code>
+  <code className="bg-[#1a1a1a] text-[#4ade80] px-1.5 py-0.5 rounded text-sm font-mono">{children}</code>
 );
 
 const docSections: DocSection[] = [
@@ -46,7 +46,7 @@ const docSections: DocSection[] = [
 
         {/* Analogy */}
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-3 text-sm uppercase tracking-widest">📱 Ví dụ thực tế</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-3 text-sm uppercase tracking-widest">📱 Ví dụ thực tế</h3>
           <div className="space-y-3">
             {[
               { who: 'Chủ shop online', what: 'AI tự trả lời inbox Zalo, báo giá, nhận đơn 24/7 — kể cả lúc bạn đang ngủ' },
@@ -55,7 +55,7 @@ const docSections: DocSection[] = [
               { who: 'Giáo viên / Đào tạo', what: 'AI trả lời câu hỏi học viên qua Telegram, lên lịch học, gửi tài liệu tự động' },
             ].map((item, i) => (
               <div key={i} className="flex gap-3 p-4 bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl">
-                <div className="text-[#ff5c5c] font-semibold text-sm shrink-0 w-32">{item.who}</div>
+                <div className="text-[#4ade80] font-semibold text-sm shrink-0 w-32">{item.who}</div>
                 <div className="text-[#a0a0a0] text-sm">{item.what}</div>
               </div>
             ))}
@@ -64,7 +64,7 @@ const docSections: DocSection[] = [
 
         {/* Step by step */}
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-3 text-sm uppercase tracking-widest">🪜 Bắt đầu từ đâu? (3 bước)</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-3 text-sm uppercase tracking-widest">🪜 Bắt đầu từ đâu? (3 bước)</h3>
           <div className="space-y-3">
             {[
               {
@@ -90,12 +90,12 @@ const docSections: DocSection[] = [
               },
             ].map((item) => (
               <div key={item.step} className="flex gap-4 p-4 bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl">
-                <div className="w-8 h-8 rounded-full bg-[#ff5c5c] flex items-center justify-center text-white font-bold text-sm shrink-0">{item.step}</div>
+                <div className="w-8 h-8 rounded-full bg-[#4ade80] flex items-center justify-center text-white font-bold text-sm shrink-0">{item.step}</div>
                 <div className="flex-1">
                   <div className="text-white font-semibold text-sm mb-1">{item.title}</div>
                   <div className="text-[#a0a0a0] text-sm mb-2">{item.desc}</div>
                   {item.href && (
-                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#ff5c5c] hover:underline">
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#4ade80] hover:underline">
                       → {item.action}
                     </a>
                   )}
@@ -107,7 +107,7 @@ const docSections: DocSection[] = [
 
         {/* FAQ */}
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-3 text-sm uppercase tracking-widest">❓ Câu hỏi thường gặp</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-3 text-sm uppercase tracking-widest">❓ Câu hỏi thường gặp</h3>
           <div className="space-y-3">
             {[
               {
@@ -140,14 +140,14 @@ const docSections: DocSection[] = [
         </section>
 
         {/* CTA */}
-        <div className="p-5 bg-[#ff5c5c]/5 border border-[#ff5c5c]/20 rounded-xl text-center">
+        <div className="p-5 bg-[#4ade80]/5 border border-[#4ade80]/20 rounded-xl text-center">
           <p className="text-white font-semibold mb-1">Sẵn sàng bắt đầu?</p>
           <p className="text-[#707070] text-sm mb-4">Tư vấn miễn phí — chúng tôi giải thích mọi thứ bằng tiếng người.</p>
           <a
             href="https://zalo.me/0337776435"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#ff5c5c] hover:bg-[#ff7070] text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all"
+            className="inline-flex items-center gap-2 bg-[#4ade80] hover:bg-[#86efac] text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all"
           >
             💬 Nhắn Zalo ngay
           </a>
@@ -167,14 +167,14 @@ const docSections: DocSection[] = [
         </div>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Giới thiệu</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Giới thiệu</h3>
           <p className="text-[#a0a0a0] text-sm leading-relaxed">
             OpenClaw là AI agent platform chạy ngay trên máy tính của bạn. <strong className="text-white">Dữ liệu không rời khỏi thiết bị.</strong> Bạn kết nối AI với các kênh giao tiếp (Telegram, Zalo, Discord...) và để agent xử lý công việc tự động.
           </p>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Yêu cầu</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Yêu cầu</h3>
           <ul className="space-y-1 text-sm text-[#a0a0a0]">
             <li>• <strong className="text-white">Node.js 24</strong> (hoặc 22.14+) — kiểm tra: <InlineCode>node --version</InlineCode></li>
             <li>• API key từ model provider (Anthropic, OpenAI, Google...)</li>
@@ -182,7 +182,7 @@ const docSections: DocSection[] = [
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Cài đặt</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Cài đặt</h3>
           <CodeBlock>{`# macOS / Linux
 curl -fsSL https://openclaw.ai/install.sh | bash
 
@@ -191,13 +191,13 @@ iwr -useb https://openclaw.ai/install.ps1 | iex`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Onboarding (~2 phút)</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Onboarding (~2 phút)</h3>
           <p className="text-[#a0a0a0] text-sm mb-2">Wizard hướng dẫn chọn model provider, nhập API key, cấu hình Gateway:</p>
           <CodeBlock>{`openclaw onboard --install-daemon`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Kiểm tra</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Kiểm tra</h3>
           <CodeBlock>{`openclaw gateway status   # Gateway lắng nghe trên port 18789
 openclaw dashboard        # Mở Control UI trên trình duyệt`}</CodeBlock>
         </section>
@@ -216,7 +216,7 @@ openclaw dashboard        # Mở Control UI trên trình duyệt`}</CodeBlock>
         </div>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-3 text-sm uppercase tracking-widest">Telegram <span className="text-[#22c55e] text-xs normal-case">(Khuyên dùng cho người mới)</span></h3>
+          <h3 className="text-[#4ade80] font-semibold mb-3 text-sm uppercase tracking-widest">Telegram <span className="text-[#22c55e] text-xs normal-case">(Khuyên dùng cho người mới)</span></h3>
           <ol className="space-y-2 text-sm text-[#a0a0a0] list-decimal list-inside">
             <li>Tạo bot qua <strong className="text-white">@BotFather</strong> → lấy bot token</li>
             <li>Thêm vào config:
@@ -229,7 +229,7 @@ openclaw dashboard        # Mở Control UI trên trình duyệt`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Telegram — Chi tiết cài đặt</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Telegram — Chi tiết cài đặt</h3>
           <ol className="space-y-1.5 text-sm text-[#a0a0a0] list-decimal list-inside mb-3">
             <li>Chat với <strong className="text-white">@BotFather</strong> trên Telegram</li>
             <li>Gửi <InlineCode>/newbot</InlineCode> → đặt tên và username cho bot</li>
@@ -256,7 +256,7 @@ channels.telegram.accounts.bot2.dmPolicy = "allowlist"`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Zalo Personal</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Zalo Personal</h3>
           <ul className="space-y-1 text-sm text-[#a0a0a0]">
             <li>• Kết nối tài khoản Zalo cá nhân qua QR code</li>
             <li>• Hỗ trợ gửi/nhận tin nhắn, hình ảnh, file</li>
@@ -265,7 +265,7 @@ channels.telegram.accounts.bot2.dmPolicy = "allowlist"`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Zalo OA (Official Account)</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Zalo OA (Official Account)</h3>
           <ul className="space-y-1 text-sm text-[#a0a0a0]">
             <li>• Dành cho doanh nghiệp có Zalo OA</li>
             <li>• Tích hợp webhook để nhận tin nhắn khách hàng tự động</li>
@@ -274,10 +274,10 @@ channels.telegram.accounts.bot2.dmPolicy = "allowlist"`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Các kênh khác</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Các kênh khác</h3>
           <div className="grid grid-cols-2 gap-2 text-sm">
             {['WhatsApp', 'Discord', 'Slack', 'iMessage', 'Signal', 'Email'].map(ch => (
-              <div key={ch} className="bg-[#0f0f0f] border border-[#1a1a1a] rounded px-3 py-2 text-[#707070] hover:text-white hover:border-[#ff5c5c]/30 transition-colors">
+              <div key={ch} className="bg-[#0f0f0f] border border-[#1a1a1a] rounded px-3 py-2 text-[#707070] hover:text-white hover:border-[#4ade80]/30 transition-colors">
                 {ch}
               </div>
             ))}
@@ -298,10 +298,10 @@ channels.telegram.accounts.bot2.dmPolicy = "allowlist"`}</CodeBlock>
         </div>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-3 text-sm uppercase tracking-widest">Cloud Providers</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-3 text-sm uppercase tracking-widest">Cloud Providers</h3>
           <div className="space-y-2">
             {[
-              { name: 'Anthropic', models: 'Claude Sonnet, Haiku, Opus', color: '#ff5c5c' },
+              { name: 'Anthropic', models: 'Claude Sonnet, Haiku, Opus', color: '#4ade80' },
               { name: 'OpenAI', models: 'GPT-4o, GPT-4o mini', color: '#22c55e' },
               { name: 'Google', models: 'Gemini 2.0 Flash, Pro', color: '#3b82f6' },
             ].map(p => (
@@ -314,7 +314,7 @@ channels.telegram.accounts.bot2.dmPolicy = "allowlist"`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-3 text-sm uppercase tracking-widest">Local Providers <span className="text-[#22c55e] text-xs normal-case">(Chạy trên máy của bạn)</span></h3>
+          <h3 className="text-[#4ade80] font-semibold mb-3 text-sm uppercase tracking-widest">Local Providers <span className="text-[#22c55e] text-xs normal-case">(Chạy trên máy của bạn)</span></h3>
           <div className="space-y-3">
             <div className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-lg px-4 py-3">
               <div className="font-semibold text-white text-sm mb-1">Ollama</div>
@@ -347,14 +347,14 @@ openclaw config set models.providers.ollama.baseUrl http://localhost:11434`}</Co
         </div>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Cron Jobs — Lên lịch tự động</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Cron Jobs — Lên lịch tự động</h3>
           <p className="text-[#a0a0a0] text-sm mb-2">Chạy agent theo lịch cố định (cú pháp cron tiêu chuẩn):</p>
           <CodeBlock>{`openclaw cron add --schedule "0 9 * * 1-5" --message "Tóm tắt email buổi sáng"`}</CodeBlock>
           <p className="text-[#707070] text-xs mt-1">Ví dụ trên: mỗi ngày thường 9h sáng agent sẽ tóm tắt email.</p>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Cron Jobs — Ví dụ thực tế</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Cron Jobs — Ví dụ thực tế</h3>
           <CodeBlock>{`# Nhắc nhở hàng ngày lúc 9 giờ sáng (UTC+7)
 openclaw cron add \\
   --name "Morning briefing" \\
@@ -383,7 +383,7 @@ openclaw cron add \\
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Heartbeat — Kiểm tra định kỳ</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Heartbeat — Kiểm tra định kỳ</h3>
           <ul className="space-y-1 text-sm text-[#a0a0a0]">
             <li>• Tạo file <InlineCode>HEARTBEAT.md</InlineCode> trong workspace</li>
             <li>• Agent đọc và thực hiện tasks theo lịch</li>
@@ -392,13 +392,13 @@ openclaw cron add \\
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Webhooks — Nhận events từ bên ngoài</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Webhooks — Nhận events từ bên ngoài</h3>
           <CodeBlock>{`openclaw config set gateway.webhooks.enabled true`}</CodeBlock>
           <p className="text-[#707070] text-xs mt-1">Nhận events từ GitHub, Stripe, form submission, v.v. và để agent xử lý tự động.</p>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Standing Orders — Lệnh thường trực</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Standing Orders — Lệnh thường trực</h3>
           <p className="text-[#a0a0a0] text-sm">
             Định nghĩa các điều kiện và hành động mặc định. Agent tự động thực hiện khi điều kiện thỏa mãn — không cần nhắc lại mỗi lần.
           </p>
@@ -418,7 +418,7 @@ openclaw cron add \\
         </div>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-3 text-sm uppercase tracking-widest">Tools có sẵn</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-3 text-sm uppercase tracking-widest">Tools có sẵn</h3>
           <div className="space-y-2">
             {[
               { name: 'exec', desc: 'Chạy lệnh shell — tương tác trực tiếp với hệ thống' },
@@ -437,10 +437,10 @@ openclaw cron add \\
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Skills — Mở rộng hành vi agent</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Skills — Mở rộng hành vi agent</h3>
           <ul className="space-y-1.5 text-sm text-[#a0a0a0]">
             <li>• Skills là file markdown (<InlineCode>SKILL.md</InlineCode>) định nghĩa hành vi & hướng dẫn cho agent</li>
-            <li>• Tìm và cài skills tại <a href="https://clawhub.com" target="_blank" rel="noopener noreferrer" className="text-[#ff5c5c] hover:underline">clawhub.com</a></li>
+            <li>• Tìm và cài skills tại <a href="https://clawhub.com" target="_blank" rel="noopener noreferrer" className="text-[#4ade80] hover:underline">clawhub.com</a></li>
             <li>• Tự tạo skill: tạo thư mục <InlineCode>skills/my-skill/SKILL.md</InlineCode> trong workspace</li>
           </ul>
         </section>
@@ -459,7 +459,7 @@ openclaw cron add \\
         </div>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Luồng xử lý</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Luồng xử lý</h3>
           <pre className="bg-[#0a0a0a] border border-[#1e1e1e] rounded-lg p-5 text-sm font-mono text-[#a0a0a0] leading-loose">
 {`Người dùng (Telegram/Zalo/...)
          ↓
@@ -474,7 +474,7 @@ OpenClaw Gateway (port 18789)
         </section>
 
         <section className="space-y-3">
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Các thành phần</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Các thành phần</h3>
           {[
             { name: 'Gateway', desc: 'Trung tâm điều phối — xử lý routing giữa channels và agents, lắng nghe trên port 18789' },
             { name: 'Agent', desc: 'Sử dụng LLM để hiểu yêu cầu, lập kế hoạch, và gọi tools phù hợp' },
@@ -502,14 +502,14 @@ OpenClaw Gateway (port 18789)
         </div>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Pairing là gì?</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Pairing là gì?</h3>
           <p className="text-[#a0a0a0] text-sm leading-relaxed">
             Pairing là cơ chế xác thực người dùng. Khi <InlineCode>dmPolicy = "pairing"</InlineCode>, người dùng cần được approve trước khi chat được với bot.
           </p>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Luồng hoạt động</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Luồng hoạt động</h3>
           <ol className="space-y-1.5 text-sm text-[#a0a0a0] list-decimal list-inside">
             <li>Người dùng gửi tin nhắn đầu tiên → bot trả về pairing code</li>
             <li>Operator chạy: <InlineCode>openclaw pairing approve telegram &lt;CODE&gt;</InlineCode></li>
@@ -518,7 +518,7 @@ OpenClaw Gateway (port 18789)
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Các lệnh pairing</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Các lệnh pairing</h3>
           <CodeBlock>{`openclaw pairing list telegram              # xem danh sách pending
 openclaw pairing approve telegram <code>   # approve
 openclaw pairing deny telegram <code>      # từ chối
@@ -526,7 +526,7 @@ openclaw pairing revoke telegram <userId>  # thu hồi quyền`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">dmPolicy options</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">dmPolicy options</h3>
           <div className="space-y-2">
             {[
               { key: 'pairing', desc: '(mặc định) — yêu cầu approve thủ công' },
@@ -542,7 +542,7 @@ openclaw pairing revoke telegram <userId>  # thu hồi quyền`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Group policy</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Group policy</h3>
           <ul className="space-y-1 text-sm text-[#a0a0a0] mb-3">
             <li>• Thêm bot vào group, set <InlineCode>requireMention: true</InlineCode> để bot chỉ trả lời khi được @mention</li>
             <li>• <InlineCode>allowFrom: ["*"]</InlineCode> cho phép tất cả thành viên group</li>
@@ -566,7 +566,7 @@ channels.telegram.groups["GROUP_ID"].allowFrom = ["*"]`}</CodeBlock>
         </div>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-3 text-sm uppercase tracking-widest">Hệ thống memory</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-3 text-sm uppercase tracking-widest">Hệ thống memory</h3>
           <p className="text-[#a0a0a0] text-sm mb-3">OpenClaw có 3 lớp memory:</p>
           <div className="space-y-3">
             {[
@@ -588,7 +588,7 @@ channels.telegram.groups["GROUP_ID"].allowFrom = ["*"]`}</CodeBlock>
             ].map(m => (
               <div key={m.name} className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-lg px-4 py-3">
                 <div className="text-white font-semibold text-sm mb-0.5">{m.name}</div>
-                <div className="text-[#ff5c5c] text-xs mb-1">{m.sub}</div>
+                <div className="text-[#4ade80] text-xs mb-1">{m.sub}</div>
                 <p className="text-[#707070] text-xs">{m.desc}</p>
               </div>
             ))}
@@ -596,7 +596,7 @@ channels.telegram.groups["GROUP_ID"].allowFrom = ["*"]`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Workspace files</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Workspace files</h3>
           <div className="space-y-1.5 text-sm">
             {[
               { file: 'SOUL.md', desc: 'Persona và tone của agent' },
@@ -613,13 +613,13 @@ channels.telegram.groups["GROUP_ID"].allowFrom = ["*"]`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Memory commands</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Memory commands</h3>
           <CodeBlock>{`openclaw memory search "query"  # tìm kiếm trong memory
 openclaw memory list            # xem memory files`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Context pruning</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Context pruning</h3>
           <p className="text-[#a0a0a0] text-sm mb-2">Khi context quá dài, OpenClaw tự động prune để tối ưu token:</p>
           <CodeBlock>{`config: agents.defaults.contextPruning.mode = "cache-ttl"`}</CodeBlock>
         </section>
@@ -638,21 +638,21 @@ openclaw memory list            # xem memory files`}</CodeBlock>
         </div>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Plugin là gì?</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Plugin là gì?</h3>
           <p className="text-[#a0a0a0] text-sm leading-relaxed">
             Plugin là package npm có thể đăng ký: channels mới, model providers, tools, skills, speech, image generation.
           </p>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Cài plugin</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Cài plugin</h3>
           <CodeBlock>{`openclaw plugins install <package-name>
 openclaw plugins list
 openclaw plugins enable <plugin-id>`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Core plugins (có sẵn)</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Core plugins (có sẵn)</h3>
           <div className="space-y-1.5">
             {[
               { name: 'telegram', desc: 'Telegram Bot API' },
@@ -668,15 +668,15 @@ openclaw plugins enable <plugin-id>`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Community plugins</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Community plugins</h3>
           <p className="text-[#a0a0a0] text-sm">
             Tìm tại:{' '}
-            <a href="https://clawhub.com" target="_blank" rel="noopener noreferrer" className="text-[#ff5c5c] hover:underline">clawhub.com</a>
+            <a href="https://clawhub.com" target="_blank" rel="noopener noreferrer" className="text-[#4ade80] hover:underline">clawhub.com</a>
           </p>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Tạo plugin</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Tạo plugin</h3>
           <ol className="space-y-1.5 text-sm text-[#a0a0a0] list-decimal list-inside">
             <li>Tạo npm package với entry point export capabilities</li>
             <li>Đăng ký channels, tools, skills trong plugin</li>
@@ -685,10 +685,10 @@ openclaw plugins enable <plugin-id>`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Skills ecosystem</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Skills ecosystem</h3>
           <ul className="space-y-1 text-sm text-[#a0a0a0] mb-3">
             <li>• Skills là file <InlineCode>SKILL.md</InlineCode> định nghĩa hành vi agent</li>
-            <li>• Tìm và cài từ <a href="https://clawhub.com" target="_blank" rel="noopener noreferrer" className="text-[#ff5c5c] hover:underline">clawhub.com</a></li>
+            <li>• Tìm và cài từ <a href="https://clawhub.com" target="_blank" rel="noopener noreferrer" className="text-[#4ade80] hover:underline">clawhub.com</a></li>
             <li>• Tự tạo: <InlineCode>workspace/skills/my-skill/SKILL.md</InlineCode></li>
             <li>• Format: YAML frontmatter + Markdown content</li>
           </ul>
@@ -715,7 +715,7 @@ When asked about weather, use web_search with query "weather [location]"...`}</C
         </div>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Gateway</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Gateway</h3>
           <CodeBlock>{`openclaw gateway start    # Khởi động gateway
 openclaw gateway stop     # Dừng gateway
 openclaw gateway status   # Kiểm tra trạng thái
@@ -723,20 +723,20 @@ openclaw gateway restart  # Khởi động lại`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Channels</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Channels</h3>
           <CodeBlock>{`openclaw channels list    # Xem các channel đang active
 openclaw channels status  # Chi tiết trạng thái từng channel`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Config</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Config</h3>
           <CodeBlock>{`openclaw config get              # Xem toàn bộ config
 openclaw config set key value   # Set một giá trị
 openclaw configure              # Chạy wizard cấu hình lại`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Cron</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Cron</h3>
           <CodeBlock>{`openclaw cron list           # Xem jobs
 openclaw cron add --name "..." --schedule "0 9 * * *" --message "..."
 openclaw cron run <id>       # Chạy job ngay
@@ -744,27 +744,27 @@ openclaw cron remove <id>    # Xóa job`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Pairing</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Pairing</h3>
           <CodeBlock>{`openclaw pairing list telegram
 openclaw pairing approve telegram <code>
 openclaw pairing revoke telegram <userId>`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Logs & Debug</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Logs & Debug</h3>
           <CodeBlock>{`openclaw logs          # Xem logs gần nhất
 openclaw doctor        # Kiểm tra sức khỏe hệ thống
 openclaw doctor --fix  # Auto-fix các vấn đề phổ biến`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Agents</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Agents</h3>
           <CodeBlock>{`openclaw agents list  # Xem các agents đã cấu hình
 openclaw agent chat   # Chat trực tiếp qua CLI`}</CodeBlock>
         </section>
 
         <section>
-          <h3 className="text-[#ff5c5c] font-semibold mb-2 text-sm uppercase tracking-widest">Dashboard</h3>
+          <h3 className="text-[#4ade80] font-semibold mb-2 text-sm uppercase tracking-widest">Dashboard</h3>
           <CodeBlock>{`openclaw dashboard  # Mở Control UI`}</CodeBlock>
         </section>
       </div>
@@ -807,7 +807,7 @@ openclaw agent chat   # Chat trực tiếp qua CLI`}</CodeBlock>
             {
               os: 'VPS / Cloud Server',
               badge: '24/7',
-              badgeColor: 'text-[#ff5c5c] bg-[#ff5c5c]/10',
+              badgeColor: 'text-[#4ade80] bg-[#4ade80]/10',
               desc: 'Chạy headless, kết nối từ xa qua Tailscale. Lý tưởng cho AI agent hoạt động 24/7',
               install: null,
             },
@@ -849,19 +849,19 @@ export const DocsPage: React.FC = () => {
               <span className="text-2xl">🦞</span>
               <span className="text-base font-bold text-white tracking-tight">AutoByTaste</span>
             </div>
-            <span className="text-[10px] text-[#ff5c5c] font-medium tracking-widest uppercase ml-8 -mt-0.5">Agentic AI · Việt Nam</span>
+            <span className="text-[10px] text-[#4ade80] font-medium tracking-widest uppercase ml-8 -mt-0.5">Agentic AI · Việt Nam</span>
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
             <Link to="/" className="text-xs font-normal text-[#707070] hover:text-white transition-colors">Trang chủ</Link>
-            <Link to="/docs" className="text-xs font-normal text-white border-b border-[#ff5c5c] pb-0.5">Tài liệu</Link>
+            <Link to="/docs" className="text-xs font-normal text-white border-b border-[#4ade80] pb-0.5">Tài liệu</Link>
           </div>
 
           <a
             href="https://zalo.me/0337776435"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#ff5c5c] hover:bg-[#ff7070] text-white px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300"
+            className="bg-[#4ade80] hover:bg-[#86efac] text-white px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300"
           >
             Tư vấn miễn phí
           </a>
@@ -872,7 +872,7 @@ export const DocsPage: React.FC = () => {
       <div className="flex pt-16 max-w-[1200px] mx-auto min-h-screen">
         {/* Mobile sidebar toggle */}
         <button
-          className="md:hidden fixed bottom-6 left-6 z-40 bg-[#ff5c5c] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
+          className="md:hidden fixed bottom-6 left-6 z-40 bg-[#4ade80] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
           onClick={() => setSidebarOpen(!sidebarOpen)}
         >
           {sidebarOpen ? '✕ Đóng' : '☰ Menu'}
@@ -887,14 +887,14 @@ export const DocsPage: React.FC = () => {
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}>
           <div className="mb-4">
-            <div className="text-xs text-[#ff5c5c] font-semibold uppercase tracking-widest mb-3">📚 Tài liệu</div>
+            <div className="text-xs text-[#4ade80] font-semibold uppercase tracking-widest mb-3">📚 Tài liệu</div>
             {/* Search */}
             <input
               type="text"
               placeholder="Tìm kiếm..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full bg-[#111] border border-[#1e1e1e] rounded px-3 py-2 text-xs text-white placeholder-[#444] focus:outline-none focus:border-[#ff5c5c]/50 font-mono"
+              className="w-full bg-[#111] border border-[#1e1e1e] rounded px-3 py-2 text-xs text-white placeholder-[#444] focus:outline-none focus:border-[#4ade80]/50 font-mono"
             />
           </div>
 
@@ -905,7 +905,7 @@ export const DocsPage: React.FC = () => {
                 onClick={() => { setActiveId(section.id); setSidebarOpen(false); }}
                 className={`w-full text-left px-3 py-2.5 rounded-lg text-sm transition-all duration-200 flex items-center gap-2
                   ${activeId === section.id
-                    ? 'bg-[#ff5c5c]/10 text-white border border-[#ff5c5c]/20'
+                    ? 'bg-[#4ade80]/10 text-white border border-[#4ade80]/20'
                     : 'text-[#707070] hover:text-white hover:bg-[#111]'
                   }`}
               >
@@ -923,7 +923,7 @@ export const DocsPage: React.FC = () => {
               href="https://docs.openclaw.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs text-[#707070] hover:text-[#ff5c5c] transition-colors"
+              className="flex items-center gap-2 text-xs text-[#707070] hover:text-[#4ade80] transition-colors"
             >
               <span>🔗</span>
               <span>Tài liệu gốc (EN)</span>
@@ -935,9 +935,9 @@ export const DocsPage: React.FC = () => {
         <main className="flex-1 px-6 md:px-10 py-8 min-w-0">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-xs text-[#444] mb-6 font-mono">
-            <Link to="/" className="hover:text-[#ff5c5c] transition-colors">Home</Link>
+            <Link to="/" className="hover:text-[#4ade80] transition-colors">Home</Link>
             <span>›</span>
-            <Link to="/docs" className="hover:text-[#ff5c5c] transition-colors">Tài liệu</Link>
+            <Link to="/docs" className="hover:text-[#4ade80] transition-colors">Tài liệu</Link>
             <span>›</span>
             <span className="text-[#707070]">{activeSection.icon} {activeSection.title}</span>
           </div>
@@ -952,7 +952,7 @@ export const DocsPage: React.FC = () => {
                 href="https://docs.openclaw.ai"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-[#707070] hover:text-[#ff5c5c] transition-colors border border-[#1a1a1a] hover:border-[#ff5c5c]/30 rounded-lg px-4 py-2"
+                className="inline-flex items-center gap-2 text-sm text-[#707070] hover:text-[#4ade80] transition-colors border border-[#1a1a1a] hover:border-[#4ade80]/30 rounded-lg px-4 py-2"
               >
                 <span>📖</span>
                 <span>Xem tài liệu gốc (EN) tại docs.openclaw.ai</span>

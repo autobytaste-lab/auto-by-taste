@@ -56,7 +56,7 @@ export const QuickStartBlock: React.FC = () => {
       <div className="max-w-[980px] mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <p className="text-xs font-medium text-[#ff5c5c] tracking-[0.2em] uppercase mb-4">
+          <p className="text-xs font-medium text-[#4ade80] tracking-[0.2em] uppercase mb-4">
             › Bắt Đầu Ngay
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
@@ -86,7 +86,7 @@ export const QuickStartBlock: React.FC = () => {
                   onClick={() => setPlatform(p)}
                   className={`px-3 py-1 rounded text-[10px] font-medium transition-all duration-200 ${
                     platform === p
-                      ? 'bg-[#ff5c5c]/20 text-[#ff5c5c] border border-[#ff5c5c]/30'
+                      ? 'bg-[#4ade80]/20 text-[#4ade80] border border-[#4ade80]/30'
                       : 'text-[#404040] hover:text-[#808080]'
                   }`}
                 >
@@ -102,7 +102,7 @@ export const QuickStartBlock: React.FC = () => {
               <div key={i} className="flex items-start gap-2">
                 {line.type === 'cmd' && (
                   <>
-                    <span className="text-[#ff5c5c] select-none">$</span>
+                    <span className="text-[#4ade80] select-none">$</span>
                     <span className="text-[#e0e0e0]">{line.text}</span>
                   </>
                 )}
@@ -118,8 +118,8 @@ export const QuickStartBlock: React.FC = () => {
 
             {/* Cursor */}
             <div className="flex items-center gap-2">
-              <span className="text-[#ff5c5c] select-none">$</span>
-              <span className="inline-block w-2 h-4 bg-[#ff5c5c] animate-pulse"></span>
+              <span className="text-[#4ade80] select-none">$</span>
+              <span className="inline-block w-2 h-4 bg-[#4ade80] animate-pulse"></span>
             </div>
           </div>
         </div>
