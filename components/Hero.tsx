@@ -41,6 +41,81 @@ export const Hero: React.FC = () => {
           </a>
         </div>
 
+        {/* Glowing logo cycle */}
+        <div className="relative w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] mx-auto mb-14">
+          {/* Outer dark ring */}
+          <div className="absolute inset-0 rounded-full bg-[#111] border border-[#222]"></div>
+
+          {/* Gradient glow ring — spinning */}
+          <div
+            className="absolute inset-[12px] sm:inset-[16px] rounded-full"
+            style={{
+              background: 'conic-gradient(from 0deg, #d4fc79, #4ade80, #22c55e, #065f46, #22c55e, #4ade80, #d4fc79)',
+              animation: 'glow-ring-spin 6s linear infinite',
+            }}
+          >
+            {/* Inner black circle cutout */}
+            <div className="absolute inset-[3px] sm:inset-[4px] rounded-full bg-[#0a0a0a]"></div>
+          </div>
+
+          {/* Glow blur behind ring */}
+          <div
+            className="absolute inset-[8px] sm:inset-[10px] rounded-full pointer-events-none"
+            style={{
+              background: 'conic-gradient(from 180deg, rgba(212,252,121,0.3), rgba(74,222,128,0.4), rgba(34,197,94,0.3), transparent, rgba(74,222,128,0.3), rgba(212,252,121,0.3))',
+              filter: 'blur(16px)',
+              animation: 'glow-ring-spin 6s linear infinite',
+            }}
+          ></div>
+
+          {/* Scattered glow particles on the ring */}
+          {[0, 72, 144, 216, 288].map((deg, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 rounded-full bg-[#4ade80] blur-[2px]"
+              style={{
+                top: `${50 - 44 * Math.cos((deg * Math.PI) / 180)}%`,
+                left: `${50 + 44 * Math.sin((deg * Math.PI) / 180)}%`,
+                transform: 'translate(-50%, -50%)',
+                animation: `glow-pulse ${2 + i * 0.5}s ease-in-out infinite`,
+              }}
+            ></div>
+          ))}
+
+          {/* Center circle with AI logo */}
+          <div className="absolute inset-[28px] sm:inset-[36px] rounded-full bg-[#0a0a0a] flex items-center justify-center z-10">
+            {/* AI Logo — stylized "A" mark */}
+            <svg
+              viewBox="0 0 60 60"
+              className="w-16 h-16 sm:w-20 sm:h-20"
+              fill="none"
+            >
+              {/* A shape */}
+              <path
+                d="M20 42L30 14L40 42"
+                stroke="white"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              {/* Crossbar */}
+              <path
+                d="M24 34H36"
+                stroke="white"
+                strokeWidth="3.5"
+                strokeLinecap="round"
+              />
+              {/* Right stroke (like \) */}
+              <path
+                d="M35 18L44 42"
+                stroke="white"
+                strokeWidth="3.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+        </div>
+
         {/* World map visualization — react-simple-maps */}
         <Suspense fallback={
           <div className="w-full max-w-[800px] mx-auto mb-8 h-[300px] bg-[#0a0c10] rounded-2xl animate-pulse" />
