@@ -81,7 +81,7 @@ export const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-[#1e2028] flex flex-col md:flex-row justify-between items-center text-xs text-[#636366]">
           <div className="flex items-center gap-2 mb-4 md:mb-0">
-            <img src="/logo.jpg" alt="AutoByTaste" className="w-6 h-6 rounded-full object-cover" />
+            <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/img_6721_1774808773182.jpeg" alt="AutoByTaste" className="w-6 h-6 rounded-full object-cover" />
             <p>{t.footer.copyright}</p>
           </div>
           <div className="flex space-x-6">
