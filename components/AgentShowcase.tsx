@@ -44,7 +44,7 @@ export const AgentShowcase: React.FC = () => {
           <div className="relative w-full max-w-[480px] mx-auto h-[320px]">
             {/* Center hub */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-2xl bg-gradient-to-br from-[#d4fc79]/60 to-[#4ade80]/60 flex items-center justify-center shadow-lg shadow-[#4ade80]/15 z-10">
-              <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/img_6721_1774808773182.jpeg" alt="AutoByTaste" className="w-12 h-12 rounded-full object-cover" />
+              <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/img_6726_1774809379159.jpeg" alt="AutoByTaste" className="w-12 h-12 rounded-full object-cover" />
             </div>
 
             {/* Connecting lines */}
