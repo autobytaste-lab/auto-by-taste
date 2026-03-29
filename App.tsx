@@ -23,6 +23,7 @@ import { BlogPost } from './components/BlogPost';
 import { BlogPreview } from './components/BlogPreview';
 import { DemoChatSection } from './components/DemoChatSection';
 import { AgentShowcase } from './components/AgentShowcase';
+import { GlowCycle } from './components/GlowCycle';
 
 function HomePage() {
   return (
@@ -31,6 +32,10 @@ function HomePage() {
       <main className="flex-grow pt-16">
         <section id="overview">
           <Hero />
+        </section>
+
+        <section id="glow-cycle">
+          <GlowCycle />
         </section>
 
         <section id="agent-showcase">
