@@ -121,6 +121,7 @@ function HomePage() {
           <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap hidden sm:inline">Tư vấn Zalo</span>
           <div className="w-7 h-7 sm:w-9 sm:h-9 bg-black/20 rounded-full flex items-center justify-center">
             <img src="https://img.icons8.com/color/48/zalo.png" alt="Zalo" className="w-4 h-4 sm:w-5 sm:h-5" />
+          </div>
         </a>
 
         {/* Chat Widget */}
