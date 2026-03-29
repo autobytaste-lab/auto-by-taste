@@ -22,15 +22,15 @@ export const Footer: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-12 mb-14">
           {/* Our Solutions */}
           <div>
-            <h4 className="text-xl font-bold text-white mb-6">Our Solutions</h4>
+            <h4 className="text-xl font-bold text-white mb-6">Dịch Vụ AI Agent</h4>
             <div className="grid grid-cols-2 gap-3">
               <ul className="space-y-3 text-sm text-[#9ca3af]">
-                <li><a href="#" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>L2 Depin Blockchain</a></li>
-                <li><a href="#" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>Optimai Nodes</a></li>
+                <li><a href="#services" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>Cho Thuê AI Agent</a></li>
+                <li><a href="#usecases" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>Sales & CSKH Agent</a></li>
               </ul>
               <ul className="space-y-3 text-sm text-[#9ca3af]">
-                <li><a href="#" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>Reinforcement Data layer</a></li>
-                <li><a href="#" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>GenAI Agents</a></li>
+                <li><a href="#usecases" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>Marketing Agent</a></li>
+                <li><a href="#pricing" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>Bảng Giá Dịch Vụ</a></li>
               </ul>
             </div>
           </div>
@@ -45,7 +45,7 @@ export const Footer: React.FC = () => {
               </ul>
               <ul className="space-y-3 text-sm text-[#9ca3af]">
                 <li><a href="/docs" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>Documentation</a></li>
-                <li><a href="https://zalo.me/0337776435" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>Download Node</a></li>
+                <li><a href="https://zalo.me/0337776435" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>Tư Vấn Miễn Phí</a></li>
               </ul>
             </div>
           </div>
