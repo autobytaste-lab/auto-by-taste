@@ -49,7 +49,7 @@ export const Navbar: React.FC = () => {
             <Link to="/docs" className="text-xs font-normal text-[#707070] hover:text-white transition-colors duration-300">📚 Tài liệu</Link>
           </div>
 
-          {/* Right: CTA + hamburger */}
+          {/* Right: CTA + language switch + hamburger */}
           <div className="flex items-center gap-3">
             <a
               href="https://zalo.me/0337776435"
@@ -59,6 +59,23 @@ export const Navbar: React.FC = () => {
             >
               Download
             </a>
+
+            {/* Language switch (mobile only) */}
+            <button
+              onClick={() => setLanguage(language === 'vi' ? 'en' : 'vi')}
+              className="md:hidden relative w-14 h-7 rounded-full bg-[#111] border border-[#222] transition-colors duration-300"
+              aria-label="Switch language"
+            >
+              <span
+                className={`absolute top-0.5 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all duration-300 ${
+                  language === 'vi'
+                    ? 'left-0.5 bg-[#4ade80] text-white'
+                    : 'left-[26px] bg-[#14b8a6] text-white'
+                }`}
+              >
+                {language === 'vi' ? 'VI' : 'EN'}
+              </span>
+            </button>
 
             {/* Hamburger button (mobile only) */}
             <button
