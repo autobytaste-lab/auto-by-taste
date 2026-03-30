@@ -142,7 +142,7 @@ const docSections: DocSection[] = [
         {/* CTA */}
         <div className="p-5 bg-[#4ade80]/5 border border-[#4ade80]/20 rounded-xl text-center">
           <p className="text-white font-semibold mb-1">Sẵn sàng bắt đầu?</p>
-          <p className="text-[#707070] text-sm mb-4">Tư vấn miễn phí — chúng tôi giải thích mọi thứ bằng tiếng người.</p>
+          <p className="text-[#707070] text-sm mb-4">Tư vấn — chúng tôi giải thích mọi thứ bằng tiếng người.</p>
           <a
             href="https://zalo.me/0337776435"
             target="_blank"
@@ -863,7 +863,7 @@ export const DocsPage: React.FC = () => {
             rel="noopener noreferrer"
             className="bg-[#4ade80] hover:bg-[#86efac] text-white px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300"
           >
-            Tư vấn miễn phí
+            Tư vấn
           </a>
         </div>
       </nav>

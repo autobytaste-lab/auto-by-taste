@@ -45,7 +45,7 @@ export const Footer: React.FC = () => {
               </ul>
               <ul className="space-y-3 text-sm text-[#9ca3af]">
                 <li><a href="/docs" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>Documentation</a></li>
-                <li><a href="https://zalo.me/0337776435" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>Tư Vấn Miễn Phí</a></li>
+                <li><a href="https://zalo.me/0337776435" className="flex items-center gap-2 hover:text-white transition-colors"><span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]/50"></span>Tư Vấn</a></li>
               </ul>
             </div>
           </div>

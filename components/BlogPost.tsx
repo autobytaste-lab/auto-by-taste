@@ -296,7 +296,7 @@ export const BlogPost: React.FC = () => {
                 target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-[#4ade80] hover:bg-[#86efac] text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
               >
-                Tư vấn miễn phí →
+                Tư vấn →
               </a>
             </div>
           </article>

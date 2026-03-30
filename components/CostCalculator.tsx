@@ -394,7 +394,7 @@ export const CostCalculator: React.FC = () => {
         <div className="mt-10 p-6 bg-[#0f0f0f] border border-[#4ade80]/15 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <p className="text-white font-semibold mb-1">Bắt đầu với chi phí gần bằng 0</p>
-            <p className="text-[#606060] text-sm">Local AI = chỉ tốn tiền điện. Tư vấn miễn phí — setup trong 24 giờ.</p>
+            <p className="text-[#606060] text-sm">Local AI = chỉ tốn tiền điện. Tư vấn — setup trong 24 giờ.</p>
           </div>
           <a
             href="https://zalo.me/0337776435"

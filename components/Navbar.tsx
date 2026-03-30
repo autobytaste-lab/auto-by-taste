@@ -152,7 +152,7 @@ export const Navbar: React.FC = () => {
             rel="noopener noreferrer"
             className="block w-full text-center btn-gradient px-5 py-3 rounded-full text-sm transition-all duration-300"
           >
-            Tư vấn miễn phí →
+            Tư vấn →
           </a>
           <a
             href="https://t.me/agentic_ai_vn"

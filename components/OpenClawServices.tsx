@@ -25,6 +25,18 @@ const services = [
     description: 'Cần thêm nhân sự AI? Mở rộng đội ngũ tức thì — không tuyển dụng, không đào tạo. Scale từ 1 đến hàng trăm Agent.',
     tags: ['Scale', 'Tức thì', 'Không giới hạn'],
   },
+  {
+    icon: '💡',
+    title: 'Tư vấn giải pháp AI cho cá nhân',
+    description: 'Tư vấn 1-1 giúp bạn chọn đúng công cụ AI, tối ưu workflow cá nhân, tăng năng suất gấp nhiều lần — phù hợp freelancer, creator, chủ shop online.',
+    tags: ['Cá nhân', '1-1', 'Tối ưu workflow'],
+  },
+  {
+    icon: '🏢',
+    title: 'Tư vấn giải pháp AI cho doanh nghiệp',
+    description: 'Phân tích quy trình, đề xuất chiến lược ứng dụng AI toàn diện cho doanh nghiệp — từ CSKH, Sales, Marketing đến vận hành nội bộ.',
+    tags: ['Doanh nghiệp', 'Chiến lược AI', 'Toàn diện'],
+  },
 ];
 
 export const OpenClawServices: React.FC = () => {
@@ -86,7 +98,7 @@ export const OpenClawServices: React.FC = () => {
           <div className="relative z-10 text-center">
             <div className="text-4xl mb-4">🤖</div>
             <h3 className="text-2xl font-bold text-[#f4f4f5] mb-3 tracking-[-0.02em]">Thuê nhân sự AI Agent ngay hôm nay</h3>
-            <p className="text-[#838387] mb-8 max-w-lg mx-auto">Tư vấn miễn phí, thiết kế đội ngũ AI theo nhu cầu, triển khai trong 24h.</p>
+            <p className="text-[#838387] mb-8 max-w-lg mx-auto">Tư vấn, thiết kế đội ngũ AI theo nhu cầu, triển khai trong 24h.</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="https://zalo.me/0337776435"
