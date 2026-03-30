@@ -7,6 +7,7 @@ const navLinks = [
   { href: '#usecases', label: 'Use Cases' },
   { href: '#architecture', label: 'Kiến trúc' },
   { href: '#pricing', label: 'Bảng giá' },
+  { href: '#training', label: 'Đào tạo' },
 ];
 
 export const Navbar: React.FC = () => {

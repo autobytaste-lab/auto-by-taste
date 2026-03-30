@@ -24,6 +24,7 @@ import { BlogPreview } from './components/BlogPreview';
 import { DemoChatSection } from './components/DemoChatSection';
 import { AgentShowcase } from './components/AgentShowcase';
 import { GlowCycle } from './components/GlowCycle';
+import { TrainingConsultation } from './components/TrainingConsultation';
 
 function HomePage() {
   return (
@@ -88,6 +89,10 @@ function HomePage() {
 
         <section id="pricing">
           <ServicePricing />
+        </section>
+
+        <section id="training">
+          <TrainingConsultation />
         </section>
 
         <section id="blog-preview">
