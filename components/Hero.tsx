@@ -37,7 +37,7 @@ export const Hero: React.FC = () => {
             rel="noopener noreferrer"
             className="w-full sm:w-auto px-8 py-4 btn-gradient rounded-full text-[15px] shadow-lg shadow-[#4ade80]/20"
           >
-            Tư vấn miễn phí
+            Tư vấn
           </a>
         </div>
 

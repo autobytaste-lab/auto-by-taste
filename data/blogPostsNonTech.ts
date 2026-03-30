@@ -101,7 +101,7 @@ Với dịch vụ của AutoByTaste:
 
 ## Bắt Đầu Từ Đâu?
 
-Nhắn Zalo cho AutoByTaste tại **0337 776 435** — tư vấn miễn phí, demo thực tế trên chính Zalo của bạn.
+Nhắn Zalo cho AutoByTaste tại **0337 776 435** — tư vấn, demo thực tế trên chính Zalo của bạn.
     `
   },
   {
@@ -338,7 +338,7 @@ A: Với AutoByTaste: 3-5 ngày cho setup cơ bản. Bạn không cần tự là
 
 Đừng chờ đến khi công ty lớn hơn. Dùng AI sớm = cạnh tranh tốt hơn.
 
-Nhắn tin cho AutoByTaste qua Zalo **0337 776 435** để được tư vấn miễn phí và demo thực tế phù hợp với ngành của bạn.
+Nhắn tin cho AutoByTaste qua Zalo **0337 776 435** để được tư vấn và demo thực tế phù hợp với ngành của bạn.
     `
   },
   {
@@ -445,7 +445,7 @@ Cho công việc nhạy cảm, local AI đã đủ tốt — và an toàn hơn n
 
 AutoByTaste hỗ trợ toàn bộ quá trình này — từ tư vấn chọn model phù hợp đến cài đặt và đào tạo.
 
-**Liên hệ**: Zalo 0337 776 435 để được tư vấn miễn phí về giải pháp AI an toàn cho doanh nghiệp bạn.
+**Liên hệ**: Zalo 0337 776 435 để được tư vấn về giải pháp AI an toàn cho doanh nghiệp bạn.
     `
   },
   {

@@ -798,7 +798,7 @@ export const vi: Translation = {
       ['Mở rộng đội ngũ', 'Tức thì', '2-4 tuần'],
       ['Bảo hiểm/phúc lợi', 'Không cần', '+20-30% lương'],
     ],
-    consultCta: 'Tư vấn miễn phí qua Zalo',
+    consultCta: 'Tư vấn qua Zalo',
   },
   footer: {
     brand: 'Auto By Taste',
@@ -847,9 +847,9 @@ export const vi: Translation = {
       },
     ],
     ctaTitle: 'Sẵn sàng thuê nhân sự AI Agent?',
-    ctaDescription: 'Liên hệ ngay để được tư vấn miễn phí và nhận báo giá trong 24 giờ.',
+    ctaDescription: 'Liên hệ ngay để được tư vấn và nhận báo giá trong 24 giờ.',
     telegramTrial: 'Trải nghiệm Demo',
-    telegramGroup: 'Tư vấn miễn phí',
+    telegramGroup: 'Tư vấn',
   },
   chatWidget: {
     title: 'Chat với chúng tôi',

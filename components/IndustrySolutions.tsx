@@ -310,7 +310,7 @@ export const IndustrySolutions: React.FC = () => {
                   Thuê ngay đội ngũ AI Agent cho {activeIndustry.name}
                 </p>
                 <p className="text-[#606060] text-sm">
-                  Tư vấn miễn phí — thiết kế nhân sự AI theo đúng nhu cầu doanh nghiệp.
+                  Tư vấn — thiết kế nhân sự AI theo đúng nhu cầu doanh nghiệp.
                 </p>
               </div>
               <div className="flex gap-3 shrink-0">

@@ -1229,7 +1229,7 @@ Bạn vẫn xem được lịch sử trò chuyện, vẫn có thể nhảy vào 
 
 ## Bắt Đầu Từ Đâu?
 
-Nhắn Zalo cho AutoByTaste tại **0337 776 435** — tư vấn miễn phí, demo thực tế trên chính Zalo của bạn.`,
+Nhắn Zalo cho AutoByTaste tại **0337 776 435** — tư vấn, demo thực tế trên chính Zalo của bạn.`,
   },
   {
     slug: 'ai-cho-van-phong',
@@ -1369,7 +1369,7 @@ Theo dõi đơn hàng, thông báo khi hàng sẵn sàng, báo cáo sản xuất
 
 ## Bắt Đầu Ngay Hôm Nay
 
-Nhắn tin cho AutoByTaste qua Zalo **0337 776 435** — tư vấn miễn phí, demo thực tế phù hợp với ngành của bạn.`,
+Nhắn tin cho AutoByTaste qua Zalo **0337 776 435** — tư vấn, demo thực tế phù hợp với ngành của bạn.`,
   },
   {
     slug: 'ai-giai-phap-chong-rui-ro-tu-cloud',
@@ -1430,7 +1430,7 @@ Cho công việc nhạy cảm, local AI đã đủ tốt — và an toàn hơn n
 
 ## Bước Tiếp Theo
 
-AutoByTaste hỗ trợ toàn bộ: tư vấn chọn model, cài đặt, đào tạo. Liên hệ Zalo **0337 776 435** để được tư vấn miễn phí.`,
+AutoByTaste hỗ trợ toàn bộ: tư vấn chọn model, cài đặt, đào tạo. Liên hệ Zalo **0337 776 435** để được tư vấn.`,
   },
   {
     slug: 'ai-agent-vs-con-nguoi',
@@ -1705,7 +1705,7 @@ Khách quyết định mua xe vào tối — đúng lúc đại lý không có a
 | Khách cùng lúc | 1–2 | Không giới hạn |
 | Nghỉ phép/ốm | Có | Không |
 
-AutoByTaste triển khai AI Agent Zalo trong 24 giờ. Liên hệ **0337 776 435** để tư vấn miễn phí.`,
+AutoByTaste triển khai AI Agent Zalo trong 24 giờ. Liên hệ **0337 776 435** để tư vấn.`,
   },
 ];
 
