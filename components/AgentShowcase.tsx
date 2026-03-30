@@ -9,13 +9,73 @@ const tags = [
   'Data Agent',
 ];
 
-const nodePositions = [
-  { x: 120, y: 60, label: 'Sales' },
-  { x: 360, y: 60, label: 'CSKH' },
-  { x: 120, y: 260, label: 'Marketing' },
-  { x: 360, y: 260, label: 'Data' },
-  { x: 240, y: 20, label: 'Top' },
-  { x: 240, y: 300, label: 'Bottom' },
+/* SVG viewBox = 480 × 320, center = (240, 160)
+   Percentages derived: x / 480 * 100, y / 320 * 100 */
+const nodes = [
+  {
+    svgX: 120, svgY: 60,
+    pctLeft: '25%', pctTop: '18.75%',
+    icon: (
+      <svg className="w-4 h-4 sm:w-4 sm:h-4 text-[#4ade80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+    ),
+    iconBg: 'bg-[#0a1a0a] border border-[#4ade80]/30',
+    delay: 0.7,
+    breatheDelay: 0.5,
+  },
+  {
+    svgX: 360, svgY: 60,
+    pctLeft: '75%', pctTop: '18.75%',
+    icon: (
+      <svg className="w-4 h-4 sm:w-4 sm:h-4 text-[#4ade80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    ),
+    iconBg: 'bg-[#0a1a0a] border border-[#4ade80]/30',
+    delay: 0.85,
+    breatheDelay: 1,
+  },
+  {
+    svgX: 120, svgY: 260,
+    pctLeft: '25%', pctTop: '81.25%',
+    icon: (
+      <svg className="w-4 h-4 sm:w-4 sm:h-4 text-[#4ade80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    ),
+    iconBg: 'bg-[#0a1a0a] border border-[#4ade80]/30',
+    delay: 1,
+    breatheDelay: 1.5,
+  },
+  {
+    svgX: 360, svgY: 260,
+    pctLeft: '75%', pctTop: '81.25%',
+    icon: (
+      <div className="w-3 h-3 rounded-full bg-[#4ade80]"></div>
+    ),
+    iconBg: 'bg-[#4ade80]/20',
+    delay: 1.15,
+    breatheDelay: 2,
+  },
+  {
+    svgX: 240, svgY: 20,
+    pctLeft: '50%', pctTop: '6.25%',
+    icon: (
+      <div className="w-2 h-2 rounded-full bg-white"></div>
+    ),
+    iconBg: 'bg-gradient-to-br from-[#d4fc79] to-[#4ade80]',
+    iconSize: 'w-6 h-6',
+    delay: 0.9,
+    breatheDelay: 0.8,
+  },
+  {
+    svgX: 240, svgY: 300,
+    pctLeft: '50%', pctTop: '93.75%',
+    icon: (
+      <div className="flex gap-1">
+        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#4ade80]/60"></div>
+        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#4ade80]/30"></div>
+      </div>
+    ),
+    iconBg: '',
+    delay: 1.05,
+    breatheDelay: 1.3,
+  },
 ];
 
 export const AgentShowcase: React.FC = () => {
@@ -38,8 +98,12 @@ export const AgentShowcase: React.FC = () => {
           100% { offset-distance: 100%; opacity: 0; }
         }
         @keyframes node-breathe {
-          0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(74,222,128,0.2); }
-          50% { transform: scale(1.06); box-shadow: 0 0 16px 4px rgba(74,222,128,0.15); }
+          0%, 100% { transform: translate(-50%,-50%) scale(1); box-shadow: 0 0 0 0 rgba(74,222,128,0.2); }
+          50% { transform: translate(-50%,-50%) scale(1.06); box-shadow: 0 0 16px 4px rgba(74,222,128,0.15); }
+        }
+        @keyframes node-pop {
+          from { opacity: 0; transform: translate(-50%,-50%) scale(0.85); }
+          to { opacity: 1; transform: translate(-50%,-50%) scale(1); }
         }
         @keyframes hub-float {
           0%, 100% { transform: translate(-50%,-50%) translateY(0); }
@@ -115,29 +179,30 @@ export const AgentShowcase: React.FC = () => {
             ))}
           </div>
 
-          {/* Visual — connected agent nodes */}
-          <div className="relative w-full max-w-[480px] mx-auto h-[320px]">
-            {/* Center hub */}
+          {/* Visual — connected agent nodes
+              aspect-ratio matches SVG viewBox 480:320 = 3:2
+              so HTML node % positions stay aligned with SVG lines */}
+          <div className="relative w-full max-w-[480px] mx-auto" style={{ aspectRatio: '480 / 320' }}>
+            {/* Center hub — positioned at 50%, 50% */}
             <div
-              className="absolute top-1/2 left-1/2 w-24 h-24 rounded-2xl bg-gradient-to-br from-[#d4fc79]/60 to-[#4ade80]/60 flex items-center justify-center z-10"
-              style={animate ? {
-                animation: 'hub-float 4s ease-in-out infinite, hub-glow 3s ease-in-out infinite',
-                transform: 'translate(-50%,-50%)',
-              } : {
-                transform: 'translate(-50%,-50%)',
+              className="absolute w-16 h-16 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-[#d4fc79]/60 to-[#4ade80]/60 flex items-center justify-center z-10"
+              style={{
+                left: '50%',
+                top: '50%',
+                ...(animate ? {
+                  animation: 'hub-float 4s ease-in-out infinite, hub-glow 3s ease-in-out infinite',
+                  transform: 'translate(-50%,-50%)',
+                } : {
+                  transform: 'translate(-50%,-50%)',
+                }),
               }}
             >
-              <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/img_6726_1774809379159.jpeg" alt="AutoByTaste" className="w-12 h-12 rounded-full object-cover" />
+              <img src="https://umxxfeuo5ed9xpid.public.blob.vercel-storage.com/media/img_6726_1774809379159.jpeg" alt="AutoByTaste" className="w-8 h-8 sm:w-12 sm:h-12 rounded-full object-cover" />
             </div>
 
             {/* Connecting lines + animated data packets */}
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 480 320">
               <defs>
-                <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#4ade80" stopOpacity="0.1" />
-                  <stop offset="50%" stopColor="#4ade80" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="#4ade80" stopOpacity="0.1" />
-                </linearGradient>
                 <filter id="packetGlow">
                   <feGaussianBlur stdDeviation="2" result="blur" />
                   <feMerge>
@@ -147,11 +212,10 @@ export const AgentShowcase: React.FC = () => {
                 </filter>
               </defs>
 
-              {nodePositions.map((node, i) => {
-                const pathId = `path-${i}`;
-                const d = `M240,160 L${node.x},${node.y}`;
+              {nodes.map((node, i) => {
+                const d = `M240,160 L${node.svgX},${node.svgY}`;
                 return (
-                  <g key={node.label}>
+                  <g key={i}>
                     {/* Base line with draw animation */}
                     <path
                       d={d}
@@ -183,103 +247,43 @@ export const AgentShowcase: React.FC = () => {
 
                     {/* Traveling data packet */}
                     {animate && (
-                      <>
-                        <path id={pathId} d={d} fill="none" stroke="none" />
-                        <circle
-                          r="3"
-                          fill="#d4fc79"
-                          filter="url(#packetGlow)"
-                          style={{
-                            offsetPath: `path("${d}")`,
-                            animation: `packet-travel ${2 + i * 0.3}s ease-in-out ${1 + i * 0.4}s infinite`,
-                            opacity: 0,
-                          }}
-                        />
-                      </>
+                      <circle
+                        r="3"
+                        fill="#d4fc79"
+                        filter="url(#packetGlow)"
+                        style={{
+                          offsetPath: `path("${d}")`,
+                          animation: `packet-travel ${2 + i * 0.3}s ease-in-out ${1 + i * 0.4}s infinite`,
+                          opacity: 0,
+                        }}
+                      />
                     )}
                   </g>
                 );
               })}
             </svg>
 
-            {/* Top-left node — Sales */}
-            <div
-              className="absolute top-4 left-[15%] w-16 h-16 rounded-xl bg-[#1a1c22] border border-[#2a2a2a] flex items-center justify-center"
-              style={animate ? {
-                animation: `node-breathe 3s ease-in-out 0.5s infinite, tag-pop 0.6s cubic-bezier(0.16,1,0.3,1) 0.7s forwards`,
-                opacity: 0,
-              } : {}}
-            >
-              <div className="w-8 h-8 rounded-full bg-[#0a1a0a] border border-[#4ade80]/30 flex items-center justify-center">
-                <svg className="w-4 h-4 text-[#4ade80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+            {/* Agent nodes — positioned with % matching SVG coordinates */}
+            {nodes.map((node, i) => (
+              <div
+                key={i}
+                className={`absolute ${node.iconSize ? 'w-10 h-10 sm:w-14 sm:h-14' : 'w-12 h-12 sm:w-16 sm:h-16'} rounded-xl bg-[#1a1c22] border border-[#2a2a2a] flex items-center justify-center`}
+                style={{
+                  left: node.pctLeft,
+                  top: node.pctTop,
+                  ...(animate ? {
+                    animation: `node-breathe 3s ease-in-out ${node.breatheDelay}s infinite, node-pop 0.6s cubic-bezier(0.16,1,0.3,1) ${node.delay}s forwards`,
+                    opacity: 0,
+                  } : {
+                    transform: 'translate(-50%,-50%)',
+                  }),
+                }}
+              >
+                <div className={`${node.iconSize || 'w-7 h-7 sm:w-8 sm:h-8'} rounded-full ${node.iconBg} flex items-center justify-center`}>
+                  {node.icon}
+                </div>
               </div>
-            </div>
-
-            {/* Top-right node — CSKH */}
-            <div
-              className="absolute top-4 right-[15%] w-16 h-16 rounded-xl bg-[#1a1c22] border border-[#2a2a2a] flex items-center justify-center"
-              style={animate ? {
-                animation: `node-breathe 3s ease-in-out 1s infinite, tag-pop 0.6s cubic-bezier(0.16,1,0.3,1) 0.85s forwards`,
-                opacity: 0,
-              } : {}}
-            >
-              <div className="w-8 h-8 rounded-full bg-[#0a1a0a] border border-[#4ade80]/30 flex items-center justify-center">
-                <svg className="w-4 h-4 text-[#4ade80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-              </div>
-            </div>
-
-            {/* Bottom-left node — Marketing */}
-            <div
-              className="absolute bottom-4 left-[15%] w-16 h-16 rounded-xl bg-[#1a1c22] border border-[#2a2a2a] flex items-center justify-center"
-              style={animate ? {
-                animation: `node-breathe 3s ease-in-out 1.5s infinite, tag-pop 0.6s cubic-bezier(0.16,1,0.3,1) 1s forwards`,
-                opacity: 0,
-              } : {}}
-            >
-              <div className="w-8 h-8 rounded-full bg-[#0a1a0a] border border-[#4ade80]/30 flex items-center justify-center">
-                <svg className="w-4 h-4 text-[#4ade80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              </div>
-            </div>
-
-            {/* Bottom-right node — Data */}
-            <div
-              className="absolute bottom-4 right-[15%] w-16 h-16 rounded-xl bg-[#1a1c22] border border-[#2a2a2a] flex items-center justify-center"
-              style={animate ? {
-                animation: `node-breathe 3s ease-in-out 2s infinite, tag-pop 0.6s cubic-bezier(0.16,1,0.3,1) 1.15s forwards`,
-                opacity: 0,
-              } : {}}
-            >
-              <div className="w-8 h-8 rounded-full bg-[#4ade80]/20 flex items-center justify-center">
-                <div className="w-3 h-3 rounded-full bg-[#4ade80]"></div>
-              </div>
-            </div>
-
-            {/* Top center node */}
-            <div
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-14 h-14 rounded-xl bg-[#1a1c22] border border-[#2a2a2a] flex items-center justify-center"
-              style={animate ? {
-                animation: `node-breathe 3s ease-in-out 0.8s infinite, tag-pop 0.6s cubic-bezier(0.16,1,0.3,1) 0.9s forwards`,
-                opacity: 0,
-              } : {}}
-            >
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#d4fc79] to-[#4ade80] flex items-center justify-center">
-                <div className="w-2 h-2 rounded-full bg-white"></div>
-              </div>
-            </div>
-
-            {/* Bottom center node */}
-            <div
-              className="absolute bottom-0 left-1/2 -translate-x-1/2 w-14 h-14 rounded-xl bg-[#1a1c22] border border-[#2a2a2a] flex items-center justify-center"
-              style={animate ? {
-                animation: `node-breathe 3s ease-in-out 1.3s infinite, tag-pop 0.6s cubic-bezier(0.16,1,0.3,1) 1.05s forwards`,
-                opacity: 0,
-              } : {}}
-            >
-              <div className="flex gap-1">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#4ade80]/60"></div>
-                <div className="w-2.5 h-2.5 rounded-full bg-[#4ade80]/30"></div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
